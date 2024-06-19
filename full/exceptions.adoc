@@ -1,6 +1,6 @@
-[#ch12-exceptions]
-:imagesdir: chapters/12-exceptions/images
-:programsdir: chapters/12-exceptions/programs
+[#exceptions]
+:imagesdir: chapters/exceptions/images
+:programsdir: chapters/exceptions/programs
 == Exceptions
 
 [quote, W. R. Inge]
@@ -277,7 +277,7 @@ additional information about the exception.
 In contrast to the examples given above, you'll rarely write code to catch a
 `NullPointerException` or an `ArithmeticException`. Both of these
 exceptions are called _unchecked_ exceptions. In
-<<ch06-arrays#ch06-arrays>>, we used the `Thread.sleep()` method to put
+<<arrays#arrays>>, we used the `Thread.sleep()` method to put
 the execution of our program to sleep for a short period of time. We
 were forced to enclose this method call in a `try` block with a `catch`
 block for `InterruptedException`.
@@ -311,7 +311,7 @@ for a new name or explain that the required permission is not set.
 <<needThrowsExercise>>
 ****
 
-In <<ch06-arrays#ch06-arrays>>, there were no executable statements in
+In <<arrays#arrays>>, there were no executable statements in
 the `catch` block used with the `Thread.sleep()` method. However, you
 should *never* write an empty `catch` block. Doing so allows errors to fail silently.
 
@@ -816,7 +816,7 @@ because of the `RuntimeException` that they throw. Note that we use the unchecke
 `catch` blocks. The thread with a `value` of `7` will complete its
 calculation and print it to the screen even though the main thread has
 died. For more information on how to spawn threads, refer to
-<<ch13-concurrency#ch13-concurrency>>.
+<<concurrency#concurrency>>.
 
 ====
 

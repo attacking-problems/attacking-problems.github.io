@@ -1,6 +1,6 @@
-[#ch01-computer-basics]
+[#computer-basics]
 == Computer Basics
-:imagesdir: chapters/01-computer-basics/images
+:imagesdir: chapters/computer-basics/images
 
 [quote, Pablo Picasso]
 ____
@@ -163,7 +163,7 @@ they can all communicate with the same memory.
 In theory, having six cores could allow your computer to run six times
 as fast. In practice, this speedup is hard to achieve. Learning how to
 get more performance out of multicore systems is a major
-themes of this book. <<ch13-concurrency#ch13-concurrency>> and <<ch14-synchronization#ch14-synchronization>> as well as
+themes of this book. <<concurrency#concurrency>> and <<synchronization#synchronization>> as well as
 sections marked *Concurrency* in other chapters are specifically
 tailored for students interested in programming these multicore
 systems to work effectively. If you aren't interested in concurrent
@@ -208,7 +208,7 @@ A bit is a tiny amount of information. For organizational purposes, we
 call a sequence of eight bits a _byte_. The word size of a CPU is two or
 more bytes, but memory capacity is usually listed in bytes not words.
 
-.Shown here is a word containing four bytes, or 32 bits. Computer scientists often number items starting at zero, as we discuss in <<ch06-arrays#ch06-arrays>>.
+.Shown here is a word containing four bytes, or 32 bits. Computer scientists often number items starting at zero, as we discuss in <<arrays#arrays>>.
 image::bitsBytesFigure.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
 Both primary and secondary storage capacities have become so large that

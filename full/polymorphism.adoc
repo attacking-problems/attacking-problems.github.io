@@ -1,6 +1,6 @@
-[#ch17-polymorphism]
-:imagesdir: chapters/17-polymorphism/images
-:programsdir: chapters/17-polymorphism/programs
+[#polymorphism]
+:imagesdir: chapters/polymorphism/images
+:programsdir: chapters/polymorphism/programs
 == Polymorphism
 
 [quote, Neutral Milk Hotel]
@@ -10,7 +10,7 @@ ____
 
 === Problem: Banking account with a vengeance
 
-In <<ch14-synchronization#ch14-synchronization>>, we introduced the
+In <<synchronization#synchronization>>, we introduced the
 `SynchronizedAccount` class that guarantees that checking the balance,
 making deposits, and making withdrawals will all be safe even in a
 multi-threaded environment. Unfortunately, `SynchronizedAccount` provides
@@ -41,7 +41,7 @@ greater than $0, the account earns interest corresponding to
 is below $1,000, a $25 service fee is charged each month, regardless of
 how low the balance becomes.
 
-In <<ch11-inheritance#ch11-inheritance>> you were exposed to concepts
+In <<inheritance#inheritance>> you were exposed to concepts
 surrounding inheritance in object-oriented programming. We now return
 to these concepts and explore them further. In the first place, concurrency
 is on the table now, and you must be careful to keep your derived classes
@@ -816,7 +816,7 @@ The `java.util.concurrent.atomic` package includes `AtomicBoolean` and
 perform atomic array accesses. For general purposes, the
 `AtomicReference<V>` class provides an atomic way to store a reference
 to any object. The `<V>` is a generic type parameter, which will be
-discussed in <<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>.
+discussed in <<dynamic-data-structures#dynamic-data-structures>>.
 
 Although you could use the `synchronized` keyword to create each one of
 these classes yourself, the result wouldn't be as efficient. The atomic

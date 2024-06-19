@@ -1,4 +1,4 @@
-[#chxx-lambdas-and-streams]
+[#lambdas-and-streams]
 :imagesdir: chapters/xx-lambdas-and-streams/images
 :programsdir: chapters/xx-lambdas-and-streams/programs
 == Lambdas and Streams

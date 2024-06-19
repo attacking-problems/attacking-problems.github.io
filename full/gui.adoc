@@ -1,6 +1,6 @@
-[#ch15-gui]
-:imagesdir: chapters/15-gui/images
-:programsdir: chapters/15-gui/programs
+[#gui]
+:imagesdir: chapters/gui/images
+:programsdir: chapters/gui/programs
 == Constructing Graphical User Interfaces
 
 [quote, Napoleon Bonaparte]
@@ -58,7 +58,7 @@ interaction are possible.
 This chapter will teach you how to write programs with GUIs. Although
 GUIs can make input and output easier for the user, the programmer has
 to shoulder the burden of arranging the layout and appearance of the GUI
-and making it function properly. <<ch07-gui-basics#ch07-gui-basics>>
+and making it function properly. <<gui-basics#gui-basics>>
 introduced a way to make simple GUIs, but those GUIs came
 in preset flavors designed for displaying a message, getting a range of
 responses in the form of buttons or lists, or reading a short piece of text as
@@ -409,7 +409,7 @@ implements the `ActionListener` interface can be registered as an action
 listener on a `JButton` or any other component that generates an
 `ActionEvent`.
 
-As discussed in <<ch10-interfaces#ch10-interfaces>>, an interface is a set of
+As discussed in <<interfaces#interfaces>>, an interface is a set of
 method signatures. If a class implements an interface, it promises that its objects will
 have all of the methods in that interface. If a class implements
 `ActionListener`, it's saying that it knows what to do when an action is
@@ -1582,7 +1582,7 @@ that the EDT is the one that will actually execute the code inside.
 
 If you're writing a complex program, the EDT may interact with many
 other threads, and the synchronization issues discussed in
-<<ch14-synchronization#ch14-synchronization>> will become important. However, only
+<<synchronization#synchronization>> will become important. However, only
 the EDT is allowed to change the state of components in a GUI. Using other
 threads to do so will work some of the time, but it's not thread-safe
 and violates the design of Swing.
@@ -1638,7 +1638,7 @@ _generic_, meaning that it has type parameters (given in angle brackets)
 which specify what type of objects it interacts with. Generic classes
 are often containers like `LinkedList` where the type parameter says
 what kind of objects will be kept in the list.
-<<ch18-dynamic-data-structures#ch18-dynamic-data-structures>> covers generics
+<<dynamic-data-structures#dynamic-data-structures>> covers generics
 in some depth. The reason we need generics for `SwingWorker` is so that it
 can specify what kinds of answers it produces.
 The first type parameter specifies the type that the worker will return when

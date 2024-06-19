@@ -1,6 +1,6 @@
-[#ch16-testing-and-debugging]
-:imagesdir: chapters/16-testing-and-debugging/images
-:programsdir: chapters/16-testing-and-debugging/programs
+[#testing-and-debugging]
+:imagesdir: chapters/testing-and-debugging/images
+:programsdir: chapters/testing-and-debugging/programs
 == Testing and Debugging
 
 [quote, John Peel]
@@ -605,7 +605,7 @@ This assignment will always store `2` into `three`. The `Math.round()`
 method or some other additional step is needed to perform rounding.
 
 Casting errors are not limited to primitive data types. Object casting
-will be discussed at length in <<ch17-polymorphism#ch17-polymorphism>>. The
+will be discussed at length in <<polymorphism#polymorphism>>. The
 biggest danger there is an incorrect explicit upcast.
 
 [source,java]
@@ -625,7 +625,7 @@ that's the parent class of the item you generally expect to be stored. If a larg
 team is working on a body of code with such a list, half of the
 team might expect the list to contain only `Apple` objects while the
 other expected only `ChiliPepper` objects. The use of generics,
-discussed in <<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>,
+discussed in <<dynamic-data-structures#dynamic-data-structures>>,
 can reduce the number of casting errors of this kind, but some applications require a
 list to hold many different types with a common superclass. In those
 cases, some amount of explicit (and therefore dangerous) casting will
@@ -1182,7 +1182,7 @@ blindly use a `null` reference without checking it first, causing a
 
 We'll discuss parallel bugs briefly here because we've already
 spoken in depth about the dangers of parallel programming in
-<<ch14-synchronization#ch14-synchronization>>. Beyond deadlocks and
+<<synchronization#synchronization>>. Beyond deadlocks and
 livelocks, a key difficulty with parallel bugs is that they can make the
 appearance of sequential bugs nondeterministic and unpredictable.
 
@@ -1866,7 +1866,7 @@ The open-source https://github.com/Devexperts/lin-check[Lin-check^] framework
 has some similarities to ConTest.  It was designed by
 https://devexperts.com[Devexperts^] specifically to test data structures such
 as those we will discuss in
-<<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>.  Like ConTest,
+<<dynamic-data-structures#dynamic-data-structures>>.  Like ConTest,
 Lin-check executes tests in parallel many times in an effort to find a
 concurrent interleaving that causes an error condition.
 
