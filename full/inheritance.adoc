@@ -1,6 +1,6 @@
-[#ch11-inheritance]
-:imagesdir: chapters/11-inheritance/images
-:programsdir: chapters/11-inheritance/programs
+[#inheritance]
+:imagesdir: chapters/inheritance/images
+:programsdir: chapters/inheritance/programs
 == Inheritance
 
 [quote, Khalil Gibran]
@@ -13,7 +13,7 @@ ____
 
 === Problem: Boolean circuits
 
-In <<ch04-selection#ch04-selection>>, we talked extensively about Boolean
+In <<selection#selection>>, we talked extensively about Boolean
 algebra and how it can be applied to `if` statements in order to control
 the flow of execution in your program. The commands that we give in
 software must be executed by hardware in order to have an effect. It
@@ -125,7 +125,7 @@ sections.
 
 Here we give a brief overview of inheritance that will give us enough
 information to continue onward. We'll cover some of the deeper areas of the
-subject in <<ch17-polymorphism#ch17-polymorphism>>.
+subject in <<polymorphism#polymorphism>>.
 
 ==== Basic inheritance
 
@@ -265,7 +265,7 @@ In multiple inheritance, a single class can have many different parents.
 Since {cpp} supports multiple inheritance, it would allow you to have a
 `SharkAlligatorMan` class that inherits from the
 `Shark`, `Alligator`, and `Human` classes. If you go back to the sorting
-problem from <<ch10-interfaces#ch10-interfaces>>, multiple inheritance would
+problem from <<interfaces#interfaces>>, multiple inheritance would
 allow us to solve the problem with an `Age` class and a `Weight` class
 from which `Dog`, `Cat`, `Person`, and `Cheese` all inherit.
 
@@ -304,7 +304,7 @@ When an interface extends other interfaces, it includes all the methods
 (and constants) they define. If a class implements an interface that
 extends other interfaces, it must contain versions of all the methods
 specified by *all* the interfaces. Recall the `Ageable` and `Weighable`
-interfaces from <<ch10-interfaces#ch10-interfaces>>, which specified the
+interfaces from <<interfaces#interfaces>>, which specified the
 `getAge()` and `getWeight()` methods, respectively. We could create an
 interface that required both of these methods by extending `Ageable` and
 `Weighable`.
@@ -363,7 +363,7 @@ parent class exists inside of the child. When you create an object from
 a child class, how do you properly initialize the fields inside the
 parent class?
 
-As we discussed in <<ch09-classes#ch09-classes>>, every class has a
+As we discussed in <<classes#classes>>, every class has a
 constructor, even if it's a default one created for you. Whenever the
 constructor for a child class is invoked, the constructor for the parent
 class is invoked as well. If the parent class is also the child of some
@@ -544,7 +544,7 @@ following methods.
 tables of objects.
 
 |`notify()` |Used for synchronization with threaded programs. More in
-<<ch14-synchronization#ch14-synchronization>>.
+<<synchronization#synchronization>>.
 
 |`notifyAll()` |Same as previous.
 
@@ -564,15 +564,15 @@ methods. Aside from making a few useful methods available, having a
 common ancestor for all classes means that you can store any object in
 an `Object` reference. An array of type `Object` can hold anything,
 provided that you know how to retrieve it. We discuss the finer points
-of inheritance and polymorphism in <<ch17-polymorphism#ch17-polymorphism>> and
+of inheritance and polymorphism in <<polymorphism#polymorphism>> and
 how to build lists and other data structures using `Object` references
-in <<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>.
+in <<dynamic-data-structures#dynamic-data-structures>>.
 
 === Examples: Problem solving with inheritance
 
 Here are two extended examples showing how we can use inheritance to
 solve problems. First, we revisit the student roster example from
-<<ch09-classes#ch09-classes>> and then move onto an inheritance hierarchy
+<<classes#classes>> and then move onto an inheritance hierarchy
 of polygons.
 
 .Graduate student roster
@@ -651,7 +651,7 @@ vertices. Although it's also possible to determine the area enclosed by a list o
 vertices, the algorithm is complex.
 <.> The `draw()` method draws the
 polygon by drawing each line segment that connects adjacent vertices. We
-discuss the `Graphics` class in <<ch15-gui#ch15-gui>>. If you compile and run this code, please note that in
+discuss the `Graphics` class in <<gui#gui>>. If you compile and run this code, please note that in
 Java graphics, like many computer graphics environments, the upper left
 hand corner of the screen or window is considered (0,0), and
 _y_ values *increase* going downward, not upward.
@@ -1094,7 +1094,7 @@ you create an object of type `Z`, it will contain, through inheritance,
 26 `int` fields named `a` through `z`. But for a single `Z` object to
 be created, it must call 27 (`Z` back through `A` plus `Object`)
 constructors. You may wish to use the file I/O material in
-<<ch20-file-io#ch20-file-io>> to write a program to create all these
+<<file-io#file-io>> to write a program to create all these
 classes so that you do not have to do so by hand.
 +
 Finally, create a new class called `All` which contains 26 `protected`
@@ -1107,5 +1107,5 @@ Create an array of 100,000 elements of type `Z` and then populate it
 with 100,000 `Z` objects. Time this process. Create an array of 100,000
 elements of type `All` and then populate that array with 100,000 `All`
 objects. You may wish to use the `System.nanoTime()` method described in
-<<ch13-concurrency#ch13-concurrency>> to accurately time these
+<<concurrency#concurrency>> to accurately time these
 processes. Is there a significant difference in the times you found?

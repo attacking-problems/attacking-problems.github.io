@@ -1,6 +1,6 @@
-[#ch14-synchronization]
-:imagesdir: chapters/14-synchronization/images
-:programsdir: chapters/14-synchronization/programs
+[#synchronization]
+:imagesdir: chapters/synchronization/images
+:programsdir: chapters/synchronization/programs
 == Synchronization
 
 [quote, Mary Catherine Bateson]
@@ -318,7 +318,7 @@ executing synchronized code, it can call `wait()`. Instead of busy
 waiting, a thread which has called `wait()` will be removed from the
 list of running threads. It will wait in a dormant state until someone
 comes along and notifies the thread that its waiting is done. If you
-recall the thread state diagram from <<ch13-concurrency#ch13-concurrency>>,
+recall the thread state diagram from <<concurrency#concurrency>>,
 there's a Not Runnable state which threads enter by
 calling `sleep()`, calling `wait()`, or performing blocking I/O. Using
 `wait()`, we can rewrite the vote counting thread.
@@ -494,7 +494,7 @@ include::{programsdir}/SynchronizedAccount.java[lines=34..43]
 <.> The `changeBalance()` method is synchronized so that it can have
 exclusive access to the `readers` variable. It's also marked `protected`
 because `SynchronizedAccount` will be used as a parent class in
-<<ch17-polymorphism#ch17-polymorphism>>.
+<<polymorphism#polymorphism>>.
 <.> As long as `readers` is
 greater than 0, this method will wait.
 <.> Eventually, the readers should
@@ -822,7 +822,7 @@ more.
 
 ==== Priority inversion
 
-In <<ch13-concurrency#ch13-concurrency>> we suggest that you rarely use
+In <<concurrency#concurrency>> we suggest that you rarely use
 thread priorities. Even good reasons to use priorities can be
 thwarted by _priority inversion_. In priority inversion, a lower
 priority thread holds a lock needed by a higher priority thread,

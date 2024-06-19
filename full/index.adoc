@@ -15,44 +15,44 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 ifdef::ebook-format[:leveloffset: -1]
 :google-analytics-account: G-VEDGKRPMMK
 
-include::ch01-computer-basics.adoc[]
+include::computer-basics.adoc[]
 
-include::ch02-intro.adoc[]
+include::intro.adoc[]
 
-include::ch03-strings-primitive-types.adoc[]
+include::strings-primitive-types.adoc[]
 
-include::ch04-selection.adoc[]
+include::selection.adoc[]
 
-include::ch05-repetition.adoc[]
+include::repetition.adoc[]
 
-include::ch06-arrays.adoc[]
+include::arrays.adoc[]
 
-include::ch07-gui-basics.adoc[]
+include::gui-basics.adoc[]
 
-include::ch08-methods.adoc[]
+include::methods.adoc[]
 
-include::ch09-classes.adoc[]
+include::classes.adoc[]
 
-include::ch10-interfaces.adoc[]
+include::interfaces.adoc[]
 
-include::ch11-inheritance.adoc[]
+include::inheritance.adoc[]
 
-include::ch12-exceptions.adoc[]
+include::exceptions.adoc[]
 
-include::ch13-concurrency.adoc[]
+include::concurrency.adoc[]
 
-include::ch14-synchronization.adoc[]
+include::synchronization.adoc[]
 
-include::ch15-gui.adoc[]
+include::gui.adoc[]
 
-include::ch16-testing-and-debugging.adoc[]
+include::testing-and-debugging.adoc[]
 
-include::ch17-polymorphism.adoc[]
+include::polymorphism.adoc[]
 
-include::ch18-dynamic-data-structures.adoc[]
+include::dynamic-data-structures.adoc[]
 
-include::ch19-recursion.adoc[]
+include::recursion.adoc[]
 
-include::ch20-file-io.adoc[]
+include::file-io.adoc[]
 
-include::ch21-network-communication.adoc[]
+include::network-communication.adoc[]

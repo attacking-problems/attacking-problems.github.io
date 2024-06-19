@@ -1,6 +1,6 @@
-[#ch20-file-io]
-:imagesdir: chapters/20-file-io/images
-:programsdir: chapters/20-file-io/programs
+[#file-io]
+:imagesdir: chapters/file-io/images
+:programsdir: chapters/file-io/programs
 == File I/O
 
 [quote, The Dark Crystal]
@@ -682,8 +682,8 @@ Indeed, most users are used to selecting files to open or to save via a GUI
 file chooser instead of typing file names explicitly.  The Java Swing library
 provides such a file chooser called `JFileChooser`.
 
-We discussed fully featured GUI programs in <<ch15-gui#ch15-gui>>, but like the
-`JOptionPane` class covered in <<ch07-gui-basics#ch07-gui-basics>>,
+We discussed fully featured GUI programs in <<gui#gui>>, but like the
+`JOptionPane` class covered in <<gui-basics#gui-basics>>,
 `JFileChooser` can be used with or without a complex GUI.
 
 Unlike the `JOptionPane` class whose functionality is accessed through static

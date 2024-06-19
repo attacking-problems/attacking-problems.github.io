@@ -1,6 +1,6 @@
-[#ch02-intro]
-:imagesdir: chapters/02-intro/images
-:programsdir: chapters/02-intro/programs
+[#intro]
+:imagesdir: chapters/intro/images
+:programsdir: chapters/intro/programs
 == Problem Solving and Programming
 
 [quote, George Pólya]
@@ -216,7 +216,7 @@ in aviation, automotive, or medical software, people die because of
 bugs.
 +
 Most of this book is dedicated to designing solutions to problems and
-implementing them in Java, but <<ch16-testing-and-debugging#ch16-testing-and-debugging>>
+implementing them in Java, but <<testing-and-debugging#testing-and-debugging>>
 is all about testing and debugging.
 5.  *Maintenance:* Imagine you've gone through the previous four
 steps: You understood all the details of a problem, planned a solution
@@ -442,7 +442,7 @@ Which text editor or graphical IDE you use is up to you.
 Programming is a craft, and every artisan has favorite
 tools. Most of the content of this book is completely independent from
 the tools you use to write and compile your code. One exception is
-<<ch16-testing-and-debugging#ch16-testing-and-debugging>>, in which we briefly discuss
+<<testing-and-debugging#testing-and-debugging>>, in which we briefly discuss
 the debugging tools in Eclipse and IntelliJ IDEA.
 
 If you choose Eclipse, IntelliJ IDEA, or another complex IDE, you may wish to
@@ -483,7 +483,7 @@ The first rule of Java is that all code goes inside of a _class_. A
 class is a container for blocks of code called _methods_, and it can also
 be used as a template to create _objects_. We'll talk a bit more about
 classes in this chapter and then focus on them heavily in
-<<ch09-classes#ch09-classes>>.
+<<classes#classes>>.
 
 For now, you only need to remember that every Java program has at least
 one class. It is possible to put more than one class in a file, but you
@@ -561,7 +561,7 @@ command line and reading data in from the command line.
 Methods allow us to perform actions in Java. They are blocks of code
 packaged up with a name so that we can run the same piece of code
 repeatedly but with different inputs. We discuss them in much greater
-depth in <<ch08-methods#ch08-methods>>.
+depth in <<methods#methods>>.
 
 A common method for output is `System.out.print()`. The input (usually
 called _arguments_) to a method are given between its parentheses. Thus,
@@ -841,8 +841,8 @@ If you're used to GUI-based programs, you might wonder how to do input
 and output with a GUI instead of on the command line. GUIs can become
 complex, but in this chapter we introduce a  simple way
 to do GUI input and output and expand on it further in
-<<ch07-gui-basics#ch07-gui-basics>>. Then, we go into
-GUIs in much more depth in <<ch15-gui#ch15-gui>>.
+<<gui-basics#gui-basics>>. Then, we go into
+GUIs in much more depth in <<gui#gui>>.
 
 A limited tool for displaying output and reading input with a GUI is the
 `JOptionPane` class. This class has a complicated method called
@@ -951,7 +951,7 @@ You might wonder why the computer isn't smart enough to know that `"23"`
 means `23`. Remember, the computer has no intelligence. If something is
 marked as text, it doesn't know that it can interpret it as a number.
 What kind of data something is depends on its type, which doesn't
-change. We'll discuss types more deeply in <<ch03-strings-primitive-types#ch03-strings-primitive-types>>.
+change. We'll discuss types more deeply in <<strings-primitive-types#strings-primitive-types>>.
 
 The next example uses these two type conversion methods with methods
 from `JOptionPane` in a GUI-based solution to subproblem 1 of the
@@ -990,7 +990,7 @@ use the add (`+`), subtract (`-`), multiply (`*`), and divide(`/`)
 operators on numbers to solve arithmetic problems. These operators work
 the way you'd expect them to (except that division has a few surprises).
 We'll go into these operators and others more deeply in
-<<ch03-strings-primitive-types#ch03-strings-primitive-types>>. Here are examples of
+<<strings-primitive-types#strings-primitive-types>>. Here are examples of
 these four operators used with integer and floating-point numbers.
 
 [source, java]
@@ -1409,7 +1409,7 @@ Our code does not account for users entering badly formatted data like
 `two` instead of `2`. Likewise, our code does not detect invalid values
 such as a coefficient of restitution greater than 1 or a negative number
 of bounces. An industrial-grade program should. We'll discuss testing
-further in <<ch16-testing-and-debugging#ch16-testing-and-debugging>>.
+further in <<testing-and-debugging#testing-and-debugging>>.
 
 As with most of the problems we discuss in this book, issues of
 maintenance will not apply: we don't have a customer base to keep happy.
