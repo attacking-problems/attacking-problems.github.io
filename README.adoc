@@ -2,14 +2,14 @@
 
 == README
 
-This repository contains the source for the textbook https://start-concurrent.github.io[Start Concurrent: A Gentle Introduction to Concurrent Programming].  It is licensed under  https://github.com/start-concurrent/start-concurrent.github.io/blob/master/LICENSE[Apache License 2.0].
+This repository contains the source for the textbook https://attacking-problems.github.io[Attacking Problems with Java].  It is licensed under  https://github.com/attacking-problems/attacking-problems.github.io/blob/master/LICENSE[Apache License 2.0].
 
 === Software Needed
 
 ==== Basic Software Needed
 
 . https://git-scm.com/downloads[Git] (and a https://github.com[GitHub] account to access the
-https://github.com/start-concurrent/start-concurrent.github.io[Start Concurrent repository])
+https://github.com/attacking-problems/attacking-problems.github.io[Attacking Problems with Java repository])
 . https://www.ruby-lang.org/en/downloads/[Ruby]
 . https://asciidoctor.org[Asciidoctor]
 . https://github.com/asciidoctor/asciidoctor-mathematical[Asciidoctor-Mathematical]
