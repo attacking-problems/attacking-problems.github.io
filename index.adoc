@@ -1,4 +1,4 @@
-= Start Concurrent: A Gentle Introduction to Concurrent Programming
+= Attacking Problems with Java
 Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>
 :doctype: book
 :source-highlighter: rouge
@@ -16,41 +16,27 @@ ifdef::ebook-format[:leveloffset: -1]
 [.text-center]
 image::multicore.svg[float="right"]
 
-In addition to a print version available from
-link:http://www.thepress.purdue.edu/titles/format/9781626710092[Purdue University Press^] or
-link:https://www.amazon.com/Start-Concurrent-Introduction-Problem-Concurrency/dp/1626710090[Amazon^],
-__Start Concurrent__ is also available in HTML format for viewing with a web browser.
-The HTML version is available both as a single document (which allows for easy searching) and
-chunked into a separate document for each chapter (which reduces load time).
-Click a link below to access the desired version.
+This book, link:https://attacking-problems.github.io[Attacking Problems with Java], is an introduction to programming using Java and an update to link:https://start-concurrent.github.io[Start Concurrent: An Introduction to Problem Solving with Concurrency].  It is intended for students with little or no programming experience.  The book is available in HTML format for viewing with a web browser.
+
+__Attacking Problems with Java__, like __Start Concurrent__, is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet.  The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links
 
 * link:full/index.html[HTML (single document)]
 * link:chunked/index.html[HTML (chunked)]
 
-== Using __Start Concurrent__?
+== Using __Attacking Problems with Java__?
 
-If you already use __Start Concurrent__ in your classroom, let us know!  Please e-mail wittman1@otterbein.edu
-and tell us what course you use the book for.  If some changes to the book would make your class easier to teach, we'd love to
-hear what they are.
-
-== Help Wanted!
-
-.Recent update!
-[WARNING]
-====
-We have made recent (June 2023) updates to the book, primarily to address requirements of Google Analytics.  If you notice any errors or unusual formatting, please let us know!
-====
+If you are using __Attacking Problems with Java__ (or the older, __Start Concurrent__) in your classroom, let us know!  Please e-mail wittman1@otterbein.edu and tell us what course you use the book for.  If some changes to the book would make your class easier to teach, we'd love to hear what they are.
 
 We appreciate your feedback and suggestions!
 Please submit them either as
-a link:https://github.com/start-concurrent/start-concurrent.github.io/issues[Github issue^]
+a link:https://github.com/attacking-problems/attacking-problems.github.io/issues[Github issue^]
 or (for the bold) clone the
-link:https://github.com/start-concurrent/start-concurrent.github.io[Github repository^],
+link:https://github.com/attacking-problems/attacking-problems.github.io[Github repository^],
 make changes to the source code, and submit a pull request.
 
 == About
 
-Welcome to __Start Concurrent__!
+Welcome to __Attacking Problems with Java__!
 This book is intended as an entry point into the challenging realm of multicore computing.
 It's designed to introduce students to concurrent programming at the same time they are learning the basics of sequential
 programming, early in their college days. After mastering the concepts covered
