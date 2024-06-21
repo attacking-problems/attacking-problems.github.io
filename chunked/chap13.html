@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
-<title>Start Concurrent: A Gentle Introduction to Concurrent Programming</title>
+<title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="style0.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="asciidoctor-chunker.css" type="text/css"></head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Start Concurrent: A Gentle Introduction to Concurrent Programming</h1>
+<h1>Attacking Problems with Java</h1>
 <div class="details">
 <span id="author" class="author">Barry Wittman</span><br>
 <span id="email" class="email"><a href="mailto:wittman1@otterbein.edu">wittman1@otterbein.edu</a></span><br>
@@ -24,7 +24,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="index.html">Titlepage</a></li><li><a href="index.html">1. Computer Basics</a>
+<li><a href="index.html">Attacking Problems with Java</a></li><li><a href="index.html">1. Computer Basics</a>
 <ul class="sectlevel2">
 <li><a href="index.html#_problem_buying_a_computer">1.1. Problem: Buying a computer</a></li>
 <li><a href="index.html#_concepts_hardware_and_software">1.2. Concepts: Hardware and software</a></li>
@@ -289,7 +289,7 @@
 
 
 <div class="sect1">
-<h2 id="ch13-concurrency">13. Concurrent Programming</h2>
+<h2 id="concurrency">13. Concurrent Programming</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -452,7 +452,7 @@ programming.</p>
 </div>
 <div id="figure-video_game_tasks" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/video-game-tasks.svg" alt="video game tasks" width="75%">
+<img src="chapters/concurrency/images/video-game-tasks.svg" alt="video game tasks" width="75%">
 </div>
 <div class="title">Figure 13.1 Execution of tasks in a video game. (a) Sequential execution on a single core. (b)&nbsp;Concurrent execution on two cores. Arrows show the flow of execution and data transfer.</div>
 </div>
@@ -489,7 +489,7 @@ expression for the main task.</p>
 </div>
 <div id="figure-math_evaluation" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/mathematical-expression-evaluation.svg" alt="mathematical expression evaluation" width="75%">
+<img src="chapters/concurrency/images/mathematical-expression-evaluation.svg" alt="mathematical expression evaluation" width="75%">
 </div>
 <div class="title">Figure 13.2 Evaluation of a mathematical expression (a) sequentially on a single core and (b) concurrently on two cores. Arrows show the flow of execution and data transfer. Bold typeface indicates the operation being performed.</div>
 </div>
@@ -565,7 +565,7 @@ to compute the following sum.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/oneCoreSum.svg" alt="oneCoreSum" width="15%">
+<img src="chapters/concurrency/images/oneCoreSum.svg" alt="oneCoreSum" width="15%">
 </div>
 </div>
 <div class="paragraph">
@@ -577,7 +577,7 @@ denote the sums computed by core 1 and core 2, respectively.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/twoCoreSum.svg" alt="twoCoreSum" width="50%">
+<img src="chapters/concurrency/images/twoCoreSum.svg" alt="twoCoreSum" width="50%">
 </div>
 </div>
 <div class="paragraph">
@@ -587,7 +587,7 @@ one more data item than the other.</p>
 </div>
 <div id="figure-array_decomposition" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/arrayDecomposition.svg" alt="arrayDecomposition" width="60%">
+<img src="chapters/concurrency/images/arrayDecomposition.svg" alt="arrayDecomposition" width="60%">
 </div>
 <div class="title">Figure 13.3 Computing the sum of a function of each element of an array.</div>
 </div>
@@ -615,7 +615,7 @@ time. However, a concurrent program can compute more than one element of
 </div>
 <div id="figure-matrix_decomposition" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/matrixDecomposition.svg" alt="matrixDecomposition" width="75%">
+<img src="chapters/concurrency/images/matrixDecomposition.svg" alt="matrixDecomposition" width="75%">
 </div>
 <div class="title">Figure 13.4 Data decomposition to multiply two 4 × 4 matrices. The two cores perform the same multiplication tasks but on different data from matrix <em>A</em>. The two cores compute the top two and bottom two rows of <em>C</em>, respectively.</div>
 </div>
@@ -673,7 +673,7 @@ several reasonable ways of dividing a set of subtasks into threads.</p>
 </div>
 <div id="figure-tasks_in_threads" class="imageblock">
 <div class="content">
-<img src="chapters/13-concurrency/images/task-thread-packaging.svg" alt="task thread packaging" width="100%">
+<img src="chapters/concurrency/images/task-thread-packaging.svg" alt="task thread packaging" width="100%">
 </div>
 <div class="title">Figure 13.5 (a)&nbsp;Tasks in a video game shown packaged into two threads. (b) Tasks to evaluate a mathematical expression shown packaged into two threads. Each thread may or may not run on the same core as the other.</div>
 </div>
@@ -987,7 +987,7 @@ execute code inside the <code>Thread2</code> class.</p>
 </div>
 <div id="figure-thread_execution" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/thread-lifecycle.svg" alt="thread lifecycle" width="75%">
+<img src="chapters/concurrency/images/thread-lifecycle.svg" alt="thread lifecycle" width="75%">
 </div>
 <div class="title">Figure 13.6 Creation, starting, and joining of threads in <code>MathExpression</code>, <code>Thread1</code>, and <code>Thread2</code>.</div>
 </div>
@@ -1274,7 +1274,7 @@ the speedup.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/speedup.svg" alt="speedup" width="45%">
+<img src="chapters/concurrency/images/speedup.svg" alt="speedup" width="45%">
 </div>
 </div>
 <div class="paragraph">
@@ -1499,7 +1499,7 @@ row and <em>j</em><sup>th</sup> column of <em>C</em> is</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/matrixValue.svg" alt="matrixValue" width="55%">
+<img src="chapters/concurrency/images/matrixValue.svg" alt="matrixValue" width="55%">
 </div>
 </div>
 <div class="paragraph">
@@ -1853,7 +1853,7 @@ thread in the schedule.</p>
 </div>
 <div id="figure-thread_states" class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/thread-states.svg" alt="thread states" width="80%">
+<img src="chapters/concurrency/images/thread-states.svg" alt="thread states" width="80%">
 </div>
 <div class="title">Figure 13.7 Thread states and transitions.</div>
 </div>
@@ -2508,7 +2508,7 @@ approximation becomes closer and closer to the true area. If a circle with radiu
 distance <em>x</em> is given by the following formula.</p>
 <div class="imageblock text-center">
 <div class="content">
-<img src="chapters/13-concurrency/images/circleHeight.svg" alt="circleHeight" width="15%">
+<img src="chapters/concurrency/images/circleHeight.svg" alt="circleHeight" width="15%">
 </div>
 </div>
 <div class="paragraph">
@@ -2596,7 +2596,7 @@ single thread completes the summing process.</p>
 </div>
 <div id="figure-tree_summation" class="imageblock">
 <div class="content">
-<img src="chapters/13-concurrency/images/treesummation.svg" alt="treesummation" width="100%">
+<img src="chapters/concurrency/images/treesummation.svg" alt="treesummation" width="100%">
 </div>
 <div class="title">Figure 13.8 Example of concurrent tree-style summation with 8 threads.</div>
 </div>
@@ -2639,7 +2639,7 @@ wait and which threads terminate.</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-22 11:27:29 -0400
+Last updated 2024-06-20 10:57:11 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

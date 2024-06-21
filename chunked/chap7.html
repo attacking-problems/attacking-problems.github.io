@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
-<title>Start Concurrent: A Gentle Introduction to Concurrent Programming</title>
+<title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <link rel="stylesheet" href="style0.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="asciidoctor-chunker.css" type="text/css"></head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Start Concurrent: A Gentle Introduction to Concurrent Programming</h1>
+<h1>Attacking Problems with Java</h1>
 <div class="details">
 <span id="author" class="author">Barry Wittman</span><br>
 <span id="email" class="email"><a href="mailto:wittman1@otterbein.edu">wittman1@otterbein.edu</a></span><br>
@@ -24,7 +24,7 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="index.html">Titlepage</a></li><li><a href="index.html">1. Computer Basics</a>
+<li><a href="index.html">Attacking Problems with Java</a></li><li><a href="index.html">1. Computer Basics</a>
 <ul class="sectlevel2">
 <li><a href="index.html#_problem_buying_a_computer">1.1. Problem: Buying a computer</a></li>
 <li><a href="index.html#_concepts_hardware_and_software">1.2. Concepts: Hardware and software</a></li>
@@ -289,7 +289,7 @@
 
 
 <div class="sect1">
-<h2 id="ch07-gui-basics">7. Simple Graphical User Interfaces</h2>
+<h2 id="gui-basics">7. Simple Graphical User Interfaces</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -335,7 +335,7 @@ that looks similar to the following.</p>
 </div>
 <div id="codonInput" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/codoninput.png" alt="codoninput" width="50%">
+<img src="chapters/gui-basics/images/codoninput.png" alt="codoninput" width="50%">
 </div>
 </div>
 <div class="paragraph">
@@ -343,7 +343,7 @@ that looks similar to the following.</p>
 </div>
 <div id="codonOutput" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/codonoutput.png" alt="codonoutput" width="50%">
+<img src="chapters/gui-basics/images/codonoutput.png" alt="codonoutput" width="50%">
 </div>
 </div>
 </div>
@@ -387,7 +387,7 @@ equivalent temperature in the other text box.</p>
 </div>
 <div id="applicationInterfaceFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/applicationInterface.svg" alt="applicationInterface" width="100%">
+<img src="chapters/gui-basics/images/applicationInterface.svg" alt="applicationInterface" width="100%">
 </div>
 <div class="title">Figure 7.1 User interaction with a Java application (a)&nbsp;through a command line interface and (b)&nbsp;through a graphical user interface.</div>
 </div>
@@ -576,7 +576,7 @@ discuss frames in greater detail in <a href="chap15.html#_syntax_guis_in_java">S
 </div>
 <div id="simpleMessageFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/simpleMessageFigure.svg" alt="simpleMessageFigure" width="80%">
+<img src="chapters/gui-basics/images/simpleMessageFigure.svg" alt="simpleMessageFigure" width="80%">
 </div>
 <div class="title">Figure 7.2 A simple dialog generated using <code>JOptionPane</code>.</div>
 </div>
@@ -621,7 +621,7 @@ icons displayed toward the top left of the two dialogs.</p>
 </div>
 <div id="iconsInMessageDialogsFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/iconsinMessageDialogsFigure.png" alt="iconsinMessageDialogsFigure" width="100%">
+<img src="chapters/gui-basics/images/iconsinMessageDialogsFigure.png" alt="iconsinMessageDialogsFigure" width="100%">
 </div>
 <div class="title">Figure 7.3 The left dialog uses <code>JOptionPane.ERROR_MESSAGE</code>, and the right uses <code>JOptionPane.WARNING_MESSAGE</code>. The only difference is the icon displayed.</div>
 </div>
@@ -703,7 +703,7 @@ depending on whether the user clicked the “Yes” or “No” button.</td>
 </div>
 <div id="yes-noDialogFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/yes-noDialogFigure.svg" alt="yes noDialogFigure" width="100%">
+<img src="chapters/gui-basics/images/yes-noDialogFigure.svg" alt="yes noDialogFigure" width="100%">
 </div>
 <div class="title">Figure 7.4 (a)&nbsp;A Yes-No dialog generated using <code>JOptionPane</code>. (b)&nbsp;Dialog in response to correct answer. (c)&nbsp;Dialog in response to incorrect answer.</div>
 </div>
@@ -785,7 +785,7 @@ There are three <code>null</code> values passed into this method. The first one 
 </div>
 <div id="selectCapitalDialogFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/selectCapitalDialogFigure.png" alt="selectCapitalDialogFigure" width="50%">
+<img src="chapters/gui-basics/images/selectCapitalDialogFigure.png" alt="selectCapitalDialogFigure" width="50%">
 </div>
 <div class="title">Figure 7.5 A dialog with programmer-defined options generated by <a href="chap7.html#CapitalQuizProgram">Program 7.3</a>.</div>
 </div>
@@ -844,7 +844,7 @@ next example illustrates how to do so.</p>
 </div>
 <div id="customIconDialogFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/customIconDialogFigure.png" alt="customIconDialogFigure" width="50%">
+<img src="chapters/gui-basics/images/customIconDialogFigure.png" alt="customIconDialogFigure" width="50%">
 </div>
 <div class="title">Figure 7.6 Dialog with a custom icon generated by <a href="chap7.html#CustomIconDialogProgram">Program 7.4</a>.</div>
 </div>
@@ -927,7 +927,7 @@ the input <code>String</code> cannot be converted to an integer.</p>
 </div>
 <div id="inputDialogTextFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/inputDialogTextFigure.png" alt="inputDialogTextFigure" width="50%">
+<img src="chapters/gui-basics/images/inputDialogTextFigure.png" alt="inputDialogTextFigure" width="50%">
 </div>
 <div class="title">Figure 7.7 Dialog to read text input generated by <a href="chap7.html#ChemistryQuizOneProgram">Program 7.5</a>.</div>
 </div>
@@ -995,7 +995,7 @@ Unlike <a href="chap7.html#inputDialogExample">Example 7.6</a>, the return value
 </div>
 <div id="inputDialogListFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/inputDialogListFigure.png" alt="inputDialogListFigure" width="50%">
+<img src="chapters/gui-basics/images/inputDialogListFigure.png" alt="inputDialogListFigure" width="50%">
 </div>
 <div class="title">Figure 7.8 Dialog to read input from a list generated by <a href="chap7.html#ChemistryQuizTwoProgram">Program 7.6</a>.</div>
 </div>
@@ -1010,7 +1010,7 @@ since <code>null</code> will be returned and stored into <code>response</code>.<
 <div class="content">
 <div id="inputDialogListManyItemsFigure" class="imageblock text-center">
 <div class="content">
-<img src="chapters/07-gui-basics/images/inputDialogListManyItemsFigure.png" alt="inputDialogListManyItemsFigure" width="50%">
+<img src="chapters/gui-basics/images/inputDialogListManyItemsFigure.png" alt="inputDialogListManyItemsFigure" width="50%">
 </div>
 <div class="title">Figure 7.9 A dialog requesting user to select one item from a list of 20 data items. Note the use of a scroll down list to display the items.</div>
 </div>
@@ -1355,7 +1355,7 @@ There is, of course, no guarantee that an answer is correct just because it’s 
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-22 11:27:29 -0400
+Last updated 2024-06-20 10:57:11 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

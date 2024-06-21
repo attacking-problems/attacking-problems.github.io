@@ -1,6 +1,6 @@
-[#ch19-recursion]
-:imagesdir: chapters/19-recursion/images
-:programsdir: chapters/19-recursion/programs
+[#recursion]
+:imagesdir: chapters/recursion/images
+:programsdir: chapters/recursion/programs
 == Recursion
 
 [quote, Anonymous]
@@ -10,7 +10,7 @@ ____
 
 === Problem: Maze of doom
 
-The evil mastermind from <<ch13-concurrency#ch13-concurrency>> has
+The evil mastermind from <<concurrency#concurrency>> has
 returned with a new attempt at world domination. Since he now knows that
 you can use concurrency to crack his security code, this time he's
 hidden his deadly virus in a secret location protected by a complex maze
@@ -308,7 +308,7 @@ syntax. How can a method call itself? What does that even mean?
 
 Recursion in Java is grounded in the idea of a call stack. We discuss
 the stack abstract data type in
-<<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>. A similar
+<<dynamic-data-structures#dynamic-data-structures>>. A similar
 structure is used to control the flow of control of a program as it calls
 methods.
 
@@ -854,7 +854,7 @@ public class X {
 ----
 
 The linked list examples from
-<<ch18-dynamic-data-structures#ch18-dynamic-data-structures>> are recursive
+<<dynamic-data-structures#dynamic-data-structures>> are recursive
 data structures, since a linked list node is defined in terms of itself. You
 might not have thought of the linked list `Node` class as being recursive since
 it simply has a reference to another `Node` inside it. However, this
@@ -1450,7 +1450,7 @@ the value wasn't changed back?
 *Programming Practice*
 
 .  [[recusivePalindromeExercise]] <<palindromeExercise>>
-from <<ch08-methods#ch08-methods>> challenges you to write a method to
+from <<methods#methods>> challenges you to write a method to
 determine whether a `String` is a palindrome. Recall that a palindrome (if
 punctuation and spaces are ignored) can be described as an empty `String` or
 a `String` in which the first and last characters are equal, with all the
@@ -1605,7 +1605,7 @@ and an iterative solution similar to the memoization method. Use the
 +
 *Warning:* It might take a very long time to compute the _n_^th^ Fibonacci number
 with the naive recursive solution.
-. <<wordBinarySearchExercise>> from <<ch06-arrays#ch06-arrays>> explains how binary search can be used to search for a value in a sorted
+. <<wordBinarySearchExercise>> from <<arrays#arrays>> explains how binary search can be used to search for a value in a sorted
 array of values. The idea is to play a "`high-low`" game, first looking
 at the middle value. If the value is the one you're looking for, you're
 done. If it's too high, look in the lower half of the array. If it's

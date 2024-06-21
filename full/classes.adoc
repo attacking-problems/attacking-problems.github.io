@@ -1,6 +1,6 @@
-[#ch09-classes]
-:imagesdir: chapters/09-classes/images
-:programsdir: chapters/09-classes/programs
+[#classes]
+:imagesdir: chapters/classes/images
+:programsdir: chapters/classes/programs
 == Classes
 
 [quote, Yoda]
@@ -526,7 +526,7 @@ code unless the code is contained in the same class, a subclass, or is
 in the same package. This level of access is more restrictive than
 `public` but less restrictive than `private` or default access. We
 discuss it further in the context of subclasses and inheritance in
-<<ch11-inheritance#ch11-inheritance>>.
+<<inheritance#inheritance>>.
 Package-private (no explicit modifier)::
 If you don't type an access modifier when you declare a field or
 method, that field or method is not `public`. Instead, it has the
@@ -888,7 +888,7 @@ public class SafeArray {
 We could add an inner class called `Iterator` to `SafeArray` that allows
 us to process all the array values without knowing how many there are.
 This kind of behavior is useful for many dynamic data structures, as
-discussed in <<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>.
+discussed in <<dynamic-data-structures#dynamic-data-structures>>.
 
 [source,java]
 ----
@@ -1018,11 +1018,11 @@ nested based on the value of `correct`.
 
 Nearly everything in Java is an object: arrays, lists, `String` values,
 colors, and even exceptions, which form Java's error-handling system and
-are discussed in <<ch12-exceptions#ch12-exceptions>>. Some critics of Java
+are discussed in <<exceptions#exceptions>>. Some critics of Java
 point out that `int`, `double`, and the other primitive types are not
 objects, forcing the programmer to adopt two different programming
 models. Regardless, threads are stored as objects as well. In
-<<ch13-concurrency#ch13-concurrency>>, we'll discuss how to create
+<<concurrency#concurrency>>, we'll discuss how to create
 threads and the various methods that can be used to interact with them.
 
 However, objects of type `Thread` are not the only ones you deal with
@@ -1057,7 +1057,7 @@ include::{programsdir}/Cat.java[]
 <.> If 100 threads all called `useCuriosity()`, each one might successfully pass the `if` on this line before any had decremented `lives`.
 <.> Once past the check, nothing would prevent them from continuing on and decrementing `lives`, resulting in a cat who lost 100 lives, resulting in a total of -91 lives. Such a scenario makes no sense.
 
-In <<ch14-synchronization#ch14-synchronization>>, we'll discuss how to prevent this
+In <<synchronization#synchronization>>, we'll discuss how to prevent this
 problem, using the `synchronized` keyword to allow only a single thread
 at a time to execute a section of code. The goal is to make
 `useCuriosity()` _thread-safe_, meaning that its behavior is consistent
@@ -1070,7 +1070,7 @@ programs, we'll discuss many ways to make them thread-safe. However, you're
 also a consumer of code written by other people. In multi-threaded
 environments, you might need to use library classes that are thread-safe.
 For example, `AtomicInteger` is a thread-safe class designed to store
-and manipulate `int` values. In <<ch18-dynamic-data-structures#ch18-dynamic-data-structures>>,
+and manipulate `int` values. In <<dynamic-data-structures#dynamic-data-structures>>,
 we'll talk about the `ArrayList` and `Vector` classes, which
 are both used to hold variable length lists of objects. One of the few
 differences between them is that `ArrayList` is not thread-safe while

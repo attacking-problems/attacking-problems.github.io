@@ -1,6 +1,6 @@
-[#ch21-network-communication]
-:imagesdir: chapters/21-network-communication/images
-:programsdir: chapters/21-network-communication/programs
+[#network-communication]
+:imagesdir: chapters/network-communication/images
+:programsdir: chapters/network-communication/programs
 == Network Communication
 
 [quote, Neal Stephenson]
@@ -291,7 +291,7 @@ can be used for communication.
 In order to get input from a `Socket`, you first call its
 `getInputStream()` method. You can use the `InputStream` returned to
 create an object used for normal file input like in
-<<ch20-file-io#ch20-file-io>>. You will need to make similar considerations
+<<file-io#file-io>>. You will need to make similar considerations
 about the kind of data you want to read and write. If you only need to receive
 plain, human-readable text from the `Socket`, you can create a `Scanner`
 object as follows.
@@ -400,7 +400,7 @@ which one is which.
 .Chat client and server
 ====
 Here we look at a more complicated example of network communication, a chat
-program. If you want to apply the GUI design from <<ch15-gui#ch15-gui>>, you
+program. If you want to apply the GUI design from <<gui#gui>>, you
 can make a windowed version of this chat program which looks more like typical
 chat programs. For now, our chat program is text only.
 
