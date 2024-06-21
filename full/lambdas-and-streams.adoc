@@ -1,6 +1,6 @@
 [#lambdas-and-streams]
-:imagesdir: chapters/xx-lambdas-and-streams/images
-:programsdir: chapters/xx-lambdas-and-streams/programs
+:imagesdir: chapters/lambdas-and-streams/images
+:programsdir: chapters/lambdas-and-streams/programs
 == Lambdas and Streams
 
 [quote, Harry S. Truman]
@@ -10,13 +10,46 @@ ____
 
 === Problem: Cryptography tools
 
+_Cryptography_, from Greek roots meaning "secret writing", is the science of
+scrambling and unscrambling messages so that only the intended recipients can
+read them. Forms of cryptography have been used since ancient times, often in
+a military context. In fact, making and breaking codes played an important role
+in World War II. Now, modern cryptography is an essential tool to protect
+personal data as it's sent over the Internet. Without strong cryptography,
+credit card data, social security numbers, and other private information would
+be stolen by criminals even more than they are already.
+
+The act of scrambling a message so that it's no longer readable is called
+_encryption_. The act of unscrambling an encrypted message so that it's readable
+again is called _decryption_. A normal, unencrypted message is often called a
+_plaintext_. An encrypted message is called a _ciphertext_. Many encryption
+algorithms use a _key_, an extra piece of information like a secret phrase, that
+is needed when doing the encryption and decryption.
+
+What's the right approach for designing a program that can encrypt and decrypt
+data? It's tempting to pick your favorite encryption and build the program
+around that. Unfortunately, cryptographers are always working to find ways to
+defeat any given algorithm. Over the years, they might find weaknesses that
+could allow attackers to unscramble a ciphertext, even without the secret key.
+For that reason, a good framework for using cryptography should allow an
+arbitrary algorithm to be used instead of forcing a user to keep using an
+algorithm that has known security vulnerabilities.
+
+
+
+
+
+
 ==== Caesar cipher
 
-==== Rail fence cipher
+==== Affine cipher
 
-==== Hill cipher
+==== Vigenère cipher
 
-=== Concepts: Storing methods
+
+
+
+=== Concepts: Passing and storing methods
 
 
 === Syntax: Lambda expressions
