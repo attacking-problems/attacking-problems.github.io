@@ -11,17 +11,44 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 
 ifdef::ebook-format[:leveloffset: -1]
 
+__Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It is intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
+
+== The New Version is in the Works
+
+[WARNING]
+.Under Construction
+====
+This website is being updated during the summer of 2024, with changes to be completed by mid-August.
+====
+
+=== Planned Changes
+
+1. Add keyword `var`.
+2. Describe enhancements to `switch` statements.
+3. Describe improvements to the `interface` specification, including `static` methods and `default` methods.
+4. Explain the `instanceof` binding variable.
+5. Introduce type inference for type variables.
+6. Explain the `try`-with-resources feature.
+7. Replace the `File` type with `Path`.
+8. Include an explanation of the `enum` type.
+9. Include a chapter on lambdas, closures, and functional expressions.
+10. Include a chapter on streams (or add to an existing chapter). 
+
+=== Completed Changes
+
+_None yet!_
+
 == Availability
 
 [.text-center]
 image::multicore.svg[float="right"]
 
-This book, link:https://attacking-problems.github.io[Attacking Problems with Java], is an introduction to programming using Java and an update to link:https://start-concurrent.github.io[Start Concurrent: An Introduction to Problem Solving with Concurrency].  It is intended for students with little or no programming experience.  The book is available in HTML format for viewing with a web browser.
-
-__Attacking Problems with Java__, like __Start Concurrent__, is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet.  The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links
+__Attacking Problems with Java__ is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet.  The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links
 
 * link:full/index.html[HTML (single document)]
 * link:chunked/index.html[HTML (chunked)]
+
+We are also considering a print-on-demand version.  Please email jtk@purdue.edu, if you are interested!
 
 == Using __Attacking Problems with Java__?
 
