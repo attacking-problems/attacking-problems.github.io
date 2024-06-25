@@ -1,9 +1,9 @@
 public class CryptographyTester {
     public static void main(String[] args) {
         String plaintext = "NOW IS THE WINTER OF OUR DISCONTENT";
-        CaesarCipher caesarCipher = new CaesarCipher(3);
+        CaesarCipher caesarCipher = new CaesarCipher(7);
+        AffineCipher affineCipher = new AffineCipher(5, 8);
         VigenereCipher vigenereCipher = new VigenereCipher("SHAKESPEARE");
-        AffineCipher affineCipher = new AffineCipher(5, 7);
         
         String cipherText = process(plaintext, caesarCipher::encrypt);
         System.out.println("Ciphertext: " + cipherText);

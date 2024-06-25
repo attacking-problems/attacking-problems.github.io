@@ -61,8 +61,11 @@ comes seven steps later in the alphabet, wrapping around as needed. In this
 case, the letter A is changed to H, the letter K is changed to R, and the letter
 V wraps around the end of the alphabet to change into C.
 
+The Caesar cipher is also called a shift cipher since we're shifting all the
+letters of the alphabet over by a fixed amount.
+
 Here's a table showing all the unencrypted alphabet in the first row and the
-encrypted versions of each letter in the second.
+encrypted versions of each letter in the second, when the key is 7.
 
 [.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
 |=======================================================================
@@ -72,11 +75,48 @@ encrypted versions of each letter in the second.
 |=======================================================================
 
 Thus, the message `"NOW IS THE WINTER OF OUR DISCONTENT"` would be encrypted to
-`"UVD PZ AOL DPUALY VM VBY KPZJVUALUA"`.
-
+`"UVD PZ AOL DPUALY VM VBY KPZJVUALUA"`. To decrypt a message, we move each
+letter in the message back by the shift.
 
 
 ==== Affine cipher
+
+The affine cipher takes the Caesar cipher a step further. Instead of simply
+adding a value to each letter to encrypt it, we multiply each letter by a number
+and then add a value to it. Thus, the key has two parts, a scalar _a_ and a
+shift _b_.
+
+In order to make the math simpler, we first convert the letters A through Z into
+the numbers 0 through 25. That's the number that we multiply by _a_ before
+adding _b_. Finally, we take the result modulus 26 so that any value larger than
+25 maps back to the range 0 to 25. Written in mathematical notation, the
+encrypted version of a letter whose value is _x_ is (_a_ · _x_ + _b_) mod 26.
+
+Note that the scalar _a_ *must* be _coprime_ with the size of your alphabet, in
+our case 26. Otherwise, different letters in the plaintext will map to the same
+letters in the ciphertext, making it impossible to decrypt the original message.
+Two numbers are coprime if they share none of the same prime factors. For an
+alphabet with length 26, that means that _a_ can only have the values 1, 3, 5,
+7, 9, 11, 15, 17, 19, 21, 23, or 25. When _a_ = 1, the affine cipher is simply
+a Caesar cipher.
+
+Here's a table showing all the unencrypted alphabet in the first row and the
+encrypted versions of each letter in the second, with a value of 5 for _a_ and
+8 for _b_.
+
+[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+
+|Plaintext |A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+|Ciphertext |I|N|S|X|C|H|M|R|W|B|G|L|Q|V|A|F|K|P|U|Z|E|J|O|T|Y|D
+|=======================================================================
+
+With this cipher, the message `"NOW IS THE WINTER OF OUR DISCONTENT"` would now
+be encrypted to `"VAO WU ZRC OWVZCP AH AEP XWUSAVZCVZ"`. To decrypt a message,
+we first subtract the value _b_ from each letter and then multiply by the
+multiplicative inverse of _a_ modulus 26. Finding the multiplicative inverse of
+a number can be done with brute force or some number theory, and we'll discuss
+doing so in <<Solution: Cryptography tools>>.
 
 ==== Vigenère cipher
 
@@ -121,6 +161,9 @@ Thus, the message `"NOW IS THE WINTER OF OUR DISCONTENT"` would be encrypted to
 . Exercise 1
 
 *Programming Practice*
+
+// index of coincidence for Vigenere cipher?
+// automatically break a Caesar cipher?
 
 . Exercise 2
 
