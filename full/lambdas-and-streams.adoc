@@ -166,6 +166,71 @@ Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.
 
 === Concepts: Passing and storing methods
 
+Creating a tool that can perform encryption and decryption with arbitrary
+algorithms is useful, but that's just the beginning. Earlier, we created
+variables that could store *values*, and we could also pass those values to
+methods. Now, we will explore ways to store *methods* and pass those methods to
+other methods.
+
+This idea of methods as _first-class values_ is one that comes from a different
+paradigm of programming. As we've discussed, Java is an object-oriented
+programming language: All code is stored inside of a class. Programs can be seen
+as a collection of objects interacting. Many variables are objects, though Java
+breaks this rule with primitive types. These exceptions aside, a useful motto
+for Java programming is "Everything is an object."
+
+On the other hand, in the _functional programming paradigm_, the motto is
+"Everything is a function." Languages that follow this paradigm, like Haskell,
+Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
+in these languages. When writing code in a functional language, it's typical to write
+functions that take functions as parameters and return functions as values. In
+fact, the purest functional languages have functions *instead* of values. In
+some of these languages, zero can be thought of as a special function. Then, the
+number 1 is conceived of as the function produced by applying the successor
+function to zero. The number 2 is the function produced by applying the
+successor function to the result of applying the successor function to zero, and
+so on.
+
+These languages also do not have (or at least discourage using) loops to perform
+repetition. Instead, these languages rely heavily on _recursion_, using a method
+to call itself, to achieve the same effect. Doing so is possible in Java, and
+we discuss recursion more thoroughly in <<recursion#recursion>>. Functional
+languages also disallow (or least discourage) changing the value of a variable
+once it's been assigned.
+
+If a language where everything's a function, there are no loops, and variables
+can't be changed sounds bizarre to you, don't worry: People whose first
+experience programming is with object-oriented or imperative languages are often
+baffled when they come into contact with functional languages. On the other
+hand, academic researchers into programming language design love functional
+languages because they can be very elegant, have many wonderful safety
+features, and follow mathematical structures that make it easier to prove
+important properties about a program.
+
+Although it's hard to make an objective measurement, many people consider
+functional languages to be more difficult to program in than object-oriented
+languages. Functional programming advocates will claim that, though it's harder
+to get a functional program to compile in the first place, a programmer will
+have more confidence that it works correctly when it runs. While functional
+languages aren't typically used by as many people as object-oriented languages,
+there are certain niches like distributed systems where functional languages
+provide useful features. As always, use the right tool for the right job.
+
+And even if pure functional languages aren't overwhelmingly popular, they have
+features that other languages like enough to steal. Java 8 added 
+
+Define lambda
+Define method reference
+
+
+==== When to use lambdas
+
+
+==== Syntactic sugar
+
+
+
+
 
 
 === Syntax: Lambda expressions
