@@ -120,10 +120,52 @@ doing so in <<Solution: Cryptography tools>>.
 
 ==== Vigenère cipher
 
+Both the Caesar cipher and the affine cipher are _monoalphabetic substitution
+ciphers_, which is a fancy way of saying that a given letter in the plaintext
+always maps to the same letter in the ciphertext. Although this property makes
+encryption and decryption simple, it also makes both ciphers susceptible to
+_frequency attacks_ in which the high frequency of letters like E in English can
+be used to recover the plaintext from the ciphertext without knowing the key.
 
+The Vigenère cipher is a _polyalphabetic substitution cipher_, meaning that
+each letter can be replaced with several different letters, depending on where
+in the message it occurs. Instead of using numbers, the Vigenère cipher uses a
+special word or phrase as the key. The values of the letters in this phrase are
+added to the values of the letters in the plaintext in order to find the
+ciphertext.
 
+For example, the letter N has value 13 (starting with A = 0). The letter S has 
+value 18. 13 + 18 = 31. As before, we take the result modulus 26 to make the
+number wrap around if it's too large. 31 mod 26 = 5. Since the letter F has the
+value 5, adding the letter N from the plaintext to the letter S from the key
+yields the letter F for the ciphertext. The table below shows the message
+`"NOW IS THE WINTER OF OUR DISCONTENT"` encrypted with the Vigenère cipher,
+using a key of `"SHAKESPEARE"`. Note that the key `"SHAKESPEARE"` is repeated as
+many times as necessary to provide a letter to add to each letter in the
+plaintext.
+
+[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+
+|Plaintext  |N|O|W|I|S|T|H|E|W|I|N|T|E|R|O|F|O|U|R|D|I|S|C|O|N|T|E|N|T
+|Key        |S|H|A|K|E|S|P|E|A|R|E|S|H|A|K|E|S|P|E|A|R|E|S|H|A|K|E|S|P
+|Ciphertext |F|V|W|S|W|L|W|I|W|Z|R|L|L|R|Y|J|G|J|V|D|Z|W|U|V|N|D|I|F|I
+|=======================================================================
+
+It turns out that repeating the key is what makes the Vigenère cipher vulnerable
+to attacks. If the key is as long as the message (and is a totally random
+sequence of letters), the Vigenère cipher becomes what's called a _one-time
+pad_. It's impossible to attack a one-time pad without knowing the key, but it's
+also very inconvenient to use a key as long as the message, particularly when
+the message itself is long.
+
+The Vigenère cipher dates back to the 16^th^ century and was believed to be
+unbreakable for hundreds of years. However, methods that look at the frequency
+of letters in sophisticated ways were developed in the 19^th^ century by
+Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.
 
 === Concepts: Passing and storing methods
+
 
 
 === Syntax: Lambda expressions
