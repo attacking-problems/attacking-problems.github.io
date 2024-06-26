@@ -182,14 +182,14 @@ for Java programming is "Everything is an object."
 On the other hand, in the _functional programming paradigm_, the motto is
 "Everything is a function." Languages that follow this paradigm, like Haskell,
 Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
-in these languages. When writing code in a functional language, it's typical to write
-functions that take functions as parameters and return functions as values. In
-fact, the purest functional languages have functions *instead* of values. In
-some of these languages, zero can be thought of as a special function. Then, the
-number 1 is conceived of as the function produced by applying the successor
-function to zero. The number 2 is the function produced by applying the
-successor function to the result of applying the successor function to zero, and
-so on.
+in these languages. When writing code in a functional language, it's typical to
+write functions that take functions as parameters and return functions as
+values. In fact, the purest functional languages have functions *instead* of
+values. In some of these languages, zero can be thought of as a special
+function. Then, the number 1 is conceived of as the function produced by
+applying the successor function to zero. The number 2 is the function produced
+by applying the successor function to the result of applying the successor
+function to zero, and so on.
 
 These languages also do not have (or at least discourage using) loops to perform
 repetition. Instead, these languages rely heavily on _recursion_, using a method
@@ -201,7 +201,7 @@ once it's been assigned.
 If a language where everything's a function, there are no loops, and variables
 can't be changed sounds bizarre to you, don't worry: People whose first
 experience programming is with object-oriented or imperative languages are often
-baffled when they come into contact with functional languages. On the other
+baffled when they come in contact with functional languages. On the other
 hand, academic researchers into programming language design love functional
 languages because they can be very elegant, have many wonderful safety
 features, and follow mathematical structures that make it easier to prove
@@ -211,29 +211,72 @@ Although it's hard to make an objective measurement, many people consider
 functional languages to be more difficult to program in than object-oriented
 languages. Functional programming advocates will claim that, though it's harder
 to get a functional program to compile in the first place, a programmer will
-have more confidence that it works correctly when it runs. While functional
-languages aren't typically used by as many people as object-oriented languages,
-there are certain niches like distributed systems where functional languages
-provide useful features. As always, use the right tool for the right job.
+have more confidence that it works correctly when it finally does compile. While
+functional languages aren't typically used by as many people as object-oriented
+languages, there are certain niches like distributed systems where functional
+languages provide valuable features. As always, use the right tool for the right
+job.
 
 And even if pure functional languages aren't overwhelmingly popular, they have
-features that other languages like enough to steal. Java 8 added 
+features that other languages liked enough to steal. Java 8 added lambdas,
+method references, and functional interfaces: all tools to make it easier to 
+use methods in a functional style. The language Scala runs on the JVM, and it
+goes even further than Java in adopting functional approaches.
 
-Define lambda
-Define method reference
+==== Lambdas and method references
 
+In the previous paragraph, we used the word _lambda_, which is the letter λ from
+the Greek alphabet. Because of a theoretical model of computing called the
+_lambda calculus_ and the Lisp programming language that was influenced by it,
+the word lambda has come to be associated with methods that are defined on the
+fly, inside other methods, using the values of local variables when appropriate.
 
-==== When to use lambdas
+If you recall, we already did something similar in
+<<Advanced: Local and anonymous classes>>. There, we created whole classes, both
+local and anonymous, in the middle of a method, even incorporating the values of
+local variables in one example. Lambdas do exactly the same thing, except that
+the syntax is simpler, and we're only defining a single method instead of a
+whole class.
 
+A related concept is a _method reference_. In functional programming, we often
+pass methods around as parameters. We can use lambdas to create a method on the
+fly, or we can pass in the method of an existing object. You should always pass
+in a method reference if the method you want already exists, but creating a
+lambda is fine if one doesn't. On the other hand, if you're writing many
+different lambdas that do essentially the same thing, you might want to create
+a method so that you can pass a reference to it.
 
-==== Syntactic sugar
+No doubt you're eager to learn the syntax for lambdas and method references,
+which we discuss in <<Syntax: Lambdas and method references>>, but when is it a
+good idea to use these tools? A lambda is useful when all you require is a
+single method, not a whole new class with member variables and perhaps many
+other methods. These situations include:
 
+- When you're using an interface that contains only one abstract method.
+Lambdas can allow you to create a method that fulfills the requirements of that
+interface. A great example is the `Runnable` interface that we'll talk about in
+<<The `Runnable` interface>> when describing ways to create threads.
 
+- Event handling, especially in GUIs. As we'll discuss in <<gui#gui>>, a central
+challenge of creating a GUI is defining what happens when a button is pressed or
+some other event occurs. Lambdas make it easy to supply a short segment of code
+that runs when an event happens.
 
+- Working with collections. The Java Collections Framework (JCF) provides many
+useful classes for storing data in lists, sets, and maps. To sort custom data
+or retrieve only the objects that match certain criteria, the JCF provides
+methods that you can supply a lambda to in order to say how data should be
+sorted or which kinds of objects you want back.
 
+- The Stream API. As we'll discuss in <<Advanced: Streams>>, the Stream API
+expands the tools from collections to create streams of data that can be sorted,
+filtered, aggregated, and processed in arbitrary ways using lambdas that you
+supply.
 
+Anywhere you can use a lambda, you can also use a method reference, provided
+that there's an existing method you want to use.
 
-=== Syntax: Lambda expressions
+=== Syntax: Lambdas and method references
 
 
 ==== Functional interfaces
@@ -245,6 +288,8 @@ Define method reference
 ====
 
 ====
+
+==== Syntactic sugar
 
 
 === Advanced: Streams
