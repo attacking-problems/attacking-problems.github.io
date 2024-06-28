@@ -1,6 +1,6 @@
 public class CryptographyTester {
     public static void main(String[] args) {
-        String plaintext = "NOW IS THE WINTER OF OUR DISCONTENT";
+        String plaintext = "CRY HAVOC AND LET SLIP THE DOGS OF WAR";
         CaesarCipher caesarCipher = new CaesarCipher(7);
         AffineCipher affineCipher = new AffineCipher(5, 8);
         VigenereCipher vigenereCipher = new VigenereCipher("SHAKESPEARE");
