@@ -282,12 +282,59 @@ filtered, aggregated, and processed in arbitrary ways using lambdas that you
 supply.
 
 Anywhere you can use a lambda, you can also use a method reference, provided
-that there's an existing method you want to use.
+that the method you want already exists.
 
 === Syntax: Lambdas and method references
 
+After all this discussion of the concept of passing methods around, no doubt
+you're excited to do it yourself. Unfortunately, you can't.
+
+As we said before, Java lives by the motto "Everything is an object."
+Consequently, we can pass objects around, not methods. But there's Java
+construct that's primarily focused on methods, and that's the interface. As long
+as we pass around objects that implement an interface with the method we want,
+we can focus only on that particular method, ignoring other members and methods
+that the object might have.
 
 ==== Functional interfaces
+
+To make it absolutely clear when we want to focus only on one particular method
+in an object, Java 8 introduced the idea of a _functional interface_. A
+functional interface is an interface that contains exactly one abstract method.
+
+Below is the functional interface `ArithmeticOperator`, which contains the
+single method `evaluate()`.
+
+[source, java]
+[[ArithmeticOperator]]
+----
+include::{programsdir}/ArithmeticOperator.java[]
+----
+
+Note the text `@FunctionalInterface` that appears before the declaration of
+`ArithmeticOperator`. The use of the `@` sign signals that
+`@FunctionalInterface` is an _annotation_. While we will not discuss annotations
+deeply in this book, the key idea behind them is that they provide extra
+information that's usually not essential to the running of the program. In this case, the `@FunctionalInterface` annotation gives the extra information to someone
+reading the code that this interface is a functional interface, intended to be
+used in situations where we want to pass around an object as if it were only a
+single `evaluate()` method that takes two `int` values and returns a third. The
+`@FunctionalInterface` annotation has no effect on the compilation or running of
+the program except that an interface with this annotation will fail to compile
+with an error if it doesn't have exactly one abstract method.
+
+The `@FunctionalInterface` annotation isn't necessary for functional-style
+programming in Java. As long as an interface has exactly one abstract method,
+you can use it as a type for storing or passing lambdas and method references.
+However, it's always a good idea to mark an interface you write with
+`@FunctionalInterface` if that's how you intend it to be used, both to inform
+other programmers that it's a functional interface and to get the extra
+protection from the compiler if you mistakenly add another abstract method to
+it.
+
+
+
+// math examples: add, subtract, multiply, divide (int, int) => int
 
 ==== Type inference
 
