@@ -8891,6 +8891,47 @@ changes. If you have used <code>POPULATION</code> throughout your program instea
 of a literal, you only have to change its value once.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_var_declarations">3.3.6. Var Declarations</h4>
+<div class="paragraph">
+<p>This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Hello there."</span>
+<span class="nc">Wombat</span> <span class="n">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Wombat</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each of the type names in the declaration (<code>int</code>, <code>String</code>, and <code>Wombat</code>) is obvious based on the type of the initial value.  Variable <code>x</code> is obviously an <code>int</code>, variable <code>message</code> is obviously a <code>String</code>, and variable <code>w</code> is obviously a <code>Wombat</code>.</p>
+</div>
+<div class="paragraph">
+<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the "reserved type name" <code>var</code> and the compiler will do the inferencing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="kt">var</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Hello there."</span>
+<span class="kt">var</span> <span class="n">w</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Wombat</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of these:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value...</span>
+<span class="kt">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
+
+<span class="c1">// Or, explicitly declare the type...</span>
+<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this feature is called <em>local variable type inference</em>.  The compiler only does type inferencing on <em>local variables</em>, not on fields, method parameters, or return types.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_syntax_useful_libraries">3.4. Syntax: Useful libraries</h3>
