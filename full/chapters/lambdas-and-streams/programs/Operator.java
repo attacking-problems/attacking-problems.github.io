@@ -1,4 +1,4 @@
 @FunctionalInterface
-public interface ArithmeticOperator {
+public interface Operator {
     int evaluate(int a, int b);
 }

@@ -231,7 +231,7 @@ method references, and functional interfaces: all tools to make it easier to
 use methods in a functional style. The language Scala runs on the JVM, and it
 goes even further than Java in adopting functional approaches.
 
-==== Lambdas and method references
+==== Method references and lambdas 
 
 In the previous paragraph, we used the word _lambda_, which is the letter λ from
 the Greek alphabet. Because of a theoretical model of computing called the
@@ -242,9 +242,9 @@ fly, inside other methods, using the values of local variables when appropriate.
 If you recall, we already did something similar in
 <<Advanced: Local and anonymous classes>>. There, we created whole classes, both
 local and anonymous, in the middle of a method, even incorporating the values of
-local variables in one example. Lambdas do exactly the same thing, except that
-the syntax is simpler, and we're only defining a single method instead of a
-whole class.
+local variables in one case. Lambdas do exactly the same thing, except that the
+syntax is simpler, and we're only defining a single method instead of a whole
+class.
 
 A related concept is a _method reference_. In functional programming, we often
 pass methods around as parameters. We can use lambdas to create a method on the
@@ -255,7 +255,7 @@ different lambdas that do essentially the same thing, you might want to create
 a method so that you can pass a reference to it.
 
 No doubt you're eager to learn the syntax for lambdas and method references,
-which we discuss in <<Syntax: Lambdas and method references>>, but when is it a
+which we discuss in <<Syntax: Method references and lambdas>>, but when is it a
 good idea to use these tools? A lambda is useful when all you require is a
 single method, not a whole new class with member variables and perhaps many
 other methods. These situations include:
@@ -284,7 +284,7 @@ supply.
 Anywhere you can use a lambda, you can also use a method reference, provided
 that the method you want already exists.
 
-=== Syntax: Lambdas and method references
+=== Syntax: Method references and lambdas
 
 After all this discussion of the concept of passing methods around, no doubt
 you're excited to do it yourself. Unfortunately, you can't.
@@ -306,22 +306,23 @@ Below is the functional interface `ArithmeticOperator`, which contains the
 single method `evaluate()`.
 
 [source, java]
-[[ArithmeticOperator]]
+[[Operator]]
 ----
-include::{programsdir}/ArithmeticOperator.java[]
+include::{programsdir}/Operator.java[]
 ----
 
 Note the text `@FunctionalInterface` that appears before the declaration of
-`ArithmeticOperator`. The use of the `@` sign signals that
+`Operator`. The use of the `@` sign signals that
 `@FunctionalInterface` is an _annotation_. While we will not discuss annotations
 deeply in this book, the key idea behind them is that they provide extra
-information that's usually not essential to the running of the program. In this case, the `@FunctionalInterface` annotation gives the extra information to someone
-reading the code that this interface is a functional interface, intended to be
-used in situations where we want to pass around an object as if it were only a
-single `evaluate()` method that takes two `int` values and returns a third. The
-`@FunctionalInterface` annotation has no effect on the compilation or running of
-the program except that an interface with this annotation will fail to compile
-with an error if it doesn't have exactly one abstract method.
+information that's usually not essential to the running of the program. In this
+case, the `@FunctionalInterface` annotation gives the extra information to
+someone reading the code that this interface is a functional interface, intended
+to be used in situations where we want to pass around an object as if it were
+only a single `evaluate()` method that takes two `int` values and returns a
+third. The `@FunctionalInterface` annotation has no effect on the compilation or
+running of the program except that an interface with this annotation will have a
+compiler error if it doesn't have exactly one abstract method.
 
 The `@FunctionalInterface` annotation isn't necessary for functional-style
 programming in Java. As long as an interface has exactly one abstract method,
@@ -332,11 +333,121 @@ other programmers that it's a functional interface and to get the extra
 protection from the compiler if you mistakenly add another abstract method to
 it.
 
+==== Method references
+
+Once you have a functional interface, you can use method reference anywhere
+there's a matching functional interface type. In this case, we have the
+`Operator` functional interface that matches methods that take two
+`int` values as parameters and return another `int` value.
+
+Consider the following class that contains a simple method that finds the
+maximum of two `int` values.
+
+[source, java]
+[[Max]]
+----
+include::{programsdir}/Max.java[]
+----
+
+Since the `max()` method inside the `Max` class takes two `int` values and
+returns a third, we could store it into a variable with type `Operator`.
+
+[source, java]
+----
+Operator operator = Max::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 5.
+----
+
+Note that we are using the `::` operator here, which lets Java know that we want
+a reference to the `max()` method inside the `Max` class, instead of using `.`
+as we would to call the method. In this case, we're supplying a reference to a
+static method, but we can use the `::` operator to reference an instance method
+as well.
+
+Consider the following class that allows us to create `MaxWithMinimum` objects.
+These objects have a `max()` method that finds the maximum of two `int` values,
+but it also has a minimum value that it will give back as a default if neither
+of the arguments are bigger than the minimum. A class like this might be useful
+for situations where a value must always be above a certain threshold.
+
+[source, java]
+[[MaxWithMinimum]]
+----
+include::{programsdir}/MaxWithMinimum.java[]
+----
+
+As before, we can store the `max()` method into a variable of type `Operator`,
+but now we have to put the name of the object, instead of the name of the class,
+before the `::` operator.
+
+[source, java]
+----
+MaxWithMinimum maxObject = new MaxWithMinimum(10);
+Operator operator = maxObject::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 10, the minimum allowed.
+----
+
+This syntax parallels the way that static methods are called with a class name
+while instance methods are called with an object name.
+
+.Arithmetic expressions
+====
+
+We can use the `Operator` interface in a more extensive way to create nested
+arithmetic expressions where the actual operation done (add, subtract, multiply,
+or divide) is given by a method reference. First, we need to create an interface
+for an expression. The only thing an expression needs to do is tell you its
+value, so we put the `getValue()` abstract method in our `Expression` interface.
+
+[source, java]
+[[Expression]]
+----
+include::{programsdir}/Expression.java[]
+----
+
+We need two classes that implement `Expression`. The first is a simple class
+designed to hold a single `int` value.
+
+[source, java]
+[[Number]]
+----
+include::{programsdir}/Number.java[]
+----
+
+The second class represents a calculation done on expressions (which can be
+either simple numbers or expressions themselves).
+
+[source, java]
+[[Calculation]]
+----
+include::{programsdir}/Calculation.java[]
+----
+<.> The constructor for `Calculation` takes an operator and the two
+subexpressions that the operator is being applied to.
+<.> The `getValue()` method first gets the values of the two subexpressions and
+combines those values using the `evaluate()` method of the operator.
+<.> Static method to add two numbers.
+<.> Static method to subtract two numbers.
+<.> Static method to multiply two numbers.
+<.> Static method to divide two numbers.
 
 
-// math examples: add, subtract, multiply, divide (int, int) => int
+Although it took a lot of set-up, the final code that evaluates expressions is
+relatively simple.
 
-==== Type inference
+[source, java]
+----
+Expression expression1 = new Calculation(Calculation::add, new Number(3), new Number(5));
+System.out.println(expression1.getValue()); // Prints 8.
+
+Expression expression2 = new Calculation(Calculation::multiply, new Number(2), expression1);
+System.out.println(expression2.getValue()); // Prints 16.
+----
+====
+
+==== Lambdas
+
+
 
 
 .Custom sorting

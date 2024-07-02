@@ -25,5 +25,7 @@ JUnit/*
 
 # Ignore IntelliJ and VS Code "personal" files...
 // See full list here: https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+**/.idea/*
 .idea/**/workspace.xml
 .vscode/*
+*.iml

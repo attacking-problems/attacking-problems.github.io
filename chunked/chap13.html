@@ -162,7 +162,7 @@
 <ul class="sectlevel2">
 <li class="current"><a href="chap13.html#_problem_cryptography_tools">13.1. Problem: Cryptography tools</a></li>
 <li class="current"><a href="chap13.html#_concepts_passing_and_storing_methods">13.2. Concepts: Passing and storing methods</a></li>
-<li class="current"><a href="chap13.html#_syntax_lambdas_and_method_references">13.3. Syntax: Lambdas and method references</a></li>
+<li class="current"><a href="chap13.html#_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</a></li>
 <li class="current"><a href="chap13.html#_advanced_streams">13.4. Advanced: Streams</a></li>
 <li class="current"><a href="chap13.html#_solution_cryptography_tools">13.5. Solution: Cryptography tools</a></li>
 <li class="current"><a href="chap13.html#_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</a></li>
@@ -335,13 +335,13 @@ that’s needed when doing the encryption and decryption.</p>
 </div>
 <div class="paragraph">
 <p>What’s the right approach for designing a program that can encrypt and decrypt
-data? It’s tempting to pick your favorite encryption and build the program
-around that. Unfortunately, cryptographers are always working to find ways to
-defeat any given algorithm. Over the years, they might discover weaknesses that
-could allow attackers to unscramble a ciphertext, even without the secret key.
-For that reason, a good framework for using cryptography should allow an
-arbitrary algorithm to be used instead of forcing a user to keep using an
-algorithm that has known security vulnerabilities.</p>
+data? It’s tempting to pick your favorite encryption algorithm and build the
+program around that. Unfortunately, cryptographers are always working to find
+ways to defeat any given algorithm. Over the years, they might discover
+weaknesses that could allow attackers to unscramble a ciphertext, even without
+the secret key. For that reason, a good framework for using cryptography should
+allow an arbitrary algorithm to be used instead of forcing a user to keep using
+an algorithm that has known security vulnerabilities.</p>
 </div>
 <div class="paragraph">
 <p>For that reason, we want to design a framework that can accept any (or at least
@@ -377,24 +377,11 @@ V wraps around the end of the alphabet to change into C.</p>
 letters of the alphabet over by a fixed amount.</p>
 </div>
 <div class="paragraph">
-<p>Here’s a table showing all the unencrypted alphabet in the first row and the
-encrypted versions of each letter in the second, when the key is 7.</p>
+<p>Here’s a table showing all the unencrypted alphabet with the
+encrypted versions of each letter in each row below, when the key is 7.</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content center">
 <colgroup>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
 <col>
 <col>
 <col>
@@ -426,19 +413,6 @@ encrypted versions of each letter in the second, when the key is 7.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">K</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">X</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
@@ -455,6 +429,28 @@ encrypted versions of each letter in the second, when the key is 7.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="14"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
@@ -472,8 +468,8 @@ encrypted versions of each letter in the second, when the key is 7.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Thus, the message <code>"NOW IS THE WINTER OF OUR DISCONTENT"</code> would be encrypted to
-<code>"UVD PZ AOL DPUALY VM VBY KPZJVUALUA"</code>. To decrypt a message, we move each
+<p>Thus, the message <code>"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</code> would be encrypted to
+<code>"JYF OHCVJ HUK SLA ZSPW AOL KVNZ VM DHY"</code>. To decrypt a message, we move each
 letter in the message back by the shift.</p>
 </div>
 </div>
@@ -522,19 +518,6 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <col>
 <col>
 <col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
 </colgroup>
 <tbody>
 <tr>
@@ -552,19 +535,6 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <td class="tableblock halign-center valign-middle"><p class="tableblock">K</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">M</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">X</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
@@ -581,6 +551,28 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <td class="tableblock halign-center valign-middle"><p class="tableblock">G</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="14"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
@@ -598,12 +590,12 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 </tbody>
 </table>
 <div class="paragraph">
-<p>With this cipher, the message <code>"NOW IS THE WINTER OF OUR DISCONTENT"</code> would now
-be encrypted to <code>"VAO WU ZRC OWVZCP AH AEP XWUSAVZCVZ"</code>. To decrypt a message,
-we first subtract the value <em>b</em> from each letter and then multiply by the
-multiplicative inverse of <em>a</em> modulus 26. Finding the multiplicative inverse of
-a number can be done with brute force or some number theory, and we’ll discuss
-doing so in <a href="chap13.html#_solution_cryptography_tools">Section 13.5</a>.</p>
+<p>With this cipher, the message <code>"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</code> would
+now be encrypted to <code>"SPY RIJAS IVX LCZ ULWF ZRC XAMU AH OIP"</code>. To decrypt a
+message, we first subtract the value <em>b</em> from each letter and then multiply by
+the multiplicative inverse of <em>a</em> modulus 26. Finding the multiplicative inverse
+of a number can be done with brute force or some number theory, and we’ll
+discuss doing so in <a href="chap13.html#_solution_cryptography_tools">Section 13.5</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -630,7 +622,7 @@ value 18. 13 + 18 = 31. As before, we take the result modulus 26 to make the
 number wrap around if it’s too large. 31 mod 26 = 5. Since the letter F has the
 value 5, adding the letter N from the plaintext to the letter S from the key
 yields the letter F for the ciphertext. The table below shows the message
-<code>"NOW IS THE WINTER OF OUR DISCONTENT"</code> encrypted with the Vigenère cipher,
+<code>"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</code> encrypted with the Vigenère cipher,
 using a key of <code>"SHAKESPEARE"</code>. Note that the key <code>"SHAKESPEARE"</code> is repeated as
 many times as necessary to provide a letter to add to each letter in the
 plaintext.</p>
@@ -653,53 +645,25 @@ plaintext.</p>
 <col>
 <col>
 <col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Key</strong></p></td>
@@ -718,6 +682,48 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">K</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">G</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="16"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">G</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Key</strong></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
@@ -732,38 +738,25 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">X</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">G</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">J</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">G</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">J</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">D</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
 </tr>
 </tbody>
 </table>
@@ -850,7 +843,7 @@ use methods in a functional style. The language Scala runs on the JVM, and it
 goes even further than Java in adopting functional approaches.</p>
 </div>
 <div class="sect3">
-<h4 id="_lambdas_and_method_references">13.2.1. Lambdas and method references</h4>
+<h4 id="_method_references_and_lambdas">13.2.1. Method references and lambdas</h4>
 <div class="paragraph">
 <p>In the previous paragraph, we used the word <em>lambda</em>, which is the letter λ from
 the Greek alphabet. Because of a theoretical model of computing called the
@@ -862,9 +855,9 @@ fly, inside other methods, using the values of local variables when appropriate.
 <p>If you recall, we already did something similar in
 <a href="chap10.html#_advanced_local_and_anonymous_classes">Section 10.4</a>. There, we created whole classes, both
 local and anonymous, in the middle of a method, even incorporating the values of
-local variables in one example. Lambdas do exactly the same thing, except that
-the syntax is simpler, and we’re only defining a single method instead of a
-whole class.</p>
+local variables in one case. Lambdas do exactly the same thing, except that the
+syntax is simpler, and we’re only defining a single method instead of a whole
+class.</p>
 </div>
 <div class="paragraph">
 <p>A related concept is a <em>method reference</em>. In functional programming, we often
@@ -877,7 +870,7 @@ a method so that you can pass a reference to it.</p>
 </div>
 <div class="paragraph">
 <p>No doubt you’re eager to learn the syntax for lambdas and method references,
-which we discuss in <a href="chap13.html#_syntax_lambdas_and_method_references">Section 13.3</a>, but when is it a
+which we discuss in <a href="chap13.html#_syntax_method_references_and_lambdas">Section 13.3</a>, but when is it a
 good idea to use these tools? A lambda is useful when all you require is a
 single method, not a whole new class with member variables and perhaps many
 other methods. These situations include:</p>
@@ -893,7 +886,8 @@ interface. A great example is the <code>Runnable</code> interface that we’ll t
 <li>
 <p>Event handling, especially in GUIs. As we’ll discuss in <a href="chap16.html">Chapter 16</a>, a central
 challenge of creating a GUI is defining what happens when a button is pressed or
-some other event occurs. Lambdas make it easy to supply a short segment of code.</p>
+some other event occurs. Lambdas make it easy to supply a short segment of code
+that runs when an event happens.</p>
 </li>
 <li>
 <p>Working with collections. The Java Collections Framework (JCF) provides many
@@ -912,34 +906,297 @@ supply.</p>
 </div>
 <div class="paragraph">
 <p>Anywhere you can use a lambda, you can also use a method reference, provided
-that there’s an existing method you want to use.</p>
+that the method you want already exists.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_syntax_lambdas_and_method_references">13.3. Syntax: Lambdas and method references</h3>
-<div class="sect3">
-<h4 id="_functional_interfaces">13.3.1. Functional interfaces</h4>
-
+<h3 id="_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</h3>
+<div class="paragraph">
+<p>After all this discussion of the concept of passing methods around, no doubt
+you’re excited to do it yourself. Unfortunately, you can’t.</p>
+</div>
+<div class="paragraph">
+<p>As we said before, Java lives by the motto "Everything is an object."
+Consequently, we can pass objects around, not methods. But there’s Java
+construct that’s primarily focused on methods, and that’s the interface. As long
+as we pass around objects that implement an interface with the method we want,
+we can focus only on that particular method, ignoring other members and methods
+that the object might have.</p>
 </div>
 <div class="sect3">
-<h4 id="_type_inference">13.3.2. Type inference</h4>
+<h4 id="_functional_interfaces">13.3.1. Functional interfaces</h4>
+<div class="paragraph">
+<p>To make it absolutely clear when we want to focus only on one particular method
+in an object, Java 8 introduced the idea of a <em>functional interface</em>. A
+functional interface is an interface that contains exactly one abstract method.</p>
+</div>
+<div class="paragraph">
+<p>Below is the functional interface <code>ArithmeticOperator</code>, which contains the
+single method <code>evaluate()</code>.</p>
+</div>
+<div id="Operator" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Operator</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="nf">evaluate</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the text <code>@FunctionalInterface</code> that appears before the declaration of
+<code>Operator</code>. The use of the <code>@</code> sign signals that
+<code>@FunctionalInterface</code> is an <em>annotation</em>. While we will not discuss annotations
+deeply in this book, the key idea behind them is that they provide extra
+information that’s usually not essential to the running of the program. In this
+case, the <code>@FunctionalInterface</code> annotation gives the extra information to
+someone reading the code that this interface is a functional interface, intended
+to be used in situations where we want to pass around an object as if it were
+only a single <code>evaluate()</code> method that takes two <code>int</code> values and returns a
+third. The <code>@FunctionalInterface</code> annotation has no effect on the compilation or
+running of the program except that an interface with this annotation will have a
+compiler error if it doesn’t have exactly one abstract method.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@FunctionalInterface</code> annotation isn’t necessary for functional-style
+programming in Java. As long as an interface has exactly one abstract method,
+you can use it as a type for storing or passing lambdas and method references.
+However, it’s always a good idea to mark an interface you write with
+<code>@FunctionalInterface</code> if that’s how you intend it to be used, both to inform
+other programmers that it’s a functional interface and to get the extra
+protection from the compiler if you mistakenly add another abstract method to
+it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_method_references">13.3.2. Method references</h4>
+<div class="paragraph">
+<p>Once you have a functional interface, you can use method reference anywhere
+there’s a matching functional interface type. In this case, we have the
+<code>Operator</code> functional interface that matches methods that take two
+<code>int</code> values as parameters and return another <code>int</code> value.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following class that contains a simple method that finds the
+maximum of two <code>int</code> values.</p>
+</div>
+<div id="Max" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Max</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
+            <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since the <code>max()</code> method inside the <code>Max</code> class takes two <code>int</code> values and
+returns a third, we could store it into a variable with type <code>Operator</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="nl">Max:</span><span class="o">:</span><span class="n">max</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">operator</span><span class="o">.</span><span class="na">evaluate</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">));</span> <span class="c1">// Prints 5.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that we are using the <code>::</code> operator here, which lets Java know that we want
+a reference to the <code>max()</code> method inside the <code>Max</code> class, instead of using <code>.</code>
+as we would to call the method. In this case, we’re supplying a reference to a
+static method, but we can use the <code>::</code> operator to reference an instance method
+as well.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following class that allows us to create <code>MaxWithMinimum</code> objects.
+These objects have a <code>max()</code> method that finds the maximum of two <code>int</code> values,
+but it also has a minimum value that it will give back as a default if neither
+of the arguments are bigger than the minimum. A class like this might be useful
+for situations where a value must always be above a certain threshold.</p>
+</div>
+<div id="MaxWithMinimum" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaxWithMinimum</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">minimum</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MaxWithMinimum</span><span class="o">(</span><span class="kt">int</span> <span class="n">minimum</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">minimum</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>        
+    <span class="o">}</span>    
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As before, we can store the <code>max()</code> method into a variable of type <code>Operator</code>,
+but now we have to put the name of the object, instead of the name of the class,
+before the <code>::</code> operator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MaxWithMinimum</span> <span class="n">maxObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MaxWithMinimum</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="nl">maxObject:</span><span class="o">:</span><span class="n">max</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">operator</span><span class="o">.</span><span class="na">evaluate</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">));</span> <span class="c1">// Prints 10, the minimum allowed.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This syntax parallels the way that static methods are called with a class name
+while instance methods are called with an object name.</p>
+</div>
 <div class="exampleblock">
-<div class="title">Example 13.1 Custom sorting</div>
+<div class="title">Example 13.1 Arithmetic expressions</div>
+<div class="content">
+<div class="paragraph">
+<p>We can use the <code>Operator</code> interface in a more extensive way to create nested
+arithmetic expressions where the actual operation done (add, subtract, multiply,
+or divide) is given by a method reference. First, we need to create an interface
+for an expression. The only thing an expression needs to do is tell you its
+value, so we put the <code>getValue()</code> abstract method in our <code>Expression</code> interface.</p>
+</div>
+<div id="Expression" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Expression</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="nf">getValue</span><span class="o">();</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need two classes that implement <code>Expression</code>. The first is a simple class
+designed to hold a single <code>int</code> value.</p>
+</div>
+<div id="Number" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Number</span> <span class="kd">implements</span> <span class="nc">Expression</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Number</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>    
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The second class represents a calculation done on expressions (which can be
+either simple numbers or expressions themselves).</p>
+</div>
+<div id="Calculation" class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculation</span> <span class="kd">implements</span> <span class="nc">Expression</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Operator</span> <span class="n">operator</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Expression</span> <span class="n">leftExpression</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Expression</span> <span class="n">rightExpression</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Calculation</span><span class="o">(</span><span class="nc">Operator</span> <span class="n">operator</span><span class="o">,</span>      <i class="conum" data-value="1"></i><b>(1)</b>
+                       <span class="nc">Expression</span> <span class="n">leftExpression</span><span class="o">,</span>
+                       <span class="nc">Expression</span> <span class="n">rightExpression</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">operator</span> <span class="o">=</span> <span class="n">operator</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">leftExpression</span> <span class="o">=</span> <span class="n">leftExpression</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">rightExpression</span> <span class="o">=</span> <span class="n">rightExpression</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>                    <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">leftExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rightExpression</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">operator</span><span class="o">.</span><span class="na">evaluate</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>      <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">subtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">multiply</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>   <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The constructor for <code>Calculation</code> takes an operator and the two
+subexpressions that the operator is being applied to.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>getValue()</code> method first gets the values of the two subexpressions and
+combines those values using the <code>evaluate()</code> method of the operator.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Static method to add two numbers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Static method to subtract two numbers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Static method to multiply two numbers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Static method to divide two numbers.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Although it took a lot of set-up, the final code that evaluates expressions is
+relatively simple.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Expression</span> <span class="n">expression1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculation</span><span class="o">(</span><span class="nl">Calculation:</span><span class="o">:</span><span class="n">add</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">3</span><span class="o">),</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">5</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">expression1</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span> <span class="c1">// Prints 8.</span>
+
+<span class="nc">Expression</span> <span class="n">expression2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculation</span><span class="o">(</span><span class="nl">Calculation:</span><span class="o">:</span><span class="n">multiply</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span> <span class="n">expression1</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">expression2</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span> <span class="c1">// Prints 16.</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lambdas">13.3.3. Lambdas</h4>
+<div class="exampleblock">
+<div class="title">Example 13.2 Custom sorting</div>
 <div class="content">
 
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_syntactic_sugar">13.3.3. Syntactic sugar</h4>
+<h4 id="_syntactic_sugar">13.3.4. Syntactic sugar</h4>
 
 </div>
 </div>
 <div class="sect2">
 <h3 id="_advanced_streams">13.4. Advanced: Streams</h3>
 <div class="exampleblock">
-<div class="title">Example 13.2 Filtering a stream</div>
+<div class="title">Example 13.3 Filtering a stream</div>
 <div class="content">
 
 </div>
