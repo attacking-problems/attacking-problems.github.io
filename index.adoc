@@ -21,22 +21,18 @@ __Attacking Problems with Java__ is an introduction to programming using the Jav
 This website is being updated during the summer of 2024, with changes to be completed by mid-August.
 ====
 
-=== Planned Changes
+=== Changes Planned and Completed
 
-1. Add keyword `var`.
-2. Describe enhancements to `switch` statements.
-3. Describe improvements to the `interface` specification, including `static` methods and `default` methods.
-4. Explain the `instanceof` binding variable.
-5. Introduce type inference for type variables.
-6. Explain the `try`-with-resources feature.
-7. Replace the `File` type with `Path`.
-8. Include an explanation of the `enum` type.
-9. Include a chapter on lambdas, closures, and functional expressions.
-10. Include a chapter on streams (or add to an existing chapter). 
-
-=== Completed Changes
-
-_None yet!_
+* [x] Add section on `var` declarations (Section 3.3.6).
+* [ ] Describe enhancements to `switch` statements.
+* [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
+* [ ] Explain the `instanceof` binding variable.
+* [ ] Introduce type inference for type variables.
+* [ ] Explain the `try`-with-resources feature.
+* [ ] Replace the `File` type with `Path`.
+* [ ] Include an explanation of the `enum` type.
+* [ ] Include a chapter on lambdas, closures, and functional expressions.
+* [ ] Include a chapter on streams (or add to an existing chapter). 
 
 == Availability
 
