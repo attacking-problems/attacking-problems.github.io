@@ -1,6 +1,6 @@
 [#lambdas-and-streams]
-:imagesdir: chapters/xx-lambdas-and-streams/images
-:programsdir: chapters/xx-lambdas-and-streams/programs
+:imagesdir: chapters/lambdas-and-streams/images
+:programsdir: chapters/lambdas-and-streams/programs
 == Lambdas and Streams
 
 [quote, Harry S. Truman]
@@ -10,27 +10,452 @@ ____
 
 === Problem: Cryptography tools
 
+_Cryptography_, from Greek roots meaning "secret writing," is the science of
+scrambling and unscrambling messages so that only the intended recipients can
+read them. Forms of cryptography have been used since ancient times, often in
+a military context. In fact, making and breaking codes played an important role
+in World War II. Now, modern cryptography is an essential tool to protect
+personal data as it's sent over the Internet. Without strong cryptography,
+credit card data, social security numbers, and other private information would
+be stolen by criminals even more than they are already.
+
+The act of scrambling a message so that it's no longer readable is called
+_encryption_. The act of unscrambling an encrypted message so that it's readable
+again is called _decryption_. A normal, unencrypted message is often called a
+_plaintext_. An encrypted message is called a _ciphertext_. Many encryption
+algorithms use a _key_, an extra piece of information like a secret phrase,
+that's needed when doing the encryption and decryption.
+
+What's the right approach for designing a program that can encrypt and decrypt
+data? It's tempting to pick your favorite encryption algorithm and build the
+program around that. Unfortunately, cryptographers are always working to find
+ways to defeat any given algorithm. Over the years, they might discover
+weaknesses that could allow attackers to unscramble a ciphertext, even without
+the secret key. For that reason, a good framework for using cryptography should
+allow an arbitrary algorithm to be used instead of forcing a user to keep using
+an algorithm that has known security vulnerabilities.
+
+For that reason, we want to design a framework that can accept any (or at least 
+a huge range of) encryption and decryption algorithms. We want the framework to
+take care of iterating through all the characters in a message and send each
+character off to the appropriate algorithm to be transformed from plaintext to
+ciphertext or vice versa.
+
+Most modern encryption algorithms like AES encrypt bytes (or blocks of bytes),
+but our solution will use simpler algorithms that are designed to encrypt only
+the capital letters A through Z from the Latin alphabet. The examples we'll use
+are the Caesar cipher, the affine cipher, and the Vigenère cipher, all classical
+substitution ciphers that have been used in the past but are now considered
+unsecure. With a little additional work, it's possible to expand our solution to
+secure algorithms as well.
+
 ==== Caesar cipher
 
-==== Rail fence cipher
+Substitution ciphers are encryption systems that change each letter in a
+plaintext to a different one. The Caesar cipher, used by Julius Caesar himself,
+is perhaps the simplest possible substitution cipher. In it, the key is a number
+1 through 25. This number says how many places later in the alphabet the
+encrypted version of a letter is than the unencrypted version. For example, if
+the key is 7, then each plaintext letter should be replaced with the letter that
+comes seven steps later in the alphabet, wrapping around as needed. In this
+case, the letter A is changed to H, the letter K is changed to R, and the letter
+V wraps around the end of the alphabet to change into C.
 
-==== Hill cipher
+The Caesar cipher is also called a shift cipher since we're shifting all the
+letters of the alphabet over by a fixed amount.
 
-=== Concepts: Storing methods
+Here's a table showing all the unencrypted alphabet with the
+encrypted versions of each letter in each row below, when the key is 7.
+
+[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
+|Ciphertext |H|I|J|K|L|M|N|O|P|Q|R|S|T
+14+|
+|Plaintext  |N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+|Ciphertext |U|V|W|X|Y|Z|A|B|C|D|E|F|G
+|=======================================================================
+
+Thus, the message `"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` would be encrypted to
+`"JYF OHCVJ HUK SLA ZSPW AOL KVNZ VM DHY"`. To decrypt a message, we move each
+letter in the message back by the shift.
 
 
-=== Syntax: Lambda expressions
+==== Affine cipher
 
+The affine cipher takes the Caesar cipher a step further. Instead of simply
+adding a value to each letter to encrypt it, we multiply each letter by a number
+and then add a value to it. Thus, the key has two parts, a scalar _a_ and a
+shift _b_.
+
+In order to make the math simpler, we first convert the letters A through Z into
+the numbers 0 through 25. That's the number that we multiply by _a_ before
+adding _b_. Finally, we take the result modulus 26 so that any value larger than
+25 maps back to the range 0 to 25. Written in mathematical notation, the
+encrypted version of a letter whose value is _x_ is (_a_ · _x_ + _b_) mod 26.
+
+Note that the scalar _a_ *must* be _coprime_ with the size of your alphabet, in
+our case 26. Otherwise, different letters in the plaintext will map to the same
+letters in the ciphertext, making it impossible to decrypt the original message.
+Two numbers are coprime if they share none of the same prime factors. For an
+alphabet with length 26, that means that _a_ can only have the values 1, 3, 5,
+7, 9, 11, 15, 17, 19, 21, 23, or 25. When _a_ = 1, the affine cipher is simply
+a Caesar cipher.
+
+Here's a table showing all the unencrypted alphabet in the first row and the
+encrypted versions of each letter in the second, with a value of 5 for _a_ and
+8 for _b_.
+
+[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
+|Ciphertext |I|N|S|X|C|H|M|R|W|B|G|L|Q
+14+|
+|Plaintext  |N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+|Ciphertext |V|A|F|K|P|U|Z|E|J|O|T|Y|D
+|=======================================================================
+
+
+With this cipher, the message `"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` would
+now be encrypted to `"SPY RIJAS IVX LCZ ULWF ZRC XAMU AH OIP"`. To decrypt a
+message, we first subtract the value _b_ from each letter and then multiply by
+the multiplicative inverse of _a_ modulus 26. Finding the multiplicative inverse
+of a number can be done with brute force or some number theory, and we'll
+discuss doing so in <<Solution: Cryptography tools>>.
+
+==== Vigenère cipher
+
+Both the Caesar cipher and the affine cipher are _monoalphabetic substitution
+ciphers_, which is a fancy way of saying that a given letter in the plaintext
+always maps to the same letter in the ciphertext. Although this property makes
+encryption and decryption simple, it also makes both ciphers susceptible to
+_frequency attacks_ in which the high frequency of letters like E in English can
+be used to recover the plaintext from the ciphertext without knowing the key.
+
+The Vigenère cipher is a _polyalphabetic substitution cipher_, meaning that
+each letter can be replaced with several different letters, depending on where
+in the message it occurs. Instead of using numbers, the Vigenère cipher uses a
+special word or phrase as the key. The values of the letters in this phrase are
+added to the values of the letters in the plaintext in order to find the
+ciphertext.
+
+For example, the letter N has value 13 (starting with A = 0). The letter S has 
+value 18. 13 + 18 = 31. As before, we take the result modulus 26 to make the
+number wrap around if it's too large. 31 mod 26 = 5. Since the letter F has the
+value 5, adding the letter N from the plaintext to the letter S from the key
+yields the letter F for the ciphertext. The table below shows the message
+`"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` encrypted with the Vigenère cipher,
+using a key of `"SHAKESPEARE"`. Note that the key `"SHAKESPEARE"` is repeated as
+many times as necessary to provide a letter to add to each letter in the
+plaintext.
+
+[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |C|R|Y|H|A|V|O|C|A|N|D|L|E|T|S
+|Key        |S|H|A|K|E|S|P|E|A|R|E|S|H|A|K
+|Ciphertext |U|Y|Y|R|E|N|D|G|A|E|H|D|L|T|C
+16+|
+|Plaintext  |L|I|P|T|H|E|D|O|G|S|O|F|W|A|R
+|Key        |E|S|P|E|A|R|E|S|H|A|K|E|S|P|E
+|Ciphertext |P|A|E|X|H|V|H|G|N|S|Y|J|O|P|V
+|=======================================================================
+
+It turns out that repeating the key is what makes the Vigenère cipher vulnerable
+to attacks. If the key is as long as the message (and is a totally random
+sequence of letters), the Vigenère cipher becomes what's called a _one-time
+pad_. It's impossible to attack a one-time pad without knowing the key, but it's
+also very inconvenient to use a key as long as the message, particularly when
+the message itself is long.
+
+The Vigenère cipher dates back to the 16^th^ century and was believed to be
+unbreakable for hundreds of years. However, methods that look at the frequency
+of letters in sophisticated ways were developed in the 19^th^ century by
+Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.
+
+=== Concepts: Passing and storing methods
+
+Creating a tool that can perform encryption and decryption with arbitrary
+algorithms is useful, but that's just the beginning. Earlier, we created
+variables that could store *values*, and we could also pass those values to
+methods. Now, we will explore ways to store *methods* and pass those methods to
+other methods.
+
+This idea of methods as _first-class values_ is one that comes from a different
+paradigm of programming. As we've discussed, Java is an object-oriented
+programming language: All code is stored inside of a class. Programs can be seen
+as a collection of objects interacting. Many variables are objects, though Java
+breaks this rule with primitive types. These exceptions aside, a useful motto
+for Java programming is "Everything is an object."
+
+On the other hand, in the _functional programming paradigm_, the motto is
+"Everything is a function." Languages that follow this paradigm, like Haskell,
+Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
+in these languages. When writing code in a functional language, it's typical to
+write functions that take functions as parameters and return functions as
+values. In fact, the purest functional languages have functions *instead* of
+values. In some of these languages, zero can be thought of as a special
+function. Then, the number 1 is conceived of as the function produced by
+applying the successor function to zero. The number 2 is the function produced
+by applying the successor function to the result of applying the successor
+function to zero, and so on.
+
+These languages also do not have (or at least discourage using) loops to perform
+repetition. Instead, these languages rely heavily on _recursion_, using a method
+to call itself, to achieve the same effect. Doing so is possible in Java, and
+we discuss recursion more thoroughly in <<recursion#recursion>>. Functional
+languages also disallow (or least discourage) changing the value of a variable
+once it's been assigned.
+
+If a language where everything's a function, there are no loops, and variables
+can't be changed sounds bizarre to you, don't worry: People whose first
+experience programming is with object-oriented or imperative languages are often
+baffled when they come in contact with functional languages. On the other
+hand, academic researchers into programming language design love functional
+languages because they can be very elegant, have many wonderful safety
+features, and follow mathematical structures that make it easier to prove
+important properties about a program.
+
+Although it's hard to make an objective measurement, many people consider
+functional languages to be more difficult to program in than object-oriented
+languages. Functional programming advocates will claim that, though it's harder
+to get a functional program to compile in the first place, a programmer will
+have more confidence that it works correctly when it finally does compile. While
+functional languages aren't typically used by as many people as object-oriented
+languages, there are certain niches like distributed systems where functional
+languages provide valuable features. As always, use the right tool for the right
+job.
+
+And even if pure functional languages aren't overwhelmingly popular, they have
+features that other languages liked enough to steal. Java 8 added lambdas,
+method references, and functional interfaces: all tools to make it easier to 
+use methods in a functional style. The language Scala runs on the JVM, and it
+goes even further than Java in adopting functional approaches.
+
+==== Method references and lambdas 
+
+In the previous paragraph, we used the word _lambda_, which is the letter λ from
+the Greek alphabet. Because of a theoretical model of computing called the
+_lambda calculus_ and the Lisp programming language that was influenced by it,
+the word lambda has come to be associated with methods that are defined on the
+fly, inside other methods, using the values of local variables when appropriate.
+
+If you recall, we already did something similar in
+<<Advanced: Local and anonymous classes>>. There, we created whole classes, both
+local and anonymous, in the middle of a method, even incorporating the values of
+local variables in one case. Lambdas do exactly the same thing, except that the
+syntax is simpler, and we're only defining a single method instead of a whole
+class.
+
+A related concept is a _method reference_. In functional programming, we often
+pass methods around as parameters. We can use lambdas to create a method on the
+fly, or we can pass in the method of an existing object. You should always pass
+in a method reference if the method you want already exists, but creating a
+lambda is fine if one doesn't. On the other hand, if you're writing many
+different lambdas that do essentially the same thing, you might want to create
+a method so that you can pass a reference to it.
+
+No doubt you're eager to learn the syntax for lambdas and method references,
+which we discuss in <<Syntax: Method references and lambdas>>, but when is it a
+good idea to use these tools? A lambda is useful when all you require is a
+single method, not a whole new class with member variables and perhaps many
+other methods. These situations include:
+
+- When you're using an interface that contains only one abstract method.
+Lambdas can allow you to create a method that fulfills the requirements of that
+interface. A great example is the `Runnable` interface that we'll talk about in
+<<The `Runnable` interface>> when describing ways to create threads.
+
+- Event handling, especially in GUIs. As we'll discuss in <<gui#gui>>, a central
+challenge of creating a GUI is defining what happens when a button is pressed or
+some other event occurs. Lambdas make it easy to supply a short segment of code
+that runs when an event happens.
+
+- Working with collections. The Java Collections Framework (JCF) provides many
+useful classes for storing data in lists, sets, and maps. To sort custom data
+or retrieve only the objects that match certain criteria, the JCF provides
+methods that you can supply a lambda to in order to say how data should be
+sorted or which kinds of objects you want back.
+
+- The Stream API. As we'll discuss in <<Advanced: Streams>>, the Stream API
+expands the tools from collections to create streams of data that can be sorted,
+filtered, aggregated, and processed in arbitrary ways using lambdas that you
+supply.
+
+Anywhere you can use a lambda, you can also use a method reference, provided
+that the method you want already exists.
+
+=== Syntax: Method references and lambdas
+
+After all this discussion of the concept of passing methods around, no doubt
+you're excited to do it yourself. Unfortunately, you can't.
+
+As we said before, Java lives by the motto "Everything is an object."
+Consequently, we can pass objects around, not methods. But there's Java
+construct that's primarily focused on methods, and that's the interface. As long
+as we pass around objects that implement an interface with the method we want,
+we can focus only on that particular method, ignoring other members and methods
+that the object might have.
 
 ==== Functional interfaces
 
-==== Type inference
+To make it absolutely clear when we want to focus only on one particular method
+in an object, Java 8 introduced the idea of a _functional interface_. A
+functional interface is an interface that contains exactly one abstract method.
+
+Below is the functional interface `ArithmeticOperator`, which contains the
+single method `evaluate()`.
+
+[source, java]
+[[Operator]]
+----
+include::{programsdir}/Operator.java[]
+----
+
+Note the text `@FunctionalInterface` that appears before the declaration of
+`Operator`. The use of the `@` sign signals that
+`@FunctionalInterface` is an _annotation_. While we will not discuss annotations
+deeply in this book, the key idea behind them is that they provide extra
+information that's usually not essential to the running of the program. In this
+case, the `@FunctionalInterface` annotation gives the extra information to
+someone reading the code that this interface is a functional interface, intended
+to be used in situations where we want to pass around an object as if it were
+only a single `evaluate()` method that takes two `int` values and returns a
+third. The `@FunctionalInterface` annotation has no effect on the compilation or
+running of the program except that an interface with this annotation will have a
+compiler error if it doesn't have exactly one abstract method.
+
+The `@FunctionalInterface` annotation isn't necessary for functional-style
+programming in Java. As long as an interface has exactly one abstract method,
+you can use it as a type for storing or passing lambdas and method references.
+However, it's always a good idea to mark an interface you write with
+`@FunctionalInterface` if that's how you intend it to be used, both to inform
+other programmers that it's a functional interface and to get the extra
+protection from the compiler if you mistakenly add another abstract method to
+it.
+
+==== Method references
+
+Once you have a functional interface, you can use method reference anywhere
+there's a matching functional interface type. In this case, we have the
+`Operator` functional interface that matches methods that take two
+`int` values as parameters and return another `int` value.
+
+Consider the following class that contains a simple method that finds the
+maximum of two `int` values.
+
+[source, java]
+[[Max]]
+----
+include::{programsdir}/Max.java[]
+----
+
+Since the `max()` method inside the `Max` class takes two `int` values and
+returns a third, we could store it into a variable with type `Operator`.
+
+[source, java]
+----
+Operator operator = Max::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 5.
+----
+
+Note that we are using the `::` operator here, which lets Java know that we want
+a reference to the `max()` method inside the `Max` class, instead of using `.`
+as we would to call the method. In this case, we're supplying a reference to a
+static method, but we can use the `::` operator to reference an instance method
+as well.
+
+Consider the following class that allows us to create `MaxWithMinimum` objects.
+These objects have a `max()` method that finds the maximum of two `int` values,
+but it also has a minimum value that it will give back as a default if neither
+of the arguments are bigger than the minimum. A class like this might be useful
+for situations where a value must always be above a certain threshold.
+
+[source, java]
+[[MaxWithMinimum]]
+----
+include::{programsdir}/MaxWithMinimum.java[]
+----
+
+As before, we can store the `max()` method into a variable of type `Operator`,
+but now we have to put the name of the object, instead of the name of the class,
+before the `::` operator.
+
+[source, java]
+----
+MaxWithMinimum maxObject = new MaxWithMinimum(10);
+Operator operator = maxObject::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 10, the minimum allowed.
+----
+
+This syntax parallels the way that static methods are called with a class name
+while instance methods are called with an object name.
+
+.Arithmetic expressions
+====
+
+We can use the `Operator` interface in a more extensive way to create nested
+arithmetic expressions where the actual operation done (add, subtract, multiply,
+or divide) is given by a method reference. First, we need to create an interface
+for an expression. The only thing an expression needs to do is tell you its
+value, so we put the `getValue()` abstract method in our `Expression` interface.
+
+[source, java]
+[[Expression]]
+----
+include::{programsdir}/Expression.java[]
+----
+
+We need two classes that implement `Expression`. The first is a simple class
+designed to hold a single `int` value.
+
+[source, java]
+[[Number]]
+----
+include::{programsdir}/Number.java[]
+----
+
+The second class represents a calculation done on expressions (which can be
+either simple numbers or expressions themselves).
+
+[source, java]
+[[Calculation]]
+----
+include::{programsdir}/Calculation.java[]
+----
+<.> The constructor for `Calculation` takes an operator and the two
+subexpressions that the operator is being applied to.
+<.> The `getValue()` method first gets the values of the two subexpressions and
+combines those values using the `evaluate()` method of the operator.
+<.> Static method to add two numbers.
+<.> Static method to subtract two numbers.
+<.> Static method to multiply two numbers.
+<.> Static method to divide two numbers.
+
+
+Although it took a lot of set-up, the final code that evaluates expressions is
+relatively simple.
+
+[source, java]
+----
+Expression expression1 = new Calculation(Calculation::add, new Number(3), new Number(5));
+System.out.println(expression1.getValue()); // Prints 8.
+
+Expression expression2 = new Calculation(Calculation::multiply, new Number(2), expression1);
+System.out.println(expression2.getValue()); // Prints 16.
+----
+====
+
+==== Lambdas
+
+
 
 
 .Custom sorting
 ====
 
 ====
+
+==== Syntactic sugar
 
 
 === Advanced: Streams
@@ -54,6 +479,9 @@ ____
 . Exercise 1
 
 *Programming Practice*
+
+// index of coincidence for Vigenere cipher?
+// automatically break a Caesar cipher?
 
 . Exercise 2
 

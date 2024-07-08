@@ -39,6 +39,8 @@ include::inheritance.adoc[]
 
 include::exceptions.adoc[]
 
+include::lambdas-and-streams.adoc[]
+
 include::concurrency.adoc[]
 
 include::synchronization.adoc[]
