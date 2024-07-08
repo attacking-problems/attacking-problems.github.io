@@ -1996,6 +1996,41 @@ different places in your program, changing it to `30000` requires five
 changes. If you have used `POPULATION` throughout your program instead
 of a literal, you only have to change its value once.
 
+==== Var Declarations
+
+This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:
+
+[source, java]
+----
+int x = 10;
+String message = "Hello there."
+Wombat w = new Wombat();
+----
+
+Each of the type names in the declaration (`int`, `String`, and `Wombat`) is obvious based on the type of the initial value.  Variable `x` is obviously an `int`, variable `message` is obviously a `String`, and variable `w` is obviously a `Wombat`.
+
+Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called _local variable type inference_.  The type declaration can be replaced by the "reserved type name" `var` and the compiler will do the inferencing:
+
+[source, java]
+----
+var x = 10;
+var message = "Hello there."
+var w = new Wombat();
+----
+
+Use of `var` can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended `x` to be a `double`, you would need to use a declaration like one of these:
+
+[source, java]
+----
+// Use a literal double as the initial value...
+var x = 10.0;
+
+// Or, explicitly declare the type...
+double x = 10;  
+----
+
+Note that this feature is called _local variable type inference_.  The compiler only does type inferencing on _local variables_, not on fields, method parameters, or return types.
+
 === Syntax: Useful libraries
 
 Computer software is difficult to write, but many of the same problems

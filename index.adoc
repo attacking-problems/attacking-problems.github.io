@@ -21,25 +21,21 @@ __Attacking Problems with Java__ is an introduction to programming using the Jav
 This website is being updated during the summer of 2024, with changes to be completed by mid-August.
 ====
 
-=== Planned Changes
+=== Changes Planned and Completed
 
-. Add keyword `var`.
-. Describe enhancements to `switch` statements.
-. Describe improvements to the `interface` specification, including `static` methods and `default` methods.
-. Explain the `instanceof` binding variable.
-. Introduce type inference for type variables.
-. Explain the `try`-with-resources feature.
-. Replace the `File` type with `Path`.
-. Include an explanation of the `enum` type.
-. Include a chapter on lambdas, closures, and functional expressions.
-. Include a chapter on streams (or add to an existing chapter).
-. Add a brief outline of useful JCF classes and interfaces.
-. Unify discussion of annotations.
-. Explain the different versions of Java and their features.
-
-=== Completed Changes
-
-_None yet!_
+* [x] Add section on `var` declarations (Section 3.3.6).
+* [ ] Describe enhancements to `switch` statements.
+* [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
+* [ ] Explain the `instanceof` binding variable.
+* [ ] Introduce type inference for type variables.
+* [ ] Explain the `try`-with-resources feature.
+* [ ] Replace the `File` type with `Path`.
+* [ ] Include an explanation of the `enum` type.
+* [ ] Include a chapter on lambdas, closures, and functional expressions.
+* [ ] Include a chapter on streams (or add to an existing chapter). 
+* [ ] Add a brief outline of useful JCF classes and interfaces.
+* [ ] Unify discussion of annotations.
+* [ ] Explain the different versions of Java and their features.
 
 == Availability
 
@@ -55,7 +51,7 @@ We are also considering a print-on-demand version.  Please email jtk@purdue.edu,
 
 == Using __Attacking Problems with Java__?
 
-If you are using __Attacking Problems with Java__ (or the older, __Start Concurrent__) in your classroom, let us know!  Please e-mail wittman1@otterbein.edu and tell us what course you use the book for.  If some changes to the book would make your class easier to teach, we'd love to hear what they are.
+If you're using __Attacking Problems with Java__ (or the older __Start Concurrent__) in your classroom, let us know!  Please e-mail wittman1@otterbein.edu and tell us what course you use the book for.  If some changes to the book would make your class easier to teach, we'd love to hear what they are.
 
 We appreciate your feedback and suggestions!
 Please submit them either as
