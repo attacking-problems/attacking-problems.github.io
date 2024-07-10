@@ -1180,11 +1180,248 @@ relatively simple.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lambdas">13.3.3. Lambdas</h4>
+<h4 id="_lambda_expressions">13.3.3. Lambda expressions</h4>
+<div class="paragraph">
+<p>Like method references, lambda expressions can be used anywhere with a matching
+functional interface; however, a lambda expression defines a method right where
+you need it, without the requirement for an existing method in any class.</p>
+</div>
+<div class="paragraph">
+<p>The syntax rules for lambdas expressions are complicated, mostly because parts
+of them can sometimes be left off to make code shorter and easier to read. Note
+that lambda expressions always contain an arrow (<code>-&gt;</code>) between the parameters
+and the code that shows what computation the lambda does on the parameters.</p>
+</div>
+<div class="paragraph">
+<p>A single-line lambda expression that adds two <code>int</code> values together, similar to
+the <code>add()</code> method in the <code>Calculation</code> class, might look like the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operation</span> <span class="n">add</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In almost all cases, the types for the parameters in lambda expressions can be
+omitted. The Java compiler uses a process called <em>type inference</em> to determine
+what the types should be. Thus, the code above could be written in a shorter
+way.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operation</span> <span class="n">add</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The parameters <code>a</code> and <code>b</code> still both have type <code>int</code>, but it’s unnecessary to
+state the type explicitly.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Pitfall: Arrow symbols</div>
+<div class="paragraph">
+<p>The arrow is not a single character you can type. Unicode contains several
+characters with the appearance of an arrow, but like all Java operators, the
+arrow used for lambda expressions is made up of characters that can be easily
+typed on a standard keyboard. In fact, it’s made up of two characters, a minus
+(<code>-</code>) and a greater than (<code>&gt;</code>). Although whitespace is generally unimportant in
+Java, these two characters must appear next to each other to make an arrow, with
+no space in between.</p>
+</div>
+<div class="paragraph">
+<p>Some languages have an arrow that uses an equal (<code>=</code>) instead of a minus, making
+an arrow whose appearance is <code>=&gt;</code>. This arrow is <strong>not</strong> a legal operator in Java
+and cannot be substituted for <code>-&gt;</code>.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>In the two code segments above, we’re storing a lambda expression into a
+variable with a functional interface type, namely <code>Operation</code>. While doing so
+is allowed, it’s much more common to use a lambda expression directly, right
+where we need it. For example, we can recreate the code from the end of the last
+section using lambda expressions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Expression</span> <span class="n">expression1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculation</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">3</span><span class="o">),</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">5</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">expression1</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span> <span class="c1">// Prints 8.</span>
+
+<span class="nc">Expression</span> <span class="n">expression2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculation</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Number</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span> <span class="n">expression1</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">expression2</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span> <span class="c1">// Prints 16.</span></code></pre>
+</div>
+</div>
 <div class="exampleblock">
 <div class="title">Example 13.2 Custom sorting</div>
 <div class="content">
-
+<div class="paragraph">
+<p>In <a href="chap6.html#_the_arrays_class">Section 6.9.2</a>, we introduced <code>Arrays</code>, a utility class that provides
+tools for interacting with arrays. It contains several overloaded <code>sort()</code>
+methods that can be used to sort arrays of data. While this approach works well
+for sorting primitive data in ascending order, it will fail to sort reference
+types unless they implement the <code>Comparable</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>However, we can use lambda expressions to sort reference types that don’t
+implement this interface. Better yet, we can also use lambda expressions to sort
+objects based on any characteristic we’re interested in. Consider the following
+code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span><span class="o">[]</span> <span class="n">words</span> <span class="o">=</span> <span class="o">{</span><span class="s">"telephone"</span><span class="o">,</span> <span class="s">"architecture"</span><span class="o">,</span> <span class="s">"union"</span><span class="o">,</span> <span class="s">"drawers"</span><span class="o">,</span> <span class="s">"fruits"</span><span class="o">};</span>
+<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">words</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">words</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As expected, this code prints the words in dictionary order:
+<code>[architecture, drawers, fruits, telephone, union]</code></p>
+</div>
+<div class="paragraph">
+<p>But what if we wanted to sort the words based on their length instead? We could
+use the following code that includes a lambda expression to do the comparison.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">words</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">words</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, the words will be printed out from shortest to longest:
+<code>[union, fruits, drawers, telephone, architecture]</code></p>
+</div>
+<div class="paragraph">
+<p>How does this sorting work? The lambda expression is clear enough: It takes two
+parameters <code>a</code> and <code>b</code> (whose type it has inferred to be <code>String</code>) and subtracts
+the length of <code>b</code> from the length of <code>a</code>. But <em>why</em> does it work? The key idea
+is that sorting requires the comparison of two objects. The sorting algorithm
+will look at two objects and decide which one comes earlier in the final sorted
+list. By making many comparisons between objects, it can ultimately sort the
+whole list.</p>
+</div>
+<div class="paragraph">
+<p>What adds another layer of complexity is that Java expects the result of a
+comparison to be an <code>int</code> value. This value will be negative if the first object
+comes earlier in the sorted order than the second, positive if the first
+object comes later in the sorted order than the second, and zero if the two
+objects go in exactly the same place in the sorted order (like two <code>String</code>
+values with the same length). By subtracting the lengths of the two <code>String</code>
+values, the lambda expression returns a negative number if the first <code>String</code>
+has a length shorter than the second, a positive number if the first <code>String</code>
+has a length longer than the second, and zero if the two <code>String</code> values have
+the same length. Although unintuitive, this approach using subtraction can be
+used for many kinds of comparisons.</p>
+</div>
+<div class="paragraph">
+<p>Since most comparisons are based on characteristics of objects that can be
+retrieved from methods, there are often ways to perform the comparison using
+a method reference instead of a lambda expression. For example, we could have
+achieved the same sorting by length as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">words</span><span class="o">,</span> <span class="nc">Comparator</span><span class="o">.</span><span class="na">comparingInt</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">length</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As before, the <code>sort()</code> method takes a custom <code>Comparator</code> object. In this case,
+it’s one created by doing an integer comparison (essentially subtraction) on the
+result of applying the <code>length()</code> method from the <code>String</code> class to the
+<code>String</code> objects in the <code>words</code> array. The exact mechanism of how the
+<code>comparingInt()</code> method creates the right kind of <code>Comparator</code> object from the
+<code>length()</code> method is murky and involves complicated type inference. However,
+it’s important to know that this technique is available since sorting objects
+based on arbitrary characteristics comes up frequently in practice, and many
+experienced developers believe that using a method reference is more readable
+than a lambda expression.</p>
+</div>
+<div class="paragraph">
+<p>There’s one final caveat we want to mention about custom sorting. It is,
+unfortunately, difficult to sort arrays of <em>primitive</em> values using custom
+<code>Comparator</code> objects, because of the way that Java uses <em>generics</em>, a tool that
+allows code to be written to work with many different types. We’ll talk more
+about generics in <a href="chap19.html#_generics_in_java">Section 19.5.1</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sorting an array of <code>int</code> values in ascending order (smallest to largest), for
+example, can be done with an overloaded version of the <code>Arrays.sort()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">intValues</span> <span class="o">=</span> <span class="o">{</span><span class="mi">34</span><span class="o">,</span> <span class="mi">42</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">61</span><span class="o">,</span> <span class="mi">29</span><span class="o">};</span>
+<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intValues</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intValues</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you would expect, this code prints:
+<code>[29, 34, 42, 61, 90]</code></p>
+</div>
+<div class="paragraph">
+<p>However, there’s no straightforward way to sort these numbers in descending
+order (largest to smallest). It would be tempting to use a lambda expression as
+follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">intValues</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="o">);</span> <span class="c1">// Does not compile!</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, only reference types (not primitive types like <code>int</code>) can be used
+with the generic types that make the custom <code>Comparator</code> work, so this code
+won’t compile. For this specific case, there are two alternatives.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sort the list in ascending order and then write additional code to reverse it.</p>
+</li>
+<li>
+<p>Copy the contents of the array into an array of <code>Integer</code> values and use a
+custom <code>Comparator</code> on that.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Simply by declaring the array as type <code>Integer[]</code>, we can sort it with a
+custom <code>Comparator</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Integer</span><span class="o">[]</span> <span class="n">wrappedValues</span> <span class="o">=</span> <span class="o">{</span><span class="mi">34</span><span class="o">,</span> <span class="mi">42</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">61</span><span class="o">,</span> <span class="mi">29</span><span class="o">};</span>
+<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">wrappedValues</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">wrappedValues</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because the comparison is based on <code>b - a</code> (rather than <code>a - b</code>), this code
+sorts <code>wrappedValues</code> in descending order, giving the output:
+<code>[90, 61, 42, 34, 29]</code></p>
+</div>
+<div class="paragraph">
+<p>When using the <code>Arrays</code> class for sorting, remember that you’ll only be able to
+use a custom <code>Comparator</code>, based on either a lambda expression or method
+references, if your array contains reference types. Sorting an array of
+primitive types requires turning them into an array of the appropriate wrapper
+class objects. Sometimes, this approach will be the best solution, but turning
+primitive values into objects costs both time and extra memory.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_longer_lambda_expressions">Longer lambda expressions</h5>
+<div class="paragraph">
+<p>Effectively final!</p>
 </div>
 </div>
 </div>
