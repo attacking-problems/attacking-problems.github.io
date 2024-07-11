@@ -5,6 +5,28 @@ public class LambdaTesting {
 
         Operator add2 = (a, b) -> a + b;
         System.out.println(add2.evaluate(5, -3));
+
+        Operator operator1 = (a, b) -> {
+            if (a >= b)
+                return a;
+            else
+                return b;
+        };
+
+        System.out.println(operator1.evaluate(5, -3));
+
+        int minimum = 10;
+        Operator operator2 = (a, b) -> {
+            int result = minimum;
+            if (a >= result)
+                result = a;
+            if (b >= result)
+                result = b;
+            return result;     
+        };
+
+        System.out.println(operator2.evaluate(5, -3));
+
     }
     
 }

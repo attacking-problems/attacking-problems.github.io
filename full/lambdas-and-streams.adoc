@@ -645,12 +645,111 @@ primitive values into objects costs both time and extra memory.
 
 ===== Longer lambda expressions
 
+Lambda expressions are perhaps at their best when they're shorter than a single
+line. It both makes sense and is relatively readable to define a lambda
+expression that only does one or two simple operations like addition or
+subtraction. However, there are cases when a lambda expression must contain
+several lines of code to get the job done, and Java provides a way to do this,
+with slightly different syntax.
 
+Recall the `Max` class in <<Method references>>. It contains a single method
+called `max()` that finds the larger of two `int` values. We stored a reference
+to this method in a variable with type `Operator` as follows.
 
+[source, java]
+----
+Operator operator = Max::max;
+----
 
-Effectively final!
+Using the ternary operator, we could write a single line of code that finds the
+larger of two values, but it feels more natural to write the code as we did in
+the `max()` method. We can do so with a lambda expression by putting everything
+after the arrow inside braces (`{ }`) and including appropriate return
+statements.
 
+[source, java]
+----
+Operator operator = (a, b) -> {
+            if (a >= b)
+                return a;
+            else
+                return b;
+        };
+----
 
+This code shows a longer lambda expression where everything after the arrow
+looks like a normal method body. Note that a semicolon is still required after
+the closing brace since the entire lambda expression is treated by the compiler
+like a single expression, even though it takes up multiple lines.
+
+What is perhaps even more surprising is that we can even include local variables
+inside of a lambda expression. For example, the following code allows us to have
+behavior similar to the `max()` method in the `MaxWithMinimum` class. It finds
+the larger of two values but defaults to a minimum if neither value is as large
+as the minimum.
+
+[source, java]
+----
+int minimum = 10;
+Operator operator = (a, b) -> {
+    int result = minimum; // Use of local variable
+    if (a >= result)
+        result = a;
+    if (b >= result)
+        result = b;
+    return result;     
+};
+----
+
+.Pitfall: Effectively final
+[WARNING]
+====
+When using local variables from an enclosing method inside of lambda expressions
+(or anonymous inner classes), those local variables must be _effectively final_,
+which means that their values are never changed once they've been assigned. You
+can think of local variables as constants that are provided to a lambda
+expression. It gets the value of the local variable and can use it for
+computation, but Java requires that the value of that variable never changes.
+The goal is to minimize confusion. What would it mean if a variable did change?
+Could executing a lambda expression in later code change a local variable in a
+way that isn't transparent to the programmer? Maybe the method containing that
+local variable has already returned, so there is no local variable to update.
+Likewise, what if the local variable had been changed before the lambda
+expression was executed? Would it use the value it was created with or the
+updated value?
+
+The developers of Java decided to avoid all this complication by requiring the
+variable to be effectively final. Another way to think about effectively final
+variables is that they could be explicitly marked with the `final` keyword
+without causing the compiler to complain about them being reassigned.
+
+Consider the following code that is similar to the lambda expression above
+except that it makes the largest value that it finds into the new minimum. Such
+code might be useful if we wanted a series of maximum values that never decrease
+over the course of the program.
+
+[source, java]
+----
+int minimum = 10;
+Operator operator = (a, b) -> {
+    int result = minimum; // Use of local variable
+    if (a >= result)
+        result = a;
+    if (b >= result)
+        result = b;
+    minimum = result; // Reassignment of local variable    
+    return result;     
+};
+----
+
+Because the local variable `minimum` is reassigned, it isn't effectively final,
+and it *won't* compile.
+
+Sometimes, this requirement forces the programmer to add an additional variable
+to the body of a lambda expression, since that inner variable can be changed.
+Note  that this requirement does not apply to member variables, which can also
+be changed inside of lambda expressions.
+====
 
 ==== Syntactic sugar
 

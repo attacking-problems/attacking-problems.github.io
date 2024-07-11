@@ -28276,7 +28276,128 @@ primitive values into objects costs both time and extra memory.</p>
 <div class="sect4">
 <h5 id="_longer_lambda_expressions">Longer lambda expressions</h5>
 <div class="paragraph">
-<p>Effectively final!</p>
+<p>Lambda expressions are perhaps at their best when they&#8217;re shorter than a single
+line. It both makes sense and is relatively readable to define a lambda
+expression that only does one or two simple operations like addition or
+subtraction. However, there are cases when a lambda expression must contain
+several lines of code to get the job done, and Java provides a way to do this,
+with slightly different syntax.</p>
+</div>
+<div class="paragraph">
+<p>Recall the <code>Max</code> class in <a href="#_method_references">Section 13.3.2</a>. It contains a single method
+called <code>max()</code> that finds the larger of two <code>int</code> values. We stored a reference
+to this method in a variable with type <code>Operator</code> as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="nl">Max:</span><span class="o">:</span><span class="n">max</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using the ternary operator, we could write a single line of code that finds the
+larger of two values, but it feels more natural to write the code as we did in
+the <code>max()</code> method. We can do so with a lambda expression by putting everything
+after the arrow inside braces (<code>{ }</code>) and including appropriate return
+statements.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+        <span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code shows a longer lambda expression where everything after the arrow
+looks like a normal method body. Note that a semicolon is still required after
+the closing brace since the entire lambda expression is treated by the compiler
+like a single expression, even though it takes up multiple lines.</p>
+</div>
+<div class="paragraph">
+<p>What is perhaps even more surprising is that we can even include local variables
+inside of a lambda expression. For example, the following code allows us to have
+behavior similar to the <code>max()</code> method in the <code>MaxWithMinimum</code> class. It finds
+the larger of two values but defaults to a minimum if neither value is as large
+as the minimum.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">minimum</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span> <span class="c1">// Use of local variable</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Pitfall: Effectively final</div>
+<div class="paragraph">
+<p>When using local variables from an enclosing method inside of lambda expressions
+(or anonymous inner classes), those local variables must be <em>effectively final</em>,
+which means that their values are never changed once they&#8217;ve been assigned. You
+can think of local variables as constants that are provided to a lambda
+expression. It gets the value of the local variable and can use it for
+computation, but Java requires that the value of that variable never changes.
+The goal is to minimize confusion. What would it mean if a variable did change?
+Could executing a lambda expression in later code change a local variable in a
+way that isn&#8217;t transparent to the programmer? Maybe the method containing that
+local variable has already returned, so there is no local variable to update.
+Likewise, what if the local variable had been changed before the lambda
+expression was executed? Would it use the value it was created with or the
+updated value?</p>
+</div>
+<div class="paragraph">
+<p>The developers of Java decided to avoid all this complication by requiring the
+variable to be effectively final. Another way to think about effectively final
+variables is that they could be explicitly marked with the <code>final</code> keyword
+without causing the compiler to complain about them being reassigned.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following code that is similar to the lambda expression above
+except that it makes the largest value that it finds into the new minimum. Such
+code might be useful if we wanted a series of maximum values that never decrease
+over the course of the program.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">minimum</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span> <span class="c1">// Use of local variable</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+    <span class="n">minimum</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span> <span class="c1">// Reassignment of local variable</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because the local variable <code>minimum</code> is reassigned, it isn&#8217;t effectively final,
+and it <strong>won&#8217;t</strong> compile.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes, this requirement forces the programmer to add an additional variable
+to the body of a lambda expression, since that inner variable can be changed.
+Note  that this requirement does not apply to member variables, which can also
+be changed inside of lambda expressions.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
