@@ -1,7 +1,7 @@
 [#lambdas-and-streams]
 :imagesdir: chapters/lambdas-and-streams/images
 :programsdir: chapters/lambdas-and-streams/programs
-== Lambdas and Streams
+== Lambda Expressions and Streams
 
 [quote, Harry S. Truman]
 ____
@@ -752,6 +752,84 @@ be changed inside of lambda expressions.
 ====
 
 ==== Syntactic sugar
+
+Java 8 was released in 2014, and people were excited to use the new functional
+features it provided. As slick as these features are, they didn't make it
+possible to do anything that was impossible before. Even though method
+references were new, it had already been possible to make interfaces with a
+single method and then store objects with a matching method into variables with
+that interface type. While lambda expressions are much less clunky, the same
+functionality could be achieved with anonymous inner classes.
+
+Java 8 did make some fundamental changes to the JVM, but these changes mostly
+had to do with memory management. By contrast, the functional programming tools
+that we're discussing in this chapter are what some people call
+_syntactic sugar_. Syntactic sugar refers to syntax that makes a language easier
+to program without making deep changes to how the language works. The language
+simply becomes sweeter to use.
+
+To get a sense of the syntactic sugar that lambda expressions provide, let's
+write code that defines a class that implements the `Operator` interface,
+creating an `evaluate()` method that performs multiplication on its two inputs.
+For the first version of the code, we'll use an anonymous inner class.
+
+[source, java]
+----
+Operator multiply = new Operator() {
+    @Override
+    public int evaluate(int a, int b) {
+        return a * b;
+    }            
+};
+----
+
+This anonymous inner class approach works for pretty much every version of Java.
+However, note how much syntax is needed to wrap up the only code that matters,
+the code that specifies that `evaluate()` will multiply its two parameters.
+
+From there, we can consider an equivalent version of the code that uses a lambda
+expression but doesn't take advantage of all the shortcuts that could be used.
+
+[source, java]
+----
+Operator multiply = (int a, int b) -> {
+    return a * b;
+};            
+----
+
+This code is functionally equivalent to the version using an anonymous inner
+class. Internally, the JVM almost certainly creates a new object with an
+`evaluate()` method that implements the `Operator` interface, but that tedious
+work is taken care of for you.
+
+Finally, we can consider the slimmest version of the code, which uses all the
+syntax shortcuts that lambda expressions allow, sugaring the syntax even
+further.
+
+[source, java]
+----
+Operator multiply = (a, b) -> a * b;
+----
+
+As you've already seen in this chapter, we can usually leave off parameter types
+in lambda expressions. For short code we can also leave off the braces and imply
+the return statement. Again, this code is functionally equivalent to the first
+version using an anonymous inner class, but syntactic sugar has allowed us to
+write it in a more concise, more readable way.
+
+The enhanced `for` loops we discussed in <<Enhanced `for` loops>> are also
+syntactic sugar, since they allow a `for` loop to be written more compactly.
+Examples of syntactic sugar exist in almost every language. There are tasks that
+come up so frequently that the developers of the language decided to make a
+shortcut for those tasks, even though existing syntax could get the job done.
+
+It pays to be aware of syntactic sugar for two reasons. First, you'll
+understand a language more deeply when you realize that one piece of syntax is
+really just a shortcut for another. Second, programmers tend to preferred the
+sugared version of syntax. Using the syntax that the community prefers allows
+you to write more _idiomatically_, in the accepted style. Since programming is
+about clear communication, with both computers and other programmers, adhering
+to a common style is important.
 
 
 === Advanced: Streams

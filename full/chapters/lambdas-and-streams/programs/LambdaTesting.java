@@ -27,6 +27,14 @@ public class LambdaTesting {
 
         System.out.println(operator2.evaluate(5, -3));
 
+
+        Operator multiply1 = new Operator() {
+            @Override
+            public int evaluate(int a, int b) {
+                return a * b;
+            }            
+        };
+
     }
     
 }

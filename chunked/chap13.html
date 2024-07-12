@@ -158,7 +158,7 @@
 <li><a href="chap12.html#_exercises_12">12.6. Exercises</a></li>
 </ul>
 </li>
-<li class="current"><a href="chap13.html">13. Lambdas and Streams</a>
+<li class="current"><a href="chap13.html">13. Lambda Expressions and Streams</a>
 <ul class="sectlevel2">
 <li class="current"><a href="chap13.html#_problem_cryptography_tools">13.1. Problem: Cryptography tools</a></li>
 <li class="current"><a href="chap13.html#_concepts_passing_and_storing_methods">13.2. Concepts: Passing and storing methods</a></li>
@@ -301,7 +301,7 @@
 
 
 <div class="sect1">
-<h2 id="lambdas-and-streams">13. Lambdas and Streams</h2>
+<h2 id="lambdas-and-streams">13. Lambda Expressions and Streams</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -1548,7 +1548,94 @@ be changed inside of lambda expressions.</p>
 </div>
 <div class="sect3">
 <h4 id="_syntactic_sugar">13.3.4. Syntactic sugar</h4>
-
+<div class="paragraph">
+<p>Java 8 was released in 2014, and people were excited to use the new functional
+features it provided. As slick as these features are, they didn’t make it
+possible to do anything that was impossible before. Even though method
+references were new, it had already been possible to make interfaces with a
+single method and then store objects with a matching method into variables with
+that interface type. While lambda expressions are much less clunky, the same
+functionality could be achieved with anonymous inner classes.</p>
+</div>
+<div class="paragraph">
+<p>Java 8 did make some fundamental changes to the JVM, but these changes mostly
+had to do with memory management. By contrast, the functional programming tools
+that we’re discussing in this chapter are what some people call
+<em>syntactic sugar</em>. Syntactic sugar refers to syntax that makes a language easier
+to program without making deep changes to how the language works. The language
+simply becomes sweeter to use.</p>
+</div>
+<div class="paragraph">
+<p>To get a sense of the syntactic sugar that lambda expressions provide, let’s
+write code that defines a class that implements the <code>Operator</code> interface,
+creating an <code>evaluate()</code> method that performs multiplication on its two inputs.
+For the first version of the code, we’ll use an anonymous inner class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">multiply</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Operator</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">evaluate</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This anonymous inner class approach works for pretty much every version of Java.
+However, note how much syntax is needed to wrap up the only code that matters,
+the code that specifies that <code>evaluate()</code> will multiply its two parameters.</p>
+</div>
+<div class="paragraph">
+<p>From there, we can consider an equivalent version of the code that uses a lambda
+expression but doesn’t take advantage of all the shortcuts that could be used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">multiply</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code is functionally equivalent to the version using an anonymous inner
+class. Internally, the JVM almost certainly creates a new object with an
+<code>evaluate()</code> method that implements the <code>Operator</code> interface, but that tedious
+work is taken care of for you.</p>
+</div>
+<div class="paragraph">
+<p>Finally, we can consider the slimmest version of the code, which uses all the
+syntax shortcuts that lambda expressions allow, sugaring the syntax even
+further.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">multiply</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you’ve already seen in this chapter, we can usually leave off parameter types
+in lambda expressions. For short code we can also leave off the braces and imply
+the return statement. Again, this code is functionally equivalent to the first
+version using an anonymous inner class, but syntactic sugar has allowed us to
+write it in a more concise, more readable way.</p>
+</div>
+<div class="paragraph">
+<p>The enhanced <code>for</code> loops we discussed in <a href="chap6.html#_enhanced_for_loops">Section 6.9.1</a> are also
+syntactic sugar, since they allow a <code>for</code> loop to be written more compactly.
+Examples of syntactic sugar exist in almost every language. There are tasks that
+come up so frequently that the developers of the language decided to make a
+shortcut for those tasks, even though existing syntax could get the job done.</p>
+</div>
+<div class="paragraph">
+<p>It pays to be aware of syntactic sugar for two reasons. First, you’ll
+understand a language more deeply when you realize that one piece of syntax is
+really just a shortcut for another. Second, programmers tend to preferred the
+sugared version of syntax. Using the syntax that the community prefers allows
+you to write more <em>idiomatically</em>, in the accepted style. Since programming is
+about clear communication, with both computers and other programmers, adhering
+to a common style is important.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
