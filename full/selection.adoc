@@ -1288,7 +1288,27 @@ down the sign.
 
 NOTE: This section describes features added to the `switch` statement in versions starting with Java 12.
 
-WARNING: This section is incomplete (not even started!).
+WARNING: This section is under construction.
+
+===== `switch` expressions
+
+CAUTION: New in Java 12 (preview) / Java 14 (permanent).
+
+===== Arrow syntax
+
+CAUTION: New in Java 12 (preview) / Java 14 (permanent).
+
+===== Multiple `case` labels
+
+CAUTION: New in Java 12 (preview) / Java 14 (permanent).
+
+===== `yield` statement
+
+CAUTION: New in Java 13 (preview) / Java 14 (permanent).
+
+===== Pattern matching
+
+CAUTION: New in Java 17 (preview) / Java 21 (permanent).
 
 
 === Solution: Monty Hall
