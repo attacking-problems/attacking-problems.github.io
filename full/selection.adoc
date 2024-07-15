@@ -871,7 +871,9 @@ permanently). These concepts are covered in later chapters.
 ====
 
 
-==== `switch` statements
+==== Basic `switch` statements
+
+NOTE: This section describes the "basic" `switch` statement as it was defined in versions before Java 12.  <<_enhanced_switch_statements>> describes enhancements made in Java 12 and subsequent versions.
 
 The `if` statement is the workhorse of Java conditional execution. With
 enough care, you can craft code that can make any fixed sequence of
@@ -1032,9 +1034,9 @@ switch(year) {
 ----
 
 Just like an `if` statement, a `switch` statement always has parentheses
-enclosing some argument. Unlike an `if`, the argument of a `switch` must
+enclosing some argument. Unlike an `if`, the argument of a basic `switch` must
 be some kind of data that can be expressed as an integer or a `String`,
-not a `boolean`. For each of the possible values you want the `switch`
+not a `boolean`.  (In the next section, we'll see that in newer versions of Java, the `switch` argument can be more complex.) For each of the possible values you want the `switch`
 to handle, you write a `case` statement. A `case` statement consists of
 the keyword `case` followed by a constant value, either a literal or a
 named constant, then a colon. When executed, the JVM jumps to the
@@ -1281,6 +1283,13 @@ Chinese zodiac. You still need to jump to 12 different cases (numbered
 down the sign.
 
 ====
+
+==== Enhanced `switch` statements
+
+NOTE: This section describes features added to the `switch` statement in versions starting with Java 12.
+
+WARNING: This section is incomplete (not even started!).
+
 
 === Solution: Monty Hall
 
@@ -1537,7 +1546,7 @@ any coin, print `unknown coin`.
 to find the last two digits of the number. Using an `if`
 statement, a `switch` statement, or a combination, check for those three
 cases before going into the normal cases.
-. At the bottom of <<_switch_statements,Section 4.3.3>>, we use a
+. At the bottom of <<_basic_switch_statements>>, we use a
 `switch` statement to determine the location of various area codes in
 New York state. Write an equivalent fragment of code using `if`-`else`
 statements instead.
