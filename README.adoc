@@ -60,7 +60,7 @@ from the Asciidoctor https://discuss.asciidoctor.org/Problem-using-Asciidoctor-P
 
 === Generating E-Book Formats
 
-WARNING: In progress.
+NOTE: In progress.
 
 . Update book sources to comply with required format. (One time; in progress.)
 . Install the https://asciidoctor.org/docs/asciidoctor-epub3/[AsciiDoctor EPUB3 gem].
