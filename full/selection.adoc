@@ -873,7 +873,7 @@ permanently). These concepts are covered in later chapters.
 
 ==== Basic `switch` statements
 
-NOTE: This section describes the "basic" `switch` statement as it was defined in versions before Java 12.  <<_enhanced_switch_statements>> describes enhancements made in Java 12 and subsequent versions.
+_This section describes the "basic" `switch` statement as it was defined in versions before Java 12.  <<_enhanced_switch_statements>> describes enhancements made in Java 12 and subsequent versions._
 
 The `if` statement is the workhorse of Java conditional execution. With
 enough care, you can craft code that can make any fixed sequence of
@@ -1286,29 +1286,29 @@ down the sign.
 
 ==== Enhanced `switch` statements
 
-NOTE: This section describes features added to the `switch` statement in versions starting with Java 12.  Most new `switch` features became permanent in Java 14, with pattern matching becoming permanent in Java 21.
+This section describes features added to the `switch` statement in versions starting with Java 12.  Most new `switch` features became permanent in Java 14, with pattern matching becoming permanent in Java 21.
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 ===== `switch` expressions
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 ===== Arrow syntax
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 ===== Multiple `case` labels
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 ===== `yield` statement
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 ===== Pattern matching
 
-WARNING: This section is under construction.
+NOTE: This section is under construction.
 
 
 === Solution: Monty Hall
