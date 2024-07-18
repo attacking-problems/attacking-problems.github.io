@@ -812,24 +812,24 @@ Operator multiply = (a, b) -> a * b;
 ----
 
 As you've already seen in this chapter, we can usually leave off parameter types
-in lambda expressions. For short code we can also leave off the braces and imply
-the return statement. Again, this code is functionally equivalent to the first
-version using an anonymous inner class, but syntactic sugar has allowed us to
-write it in a more concise, more readable way.
+in lambda expressions. For single-line expressions, we can also leave off the
+braces and imply the return statement. Again, this code is functionally
+equivalent to the first version using an anonymous inner class, but syntactic
+sugar has allowed us to write it in a more concise, more readable way.
 
 The enhanced `for` loops we discussed in <<Enhanced `for` loops>> are also
-syntactic sugar, since they allow a `for` loop to be written more compactly.
+syntactic sugar since they allow a `for` loop to be written more compactly.
 Examples of syntactic sugar exist in almost every language. There are tasks that
 come up so frequently that the developers of the language decided to make a
 shortcut for those tasks, even though existing syntax could get the job done.
 
 It pays to be aware of syntactic sugar for two reasons. First, you'll
 understand a language more deeply when you realize that one piece of syntax is
-really just a shortcut for another. Second, programmers tend to preferred the
+really just a shortcut for another. Second, programmers tend to prefer the
 sugared version of syntax. Using the syntax that the community prefers allows
 you to write more _idiomatically_, in the accepted style. Since programming is
 about clear communication, with both computers and other programmers, adhering
-to a common style is important.
+to a common style is valuable.
 
 
 === Advanced: Streams
