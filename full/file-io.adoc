@@ -279,9 +279,9 @@ with the associated name and path exists, if it's readable, if it's
 writable, and many other things. Because there are so many classes
 associated with file I/O and each class has so many methods, now's a
 good time to remind you of the usefulness of the Java API. If you visit
-the Java API https://docs.oracle.com/javase/8/docs/api/index.html[documentation site^],
+the Java API https://docs.oracle.com/en/java/javase/21/docs/api/index.html[documentation site^],
 you can get detailed documentation for the entire standard library, including
-file I/O classes.
+https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html[file I/O classes^].
 
 ==== Reading and writing text files
 
@@ -1197,7 +1197,7 @@ third binary search tree. Finally, print out the contents of this third
 binary search tree to the screen, and you will have implemented a
 rudimentary spell checker. You can test the quality of your
 implementation by using a novel from
-http://www.gutenberg.org[Project Gutenberg^] and a dictionary file from an
+https://www.gutenberg.org[Project Gutenberg^] and a dictionary file from an
 open-source spell checker or a Scrabble word list.
 . [[checksumExercise]] Files can become corrupted when they're transferred over a network.
 It's common to make a _checksum_, a short code generated using the

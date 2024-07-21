@@ -372,8 +372,8 @@ Java Runtime Environment (JRE) installed, allowing you to run Java
 programs; however, many Java development options require you to have the
 Java Development Kit (JDK). Oracle may change the website, but at the
 time of writing you can download the JDK from the
-http://www.oracle.com/technetwork/java/javase/downloads[Oracle downloads site^]. Download a current
-version (e.g., Java SE 8 or 11) of the Java Platform,
+https://www.oracle.com/technetwork/java/javase/downloads[Oracle downloads site^]. Download a current
+version (e.g., JDK 21 or JDK 22) of the Java Platform,
 Standard Edition JDK and install it.
 
 After having done so, you should be able to compile programs using the
@@ -433,10 +433,7 @@ write Java code, compile it, execute it, and even test and debug it.
 Because these tools are integrated into a single program, these
 applications are called _integrated development environments_ (IDEs).
 
-Two of the most popular Java IDEs are Eclipse and IntelliJ IDEA.
-Eclipse is open-source, free, and available http://www.eclipse.org[here^].
-Although some versions of IntelliJ IDEA cost money, the Community edition
-of IntelliJ IDEA is free and available https://www.jetbrains.com/idea/[here^].
+Three of the most popular Java IDEs are Eclipse, IntelliJ IDEA, and Visual Studio Code.  Eclipse is open-source, free, and available https://www.eclipse.org[here^].  Visual Studio Code is also free and has many extensions available for Java development. You can download it https://code.visualstudio.com[here^].  Although some versions of IntelliJ IDEA cost money, the Community edition of IntelliJ IDEA is free and available https://www.jetbrains.com/idea/[here^].
 
 Which text editor or graphical IDE you use is up to you.
 Programming is a craft, and every artisan has favorite
