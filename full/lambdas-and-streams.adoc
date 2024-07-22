@@ -834,18 +834,196 @@ to a common style is valuable.
 
 === Advanced: Streams
 
+When programming, we often have a list of data that we want to manipulate in
+some way:
 
+- Perform an operation with every value.
+- Filter out certain values.
+- Find a value that matches some criteria.
+- Aggregate values to find information like the maximum, minimum, sum, or
+average.
 
-.Filtering a stream
-====
+When you see these manipulations, you might immediately think of loops, likely
+`for` loops. While loops are are a perfectly reasonable approach to manipulating
+collections of data, Java 8 introduced an alternative, the Stream API, which
+allows collections of data to be processed as _streams_.
 
-====
+Loops put the emphasis on iterating through data, with the operations done
+specified in the body of the loop. Streams put the emphasis on the operations
+being performed, with the assumption that these operations will be performed on
+all the data (or at least all the data that matches the requirements). As with
+the other functional tools, streams are a kind of syntactic sugar. You can't do
+anything with streams that you couldn't do with loops, but many programmers find
+streams easier to read and less prone to mistakes.
+
+==== Creating streams
+
+To use streams, we first need to turn our list of data into a stream. Consider
+the code below where we start with an array of `String` values.
+ 
+[source, java]
+----
+String[] list = {"favorable", "acquit", "unfair", "insert", "vegetarian", "origin"};   
+var words = Stream.of(list);
+----
+
+In this code, `words` will now contain a stream of `String` values. The
+`Stream.of()` method can also take a comma-separated list of values with any
+length. Thus, if you didn't already have an array you wanted to use, you could put a list of values directly into a stream as follows.
+
+[source, java]
+----
+var words = Stream.of("vegetarian", "acquit", "unfair", "insert", "favorable", "origin");
+----
+
+We'll discuss a number of other data structures in <<dynamic-data-structures#dynamic-data-structures>>. Most of the standard Java
+data structures in the Java Collections Framework (JCF) will have a `stream()`
+method, turning the contents of the data structure into a stream. Although you
+might not yet be familiar with the `List` interface, it's a very useful tool
+that you will use frequently as a Java programmer to store a list of data. The
+code below shows an example with a `List` that results in a stream identical to
+the array examples we've already given.
+
+[source, java]
+----
+List<String> list = new ArrayList<>();
+list.add("vegetarian");
+list.add("acquit");
+list.add("unfair");
+list.add("insert");
+list.add("favorable");
+list.add("origin");   
+var words = list.stream();
+----
+
+For now, it's not terribly important to focus on the syntax for creating a
+stream. What is important is that Java provides a number of easy ways to
+create streams from existing collections of data.
+
+==== Terminal operations
+
+Streams have a `forEach()` method that takes a method reference or lambda
+expression saying what should be done with each element. Using `forEach()`
+processes the stream, performing the operation on each element. The
+`forEach()` method is a _terminal operation_, meaning that it's the last thing
+that can be done to a stream. Once a terminal operation has been done, the
+stream can't be used anymore.
+
+The following code prints out every `String` in `words`.
+
+[source, java]
+----
+words.forEach(e -> System.out.println(e));
+----
+
+The output for this code is below.
+
+....
+vegetarian
+acquit
+unfair
+insert
+favorable
+origin
+....
+
+One can argue whether this stream-based approach to printing words is better
+than using a loop directly. Regardless, it is readable and likely to take a
+similar amount of time to execute.
+
+There are many terminal operations in the `Stream` class that will, among
+other things, determine if one or all elements in the stream match a condition,
+collect the elements of a stream into another data structure, count the elements
+in a stream, find an element in the stream that matches a condition, find the
+maximum or minimum element, and reduce the elements in the stream to an
+aggregate value like a sum.
+
+==== Intermediate operations
+
+Using only a terminal operation doesn't showcase the flexibility or power of
+streams. Before performing a single terminal operation, programmers will often
+apply one or more _intermediate_ operations on a stream. These operations
+transform the stream by sorting it, removing values, or making a new stream by
+processing the members of the original stream in some way.
+
+The `filter()` method is a common intermediate operation that will keep only
+the elements that meet a condition. In this case, the condition is given by a 
+lambda expression or method reference that returns a `boolean`. For example,
+we can first filter our stream by keeping only those `String` values whose
+length is 8 or more and then print out whatever's remaining.
+
+[source, java]
+----
+words
+    .filter(e -> e.length() >= 8)
+    .forEach(e -> System.out.println(e));
+----
+
+As you can see in the updated output below, we now only print out two words.
+
+....
+vegetarian
+favorable
+....
+
+We can also apply multiple intermediate operations at once. For example, we can
+sort the data after filtering it.
+
+[source, java]
+----
+words
+    .filter(e -> e.length() >= 8)
+    .sorted()
+    .forEach(e -> System.out.println(e));
+----
+
+As expected, we get the same two words but now in sorted order.
+
+....
+favorable
+vegetarian
+....
+
+Note the indentation of the code above. When multiple operations are done on a
+stream, most style guides encourage programmers to put each operation on a
+separate line, to improve readability.
+
+Intermediate operations can do more than remove or reorder elements from the
+stream. The `map()` method creates a new stream by applying a function to
+elements from the original stream. For example, the following code will
+transform the stream of words into a stream containing each word concatenated
+with itself, before printing out this new stream.
+
+[source, java]
+----
+words
+    .map(e -> e + e)
+    .forEach(e -> System.out.println(e));
+----
+
+The output is each word doubled.
+
+....
+vegetarianvegetarian
+acquitacquit
+unfairunfair
+insertinsert
+favorablefavorable
+originorigin
+....
+
+==== Streams of primitive values
+
+==== Laziness
 
 
 === Solution: Cryptography tools
 
+
+
 === Concurrency: Lambdas and streams
 
+MapReduce
 
 === Exercises
 *Conceptual Problems*
@@ -862,4 +1040,5 @@ to a common style is valuable.
 
 *Experiments*
 
-. Exercise 3
+. Exercise 3: Timing lazy evaluation (sort first and then do something
+complicated vs. the opposite)
