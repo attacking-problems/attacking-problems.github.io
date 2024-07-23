@@ -869,16 +869,18 @@ var words = Stream.of(list);
 
 In this code, `words` will now contain a stream of `String` values. The
 `Stream.of()` method can also take a comma-separated list of values with any
-length. Thus, if you didn't already have an array you wanted to use, you could put a list of values directly into a stream as follows.
+length. Thus, if you didn't already have an array you wanted to use, you could
+put a list of values directly into a stream as follows.
 
 [source, java]
 ----
 var words = Stream.of("vegetarian", "acquit", "unfair", "insert", "favorable", "origin");
 ----
 
-We'll discuss a number of other data structures in <<dynamic-data-structures#dynamic-data-structures>>. Most of the standard Java
+We'll discuss a number of other data structures in
+<<dynamic-data-structures#dynamic-data-structures>>. Most of the standard Java
 data structures in the Java Collections Framework (JCF) will have a `stream()`
-method, turning the contents of the data structure into a stream. Although you
+method, putting the contents of the data structure into a stream. Although you
 might not yet be familiar with the `List` interface, it's a very useful tool
 that you will use frequently as a Java programmer to store a list of data. The
 code below shows an example with a `List` that results in a stream identical to
@@ -1014,7 +1016,91 @@ originorigin
 
 ==== Streams of primitive values
 
+In <<Advanced: Generic data structures>>, we'll discuss generic types, a way
+to program data structures with a type variable, allowing, for example, a list
+class to be designed to hold a specific (but unknown) type that a user can later
+specify inside angle brackets (`< >`). For example, `ArrayList<String>` is a
+type for a list of `String` objects, but `ArrayList<Wombat>` is a type for a
+list of `Wombat` objects. Generic types allow a library designer to program a
+list class a single time that will work with any specific type, combining code
+reuse with type safety.
+
+Generic types were introduced in Java 5, after the language had made many
+significant design choices. Unfortunately, some of these design choices meant
+that primitive types could never be supplied for a generic type variable. Thus,
+`ArrayList<Integer>` is allowed, but `ArrayList<int>` is not. Because the Java 8
+Stream API is built heavily on generic types, they had to make some additions to
+accommodate streams of generic types.
+
+Specifically, you may want (or need) to use `IntStream`, `LongStream`, or
+`DoubleStream` if you need streams of `int`, `long`, or `double` values. No
+specialized streams are available for `boolean`, `byte`, `char`, or `short`.
+
+
+Instead of using the `Stream` type to create primitive streams, use the
+specific primitive stream type.
+
+[source, java]
+----
+var numbers = IntStream.of(3, 4, 5, 6, 7);
+----
+
+These streams can be created from existing lists or generated with the
+`iterate()` method (and additionally with the `range()` and `rangeClosed()`
+methods for `IntStream` and `LongStream`. The following code generates five
+identical streams.
+
+[source, java]
+----
+int[] array = {3, 4, 5, 6, 7};
+var stream1 = IntStream.of(array);                       //<.>
+var stream2 = IntStream.of(3, 4, 5, 6, 7);               //<.>
+var stream3 = IntStream.range(3, 8);                     //<.>
+var stream4 = IntStream.rangeClosed(3, 7);               //<.>
+var stream5 = IntStream.iterate(3, e -> e + 1).limit(5); //<.>
+----
+<.> Creates `stream1` from an existing array.
+<.> Creates `stream2` from an explicit list of `int` values.
+<.> Generates `stream3` from the range of values from 3 up to (but not
+including) 8.
+<.> Generates `stream4` from the range of values from 3 up to (and including) 7.
+<.> Generates `stream5`, starting at 3 and incrementing the value by 1 each
+time, limiting the length of the stream to 5 elements.
+
+These streams of primitive values behave exactly like general streams, but they
+can be more efficient and add a few useful methods like `max()`, `min()`, and
+`sum()`, which find the maximum value, the minimum value, and the sum of all
+the elements in the stream, respectively. Note that these methods are terminal
+operations and so can only be called once per stream. Also, `max()` and `min()`
+return a special optional type that requires a `getAsInt()` (or other
+appropriate type), since the result could be `null` if the stream is empty.
+
+[source, java]
+----
+System.out.println(stream1.max().getAsInt()); // Prints 7.
+System.out.println(stream2.min().getAsInt()); // Prints 3.
+System.out.println(stream3.sum());            // Prints 25.
+----
+
 ==== Laziness
+
+In the example above where we create an `IntStream` with the `iterate()` method,
+we give the starting point of 3 and then a lambda expression to add 1 to the
+current value to get the next value. Without the `limit()` method, we would have
+defined an infinite stream, but that's not a problem in and of itself.
+
+In fact, streams use _lazy evaluation_. Usually, laziness is considered a
+negative quality, but it can be a great thing in computer science. Lazy
+evaluation means that a stream doesn't do computation on values in the stream
+until it's asked to. Adding a long sequence of intermediate operations doesn't
+mean that those operations will get performed on everything in stream. For
+example, the `findFirst()` and `findAny()` methods are terminal operations that
+will return only a single element from the stream. When using `findFirst()`,
+it will transform the first element of the stream based on intermediate
+operations, and if the first element matches, it will return that, without
+considering other elements in the stream.
+
+==== Summary of streams
 
 
 === Solution: Cryptography tools
