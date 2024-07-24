@@ -40,6 +40,13 @@ public class StreamTester {
         var stream4 = IntStream.rangeClosed(3, 7);
         var stream5 = IntStream.iterate(3, e -> e + 1).limit(5);
 
-        
+
+
+        IntStream.rangeClosed(1, 100)
+        .peek(e -> {
+            try { Thread.sleep(1000); } catch (InterruptedException ex) {}            
+        })
+        .limit(5)
+        .forEach(e -> System.out.println(e));
     }
 }

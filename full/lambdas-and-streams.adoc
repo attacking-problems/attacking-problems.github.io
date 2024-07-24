@@ -858,8 +858,10 @@ streams easier to read and less prone to mistakes.
 
 ==== Creating streams
 
-To use streams, we first need to turn our list of data into a stream. Consider
-the code below where we start with an array of `String` values.
+Streams are library code, not part of core Java. Most of the examples below will
+assume that both the `java.util` and the `java.util.stream` packages have been
+imported. To use streams, we first need to turn our list of data into a stream.
+Consider the following code in which we start with an array of `String` values.
  
 [source, java]
 ----
@@ -879,9 +881,9 @@ var words = Stream.of("vegetarian", "acquit", "unfair", "insert", "favorable", "
 
 We'll discuss a number of other data structures in
 <<dynamic-data-structures#dynamic-data-structures>>. Most of the standard Java
-data structures in the Java Collections Framework (JCF) will have a `stream()`
-method, putting the contents of the data structure into a stream. Although you
-might not yet be familiar with the `List` interface, it's a very useful tool
+data structures in the Java Collections Framework (JCF) contain a `stream()`
+method that puts the contents of the data structure into a new stream. Although
+you might not yet be familiar with the `List` interface, it's a very useful tool
 that you will use frequently as a Java programmer to store a list of data. The
 code below shows an example with a `List` that results in a stream identical to
 the array examples we've already given.
@@ -987,8 +989,8 @@ vegetarian
 ....
 
 Note the indentation of the code above. When multiple operations are done on a
-stream, most style guides encourage programmers to put each operation on a
-separate line, to improve readability.
+stream, many style guides encourage programmers to put each operation on a
+separate line, in order to improve readability.
 
 Intermediate operations can do more than remove or reorder elements from the
 stream. The `map()` method creates a new stream by applying a function to
@@ -1029,8 +1031,8 @@ Generic types were introduced in Java 5, after the language had made many
 significant design choices. Unfortunately, some of these design choices meant
 that primitive types could never be supplied for a generic type variable. Thus,
 `ArrayList<Integer>` is allowed, but `ArrayList<int>` is not. Because the Java 8
-Stream API is built heavily on generic types, they had to make some additions to
-accommodate streams of generic types.
+Stream API builds heavily on generic types, they had to make specialized streams
+to accommodate primitive types.
 
 Specifically, you may want (or need) to use `IntStream`, `LongStream`, or
 `DoubleStream` if you need streams of `int`, `long`, or `double` values. No
@@ -1085,25 +1087,65 @@ System.out.println(stream3.sum());            // Prints 25.
 ==== Laziness
 
 In the example above where we create an `IntStream` with the `iterate()` method,
-we give the starting point of 3 and then a lambda expression to add 1 to the
-current value to get the next value. Without the `limit()` method, we would have
-defined an infinite stream, but that's not a problem in and of itself.
+we give the starting point of 3 followed by a lambda expression to add 1 to the
+current value in order to get the next value. Without the `limit()` method, we
+would have defined an infinite stream, which is allowed.
 
-In fact, streams use _lazy evaluation_. Usually, laziness is considered a
-negative quality, but it can be a great thing in computer science. Lazy
-evaluation means that a stream doesn't do computation on values in the stream
-until it's asked to. Adding a long sequence of intermediate operations doesn't
-mean that those operations will get performed on everything in stream. For
-example, the `findFirst()` and `findAny()` methods are terminal operations that
-will return only a single element from the stream. When using `findFirst()`,
-it will transform the first element of the stream based on intermediate
-operations, and if the first element matches, it will return that, without
-considering other elements in the stream.
+In fact, infinite streams aren't necessarily a problem since all streams use
+_lazy evaluation_. Laziness is generally considered negative, but it can be an
+admirable quality in computer science. Lazy evaluation means that a stream
+doesn't do computation on an element in the stream until it's needed. Adding a
+long sequence of intermediate operations doesn't mean that those operations will
+get performed on everything in stream. For example, the `findFirst()` and
+`findAny()` methods are terminal operations that will return only a single
+element from the stream. When using `findFirst()`, it will transform the first
+element of the stream based on intermediate operations, and if the first element
+matches, it will return that element, without processing others in the stream.
 
-==== Summary of streams
+Because of lazy evaluation, no work on an element in a stream is triggered until
+a terminal operation requires that element. This design means that programmers
+don't need to think about efficiency when planning the order of intermediate
+operations. Consider the following code that generates 100 elements, waits 1,000
+milliseconds (one second) for each one, limits the size of the stream to 5
+elements, and then prints out the given element.
 
+[source, java]
+----
+IntStream.rangeClosed(1, 100)
+    .peek(e -> {
+        try { Thread.sleep(1000); } catch (InterruptedException ex) {}            
+    })
+    .limit(5)
+    .forEach(e -> System.out.println(e));
+----
+
+The `peek()` method is an intermediate operation that allows the programmer to
+use each element of the stream before the terminal operation, "peeking" at its
+value. In this case, we're only using the `peek()` method to call the
+`Thread.sleep()` method to wait for a second, ignoring the value of the element.
+A quick reading of this code segment might suggest that the program would wait a
+total of 100 seconds. Instead, it only waits 5, since only the elements that are
+processed by the terminal operation are processed by `peek()`. Because the
+`limit()` step comes after the `peek()` step that does the waiting, it seems
+like all 100 elements should incur a wait of one second, but the order of
+intermediate operations doesn't matter.
+
+Lazy evaluation means that programmers can focus on what the intermediate
+operations should be, instead of their order. The biggest performance gains from
+lazy evaluation happen when the stream processing stops after finding a single
+element or when processing only a fraction of the total elements in the stream.
+Lazy evaluation won't give any speed improvement when every element in a
+stream is processed, but it won't cause any problems, either.
+
+If a programmer is concerned about squeezing every ounce of performance out of a
+repetitive task, loops will provide more control. Thus, loops could be a better
+solution when performance really matters. However, lazy evaluation makes streams
+competitive with loops, without requiring any analysis about the most efficient
+way to process intermediate operations.
 
 === Solution: Cryptography tools
+
+
 
 
 
