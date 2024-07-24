@@ -55,9 +55,9 @@ If you're using __Attacking Problems with Java__ (or the older __Start Concurren
 
 We appreciate your feedback and suggestions!
 Please submit them either as
-a link:https://github.com/attacking-problems/attacking-problems.github.io/issues[Github issue^]
+a https://github.com/attacking-problems/attacking-problems.github.io/issues[GitHub issue^]
 or (for the bold) clone the
-link:https://github.com/attacking-problems/attacking-problems.github.io[Github repository^],
+https://github.com/attacking-problems/attacking-problems.github.io[GitHub repository^],
 make changes to the source code, and submit a pull request.
 
 == About
@@ -218,7 +218,7 @@ This book is not intended to be a comprehensive guide to Java. Instead, it's
 intended to teach how to use computers to solve problems, especially
 concurrently. Java has a marvelous wealth of packages and libraries that we
 don't have the space to cover. For example, the Swing package for
-building user interfaces is discussed but not in its entirety. For material not found in this book, we expect students to refer to the material available on the link:http://download.oracle.com/javase/tutorial[Oracle Java tutorial website] and other reference
+building user interfaces is discussed but not in its entirety. For material not found in this book, we expect students to refer to the material available on the https://download.oracle.com/javase/tutorial[Oracle Java tutorial website^] and other reference
 books and websites.
 
 === Suggestions
@@ -257,4 +257,4 @@ Special thanks to Azfar Khandoker who not only attended this initial class, but 
 
 We appreciate the support and cooperation of the faculty, and their students, who are our first test users: Professor David John of Wake Forest University and Professor Sunil Prabhakar of Purdue University.
 
-Finally, we thank everyone in the open source community who has submitted issues, questions, or pull requests through link:https://github.com/[Github^].
+Finally, we thank everyone in the open source community who has submitted issues, questions, or pull requests through the GitHub repository at https://github.com/attacking-problems/attacking-problems.github.io[Attacking Problems with Java^].

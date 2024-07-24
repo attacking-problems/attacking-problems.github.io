@@ -1643,7 +1643,7 @@ many other IDEs provide a way to add the JUnit library to a project without
 the need to download the jar file separately.
 
 To access the JUnit facilities in your code, you need the following import.
-Note that this import is different from JUnit 4 and earlier versions which
+Note that this import is different from JUnit 4 and earlier versions, which
 used classes from the `org.junit` package.
 
 [source,java]
@@ -1858,7 +1858,7 @@ bugs might not have manifested even after thousands of runs with ConTest
 instrumented code.  Although ConTest was one of the most promising tools
 taking this approach, it is no longer available.
 // This site no longer works...
-// http://www.ibm.com/developerworks/java/library/j-contest.html[ConTest site^].
+// https://www.ibm.com/developerworks/java/library/j-contest.html[ConTest site^].
 
 ==== Devexperts tools
 
@@ -1870,7 +1870,7 @@ as those we will discuss in
 Lin-check executes tests in parallel many times in an effort to find a
 concurrent interleaving that causes an error condition.
 
-The https://github.com/Devexperts/dlcheck[Dl-check^] tool was also designed by
+The https://github.com/Devexperts/dlcheck[Dl-Check^] tool was also designed by
 Devexperts.  Its goal is to find deadlocks that could happen in concurrent
 programs.
 
@@ -1890,8 +1890,8 @@ causing a child thread to fail to rejoin the main thread.  ConcJUnit is
 intended as a drop-in replacement for JUnit, but only for JUnit 3 and 4.
 ConcJUnit is no longer under active development and is unlikely to have
 a version compatible with JUnit 5. ConcJUnit is part of a larger suite of
-open-source tools called *Concutest* maintained at the 
-http://www.concutest.org[Concutest site^].
+open-source tools called Concutest and is maintained at the 
+https://www.concutest.org[Concutest site^].
 
 https://github.com/jhalterman/concurrentunit[ConcurrentUnit^] is another
 testing framework with annotations similar to those found in JUnit.  Although
