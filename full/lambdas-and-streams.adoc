@@ -10,7 +10,7 @@ ____
 
 === Problem: Cryptography tools
 
-_Cryptography_, from Greek roots meaning "secret writing," is the science of
+_Cryptography_, from Greek roots meaning "`secret writing,`" is the science of
 scrambling and unscrambling messages so that only the intended recipients can
 read them. Forms of cryptography have been used since ancient times, often in
 a military context. In fact, making and breaking codes played an important role
@@ -185,10 +185,10 @@ paradigm of programming. As we've discussed, Java is an object-oriented
 programming language: All code is stored inside of a class. Programs can be seen
 as a collection of objects interacting. Many variables are objects, though Java
 breaks this rule with primitive types. These exceptions aside, a useful motto
-for Java programming is "Everything is an object."
+for Java programming is "`Everything is an object.`"
 
 On the other hand, in the _functional programming paradigm_, the motto is
-"Everything is a function." Languages that follow this paradigm, like Haskell,
+"`Everything is a function.`" Languages that follow this paradigm, like Haskell,
 Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
 in these languages. When writing code in a functional language, it's typical to
 write functions that take functions as parameters and return functions as
@@ -289,7 +289,7 @@ that the method you want already exists.
 After all this discussion of the concept of passing methods around, no doubt
 you're excited to do it yourself. Unfortunately, you can't.
 
-As we said before, Java lives by the motto "Everything is an object."
+As we said before, Java lives by the motto "`Everything is an object.`"
 Consequently, we can pass objects around, not methods. But there's Java
 construct that's primarily focused on methods, and that's the interface. As long
 as we pass around objects that implement an interface with the method we want,
@@ -1120,7 +1120,7 @@ IntStream.rangeClosed(1, 100)
 ----
 
 The `peek()` method is an intermediate operation that allows the programmer to
-use each element of the stream before the terminal operation, "peeking" at its
+use each element of the stream before the terminal operation, "`peeking`" at its
 value. In this case, we're only using the `peek()` method to call the
 `Thread.sleep()` method to wait for a second, ignoring the value of the element.
 A quick reading of this code segment might suggest that the program would wait a
@@ -1144,6 +1144,90 @@ competitive with loops, without requiring any analysis about the most efficient
 way to process intermediate operations.
 
 === Solution: Cryptography tools
+
+Now, we can solve our original problem of making a reusable framework for
+several different encryption schemes. The first step is to make a functional
+interface for a method that takes a `char` (the letter to be encrypted) and an
+`int` (the index of that letter in the message) and returns a new `char` (the
+encrypted version).
+
+[source, java]
+----
+include::{programsdir}/Processable.java[]
+----
+
+With the `Processable` functional interface in place, we can develop classes
+to perform encryption and decryption with methods that match this interface.
+First, we'll make a class for the Caesar cipher.
+
+[source, java]
+----
+include::{programsdir}/CaesarCipher.java[]
+----
+<.> The constructor takes an `int` value specifying the key for the Caesar
+cipher, the number of places to move a given letter of the alphabet forward.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the Caesar cipher. First, it subtracts `'A'` so that the
+value is from 0 to 25. Then, it adds the key value. Next, it takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Finally, it casts the result to a `char` since doing arithmetic on
+`char` values results in an `int` value.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the Caesar cipher. It follows the same process as
+`encrypt()` except that it subtracts the key value and adds 26 (in case
+subtracting the key value makes a negative number, which would be a problem
+since the modulo operator in Java doesn't work correctly with negative values).
+
+We can also add a class for the affine cipher.
+
+[source, java]
+----
+include::{programsdir}/AffineCipher.java[]
+----
+<.> The constructor takes two `int` values specifying the key for the affine
+cipher. The key is made up of two values, _a_ and _b_, where a given letter
+whose numerical value is _x_ will be encrypted to _a_ · _x_ + _b_.
+<.> To work, a value for _a_ must have a multiplicative inverse modulo 26. In
+other words, there must be some number _a_^-1^ such that _a_ · _a_^-1^ mod 26 = 1.
+We use a `while` loop to run through the only legal values for an inverse, 1
+through 25. If we don't find an inverse, we throw an exception.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the affine cipher. Like the Caesar cipher, it subtracts
+`'A'` so that the value is from 0 to 25. Then, it multiples by _a_ and adds _b_.
+Again, like the Caesar cipher, it takes the result modulo 26 so that values
+larger than 25 will wrap back around to remain in the 0 to 25 range. Finally, it
+also casts the result to a `char`.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the affine cipher. It follows a similar process as
+`encrypt()` except that it subtracts _b_ and multiplies by _a_^-1^.
+
+Although it's possible to add more ciphers, the last one we will add is the
+Vigenère cipher.
+
+[source, java]
+----
+include::{programsdir}/VigenereCipher.java[]
+----
+<.> The constructor takes a `String` value specifying the key phrase for the
+Vigenère cipher.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the Vigenère cipher. Unlike the previous two ciphers, the
+Vigenère cipher uses the index value so that it knows where in the ciphertext it
+is (and consequently which character in the key it should use). It uses the
+index modulo the length of the key so that locations in the original message
+that are longer than the key will wrap back around to legal locations in the
+key. To make the values of the letters be between from 0 to 25, it subtracts 
+`'A'` from both. Then, it adds the two values together and takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Like the previous two ciphers, it casts the result to a `char`.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the Vigenère cipher. It follows a similar process as
+`encrypt()` except that it subtracts the key letter instead of adding it.
+
+
+
+
+
 
 
 

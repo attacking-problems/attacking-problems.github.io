@@ -10332,7 +10332,7 @@ bits (two bytes) in memory and is encoded using Unicode, use hexadecimal
 numbers to show how the word <code>"Java"</code> will be represented in computer
 memory. Unicode values for the Latin alphabet are the same as the values
 for the older ASCII standard. You can find a listing of these values on
-many websites such as <a href="https://www.asciitable.com" target="_blank" rel="noopener">AsciiTable</a>.</p>
+many websites such as <a href="https://www.asciitable.com" target="_blank" rel="noopener">Ascii Table</a>.</p>
 </li>
 <li>
 <p>What is the output from the following
@@ -27257,7 +27257,7 @@ implications for code that routinely throws thousands of exceptions?</p>
 <div class="sect2">
 <h3 id="_problem_cryptography_tools">13.1. Problem: Cryptography tools</h3>
 <div class="paragraph">
-<p><em>Cryptography</em>, from Greek roots meaning "secret writing," is the science of
+<p><em>Cryptography</em>, from Greek roots meaning &#8220;secret writing,&#8221; is the science of
 scrambling and unscrambling messages so that only the intended recipients can
 read them. Forms of cryptography have been used since ancient times, often in
 a military context. In fact, making and breaking codes played an important role
@@ -27732,11 +27732,11 @@ paradigm of programming. As we&#8217;ve discussed, Java is an object-oriented
 programming language: All code is stored inside of a class. Programs can be seen
 as a collection of objects interacting. Many variables are objects, though Java
 breaks this rule with primitive types. These exceptions aside, a useful motto
-for Java programming is "Everything is an object."</p>
+for Java programming is &#8220;Everything is an object.&#8221;</p>
 </div>
 <div class="paragraph">
 <p>On the other hand, in the <em>functional programming paradigm</em>, the motto is
-"Everything is a function." Languages that follow this paradigm, like Haskell,
+&#8220;Everything is a function.&#8221; Languages that follow this paradigm, like Haskell,
 Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
 in these languages. When writing code in a functional language, it&#8217;s typical to
 write functions that take functions as parameters and return functions as
@@ -27858,7 +27858,7 @@ that the method you want already exists.</p>
 you&#8217;re excited to do it yourself. Unfortunately, you can&#8217;t.</p>
 </div>
 <div class="paragraph">
-<p>As we said before, Java lives by the motto "Everything is an object."
+<p>As we said before, Java lives by the motto &#8220;Everything is an object.&#8221;
 Consequently, we can pass objects around, not methods. But there&#8217;s Java
 construct that&#8217;s primarily focused on methods, and that&#8217;s the interface. As long
 as we pass around objects that implement an interface with the method we want,
@@ -28556,14 +28556,14 @@ further.</p>
 </div>
 <div class="paragraph">
 <p>As you&#8217;ve already seen in this chapter, we can usually leave off parameter types
-in lambda expressions. For short code we can also leave off the braces and imply
-the return statement. Again, this code is functionally equivalent to the first
-version using an anonymous inner class, but syntactic sugar has allowed us to
-write it in a more concise, more readable way.</p>
+in lambda expressions. For single-line expressions, we can also leave off the
+braces and imply the return statement. Again, this code is functionally
+equivalent to the first version using an anonymous inner class, but syntactic
+sugar has allowed us to write it in a more concise, more readable way.</p>
 </div>
 <div class="paragraph">
 <p>The enhanced <code>for</code> loops we discussed in <a href="#_enhanced_for_loops">Section 6.9.1</a> are also
-syntactic sugar, since they allow a <code>for</code> loop to be written more compactly.
+syntactic sugar since they allow a <code>for</code> loop to be written more compactly.
 Examples of syntactic sugar exist in almost every language. There are tasks that
 come up so frequently that the developers of the language decided to make a
 shortcut for those tasks, even though existing syntax could get the job done.</p>
@@ -28571,30 +28571,587 @@ shortcut for those tasks, even though existing syntax could get the job done.</p
 <div class="paragraph">
 <p>It pays to be aware of syntactic sugar for two reasons. First, you&#8217;ll
 understand a language more deeply when you realize that one piece of syntax is
-really just a shortcut for another. Second, programmers tend to preferred the
+really just a shortcut for another. Second, programmers tend to prefer the
 sugared version of syntax. Using the syntax that the community prefers allows
 you to write more <em>idiomatically</em>, in the accepted style. Since programming is
 about clear communication, with both computers and other programmers, adhering
-to a common style is important.</p>
+to a common style is valuable.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_advanced_streams">13.4. Advanced: Streams</h3>
-<div class="exampleblock">
-<div class="title">Example 13.3 Filtering a stream</div>
+<div class="paragraph">
+<p>When programming, we often have a list of data that we want to manipulate in
+some way:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Perform an operation with every value.</p>
+</li>
+<li>
+<p>Filter out certain values.</p>
+</li>
+<li>
+<p>Find a value that matches some criteria.</p>
+</li>
+<li>
+<p>Aggregate values to find information like the maximum, minimum, sum, or
+average.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you see these manipulations, you might immediately think of loops, likely
+<code>for</code> loops. While loops are are a perfectly reasonable approach to manipulating
+collections of data, Java 8 introduced an alternative, the Stream API, which
+allows collections of data to be processed as <em>streams</em>.</p>
+</div>
+<div class="paragraph">
+<p>Loops put the emphasis on iterating through data, with the operations done
+specified in the body of the loop. Streams put the emphasis on the operations
+being performed, with the assumption that these operations will be performed on
+all the data (or at least all the data that matches the requirements). As with
+the other functional tools, streams are a kind of syntactic sugar. You can&#8217;t do
+anything with streams that you couldn&#8217;t do with loops, but many programmers find
+streams easier to read and less prone to mistakes.</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_streams">13.4.1. Creating streams</h4>
+<div class="paragraph">
+<p>Streams are library code, not part of core Java. Most of the examples below will
+assume that both the <code>java.util</code> and the <code>java.util.stream</code> packages have been
+imported. To use streams, we first need to turn our list of data into a stream.
+Consider the following code in which we start with an array of <code>String</code> values.</p>
+</div>
+<div class="listingblock">
 <div class="content">
-
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span><span class="o">[]</span> <span class="n">list</span> <span class="o">=</span> <span class="o">{</span><span class="s">"favorable"</span><span class="o">,</span> <span class="s">"acquit"</span><span class="o">,</span> <span class="s">"unfair"</span><span class="o">,</span> <span class="s">"insert"</span><span class="o">,</span> <span class="s">"vegetarian"</span><span class="o">,</span> <span class="s">"origin"</span><span class="o">};</span>
+<span class="kt">var</span> <span class="n">words</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">list</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this code, <code>words</code> will now contain a stream of <code>String</code> values. The
+<code>Stream.of()</code> method can also take a comma-separated list of values with any
+length. Thus, if you didn&#8217;t already have an array you wanted to use, you could
+put a list of values directly into a stream as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">words</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"vegetarian"</span><span class="o">,</span> <span class="s">"acquit"</span><span class="o">,</span> <span class="s">"unfair"</span><span class="o">,</span> <span class="s">"insert"</span><span class="o">,</span> <span class="s">"favorable"</span><span class="o">,</span> <span class="s">"origin"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll discuss a number of other data structures in
+<a href="#dynamic-data-structures">Chapter 19</a>. Most of the standard Java
+data structures in the Java Collections Framework (JCF) contain a <code>stream()</code>
+method that puts the contents of the data structure into a new stream. Although
+you might not yet be familiar with the <code>List</code> interface, it&#8217;s a very useful tool
+that you will use frequently as a Java programmer to store a list of data. The
+code below shows an example with a <code>List</code> that results in a stream identical to
+the array examples we&#8217;ve already given.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"vegetarian"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"acquit"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"unfair"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"insert"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"favorable"</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"origin"</span><span class="o">);</span>
+<span class="kt">var</span> <span class="n">words</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For now, it&#8217;s not terribly important to focus on the syntax for creating a
+stream. What is important is that Java provides a number of easy ways to
+create streams from existing collections of data.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_terminal_operations">13.4.2. Terminal operations</h4>
+<div class="paragraph">
+<p>Streams have a <code>forEach()</code> method that takes a method reference or lambda
+expression saying what should be done with each element. Using <code>forEach()</code>
+processes the stream, performing the operation on each element. The
+<code>forEach()</code> method is a <em>terminal operation</em>, meaning that it&#8217;s the last thing
+that can be done to a stream. Once a terminal operation has been done, the
+stream can&#8217;t be used anymore.</p>
+</div>
+<div class="paragraph">
+<p>The following code prints out every <code>String</code> in <code>words</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">words</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output for this code is below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>vegetarian
+acquit
+unfair
+insert
+favorable
+origin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One can argue whether this stream-based approach to printing words is better
+than using a loop directly. Regardless, it is readable and likely to take a
+similar amount of time to execute.</p>
+</div>
+<div class="paragraph">
+<p>There are many terminal operations in the <code>Stream</code> class that will, among
+other things, determine if one or all elements in the stream match a condition,
+collect the elements of a stream into another data structure, count the elements
+in a stream, find an element in the stream that matches a condition, find the
+maximum or minimum element, and reduce the elements in the stream to an
+aggregate value like a sum.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_intermediate_operations">13.4.3. Intermediate operations</h4>
+<div class="paragraph">
+<p>Using only a terminal operation doesn&#8217;t showcase the flexibility or power of
+streams. Before performing a single terminal operation, programmers will often
+apply one or more <em>intermediate</em> operations on a stream. These operations
+transform the stream by sorting it, removing values, or making a new stream by
+processing the members of the original stream in some way.</p>
+</div>
+<div class="paragraph">
+<p>The <code>filter()</code> method is a common intermediate operation that will keep only
+the elements that meet a condition. In this case, the condition is given by a
+lambda expression or method reference that returns a <code>boolean</code>. For example,
+we can first filter our stream by keeping only those <code>String</code> values whose
+length is 8 or more and then print out whatever&#8217;s remaining.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">words</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see in the updated output below, we now only print out two words.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>vegetarian
+favorable</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can also apply multiple intermediate operations at once. For example, we can
+sort the data after filtering it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">words</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">sorted</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As expected, we get the same two words but now in sorted order.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>favorable
+vegetarian</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the indentation of the code above. When multiple operations are done on a
+stream, many style guides encourage programmers to put each operation on a
+separate line, in order to improve readability.</p>
+</div>
+<div class="paragraph">
+<p>Intermediate operations can do more than remove or reorder elements from the
+stream. The <code>map()</code> method creates a new stream by applying a function to
+elements from the original stream. For example, the following code will
+transform the stream of words into a stream containing each word concatenated
+with itself, before printing out this new stream.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">words</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span> <span class="o">+</span> <span class="n">e</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output is each word doubled.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>vegetarianvegetarian
+acquitacquit
+unfairunfair
+insertinsert
+favorablefavorable
+originorigin</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_streams_of_primitive_values">13.4.4. Streams of primitive values</h4>
+<div class="paragraph">
+<p>In <a href="#_advanced_generic_data_structures">Section 19.5</a>, we&#8217;ll discuss generic types, a way
+to program data structures with a type variable, allowing, for example, a list
+class to be designed to hold a specific (but unknown) type that a user can later
+specify inside angle brackets (<code>&lt; &gt;</code>). For example, <code>ArrayList&lt;String&gt;</code> is a
+type for a list of <code>String</code> objects, but <code>ArrayList&lt;Wombat&gt;</code> is a type for a
+list of <code>Wombat</code> objects. Generic types allow a library designer to program a
+list class a single time that will work with any specific type, combining code
+reuse with type safety.</p>
+</div>
+<div class="paragraph">
+<p>Generic types were introduced in Java 5, after the language had made many
+significant design choices. Unfortunately, some of these design choices meant
+that primitive types could never be supplied for a generic type variable. Thus,
+<code>ArrayList&lt;Integer&gt;</code> is allowed, but <code>ArrayList&lt;int&gt;</code> is not. Because the Java 8
+Stream API builds heavily on generic types, they had to make specialized streams
+to accommodate primitive types.</p>
+</div>
+<div class="paragraph">
+<p>Specifically, you may want (or need) to use <code>IntStream</code>, <code>LongStream</code>, or
+<code>DoubleStream</code> if you need streams of <code>int</code>, <code>long</code>, or <code>double</code> values. No
+specialized streams are available for <code>boolean</code>, <code>byte</code>, <code>char</code>, or <code>short</code>.</p>
+</div>
+<div class="paragraph">
+<p>Instead of using the <code>Stream</code> type to create primitive streams, use the
+specific primitive stream type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These streams can be created from existing lists or generated with the
+<code>iterate()</code> method (and additionally with the <code>range()</code> and <code>rangeClosed()</code>
+methods for <code>IntStream</code> and <code>LongStream</code>. The following code generates five
+identical streams.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">{</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">};</span>
+<span class="kt">var</span> <span class="n">stream1</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>                       <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="kt">var</span> <span class="n">stream2</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>               <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="kt">var</span> <span class="n">stream3</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                     <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="kt">var</span> <span class="n">stream4</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>               <i class="conum" data-value="4"></i><b>(4)</b>
+<span class="kt">var</span> <span class="n">stream5</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span> <span class="o">+</span> <span class="mi">1</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Creates <code>stream1</code> from an existing array.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Creates <code>stream2</code> from an explicit list of <code>int</code> values.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Generates <code>stream3</code> from the range of values from 3 up to (but not
+including) 8.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Generates <code>stream4</code> from the range of values from 3 up to (and including) 7.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Generates <code>stream5</code>, starting at 3 and incrementing the value by 1 each
+time, limiting the length of the stream to 5 elements.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>These streams of primitive values behave exactly like general streams, but they
+can be more efficient and add a few useful methods like <code>max()</code>, <code>min()</code>, and
+<code>sum()</code>, which find the maximum value, the minimum value, and the sum of all
+the elements in the stream, respectively. Note that these methods are terminal
+operations and so can only be called once per stream. Also, <code>max()</code> and <code>min()</code>
+return a special optional type that requires a <code>getAsInt()</code> (or other
+appropriate type), since the result could be <code>null</code> if the stream is empty.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stream1</span><span class="o">.</span><span class="na">max</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">());</span> <span class="c1">// Prints 7.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stream2</span><span class="o">.</span><span class="na">min</span><span class="o">().</span><span class="na">getAsInt</span><span class="o">());</span> <span class="c1">// Prints 3.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stream3</span><span class="o">.</span><span class="na">sum</span><span class="o">());</span>            <span class="c1">// Prints 25.</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_laziness">13.4.5. Laziness</h4>
+<div class="paragraph">
+<p>In the example above where we create an <code>IntStream</code> with the <code>iterate()</code> method,
+we give the starting point of 3 followed by a lambda expression to add 1 to the
+current value in order to get the next value. Without the <code>limit()</code> method, we
+would have defined an infinite stream, which is allowed.</p>
+</div>
+<div class="paragraph">
+<p>In fact, infinite streams aren&#8217;t necessarily a problem since all streams use
+<em>lazy evaluation</em>. Laziness is generally considered negative, but it can be an
+admirable quality in computer science. Lazy evaluation means that a stream
+doesn&#8217;t do computation on an element in the stream until it&#8217;s needed. Adding a
+long sequence of intermediate operations doesn&#8217;t mean that those operations will
+get performed on everything in stream. For example, the <code>findFirst()</code> and
+<code>findAny()</code> methods are terminal operations that will return only a single
+element from the stream. When using <code>findFirst()</code>, it will transform the first
+element of the stream based on intermediate operations, and if the first element
+matches, it will return that element, without processing others in the stream.</p>
+</div>
+<div class="paragraph">
+<p>Because of lazy evaluation, no work on an element in a stream is triggered until
+a terminal operation requires that element. This design means that programmers
+don&#8217;t need to think about efficiency when planning the order of intermediate
+operations. Consider the following code that generates 100 elements, waits 1,000
+milliseconds (one second) for each one, limits the size of the stream to 5
+elements, and then prints out the given element.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">100</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>peek()</code> method is an intermediate operation that allows the programmer to
+use each element of the stream before the terminal operation, &#8220;peeking&#8221; at its
+value. In this case, we&#8217;re only using the <code>peek()</code> method to call the
+<code>Thread.sleep()</code> method to wait for a second, ignoring the value of the element.
+A quick reading of this code segment might suggest that the program would wait a
+total of 100 seconds. Instead, it only waits 5, since only the elements that are
+processed by the terminal operation are processed by <code>peek()</code>. Because the
+<code>limit()</code> step comes after the <code>peek()</code> step that does the waiting, it seems
+like all 100 elements should incur a wait of one second, but the order of
+intermediate operations doesn&#8217;t matter.</p>
+</div>
+<div class="paragraph">
+<p>Lazy evaluation means that programmers can focus on what the intermediate
+operations should be, instead of their order. The biggest performance gains from
+lazy evaluation happen when the stream processing stops after finding a single
+element or when processing only a fraction of the total elements in the stream.
+Lazy evaluation won&#8217;t give any speed improvement when every element in a
+stream is processed, but it won&#8217;t cause any problems, either.</p>
+</div>
+<div class="paragraph">
+<p>If a programmer is concerned about squeezing every ounce of performance out of a
+repetitive task, loops will provide more control. Thus, loops could be a better
+solution when performance really matters. However, lazy evaluation makes streams
+competitive with loops, without requiring any analysis about the most efficient
+way to process intermediate operations.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_solution_cryptography_tools">13.5. Solution: Cryptography tools</h3>
+<div class="paragraph">
+<p>Now, we can solve our original problem of making a reusable framework for
+several different encryption schemes. The first step is to make a functional
+interface for a method that takes a <code>char</code> (the letter to be encrypted) and an
+<code>int</code> (the index of that letter in the message) and returns a new <code>char</code> (the
+encrypted version).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">interface</span> <span class="nc">Processable</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="nf">process</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the <code>Processable</code> functional interface in place, we can develop classes
+to perform encryption and decryption with methods that match this interface.
+First, we&#8217;ll make a class for the Caesar cipher.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CaesarCipher</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">key</span><span class="o">;</span>
 
+    <span class="kd">public</span> <span class="nf">CaesarCipher</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>               <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">encrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">+</span> <span class="n">key</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">decrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="n">key</span> <span class="o">+</span> <span class="mi">26</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span>    
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The constructor takes an <code>int</code> value specifying the key for the Caesar
+cipher, the number of places to move a given letter of the alphabet forward.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>encrypt()</code> method matches the <code>Processable</code> interface and encrypts a
+single letter using the Caesar cipher. First, it subtracts <code>'A'</code> so that the
+value is from 0 to 25. Then, it adds the key value. Next, it takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Finally, it casts the result to a <code>char</code> since doing arithmetic on
+<code>char</code> values results in an <code>int</code> value.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>decrypt()</code> method also matches the <code>Processable</code> interface but decrypts
+a single letter using the Caesar cipher. It follows the same process as
+<code>encrypt()</code> except that it subtracts the key value and adds 26 (in case
+subtracting the key value makes a negative number, which would be a problem
+since the modulo operator in Java doesn&#8217;t work correctly with negative values).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can also add a class for the affine cipher.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AffineCipher</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">inverseA</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">AffineCipher</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>          <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+        <span class="n">inverseA</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>                            <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">while</span> <span class="o">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">inverseA</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">inverseA</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="o">)</span>
+            <span class="o">++</span><span class="n">inverseA</span><span class="o">;</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">inverseA</span> <span class="o">&gt;=</span> <span class="mi">26</span><span class="o">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="s">" has no multiplicative inverse mod 26"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">encrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span><span class="o">)</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">decrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="n">b</span><span class="o">)</span> <span class="o">*</span> <span class="n">inverseA</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="mi">26</span><span class="o">;</span>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">result</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span>    
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The constructor takes two <code>int</code> values specifying the key for the affine
+cipher. The key is made up of two values, <em>a</em> and <em>b</em>, where a given letter
+whose numerical value is <em>x</em> will be encrypted to <em>a</em> · <em>x</em> + <em>b</em>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>To work, a value for <em>a</em> must have a multiplicative inverse modulo 26. In
+other words, there must be some number <em>a</em><sup>-1</sup> such that <em>a</em> · <em>a</em><sup>-1</sup> mod 26 = 1.
+We use a <code>while</code> loop to run through the only legal values for an inverse, 1
+through 25. If we don&#8217;t find an inverse, we throw an exception.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>encrypt()</code> method matches the <code>Processable</code> interface and encrypts a
+single letter using the affine cipher. Like the Caesar cipher, it subtracts
+<code>'A'</code> so that the value is from 0 to 25. Then, it multiples by <em>a</em> and adds <em>b</em>.
+Again, like the Caesar cipher, it takes the result modulo 26 so that values
+larger than 25 will wrap back around to remain in the 0 to 25 range. Finally, it
+also casts the result to a <code>char</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The <code>decrypt()</code> method also matches the <code>Processable</code> interface but decrypts
+a single letter using the affine cipher. It follows a similar process as
+<code>encrypt()</code> except that it subtracts <em>b</em> and multiplies by <em>a</em><sup>-1</sup>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Although it&#8217;s possible to add more ciphers, the last one we will add is the
+Vigenère cipher.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">VigenereCipher</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">key</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">VigenereCipher</span><span class="o">(</span><span class="nc">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>          <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">encrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">+</span> <span class="n">key</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span> <span class="o">%</span> <span class="n">key</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">-</span> <span class="sc">'A'</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">char</span> <span class="nf">decrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span> <span class="o">%</span> <span class="n">key</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">-</span> <span class="sc">'A'</span><span class="o">)</span> <span class="o">+</span> <span class="mi">26</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
+    <span class="o">}</span> 
+    
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The constructor takes a <code>String</code> value specifying the key phrase for the
+Vigenère cipher.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>encrypt()</code> method matches the <code>Processable</code> interface and encrypts a
+single letter using the Vigenère cipher. Unlike the previous two ciphers, the
+Vigenère cipher uses the index value so that it knows where in the ciphertext it
+is (and consequently which character in the key it should use). It uses the
+index modulo the length of the key so that locations in the original message
+that are longer than the key will wrap back around to legal locations in the
+key. To make the values of the letters be between from 0 to 25, it subtracts
+<code>'A'</code> from both. Then, it adds the two values together and takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Like the previous two ciphers, it casts the result to a <code>char</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>decrypt()</code> method also matches the <code>Processable</code> interface but decrypts
+a single letter using the Vigenère cipher. It follows a similar process as
+<code>encrypt()</code> except that it subtracts the key letter instead of adding it.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</h3>
-
+<div class="paragraph">
+<p>MapReduce</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_exercises_13">13.7. Exercises</h3>
@@ -28624,7 +29181,8 @@ to a common style is important.</p>
 <div class="olist arabic">
 <ol class="arabic" start="3">
 <li>
-<p>Exercise 3</p>
+<p>Exercise 3: Timing lazy evaluation (sort first and then do something
+complicated vs. the opposite)</p>
 </li>
 </ol>
 </div>
@@ -38065,7 +38623,7 @@ causing a child thread to fail to rejoin the main thread.  ConcJUnit is
 intended as a drop-in replacement for JUnit, but only for JUnit 3 and 4.
 ConcJUnit is no longer under active development and is unlikely to have
 a version compatible with JUnit 5. ConcJUnit is part of a larger suite of
-open-source tools called <strong>Concutest</strong> maintained at the
+open-source tools called Concutest and is maintained at the
 <a href="https://www.concutest.org" target="_blank" rel="noopener">Concutest site</a>.</p>
 </div>
 <div class="paragraph">
@@ -45479,9 +46037,9 @@ with the associated name and path exists, if it&#8217;s readable, if it&#8217;s
 writable, and many other things. Because there are so many classes
 associated with file I/O and each class has so many methods, now&#8217;s a
 good time to remind you of the usefulness of the Java API. If you visit
-the Java API <a href="https://docs.oracle.com/javase/8/docs/api/index.html" target="_blank" rel="noopener">documentation site</a>,
+the Java API <a href="https://docs.oracle.com/en/java/javase/21/docs/api/index.html" target="_blank" rel="noopener">documentation site</a>,
 you can get detailed documentation for the entire standard library, including
-file I/O classes.</p>
+<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/File.html" target="_blank" rel="noopener">file I/O classes</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -48203,7 +48761,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-19 14:45:51 -0400
+Last updated 2024-07-18 14:37:53 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>
