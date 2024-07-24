@@ -847,7 +847,7 @@ After you've mastered the contents of this chapter, you may plan to
 write more complex GUIs than the ones we discuss. For further
 information, you might want to follow the Java tutorial on writing event
 listeners at the Oracle
-http://download.oracle.com/javase/tutorial/uiswing/events[Swing Events tutorial site^].
+https://download.oracle.com/javase/tutorial/uiswing/events[Swing Events tutorial site^].
 
 ==== Adding sounds and images
 
@@ -1696,7 +1696,7 @@ While Java offers a large variety of components and listeners, this
 introduction is limited to a few of the most commonly used. Once you
 understand the basics of GUI construction as described in this chapter,
 it should be easy to understand the extensive Java tutorial at the Oracle
-http://download.oracle.com/javase/tutorial/uiswing/components[Swing Components tutorial site^] or other
+https://download.oracle.com/javase/tutorial/uiswing/components[Swing Components tutorial site^] or other
 reference sources.
 
 === Exercises
@@ -1725,7 +1725,7 @@ should display "`Mouse exits One.`"
 icon-decorated button plays the sound of a bat squeaking. You will need to add
 an `ActionListener` to the button, create an audio clip for the desired
 sound, and then play this clip when the button is clicked. Consider
-visiting http://www.freesound.org[Freesound.org^] to find free sound files.
+visiting https://www.freesound.org[Freesound.org^] to find free sound files.
 . [[selfieExercise]] Write a Java program that
 creates a GUI containing a label with a picture of yourself.
 . [[animalSoundsExercise]] Extend the `AnimalSounds` class
