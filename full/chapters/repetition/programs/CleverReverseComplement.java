@@ -6,8 +6,8 @@ public class CleverReverseComplement {
         System.out.print("Please enter a DNA sequence: ");
         String sequence = in.next().toUpperCase();              
         String reverseComplement = "";
-        for(int i = 0; i < sequence.length(); i++)
-            switch(sequence.charAt(i)) { //get complements
+        for (int i = 0; i < sequence.length(); i++)
+            switch (sequence.charAt(i)) { // Get complements
                 case 'A': reverseComplement = "T" + reverseComplement; break;
                 case 'C': reverseComplement = "G" + reverseComplement; break;
                 case 'G': reverseComplement = "C" + reverseComplement; break;
