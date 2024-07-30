@@ -16,9 +16,9 @@ public class CryptographyFramework {
 
     public static void main(String[] args) {                                               //<.>
         String plaintext = "CRY HAVOC AND LET SLIP THE DOGS OF WAR";                       //<.>
-        CaesarCipher caesarCipher = new CaesarCipher(7);                               //<.>
-        AffineCipher affineCipher = new AffineCipher(5, 8);                            //<.>
-        VigenereCipher vigenereCipher = new VigenereCipher("SHAKESPEARE");             //<.>
+        CaesarCipher caesarCipher = new CaesarCipher(7);                                   //<.>
+        AffineCipher affineCipher = new AffineCipher(5, 8);                                //<.>
+        VigenereCipher vigenereCipher = new VigenereCipher("SHAKESPEARE");                 //<.>
         
         System.out.println("Caesar Cipher (key = 7)");
         String cipherText = process(plaintext, caesarCipher::encrypt);                     //<.>

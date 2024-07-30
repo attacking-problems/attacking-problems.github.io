@@ -29288,9 +29288,9 @@ it will make it easier to check the output of our program.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>                                               <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">String</span> <span class="n">plaintext</span> <span class="o">=</span> <span class="s">"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</span><span class="o">;</span>                       <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="nc">CaesarCipher</span> <span class="n">caesarCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CaesarCipher</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>                               <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="nc">AffineCipher</span> <span class="n">affineCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AffineCipher</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                            <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="nc">VigenereCipher</span> <span class="n">vigenereCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VigenereCipher</span><span class="o">(</span><span class="s">"SHAKESPEARE"</span><span class="o">);</span>             <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="nc">CaesarCipher</span> <span class="n">caesarCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CaesarCipher</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>                                   <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="nc">AffineCipher</span> <span class="n">affineCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AffineCipher</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                                <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="nc">VigenereCipher</span> <span class="n">vigenereCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VigenereCipher</span><span class="o">(</span><span class="s">"SHAKESPEARE"</span><span class="o">);</span>                 <i class="conum" data-value="5"></i><b>(5)</b>
         
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caesar Cipher (key = 7)"</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                     <i class="conum" data-value="6"></i><b>(6)</b>
@@ -29399,7 +29399,7 @@ method references from those objects to the <code>process()</code> method. While
 method references is likely more readable, lambda expressions can be used as
 well. Consider the following code that performs the Caesar cipher with a key of
 7 using a lambda expression instead of a method reference. Its output will be
-identical to the version that passing in <code>caesarCipher::encrypt</code>.</p>
+identical to the version that passes in <code>caesarCipher::encrypt</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
