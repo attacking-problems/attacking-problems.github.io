@@ -708,6 +708,8 @@ include::{programsdir}/CleverReverseComplement.java[]
 ----
 ====
 
+
+[[efficientConcatenationExample]]
 .Efficient concatenation
 ====
 Since `String` values are immutable, they can never be changed. Thus, the `+=`
@@ -736,9 +738,7 @@ include::{programsdir}/StringBuilderReverseComplement.java[]
 
 Some IDEs will prompt you to automatically convert `String` concatenation inside
 of a loop into equivalent `StringBuilder` code.
-
 ====
-
 
 ==== `do`-`while` loops
 

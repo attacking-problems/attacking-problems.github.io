@@ -7,11 +7,13 @@ public class AffineCipher {
         this.a = a;
         this.b = b;
         inverseA = 1;                            //<.>
-        while ((a * inverseA) % 26 != 1 && inverseA < 26)
+        while ((a * inverseA) % 26 != 1 && inverseA < 26) {
             ++inverseA;
+        }
 
-        if (inverseA >= 26)
+        if (inverseA >= 26) {
             throw new IllegalArgumentException(a + " has no multiplicative inverse mod 26");
+        }
     }
 
     public char encrypt(char input, int index) { //<.>
@@ -20,8 +22,9 @@ public class AffineCipher {
 
     public char decrypt(char input, int index) { //<.>
         int result = (input - 'A' - b) * inverseA;
-        while (result < 0)
+        while (result < 0) {
             result += 26;
+        }
         return (char)(result % 26 + 'A');
     }    
 }

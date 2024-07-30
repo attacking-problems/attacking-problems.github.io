@@ -2,6 +2,10 @@ public class CaesarCipher {
     private final int key;
 
     public CaesarCipher(int key) {               //<.>
+        while (key < 0) {
+            key += 26;
+        }
+        key %= 26;
         this.key = key;
     }
 

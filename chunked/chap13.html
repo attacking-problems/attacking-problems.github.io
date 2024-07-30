@@ -1448,11 +1448,11 @@ statements.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
-                <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
-            <span class="k">else</span>
-                <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
-        <span class="o">};</span></code></pre>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2048,6 +2048,10 @@ First, we’ll make a class for the Caesar cipher.</p>
     <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">key</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="nf">CaesarCipher</span><span class="o">(</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>               <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">while</span> <span class="o">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">key</span> <span class="o">+=</span> <span class="mi">26</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">key</span> <span class="o">%=</span> <span class="mi">26</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
     <span class="o">}</span>
 
@@ -2066,7 +2070,10 @@ First, we’ll make a class for the Caesar cipher.</p>
 <tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>The constructor takes an <code>int</code> value specifying the key for the Caesar
-cipher, the number of places to move a given letter of the alphabet forward.</td>
+cipher, the number of places to move a given letter of the alphabet forward. If
+the key is negative, it repeatedly adds 26. Then, it takes the result modulo 26,
+eliminating keys larger than 25. The final key is guaranteed to be between 0 and
+25.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -2101,11 +2108,13 @@ since the modulo operator in Java doesn’t work correctly with negative values)
         <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
         <span class="n">inverseA</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>                            <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">while</span> <span class="o">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">inverseA</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">inverseA</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="o">)</span>
+        <span class="k">while</span> <span class="o">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">inverseA</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">inverseA</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="o">)</span> <span class="o">{</span>
             <span class="o">++</span><span class="n">inverseA</span><span class="o">;</span>
+        <span class="o">}</span>
 
-        <span class="k">if</span> <span class="o">(</span><span class="n">inverseA</span> <span class="o">&gt;=</span> <span class="mi">26</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">inverseA</span> <span class="o">&gt;=</span> <span class="mi">26</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="s">" has no multiplicative inverse mod 26"</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">encrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
@@ -2114,8 +2123,9 @@ since the modulo operator in Java doesn’t work correctly with negative values)
 
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">decrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="n">b</span><span class="o">)</span> <span class="o">*</span> <span class="n">inverseA</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">result</span> <span class="o">+=</span> <span class="mi">26</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">result</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
     <span class="o">}</span>    
 <span class="o">}</span></code></pre>
@@ -2154,7 +2164,7 @@ a single letter using the affine cipher. It follows a similar process as
 </tbody></table>
 </div>
 <div class="paragraph">
-<p>Although it’s possible to add more ciphers, the last one we will add is the
+<p>Although it’s possible to add even more ciphers, the last one we will add is the
 Vigenère cipher.</p>
 </div>
 <div class="listingblock">
@@ -2163,6 +2173,11 @@ Vigenère cipher.</p>
     <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">key</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="nf">VigenereCipher</span><span class="o">(</span><span class="nc">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>          <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">key</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;</span> <span class="sc">'A'</span> <span class="o">||</span> <span class="n">key</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&gt;</span> <span class="sc">'Z'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Key must only contain uppercase letters"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
         <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
     <span class="o">}</span>
 
@@ -2172,8 +2187,7 @@ Vigenère cipher.</p>
 
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">decrypt</span><span class="o">(</span><span class="kt">char</span> <span class="n">input</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">input</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">-</span> <span class="o">(</span><span class="n">key</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span> <span class="o">%</span> <span class="n">key</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">-</span> <span class="sc">'A'</span><span class="o">)</span> <span class="o">+</span> <span class="mi">26</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">);</span>
-    <span class="o">}</span> 
-    
+    <span class="o">}</span>     
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -2182,7 +2196,8 @@ Vigenère cipher.</p>
 <tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>The constructor takes a <code>String</code> value specifying the key phrase for the
-Vigenère cipher.</td>
+Vigenère cipher. It loops through the characters in the key to be sure they are
+all uppercase letters.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -2204,6 +2219,208 @@ a single letter using the Vigenère cipher. It follows a similar process as
 <code>encrypt()</code> except that it subtracts the key letter instead of adding it.</td>
 </tr>
 </tbody></table>
+</div>
+<div class="paragraph">
+<p>With the <code>Processable</code> functional interface and some sample encryption schemes
+to use, we’re finally ready to make our framework for encryption and decryption.
+In fact, it won’t use very much code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CryptographyFramework</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">process</span><span class="o">(</span><span class="nc">String</span> <span class="n">input</span><span class="o">,</span> <span class="nc">Processable</span> <span class="n">processable</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="kt">var</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>                                 <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="n">input</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>                                      <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>                        <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="kt">char</span> <span class="n">letter</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">letter</span> <span class="o">&gt;=</span> <span class="sc">'A'</span> <span class="o">&amp;&amp;</span> <span class="n">letter</span> <span class="o">&lt;=</span> <span class="sc">'Z'</span><span class="o">)</span> <span class="o">{</span>                         <i class="conum" data-value="5"></i><b>(5)</b>
+                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">processable</span><span class="o">.</span><span class="na">process</span><span class="o">(</span><span class="n">letter</span><span class="o">,</span> <span class="n">i</span><span class="o">));</span>            <i class="conum" data-value="6"></i><b>(6)</b>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">letter</span><span class="o">);</span>                                    <i class="conum" data-value="7"></i><b>(7)</b>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>                                         <i class="conum" data-value="8"></i><b>(8)</b>
+    <span class="o">}</span> </code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The critical method we need is <code>process()</code>, which takes an input <code>String</code>
+and a method reference or lambda expression (in the form of a <code>Processable</code>
+interface) and returns the processed output. By writing our code carefully, we
+can use this <code>process()</code> method for both encryption and decryption.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Because <code>process()</code> might be encrypting or decrypting a long <code>String</code>, it
+uses a <code>StringBuilder</code> which is more efficient than doing repeated <code>String</code>
+concatenations. We first introduced <code>StringBuilder</code> in
+<a href="chap5.html#efficientConcatenationExample">Example 5.4</a> from <a href="chap5.html">Chapter 5</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Many encryption algorithms can encrypt any sequence of bytes, but this code
+assumes classical encryption algorithms that can only encrypt uppercase
+letters. As a defensive coding measure, it converts the input to an uppercase
+version.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The code loops over the length of the input <code>String</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Only uppercase letters (rather than a symbols or whitespace) are processed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Here the <code>process()</code> method from the <code>Processable</code> object is used to perform
+the actual encryption or decryption. This method can be supplied as a method
+reference or a lambda expression.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>If <code>letter</code> is not an uppercase letter, it is appended to <code>result</code>
+unchanged. Doing so is a bad idea from the perspective of strong encryption, but
+it will make it easier to check the output of our program.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Finally, <code>result</code> is converted into a <code>String</code> and returned.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>                                               <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="nc">String</span> <span class="n">plaintext</span> <span class="o">=</span> <span class="s">"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</span><span class="o">;</span>                       <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="nc">CaesarCipher</span> <span class="n">caesarCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CaesarCipher</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>                               <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="nc">AffineCipher</span> <span class="n">affineCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AffineCipher</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                            <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="nc">VigenereCipher</span> <span class="n">vigenereCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VigenereCipher</span><span class="o">(</span><span class="s">"SHAKESPEARE"</span><span class="o">);</span>             <i class="conum" data-value="5"></i><b>(5)</b>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caesar Cipher (key = 7)"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                     <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Affine Cipher (key = 5x + 8)"</span><span class="o">);</span>
+        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                            <i class="conum" data-value="8"></i><b>(8)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="9"></i><b>(9)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Vigenere Cipher (key = SHAKESPEARE)"</span><span class="o">);</span>
+        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                          <i class="conum" data-value="10"></i><b>(10)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span> <i class="conum" data-value="11"></i><b>(11)</b>
+    <span class="o">}</span>  
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Although the <code>process()</code> method is the only one required for our framework,
+it’s useful to have a <code>main()</code> method we can use to test the system.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>For testing purposes, we will encrypt
+<code>"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</code> from <em>Julius Caesar</em> by William
+Shakespeare.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This <code>caesarCipher</code> object implements the Caesar cipher with a key of 7 that
+will shift each letter of the alphabet seven places forward.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This <code>affineCipher</code> object implements the affine cipher with a key whose <em>a</em>
+value is 5 and <em>b</em> value is 8.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This <code>vigenereCipher</code> object implements the Vigenère cipher with a key of
+<code>"SHAKESPEARE"</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The first ciphertext is encrypted by calling <code>process()</code> with a reference to
+the <code>encrypt()</code> method of the <code>caesarCipher</code> object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The first ciphertext is decrypted to the original message by calling
+<code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>caesarCipher</code>
+object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>The second ciphertext is encrypted by calling <code>process()</code> with a reference
+to the <code>encrypt()</code> method of the <code>affineCipher</code> object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>The second ciphertext is decrypted to the original message by calling
+<code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>affineCipher</code>
+object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>The third ciphertext is encrypted by calling <code>process()</code> with a reference to
+the <code>encrypt()</code> method of the <code>vigenereCipher</code> object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>The third ciphertext is decrypted to the original message by calling
+<code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>vigenereCipher</code>
+object.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The output of running this program is as follows.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Caesar Cipher (key = 7)
+Ciphertext: JYF OHCVJ HUK SLA ZSPW AOL KVNZ VM DHY
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR
+
+Affine Cipher (key = 5x + 8)
+Ciphertext: SPY RIJAS IVX LCZ ULWF ZRC XAMU AH OIP
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR
+
+Vigenere Cipher (key = SHAKESPEARE)
+Ciphertext: UYY LSKSC EFK VIL WLZT AHO VDKS SX WKV
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course, we could add more and more encryption schemes and pass appropriate
+method references from those objects to the <code>process()</code> method. While using
+method references is likely more readable, lambda expressions can be used as
+well. Consider the following code that performs the Caesar cipher with a key of
+7 using a lambda expression instead of a method reference. Its output will be
+identical to the version that passing in <code>caesarCipher::encrypt</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="o">(</span><span class="n">letter</span><span class="o">,</span> <span class="n">index</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="kt">char</span><span class="o">)((</span><span class="n">letter</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">+</span> <span class="mi">7</span><span class="o">)</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="sc">'A'</span><span class="o">));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since they’re more readable, use method references when available. Nevertheless,
+lambda expressions can be used for quick and dirty situations, especially when
+the code will only be used a single time and doesn’t warrant the creation of a
+method to reference.</p>
 </div>
 </div>
 <div class="sect2">
