@@ -1,12 +1,11 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class CustomSorting {
+public class CustomSortingTester {
     public static void main(String[] args) {
         String[] words = {"telephone", "architecture", "union", "drawers", "fruits"};
         Arrays.sort(words);
         System.out.println(Arrays.toString(words));
-
 
         Arrays.sort(words, (a, b) -> a.length() - b.length());
         System.out.println(Arrays.toString(words));

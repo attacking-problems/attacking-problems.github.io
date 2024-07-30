@@ -165,7 +165,7 @@
 <li class="current"><a href="chap13.html#_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</a></li>
 <li class="current"><a href="chap13.html#_advanced_streams">13.4. Advanced: Streams</a></li>
 <li class="current"><a href="chap13.html#_solution_cryptography_tools">13.5. Solution: Cryptography tools</a></li>
-<li class="current"><a href="chap13.html#_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</a></li>
+<li class="current"><a href="chap13.html#_concurrency_lambda_expressions_and_parallel_streams">13.6. Concurrency: Lambda expressions and parallel streams</a></li>
 <li class="current"><a href="chap13.html#_exercises_13">13.7. Exercises</a></li>
 </ul>
 </li>
@@ -1448,10 +1448,11 @@ statements.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
-    <span class="k">else</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
         <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">};</span></code></pre>
 </div>
 </div>
@@ -2336,8 +2337,7 @@ Shakespeare.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This <code>caesarCipher</code> object implements the Caesar cipher with a key of 7 that
-will shift each letter of the alphabet seven places forward.</td>
+<td>This <code>caesarCipher</code> object implements the Caesar cipher with a key of 7.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -2407,7 +2407,7 @@ Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR</pre>
 method references from those objects to the <code>process()</code> method. While using
 method references is likely more readable, lambda expressions can be used as
 well. Consider the following code that performs the Caesar cipher with a key of
-7 using a lambda expression instead of a method reference. Its output will be
+7, using a lambda expression instead of a method reference. Its output will be
 identical to the version that passes in <code>caesarCipher::encrypt</code>.</p>
 </div>
 <div class="listingblock">
@@ -2417,16 +2417,169 @@ identical to the version that passes in <code>caesarCipher::encrypt</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Since they’re more readable, use method references when available. Nevertheless,
+<p>Since they’re more readable, use method references when available. Otherwise,
 lambda expressions can be used for quick and dirty situations, especially when
 the code will only be used a single time and doesn’t warrant the creation of a
 method to reference.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</h3>
+<h3 id="_concurrency_lambda_expressions_and_parallel_streams">13.6. Concurrency: Lambda expressions and parallel streams</h3>
+<div class="sect3">
+<h4 id="_threads_with_lambda_expressions">13.6.1. Threads with lambda expressions</h4>
 <div class="paragraph">
-<p>MapReduce</p>
+<p><a href="chap14.html">Chapter 14</a> is where we finally introduce the Java syntax for
+concurrency using threading, and we don’t want to get ahead of ourselves.</p>
+</div>
+<div class="paragraph">
+<p>That said, a key problem when creating a thread is specifying what code will
+be executed. <code>Runnable</code> is a functional interface that contains the abstract
+method <code>void run()</code>. Because it’s a functional interface, you can create a
+lambda expression that matches it. Below, the code will do just that, printing
+out <code>"Threaded world!"</code> when executed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Threaded world!"</span><span class="o">));</span>
+<span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you’re hungry for more details about how to use threads to solve problems,
+head over to the next chapter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parallel_streams">13.6.2. Parallel streams</h4>
+<div class="paragraph">
+<p>Just as you can use streams to process data sequentially with a single
+core, you can also use them to process data in parallel with multiple cores. In
+general, sequential streams can be converted into parallel ones and vice versa.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following code that creates a parallel stream instead of a
+sequential one, by calling the <code>parallelStream()</code> method on a list instead of
+the <code>stream()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">words</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"paragraph"</span><span class="o">,</span> <span class="s">"understand"</span><span class="o">,</span> <span class="s">"stir"</span><span class="o">,</span> <span class="s">"exemption"</span><span class="o">,</span> <span class="s">"dance"</span><span class="o">);</span>
+<span class="n">words</span>
+    <span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">word</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">word</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Just like the sequential stream, this code will print out each word. However,
+there’s no guarantee <strong>when</strong> each thread will execute the code that prints out.
+Thus, a parallel stream might print the words in an unpredictable order. On one
+execution, the code above might have the following output.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>stir
+dance
+exemption
+understand
+paragraph</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On others, it could be different, even matching the sequential output.</p>
+</div>
+<div class="paragraph">
+<p>A parallel stream can also process data beyond doing simple output. For example,
+the following code finds the longest <code>String</code> in the stream, <code>"understand"</code> in
+this case.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">longest</span> <span class="o">=</span> <span class="n">words</span>
+    <span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="o">(</span><span class="n">word1</span><span class="o">,</span> <span class="n">word2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">word1</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">word2</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">word1</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">word2</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">});</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code works provided that the operation being done in the <code>reduce()</code> call
+is <em>associative</em>, meaning that it doesn’t matter how the data is divided up
+before performing the operation. The operations will still be applied in order,
+but the left half and the right half of the list of numbers might be processed
+at the same time before the left result is combined with the right result.</p>
+</div>
+<div class="paragraph">
+<p>This idea follows associative operations in math, which can arbitrarily add or
+remove parentheses without affecting the results. For example, addition is
+associative, as demonstrated by the equation
+(5 + 3) + 7 = 15 = 5 + (3 + 7). However, subtraction is <strong>not</strong> associative, since
+(5 - 3) - 7 = -5 ≠ 5 - (3 - 7) = 9.</p>
+</div>
+<div class="paragraph">
+<p>Of course, comparing the lengths of two <code>String</code> values is not very
+computationally intensive, so using parallel streams here is unlikely to be
+faster than using sequential streams (or <code>for</code> loops). Nevertheless, there may
+be some cases where the operations done on each element of data is
+time-consuming enough that using a parallel stream will be faster. For that to
+be true, the processor must have multiple cores, and the work that the Stream
+API is doing behind the scenes to create threads and coordinate them must not
+take up more time than the savings gained through parallel computation.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following code that finds the sum of the sines of the numbers from
+0 up to (but not including) 1,000,000, using both parallel and sequential
+streams.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">1000000</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kt">double</span> <span class="n">parallelSum</span> <span class="o">=</span> <span class="nc">DoubleStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">numbers</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">parallel</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">number</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+
+<span class="kt">double</span> <span class="n">sequentialSum</span> <span class="o">=</span> <span class="nc">DoubleStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">numbers</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">number</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Parallel sum:   "</span> <span class="o">+</span> <span class="n">parallelSum</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sequential sum: "</span> <span class="o">+</span> <span class="n">sequentialSum</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On our test system, the output is as follows.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Parallel sum:   0.23288397807311884
+Sequential sum: 0.23288397807311667</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There’s a small difference between the results because the order in which the
+numbers were added was different. Consequently, there can be differences in
+floating-point rounding. These differences will depend on the number of threads
+created by the system, which is automatically determined by the number of cores.</p>
+</div>
+<div class="paragraph">
+<p>Depending on a number of different properties of a given system, the parallel
+stream in this example might take more or less time than the sequential one.</p>
+</div>
+<div class="paragraph">
+<p>We’ll return to a similar problem in <a href="chap14.html#arraySummationExample">Example 14.10</a>, where we’ll
+handle the details of thread creation directly instead of using streams.
+Although parallel streams are a useful, readable tool that can solve this
+particular problem, they’re not flexible enough to perform all parallel
+processing tasks.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2477,7 +2630,7 @@ complicated vs. the opposite)</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-18 14:37:53 -0400
+Last updated 2024-06-26 12:32:14 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

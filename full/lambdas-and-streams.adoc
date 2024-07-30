@@ -508,7 +508,6 @@ Expression expression2 = new Calculation((a, b) -> a * b, new Number(2), express
 System.out.println(expression2.getValue()); // Prints 16.
 ----
 
-
 .Custom sorting
 ====
 In <<The `Arrays` class>>, we introduced `Arrays`, a utility class that provides
@@ -670,10 +669,11 @@ statements.
 [source, java]
 ----
 Operator operator = (a, b) -> {
-    if (a >= b)
+    if (a >= b) {
         return a;
-    else
+    } else {
         return b;
+    }
 };
 ----
 
@@ -1309,7 +1309,7 @@ Of course, we could add more and more encryption schemes and pass appropriate
 method references from those objects to the `process()` method. While using
 method references is likely more readable, lambda expressions can be used as
 well. Consider the following code that performs the Caesar cipher with a key of
-7 using a lambda expression instead of a method reference. Its output will be
+7, using a lambda expression instead of a method reference. Its output will be
 identical to the version that passes in `caesarCipher::encrypt`.
 
 [source, java]
@@ -1318,23 +1318,148 @@ String cipherText = process(plaintext, (letter, index) -> (char)((letter - 'A' +
 System.out.println("Ciphertext: " + cipherText);
 ----
 
-Since they're more readable, use method references when available. Nevertheless,
+Since they're more readable, use method references when available. Otherwise,
 lambda expressions can be used for quick and dirty situations, especially when
 the code will only be used a single time and doesn't warrant the creation of a
 method to reference.
 
+=== Concurrency: Lambda expressions and parallel streams
 
+==== Threads with lambda expressions
 
+<<concurrency#concurrency>> is where we finally introduce the Java syntax for
+concurrency using threading, and we don't want to get ahead of ourselves.
 
+That said, a key problem when creating a thread is specifying what code will
+be executed. `Runnable` is a functional interface that contains the abstract
+method `void run()`. Because it's a functional interface, you can create a
+lambda expression that matches it. Below, the code will do just that, printing
+out `"Threaded world!"` when executed.
 
+[source, java]
+----
+Thread thread = new Thread(() -> System.out.println("Threaded world!"));
+thread.start();
+----
 
+If you're hungry for more details about how to use threads to solve problems,
+head over to the next chapter.
 
+==== Parallel streams
 
+Just as you can use streams to process data sequentially with a single
+core, you can also use them to process data in parallel with multiple cores. In
+general, sequential streams can be converted into parallel ones and vice versa.
 
+Consider the following code that creates a parallel stream instead of a
+sequential one, by calling the `parallelStream()` method on a list instead of
+the `stream()` method.
 
-=== Concurrency: Lambdas and streams
+[source, java]
+----
+var words = Arrays.asList("paragraph", "understand", "stir", "exemption", "dance");
+words
+    .parallelStream()
+    .forEach(word -> System.out.println(word));
+----
 
-MapReduce
+Just like the sequential stream, this code will print out each word. However,
+there's no guarantee *when* each thread will execute the code that prints out.
+Thus, a parallel stream might print the words in an unpredictable order. On one
+execution, the code above might have the following output.
+
+....
+stir
+dance
+exemption
+understand
+paragraph
+....
+
+On others, it could be different, even matching the sequential output.
+
+A parallel stream can also process data beyond doing simple output. For example,
+the following code finds the longest `String` in the stream, `"understand"` in
+this case.
+
+[source, java]
+----
+String longest = words
+    .parallelStream()
+    .reduce("", (word1, word2) -> {
+        if (word1.length() >= word2.length()) {
+            return word1;
+        } else {
+            return word2;
+        }
+    });
+----
+
+This code works provided that the operation being done in the `reduce()` call
+is _associative_, meaning that it doesn't matter how the data is divided up 
+before performing the operation. The operations will still be applied in order,
+but the left half and the right half of the list of numbers might be processed
+at the same time before the left result is combined with the right result.
+
+This idea follows associative operations in math, which can arbitrarily add or
+remove parentheses without affecting the results. For example, addition is
+associative, as demonstrated by the equation
+(5 + 3) + 7 = 15 = 5 + (3 + 7). However, subtraction is *not* associative, since
+(5 - 3) - 7 = -5 ≠ 5 - (3 - 7) = 9.
+
+Of course, comparing the lengths of two `String` values is not very
+computationally intensive, so using parallel streams here is unlikely to be
+faster than using sequential streams (or `for` loops). Nevertheless, there may
+be some cases where the operations done on each element of data is
+time-consuming enough that using a parallel stream will be faster. For that to
+be true, the processor must have multiple cores, and the work that the Stream
+API is doing behind the scenes to create threads and coordinate them must not
+take up more time than the savings gained through parallel computation.
+
+Consider the following code that finds the sum of the sines of the numbers from
+0 up to (but not including) 1,000,000, using both parallel and sequential
+streams.
+
+[source, java]
+----
+double[] numbers = new double[1000000];
+for (int i = 0; i < 1000000; ++i) {
+    numbers[i] = i;
+}
+
+double parallelSum = DoubleStream.of(numbers)
+    .parallel()
+    .map(number -> Math.sin(number))
+    .sum();
+
+double sequentialSum = DoubleStream.of(numbers)
+    .map(number -> Math.sin(number))
+    .sum();
+
+System.out.println("Parallel sum:   " + parallelSum);
+System.out.println("Sequential sum: " + sequentialSum);
+----
+
+On our test system, the output is as follows.
+
+....
+Parallel sum:   0.23288397807311884
+Sequential sum: 0.23288397807311667
+....
+
+There's a small difference between the results because the order in which the
+numbers were added was different. Consequently, there can be differences in
+floating-point rounding. These differences will depend on the number of threads
+created by the system, which is automatically determined by the number of cores.
+
+Depending on a number of different properties of a given system, the parallel
+stream in this example might take more or less time than the sequential one.
+
+We'll return to a similar problem in <<arraySummationExample>>, where we'll
+handle the details of thread creation directly instead of using streams.
+Although parallel streams are a useful, readable tool that can solve this
+particular problem, they're not flexible enough to perform all parallel
+processing tasks.
 
 === Exercises
 *Conceptual Problems*
