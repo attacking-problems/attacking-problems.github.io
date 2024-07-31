@@ -14,7 +14,7 @@ public class CryptographyFramework {
         return result.toString();                                         //<.>
     } 
 
-    public static void main(String[] args) {                                               //<.>
+    public static void main(String[] args) {
         String plaintext = "CRY HAVOC AND LET SLIP THE DOGS OF WAR";                       //<.>
         CaesarCipher caesarCipher = new CaesarCipher(7);                                   //<.>
         AffineCipher affineCipher = new AffineCipher(5, 8);                                //<.>

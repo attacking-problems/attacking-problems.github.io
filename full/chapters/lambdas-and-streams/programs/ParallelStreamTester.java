@@ -42,5 +42,16 @@ public class ParallelStreamTester {
 
         System.out.println("Parallel sum:   " + parallelSum);
         System.out.println("Sequential sum: " + sequentialSum);
+
+
+        start = System.nanoTime();
+        double loopSum = 0;
+        for (int i = 0; i < numbers.length; ++i) {
+            loopSum += Math.sin(numbers[i]);
+        }
+        System.out.println("Loop sum: " + loopSum);
+        end = System.nanoTime();
+        System.out.println("Loop time: " + (end - start)/1000000000.0);
+
     }
 }

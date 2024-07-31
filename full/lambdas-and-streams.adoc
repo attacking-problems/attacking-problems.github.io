@@ -177,7 +177,7 @@ Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.
 Creating a tool that can perform encryption and decryption with arbitrary
 algorithms is useful, but that's just the beginning. Earlier, we created
 variables that could store *values*, and we could also pass those values to
-methods. Now, we will explore ways to store *methods* and pass those methods to
+methods. Now, we'll explore ways to store *methods* and pass those methods to
 other methods.
 
 This idea of methods as _first-class values_ is one that comes from a different
@@ -214,6 +214,10 @@ hand, academic researchers into programming language design love functional
 languages because they can be very elegant, have many wonderful safety
 features, and follow mathematical structures that make it easier to prove
 important properties about a program.
+
+****
+<<functionalLanguagesExercise>>
+****
 
 Although it's hard to make an objective measurement, many people consider
 functional languages to be more difficult to program in than object-oriented
@@ -254,11 +258,10 @@ lambda is fine if one doesn't. On the other hand, if you're writing many
 different lambdas that do essentially the same thing, you might want to create
 a method so that you can pass a reference to it.
 
-No doubt you're eager to learn the syntax for lambdas and method references,
-which we discuss in <<Syntax: Method references and lambdas>>, but when is it a
-good idea to use these tools? A lambda is useful when all you require is a
-single method, not a whole new class with member variables and perhaps many
-other methods. These situations include:
+No doubt you're eager to learn the syntax for lambdas and method references that
+we discuss in the next section, but when is it a good idea to use these tools? A
+lambda is useful when all you require is a single method, not a whole new class
+with member variables and perhaps many other methods. These situations include:
 
 - When you're using an interface that contains only one abstract method.
 Lambdas can allow you to create a method that fulfills the requirements of that
@@ -277,7 +280,7 @@ methods that you can supply a lambda to in order to say how data should be
 sorted or which kinds of objects you want back.
 
 - The Stream API. As we'll discuss in <<Advanced: Streams>>, the Stream API
-expands the tools from collections to create streams of data that can be sorted,
+expands the tools to create streams of data from collections that can be sorted,
 filtered, aggregated, and processed in arbitrary ways using lambdas that you
 supply.
 
@@ -332,6 +335,11 @@ However, it's always a good idea to mark an interface you write with
 other programmers that it's a functional interface and to get the extra
 protection from the compiler if you mistakenly add another abstract method to
 it.
+
+****
+<<functionalInterfaceExercise>> +
+<<makeFunctionalInterfaceExercise>>
+****
 
 ==== Method references
 
@@ -389,6 +397,10 @@ System.out.println(operator.evaluate(5, -3)); // Prints 10, the minimum allowed.
 
 This syntax parallels the way that static methods are called with a class name
 while instance methods are called with an object name.
+
+****
+<<methodReferenceExercise>>
+****
 
 .Arithmetic expressions
 ====
@@ -507,6 +519,12 @@ System.out.println(expression1.getValue()); // Prints 8.
 Expression expression2 = new Calculation((a, b) -> a * b, new Number(2), expression1);
 System.out.println(expression2.getValue()); // Prints 16.
 ----
+
+****
+<<methodReferenceLambdaExercise>> +
+<<whenUseLambdaExercise>> +
+<<vowelLambdaExercise>>
+****
 
 .Custom sorting
 ====
@@ -641,6 +659,11 @@ primitive types requires turning them into an array of the appropriate wrapper
 class objects. Sometimes, this approach will be the best solution, but turning
 primitive values into objects costs both time and extra memory.
 ====
+
+****
+<<caseInsensitiveLambdaExercise>> +
+<<caseInsensitiveMethodExercise>>
+****
 
 ===== Longer lambda expressions
 
@@ -830,6 +853,10 @@ sugared version of syntax. Using the syntax that the community prefers allows
 you to write more _idiomatically_, in the accepted style. Since programming is
 about clear communication, with both computers and other programmers, adhering
 to a common style is valuable.
+
+****
+<<syntacticSugarExercise>>
+****
 
 
 === Advanced: Streams
@@ -1143,6 +1170,11 @@ solution when performance really matters. However, lazy evaluation makes streams
 competitive with loops, without requiring any analysis about the most efficient
 way to process intermediate operations.
 
+****
+<<streamUseExercise>> +
+<<lazyEvaluationExercise>>
+****
+
 === Solution: Cryptography tools
 
 Now, we can solve our original problem of making a reusable framework for
@@ -1204,7 +1236,7 @@ also casts the result to a `char`.
 a single letter using the affine cipher. It follows a similar process as
 `encrypt()` except that it subtracts _b_ and multiplies by _a_^-1^.
 
-Although it's possible to add even more ciphers, the last one we will add is the
+Although it's possible to add even more ciphers, the last one we'll add is the
 Vigenère cipher.
 
 [source, java]
@@ -1258,13 +1290,14 @@ unchanged. Doing so is a bad idea from the perspective of strong encryption, but
 it will make it easier to check the output of our program. 
 <.> Finally, `result` is converted into a `String` and returned.
 
+Although the `process()` method is the only one required for our framework,
+it's useful to have a `main()` method we can use to test the system.
+
 [source, java]
 ----
 include::{programsdir}/CryptographyFramework.java[lines=17..40]
 ----
-<.> Although the `process()` method is the only one required for our framework,
-it's useful to have a `main()` method we can use to test the system.
-<.> For testing purposes, we will encrypt
+<.> For testing purposes, we'll encrypt
 `"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` from _Julius Caesar_ by William
 Shakespeare.
 <.> This `caesarCipher` object implements the Caesar cipher with a key of 7.
@@ -1287,7 +1320,6 @@ the `encrypt()` method of the `vigenereCipher` object.
 <.> The third ciphertext is decrypted to the original message by calling
 `process()` with a reference to the `decrypt()` method of the `vigenereCipher`
 object.
-
 
 The output of running this program is as follows.
 
@@ -1401,7 +1433,7 @@ before performing the operation. The operations will still be applied in order,
 but the left half and the right half of the list of numbers might be processed
 at the same time before the left result is combined with the right result.
 
-This idea follows associative operations in math, which can arbitrarily add or
+This idea mirrors associative operations in math, which can arbitrarily add or
 remove parentheses without affecting the results. For example, addition is
 associative, as demonstrated by the equation
 (5 + 3) + 7 = 15 = 5 + (3 + 7). However, subtraction is *not* associative, since
@@ -1464,17 +1496,117 @@ processing tasks.
 === Exercises
 *Conceptual Problems*
 
-. Exercise 1
+. [[functionalLanguagesExercise]] What are some features of functional languages
+that make them different from typical object-oriented languages like Java?
+. [[functionalInterfaceExercise]] How is a functional interface different from a
+normal interface in Java?
+. [[methodReferenceExercise]] What is a method reference, and what is the syntax
+for a reference to a specific method on a particular object?
+. [[methodReferenceLambdaExercise]] What's the difference between a method
+reference and a lambda expression?
+. [[whenUseLambdaExercise]] Under what circumstances should you use a lambda
+expression instead of a method reference?
+. [[syntacticSugarExercise]] Give two examples of syntactic sugar in Java.
+. [[streamUseExercise]] Why are streams useful, even though everything that can
+be done with streams can also be accomplished with loops?
+. [[lazyEvaluationExercise]] In the context of streams, what is lazy evaluation?
 
 *Programming Practice*
 
-// index of coincidence for Vigenere cipher?
-// automatically break a Caesar cipher?
-
-. Exercise 2
-
+. Consider a functional interface called `StringComparator`.
+[loweralpha]
+.. [[makeFunctionalInterfaceExercise]] Write such an interface  with a `compare()` method that takes two `String`
+values and returns an `int`.
+.. [[vowelLambdaExercise]] Write a lambda expression compatible with this interface that compares the
+number of vowels (a, e, i, o, and u) in the two `String` values. If the first
+`String` has more vowels, return a positive number. If the second `String` has
+more vowels, return a negative number. If they have the same number of vowels,
+return 0.
+. [[caseInsensitiveLambdaExercise]] Sorting `String` values is a common task, 
+but calling the normal, one-parameter version of `Arrays.sort()` on an array of
+`String` values will sort them in a case-sensitive way, putting all words that
+start with an uppercase letter before any word that starts with a lowercase
+letter. Pass a lambda expression to the second parameter of `Arrays.sort()` so
+that it will sort an array of `String` values in a case-insensitive way. Hint:
+You can use the `compareToIgnoreCase()` method on `String` objects.
++
+Test your code on the following array.
++
+[source, java]
+----
+String[] words = {"Split", "portion", "Echo", "Visit", "allowance", "distribute", "NAME", "freighter", "lean", "Facade"};
+----
+. [[caseInsensitiveMethodExercise]] Rewrite your solution to the previous
+exercise to pass in only a single method reference, not a lambda expression.
+. When trying to break a classical encryption, a common technique is a frequency
+attack, which counts the occurrences of each letters in a ciphertext. Since some
+letters in English are used commonly while others are rare, the count of each
+letter can give insight into how the ciphertext was encrypted and how it can be
+decrypted.
++
+The `IntStream` class is used for streams of `char` values. In fact, there's a
+`chars()` method on `String` objects that returns a stream of `int` values whose
+numerical values are the same as the `char` values. First, create an array of
+`int` values with length 26 to count the occurrences of each letter of the
+alphabet. Then, use the `chars()` method on a `String` to process all its
+`char` values in a stream, incrementing the location in the array that
+corresponds to the letter of the alphabet (0 for A, 1 for B, and so on). Skip
+values that aren't uppercase letters.
++
+Finally, flesh out this code into a full program that reads in a `String` and
+reports the fraction of the text corresponding to each letter. Although you must
+use a stream to count the letter occurrences, you may use a loop to print out
+the final letter frequencies.
+. Write code that generates a stream of values from 1 up to (and including) 100,
+finds the square root of each number, and prints it out. You can either use
+`IntStream` to generate these numbers and then convert the stream to a
+`DoubleStream` or you can generate a `DoubleStream` directly. No loops should
+appear in the code.
+. Write code that will convert a list of `Integer` values into a stream, keep
+only the even numbers, and print out the remaining values. Use no loops. For
+example, you might start with the following list.
++
+[source, java]
+----
+var numbers = Arrays.asList(75, 38, 173, 176, 11, 188, 130, 94, 159, 52);
+----
++
+Then, the matching output would be below.
++
+....
+38
+176
+188
+130
+94
+52
+....
 
 *Experiments*
 
-. Exercise 3: Timing lazy evaluation (sort first and then do something
-complicated vs. the opposite)
+. Lazy evaluation is a powerful tool, but it doesn't entirely remove the burden
+of optimizing performance. To understand the issues, create an array of `int`
+values with length 100,000,000. Fill the array with random values by repeatedly
+calling the `nextInt()` method on a `Random` object. Now, create an `IntStream`
+from the array, filter it first to contain only `int` values that are less than
+10,000, then filter it to contain only odd numbers, and finally use the `max()`
+method to find the largest value. Then, create a second `IntStream` from the
+same array, filter it first to contain only odd numbers, then filter it to
+contain only `int` values that are less than 10,000, and again use the `max()`
+method to find the largest value. Since both streams are finding the largest odd
+number less than 10,000 in the array, the results should be the same. Now,
+insert timing code to see how long each stream took to find the answer. Run the
+code several times to be sure the answer is consistent. Which stream takes
+longer to run, and why?
+. In <<Parallel streams>>, we gave an example using both sequential and parallel
+streams to find the sum of the sines of the numbers from 0 up to (but not
+including) 1,000,000. Add timing code to this example to determine how long the
+sequential and parallel versions take. Is the parallel version faster than the
+sequential? If it is, divide the size of the problem by 10 (100,000 values) to
+see if it's still faster. If the parallel version isn't faster, multiply the
+size of the problem by 10 (10,000,000 values) and time it again. Keep dividing
+or multiplying the size of the problem until the relative speeds of the
+sequential and parallel versions change.
+. Write a loop that performs the same summation of the sines of numbers from 0
+up (but not including) 1,000,000 and time it. How does its running time compare
+to the sequential stream that performs the same task?

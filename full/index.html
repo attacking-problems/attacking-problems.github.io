@@ -27773,7 +27773,7 @@ Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.</p>
 <p>Creating a tool that can perform encryption and decryption with arbitrary
 algorithms is useful, but that&#8217;s just the beginning. Earlier, we created
 variables that could store <strong>values</strong>, and we could also pass those values to
-methods. Now, we will explore ways to store <strong>methods</strong> and pass those methods to
+methods. Now, we&#8217;ll explore ways to store <strong>methods</strong> and pass those methods to
 other methods.</p>
 </div>
 <div class="paragraph">
@@ -27814,6 +27814,13 @@ hand, academic researchers into programming language design love functional
 languages because they can be very elegant, have many wonderful safety
 features, and follow mathematical structures that make it easier to prove
 important properties about a program.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#functionalLanguagesExercise">Exercise 13.1</a></p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Although it&#8217;s hard to make an objective measurement, many people consider
@@ -27860,11 +27867,10 @@ different lambdas that do essentially the same thing, you might want to create
 a method so that you can pass a reference to it.</p>
 </div>
 <div class="paragraph">
-<p>No doubt you&#8217;re eager to learn the syntax for lambdas and method references,
-which we discuss in <a href="#_syntax_method_references_and_lambdas">Section 13.3</a>, but when is it a
-good idea to use these tools? A lambda is useful when all you require is a
-single method, not a whole new class with member variables and perhaps many
-other methods. These situations include:</p>
+<p>No doubt you&#8217;re eager to learn the syntax for lambdas and method references that
+we discuss in the next section, but when is it a good idea to use these tools? A
+lambda is useful when all you require is a single method, not a whole new class
+with member variables and perhaps many other methods. These situations include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -27889,7 +27895,7 @@ sorted or which kinds of objects you want back.</p>
 </li>
 <li>
 <p>The Stream API. As we&#8217;ll discuss in <a href="#_advanced_streams">Section 13.4</a>, the Stream API
-expands the tools from collections to create streams of data that can be sorted,
+expands the tools to create streams of data from collections that can be sorted,
 filtered, aggregated, and processed in arbitrary ways using lambdas that you
 supply.</p>
 </li>
@@ -27957,6 +27963,14 @@ However, it&#8217;s always a good idea to mark an interface you write with
 other programmers that it&#8217;s a functional interface and to get the extra
 protection from the compiler if you mistakenly add another abstract method to
 it.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#functionalInterfaceExercise">Exercise 13.2</a><br>
+<a href="#makeFunctionalInterfaceExercise">[makeFunctionalInterfaceExercise]</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -28042,6 +28056,13 @@ before the <code>::</code> operator.</p>
 <div class="paragraph">
 <p>This syntax parallels the way that static methods are called with a class name
 while instance methods are called with an object name.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#methodReferenceExercise">Exercise 13.3</a></p>
+</div>
+</div>
 </div>
 <div class="exampleblock">
 <div class="title">Example 13.1 Arithmetic expressions</div>
@@ -28249,6 +28270,15 @@ section using lambda expressions.</p>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">expression2</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span> <span class="c1">// Prints 16.</span></code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#methodReferenceLambdaExercise">Exercise 13.4</a><br>
+<a href="#whenUseLambdaExercise">Exercise 13.5</a><br>
+<a href="#vowelLambdaExercise">[vowelLambdaExercise]</a></p>
+</div>
+</div>
+</div>
 <div class="exampleblock">
 <div class="title">Example 13.2 Custom sorting</div>
 <div class="content">
@@ -28406,6 +28436,14 @@ references, if your array contains reference types. Sorting an array of
 primitive types requires turning them into an array of the appropriate wrapper
 class objects. Sometimes, this approach will be the best solution, but turning
 primitive values into objects costs both time and extra memory.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#caseInsensitiveLambdaExercise">Exercise 13.10</a><br>
+<a href="#caseInsensitiveMethodExercise">Exercise 13.11</a></p>
 </div>
 </div>
 </div>
@@ -28627,6 +28665,13 @@ sugared version of syntax. Using the syntax that the community prefers allows
 you to write more <em>idiomatically</em>, in the accepted style. Since programming is
 about clear communication, with both computers and other programmers, adhering
 to a common style is valuable.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#syntacticSugarExercise">Exercise 13.6</a></p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -29010,6 +29055,14 @@ solution when performance really matters. However, lazy evaluation makes streams
 competitive with loops, without requiring any analysis about the most efficient
 way to process intermediate operations.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="#streamUseExercise">Exercise 13.7</a><br>
+<a href="#lazyEvaluationExercise">Exercise 13.8</a></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -29156,7 +29209,7 @@ a single letter using the affine cipher. It follows a similar process as
 </table>
 </div>
 <div class="paragraph">
-<p>Although it&#8217;s possible to add even more ciphers, the last one we will add is the
+<p>Although it&#8217;s possible to add even more ciphers, the last one we&#8217;ll add is the
 Vigenère cipher.</p>
 </div>
 <div class="listingblock">
@@ -29285,30 +29338,34 @@ it will make it easier to check the output of our program.</td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Although the <code>process()</code> method is the only one required for our framework,
+it&#8217;s useful to have a <code>main()</code> method we can use to test the system.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>                                               <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="nc">String</span> <span class="n">plaintext</span> <span class="o">=</span> <span class="s">"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</span><span class="o">;</span>                       <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="nc">CaesarCipher</span> <span class="n">caesarCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CaesarCipher</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>                                   <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="nc">AffineCipher</span> <span class="n">affineCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AffineCipher</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                                <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="nc">VigenereCipher</span> <span class="n">vigenereCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VigenereCipher</span><span class="o">(</span><span class="s">"SHAKESPEARE"</span><span class="o">);</span>                 <i class="conum" data-value="5"></i><b>(5)</b>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">plaintext</span> <span class="o">=</span> <span class="s">"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</span><span class="o">;</span>                       <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="nc">CaesarCipher</span> <span class="n">caesarCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CaesarCipher</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>                                   <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="nc">AffineCipher</span> <span class="n">affineCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AffineCipher</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">8</span><span class="o">);</span>                                <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="nc">VigenereCipher</span> <span class="n">vigenereCipher</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VigenereCipher</span><span class="o">(</span><span class="s">"SHAKESPEARE"</span><span class="o">);</span>                 <i class="conum" data-value="4"></i><b>(4)</b>
         
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caesar Cipher (key = 7)"</span><span class="o">);</span>
-        <span class="nc">String</span> <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                     <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="nc">String</span> <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                     <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">caesarCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="6"></i><b>(6)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
 
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Affine Cipher (key = 5x + 8)"</span><span class="o">);</span>
-        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                            <i class="conum" data-value="8"></i><b>(8)</b>
+        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                            <i class="conum" data-value="7"></i><b>(7)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="9"></i><b>(9)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">affineCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span>   <i class="conum" data-value="8"></i><b>(8)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
 
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Vigenere Cipher (key = SHAKESPEARE)"</span><span class="o">);</span>
-        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                          <i class="conum" data-value="10"></i><b>(10)</b>
+        <span class="n">cipherText</span> <span class="o">=</span> <span class="n">process</span><span class="o">(</span><span class="n">plaintext</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">encrypt</span><span class="o">);</span>                          <i class="conum" data-value="9"></i><b>(9)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ciphertext: "</span> <span class="o">+</span> <span class="n">cipherText</span><span class="o">);</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span> <i class="conum" data-value="11"></i><b>(11)</b>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Plaintext:  "</span> <span class="o">+</span> <span class="n">process</span><span class="o">(</span><span class="n">cipherText</span><span class="o">,</span> <span class="nl">vigenereCipher:</span><span class="o">:</span><span class="n">decrypt</span><span class="o">));</span> <i class="conum" data-value="10"></i><b>(10)</b>
     <span class="o">}</span>  
 <span class="o">}</span></code></pre>
 </div>
@@ -29317,58 +29374,53 @@ it will make it easier to check the output of our program.</td>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Although the <code>process()</code> method is the only one required for our framework,
-it&#8217;s useful to have a <code>main()</code> method we can use to test the system.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>For testing purposes, we will encrypt
+<td>For testing purposes, we&#8217;ll encrypt
 <code>"CRY HAVOC AND LET SLIP THE DOGS OF WAR"</code> from <em>Julius Caesar</em> by William
 Shakespeare.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>This <code>caesarCipher</code> object implements the Caesar cipher with a key of 7.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>This <code>affineCipher</code> object implements the affine cipher with a key whose <em>a</em>
 value is 5 and <em>b</em> value is 8.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>This <code>vigenereCipher</code> object implements the Vigenère cipher with a key of
 <code>"SHAKESPEARE"</code>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>The first ciphertext is encrypted by calling <code>process()</code> with a reference to
 the <code>encrypt()</code> method of the <code>caesarCipher</code> object.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>The first ciphertext is decrypted to the original message by calling
 <code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>caesarCipher</code>
 object.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>The second ciphertext is encrypted by calling <code>process()</code> with a reference
 to the <code>encrypt()</code> method of the <code>affineCipher</code> object.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
 <td>The second ciphertext is decrypted to the original message by calling
 <code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>affineCipher</code>
 object.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>The third ciphertext is encrypted by calling <code>process()</code> with a reference to
 the <code>encrypt()</code> method of the <code>vigenereCipher</code> object.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
 <td>The third ciphertext is decrypted to the original message by calling
 <code>process()</code> with a reference to the <code>decrypt()</code> method of the <code>vigenereCipher</code>
 object.</td>
@@ -29504,7 +29556,7 @@ but the left half and the right half of the list of numbers might be processed
 at the same time before the left result is combined with the right result.</p>
 </div>
 <div class="paragraph">
-<p>This idea follows associative operations in math, which can arbitrarily add or
+<p>This idea mirrors associative operations in math, which can arbitrarily add or
 remove parentheses without affecting the results. For example, addition is
 associative, as demonstrated by the equation
 (5 + 3) + 7 = 15 = 5 + (3 + 7). However, subtraction is <strong>not</strong> associative, since
@@ -29581,7 +29633,34 @@ processing tasks.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Exercise 1</p>
+<p><a id="functionalLanguagesExercise"></a> What are some features of functional languages
+that make them different from typical object-oriented languages like Java?</p>
+</li>
+<li>
+<p><a id="functionalInterfaceExercise"></a> How is a functional interface different from a
+normal interface in Java?</p>
+</li>
+<li>
+<p><a id="methodReferenceExercise"></a> What is a method reference, and what is the syntax
+for a reference to a specific method on a particular object?</p>
+</li>
+<li>
+<p><a id="methodReferenceLambdaExercise"></a> What&#8217;s the difference between a method
+reference and a lambda expression?</p>
+</li>
+<li>
+<p><a id="whenUseLambdaExercise"></a> Under what circumstances should you use a lambda
+expression instead of a method reference?</p>
+</li>
+<li>
+<p><a id="syntacticSugarExercise"></a> Give two examples of syntactic sugar in Java.</p>
+</li>
+<li>
+<p><a id="streamUseExercise"></a> Why are streams useful, even though everything that can
+be done with streams can also be accomplished with loops?</p>
+</li>
+<li>
+<p><a id="lazyEvaluationExercise"></a> In the context of streams, what is lazy evaluation?</p>
 </li>
 </ol>
 </div>
@@ -29589,9 +29668,98 @@ processing tasks.</p>
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="2">
+<ol class="arabic" start="9">
 <li>
-<p>Exercise 2</p>
+<p>Consider a functional interface called <code>StringComparator</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a id="makeFunctionalInterfaceExercise"></a> Write such an interface  with a <code>compare()</code> method that takes two <code>String</code>
+values and returns an <code>int</code>.</p>
+</li>
+<li>
+<p><a id="vowelLambdaExercise"></a> Write a lambda expression compatible with this interface that compares the
+number of vowels (a, e, i, o, and u) in the two <code>String</code> values. If the first
+<code>String</code> has more vowels, return a positive number. If the second <code>String</code> has
+more vowels, return a negative number. If they have the same number of vowels,
+return 0.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a id="caseInsensitiveLambdaExercise"></a> Sorting <code>String</code> values is a common task,
+but calling the normal, one-parameter version of <code>Arrays.sort()</code> on an array of
+<code>String</code> values will sort them in a case-sensitive way, putting all words that
+start with an uppercase letter before any word that starts with a lowercase
+letter. Pass a lambda expression to the second parameter of <code>Arrays.sort()</code> so
+that it will sort an array of <code>String</code> values in a case-insensitive way. Hint:
+You can use the <code>compareToIgnoreCase()</code> method on <code>String</code> objects.</p>
+<div class="paragraph">
+<p>Test your code on the following array.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span><span class="o">[]</span> <span class="n">words</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Split"</span><span class="o">,</span> <span class="s">"portion"</span><span class="o">,</span> <span class="s">"Echo"</span><span class="o">,</span> <span class="s">"Visit"</span><span class="o">,</span> <span class="s">"allowance"</span><span class="o">,</span> <span class="s">"distribute"</span><span class="o">,</span> <span class="s">"NAME"</span><span class="o">,</span> <span class="s">"freighter"</span><span class="o">,</span> <span class="s">"lean"</span><span class="o">,</span> <span class="s">"Facade"</span><span class="o">};</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><a id="caseInsensitiveMethodExercise"></a> Rewrite your solution to the previous
+exercise to pass in only a single method reference, not a lambda expression.</p>
+</li>
+<li>
+<p>When trying to break a classical encryption, a common technique is a frequency
+attack, which counts the occurrences of each letters in a ciphertext. Since some
+letters in English are used commonly while others are rare, the count of each
+letter can give insight into how the ciphertext was encrypted and how it can be
+decrypted.</p>
+<div class="paragraph">
+<p>The <code>IntStream</code> class is used for streams of <code>char</code> values. In fact, there&#8217;s a
+<code>chars()</code> method on <code>String</code> objects that returns a stream of <code>int</code> values whose
+numerical values are the same as the <code>char</code> values. First, create an array of
+<code>int</code> values with length 26 to count the occurrences of each letter of the
+alphabet. Then, use the <code>chars()</code> method on a <code>String</code> to process all its
+<code>char</code> values in a stream, incrementing the location in the array that
+corresponds to the letter of the alphabet (0 for A, 1 for B, and so on). Skip
+values that aren&#8217;t uppercase letters.</p>
+</div>
+<div class="paragraph">
+<p>Finally, flesh out this code into a full program that reads in a <code>String</code> and
+reports the fraction of the text corresponding to each letter. Although you must
+use a stream to count the letter occurrences, you may use a loop to print out
+the final letter frequencies.</p>
+</div>
+</li>
+<li>
+<p>Write code that generates a stream of values from 1 up to (and including) 100,
+finds the square root of each number, and prints it out. You can either use
+<code>IntStream</code> to generate these numbers and then convert the stream to a
+<code>DoubleStream</code> or you can generate a <code>DoubleStream</code> directly. No loops should
+appear in the code.</p>
+</li>
+<li>
+<p>Write code that will convert a list of <code>Integer</code> values into a stream, keep
+only the even numbers, and print out the remaining values. Use no loops. For
+example, you might start with the following list.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">75</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">173</span><span class="o">,</span> <span class="mi">176</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">188</span><span class="o">,</span> <span class="mi">130</span><span class="o">,</span> <span class="mi">94</span><span class="o">,</span> <span class="mi">159</span><span class="o">,</span> <span class="mi">52</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, the matching output would be below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>38
+176
+188
+130
+94
+52</pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
@@ -29599,10 +29767,38 @@ processing tasks.</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="3">
+<ol class="arabic" start="15">
 <li>
-<p>Exercise 3: Timing lazy evaluation (sort first and then do something
-complicated vs. the opposite)</p>
+<p>Lazy evaluation is a powerful tool, but it doesn&#8217;t entirely remove the burden
+of optimizing performance. To understand the issues, create an array of <code>int</code>
+values with length 100,000,000. Fill the array with random values by repeatedly
+calling the <code>nextInt()</code> method on a <code>Random</code> object. Now, create an <code>IntStream</code>
+from the array, filter it first to contain only <code>int</code> values that are less than
+10,000, then filter it to contain only odd numbers, and finally use the <code>max()</code>
+method to find the largest value. Then, create a second <code>IntStream</code> from the
+same array, filter it first to contain only odd numbers, then filter it to
+contain only <code>int</code> values that are less than 10,000, and again use the <code>max()</code>
+method to find the largest value. Since both streams are finding the largest odd
+number less than 10,000 in the array, the results should be the same. Now,
+insert timing code to see how long each stream took to find the answer. Run the
+code several times to be sure the answer is consistent. Which stream takes
+longer to run, and why?</p>
+</li>
+<li>
+<p>In <a href="#_parallel_streams">Section 13.6.2</a>, we gave an example using both sequential and parallel
+streams to find the sum of the sines of the numbers from 0 up to (but not
+including) 1,000,000. Add timing code to this example to determine how long the
+sequential and parallel versions take. Is the parallel version faster than the
+sequential? If it is, divide the size of the problem by 10 (100,000 values) to
+see if it&#8217;s still faster. If the parallel version isn&#8217;t faster, multiply the
+size of the problem by 10 (10,000,000 values) and time it again. Keep dividing
+or multiplying the size of the problem until the relative speeds of the
+sequential and parallel versions change.</p>
+</li>
+<li>
+<p>Write a loop that performs the same summation of the sines of numbers from 0
+up (but not including) 1,000,000 and time it. How does its running time compare
+to the sequential stream that performs the same task?</p>
 </li>
 </ol>
 </div>
@@ -36646,8 +36842,8 @@ which is <code>MouseListener</code> better?</p>
 <code>setJMenuBar()</code> to set two different menu bars on a single <code>JFrame</code> object?</p>
 </li>
 <li>
-<p>Describe the situations that the following event listeners are useful for: <code>ActionListener</code>,
-<code>MouseListener</code>, and <code>ItemListener</code>.</p>
+<p>Describe the situations that the following event listeners are useful for:
+<code>ActionListener</code>,<code>MouseListener</code>, and <code>ItemListener</code>.</p>
 </li>
 </ol>
 </div>
@@ -36657,9 +36853,8 @@ which is <code>MouseListener</code> better?</p>
 <div class="olist arabic">
 <ol class="arabic" start="5">
 <li>
-<p>Write a program that creates a
-GUI containing two buttons labeled &#8220;Start&#8221; and &#8220;Done.&#8221; The GUI frame
-should be titled &#8220;Start and Done.&#8221;</p>
+<p>Write a program that creates a GUI containing two buttons labeled &#8220;Start&#8221;
+and &#8220;Done.&#8221; The GUI frame should be titled &#8220;Start and Done.&#8221;</p>
 </li>
 <li>
 <p><a id="mouseEventsExercise"></a> Modify <a href="#SimpleMouseEventsProgram">Program 16.5</a> by implementing
@@ -36676,15 +36871,14 @@ sound, and then play this clip when the button is clicked. Consider
 visiting <a href="https://www.freesound.org" target="_blank" rel="noopener">Freesound.org</a> to find free sound files.</p>
 </li>
 <li>
-<p><a id="selfieExercise"></a> Write a Java program that
-creates a GUI containing a label with a picture of yourself.</p>
+<p><a id="selfieExercise"></a> Write a Java program that creates a GUI containing a label
+with a picture of yourself.</p>
 </li>
 <li>
-<p><a id="animalSoundsExercise"></a> Extend the <code>AnimalSounds</code> class
-developed in <a href="#animalSoundsExample">Example 16.9</a> to include sounds for
-various animals. There are many publicly available sounds
-files for use in your program. The Freesound link above is only one
-source.</p>
+<p><a id="animalSoundsExercise"></a> Extend the <code>AnimalSounds</code> class developed in
+<a href="#animalSoundsExample">Example 16.9</a> to include sounds for various animals. There are many
+publicly available sounds files for use in your program. The Freesound link
+above is only one source.</p>
 </li>
 <li>
 <p><a id="stopPlayingSoundExercise"></a> In <a href="#animalSoundsExample">Example 16.9</a> we stopped both the
@@ -49181,7 +49375,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-06-26 12:32:14 -0400
+Last updated 2024-07-18 14:37:53 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>
