@@ -125,6 +125,7 @@ class AutoXrefTreeprocessor < Extensions::Treeprocessor
 			# Generate RNBCs for exercises and update reference table in the document.
 			if section.title == "Exercises" and section.level == 2 then
 				exercise = 1
+        part = 'a'
 				section.find_by(context: :olist).each do |list|
 					# Only do lists containing exercises, not sub-parts of exercises.
 					unless list.parent.class == Asciidoctor::ListItem
@@ -132,14 +133,20 @@ class AutoXrefTreeprocessor < Extensions::Treeprocessor
 							list.attributes["start"] = exercise.to_s
 						end
 						list.find_by(context: :list_item).each do |item|
-							# Only do exercises, not sub-parts of exercises.						
-							unless item.parent.parent.class == Asciidoctor::ListItem
-								# Hack needed because item.text returns text with substitutions already applied.
-								text = item.instance_variable_get :@text
-								number = "%d.%d" % [chap, exercise]
-								update_exercise_anchor_text(text, number, document)												
-								exercise = exercise + 1						
+              # Hack needed because item.text returns text with substitutions already applied.
+							text = item.instance_variable_get :@text
+							# Sub-part of exercises.						
+							if item.parent.parent.class == Asciidoctor::ListItem then
+                # Use exercise - 1 since visiting an exercise has already incremented the value.
+                number = "%d.%d.%c" % [chap, exercise - 1, part]
+                part = part.ord.next.chr
+              # Full exercise
+              else								
+								number = "%d.%d" % [chap, exercise]								
+								exercise = exercise + 1
+                part = 'a'				
 							end
+              update_exercise_anchor_text(text, number, document)												
 						end						
 					end
 				end

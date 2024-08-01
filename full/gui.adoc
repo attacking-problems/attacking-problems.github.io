@@ -1708,14 +1708,13 @@ which is `MouseListener` better?
 . [[MouseAdaptorExercise]] Why is the `MouseAdapter` abstract class useful?
 . [[JMenuBarExercise]] What do you expect will happen if you used
 `setJMenuBar()` to set two different menu bars on a single `JFrame` object?
-. Describe the situations that the following event listeners are useful for: `ActionListener`,
-`MouseListener`, and `ItemListener`.
+. Describe the situations that the following event listeners are useful for:
+`ActionListener`,`MouseListener`, and `ItemListener`.
 
 *Programming Practice*
 
-. Write a program that creates a
-GUI containing two buttons labeled "`Start`" and "`Done.`" The GUI frame
-should be titled "`Start and Done.`"
+. Write a program that creates a GUI containing two buttons labeled "`Start`"
+and "`Done.`" The GUI frame should be titled "`Start and Done.`"
 . [[mouseEventsExercise]] Modify <<SimpleMouseEventsProgram>> by implementing
 the `mouseExited()`, `mousePressed()`, and `mouseReleased()` methods. Each
 method must display a suitable message in the text box when the corresponding
@@ -1726,13 +1725,12 @@ icon-decorated button plays the sound of a bat squeaking. You will need to add
 an `ActionListener` to the button, create an audio clip for the desired
 sound, and then play this clip when the button is clicked. Consider
 visiting https://www.freesound.org[Freesound.org^] to find free sound files.
-. [[selfieExercise]] Write a Java program that
-creates a GUI containing a label with a picture of yourself.
-. [[animalSoundsExercise]] Extend the `AnimalSounds` class
-developed in <<animalSoundsExample>> to include sounds for
-various animals. There are many publicly available sounds
-files for use in your program. The Freesound link above is only one
-source.
+. [[selfieExercise]] Write a Java program that creates a GUI containing a label
+with a picture of yourself.
+. [[animalSoundsExercise]] Extend the `AnimalSounds` class developed in
+<<animalSoundsExample>> to include sounds for various animals. There are many
+publicly available sounds files for use in your program. The Freesound link
+above is only one source.
 . [[stopPlayingSoundExercise]] In <<animalSoundsExample>> we stopped both the
 chirp and the bark sounds because the action listener corresponding to the
 "`Stop Playing`" button didn't know which sound was playing. Modify

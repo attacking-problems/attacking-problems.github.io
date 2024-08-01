@@ -265,7 +265,7 @@ the beginning of the previous section as follows.
 
 [source,java]
 ----
-while(!atDoor) {
+while (!atDoor) {
     atDoor = walkTowardsDoor();
 }
 ----
@@ -278,7 +278,7 @@ an _infinite loop_.
 
 [source,java]
 ----
-while(true) {
+while (true) {
     System.out.println("Help me!");
 }
 ----
@@ -294,7 +294,7 @@ end. To leave a loop abruptly, you can use the `break` command.
 
 [source,java]
 ----
-while(true) {
+while (true) {
     System.out.println("Help me!");
     break;
 }
@@ -307,7 +307,7 @@ repeats more than once.
 [source,java]
 ----
 int counter = 0;
-while(true) {
+while (true) {
     System.out.print("the loop ");
     counter++;
     if(counter >= 3)
@@ -323,7 +323,7 @@ could have written equivalent code as follows.
 [source,java]
 ----
 int counter = 0;
-while(counter < 3) {
+while (counter < 3) {
     System.out.print("the loop ");
     counter++;
 }
@@ -399,7 +399,7 @@ Let's return to our code that prints out
 [source,java]
 ----
 int counter = 0;
-while(counter < 3) {
+while (counter < 3) {
     System.out.print("the loop ");
     counter++;
 }
@@ -689,10 +689,10 @@ manipulations on it to get the reverse complement.
 ----
 include::{programsdir}/ReverseComplement.java[]
 ----
-<1> This example first creates a `String` filled with the complement of the
+<.> This example first creates a `String` filled with the complement of the
 base pairs from the input `String`.
-<2> Then, it creates a
-new `String` that is the reverse of the complement sequence.
+<.> Then, it creates a new `String` that is the reverse of the complement
+sequence.
 
 Note how
 `complement` is created by appending the `char` corresponding to the
@@ -706,6 +706,38 @@ a separate step.
 ----
 include::{programsdir}/CleverReverseComplement.java[]
 ----
+====
+
+
+[[efficientConcatenationExample]]
+.Efficient concatenation
+====
+Since `String` values are immutable, they can never be changed. Thus, the `+=`
+operator doesn't change the `String`; instead, it creates a new `String` with
+the new information concatenated onto it. Unfortunately, it's inefficient to do
+so if there are many repeated concatenations. DNA sequences could contain
+billions of bases, and building up the reverse complement of a sequence that
+long would generate billions of new `String` objects, putting a strain on memory
+management. In situations where repetitive `String` concatenation occurs, it's
+more efficient to use a `StringBuilder` object, which is similar to a `String`
+but mutable. `StringBuilder` objects have an `append()` method that will insert
+data at the end of the current text representation. They also have an `insert()`
+method that will insert data at the given index. Once the text has been built,
+calling the `toString()` method on the `StringBuilder` object will return the
+`String` object that contains the text represented inside the `StringBuilder`.
+
+The following code is a version of the clever reverse complement using a
+`StringBuilder` instead of `String` concatenation.
+
+.Reverse complement of a DNA sequence using `StringBuilder`.
+[source, java]
+[[StringBuilderReverseComplementProgram]]
+----
+include::{programsdir}/StringBuilderReverseComplement.java[]
+----
+
+Some IDEs will prompt you to automatically convert `String` concatenation inside
+of a loop into equivalent `StringBuilder` code.
 ====
 
 ==== `do`-`while` loops
@@ -744,7 +776,7 @@ int x = 1;
 do {
     System.out.println(x*x);
     x++;
-} while(x <= 10);
+} while (x <= 10);
 ----
 
 This loop behaves exactly the same as the following loop.
@@ -752,7 +784,7 @@ This loop behaves exactly the same as the following loop.
 [source,java]
 ----
 int x = 1;
-while(x <= 10) {
+while (x <= 10) {
     System.out.println(x*x);
     x++;
 }
@@ -777,7 +809,7 @@ int number = random.nextInt(100) + 1;
 do {
     System.out.print("What's your guess? ");
     guess = in.nextInt();
-} while(guess != number);
+} while (guess != number);
 System.out.println("You got it! The number was " + number + ".");
 ----
 
@@ -871,9 +903,8 @@ a counter.
 [source,java]
 ----
 int number = 1;
-while(number <= 100)
+while (number <= 100)
     System.out.println(number);
-}
 ----
 
 This code is presumably intended to print out the first 100 integers,
@@ -987,7 +1018,7 @@ implementation of such a program.
 Scanner in = new Scanner(System.in);
 int number = 0;
 int sum = 0;
-while(number > 0) {
+while (number > 0) {
     sum += number;
     System.out.print("Enter the next number to add: ");
     number = in.nextInt();
@@ -1015,7 +1046,7 @@ statement is empty. Thus, the following is a legal (but infinite) loop.
 [source,java]
 ----
 int i = 100;
-while(i > 0); {
+while (i > 0); {
     System.out.println(i);
     i--;
 }
