@@ -137,7 +137,8 @@ class AutoXrefTreeprocessor < Extensions::Treeprocessor
 							text = item.instance_variable_get :@text
 							# Sub-part of exercises.						
 							if item.parent.parent.class == Asciidoctor::ListItem then
-                number = "%d.%d.%c" % [chap, exercise, part]
+                # Use exercise - 1 since visiting an exercise has already incremented the value.
+                number = "%d.%d.%c" % [chap, exercise - 1, part]
                 part = part.ord.next.chr
               # Full exercise
               else								
