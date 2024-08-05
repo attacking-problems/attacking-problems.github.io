@@ -2055,7 +2055,7 @@ the type parameter <code>T</code> on the outer class as well as the nested class
 </div>
 <div class="paragraph">
 <p>This class is almost indistinguishable from <a href="chap19.html#LinkedListProgram">Program 19.5</a> except that
-is uses type <code>T</code> instead of <code>String</code>.</p>
+it uses type <code>T</code> instead of <code>String</code>.</p>
 </div>
 <div class="paragraph">
 <p>Using generics is mostly like using any other class, but there are a few
@@ -2135,6 +2135,21 @@ you believe the compiler can determine for itself.</p>
 <p>In general, you must always type the full generic type parameter when declaring
 a variable, but you can often use the diamond operator when instantiating a new
 generic object.</p>
+</div>
+<div class="paragraph">
+<p>Combining the <code>var</code> keyword with generic type inference is allowed, but it will
+usually infer the wrong type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">var</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GenericLinkedList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Don't do this!</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the type inferred for <code>list</code> is <code>GenericLinkedList&lt;Object&gt;</code>. Using
+<code>var</code> infers a type from the right half of the assignment, and using the diamond
+operator infers a type from the left half of the assignment. Both guess and wind
+up with a legal but unspecific type. Avoid combining the two.</p>
 </div>
 </div>
 <div class="sect3">

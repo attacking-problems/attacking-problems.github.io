@@ -995,7 +995,7 @@ include::{programsdir}/GenericLinkedList.java[]
 ----
 
 This class is almost indistinguishable from <<LinkedListProgram>> except that
-is uses type `T` instead of `String`.
+it uses type `T` instead of `String`.
 
 
 Using generics is mostly like using any other class, but there are a few
@@ -1051,8 +1051,18 @@ In general, you must always type the full generic type parameter when declaring
 a variable, but you can often use the diamond operator when instantiating a new
 generic object.
 
+Combining the `var` keyword with generic type inference is allowed, but it will
+usually infer the wrong type.
 
+[source, java]
+----
+var list = new GenericLinkedList<>(); // Don't do this!
+----
 
+In this case, the type inferred for `list` is `GenericLinkedList<Object>`. Using
+`var` infers a type from the right half of the assignment, and using the diamond
+operator infers a type from the left half of the assignment. Both guess and wind
+up with a legal but unspecific type. Avoid combining the two.
 
 ==== Using Java Libraries
 

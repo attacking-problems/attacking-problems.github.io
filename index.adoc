@@ -27,12 +27,12 @@ This website is being updated during the summer of 2024, with changes to be comp
 * [ ] Describe enhancements to `switch` statements.
 * [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
 * [ ] Explain the `instanceof` binding variable.
-* [ ] Introduce type inference for type variables.
+* [X] Describe how type inference for type variables interacts with `var`.
 * [ ] Explain the `try`-with-resources feature.
 * [ ] Replace the `File` type with `Path`.
 * [ ] Include an explanation of the `enum` type.
-* [ ] Include a chapter on lambdas, closures, and functional expressions.
-* [ ] Include a chapter on streams (or add to an existing chapter). 
+* [X] Include a chapter on lambdas, closures, and functional expressions.
+* [X] Include a chapter on streams (or add to an existing chapter). 
 * [ ] Add a brief outline of useful JCF classes and interfaces.
 * [ ] Unify discussion of annotations.
 * [ ] Explain the different versions of Java and their features.
