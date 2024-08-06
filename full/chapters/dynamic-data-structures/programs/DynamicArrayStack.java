@@ -5,26 +5,29 @@ public class DynamicArrayStack implements Stack {
     private int size = 0;
     
     public void push(String string) {
-        if(size == strings.length)
+        if (size == strings.length) {
             doubleArray();
+        }
         strings[size++] = string;
     }
     
     public String pop() {
         String value = null;
-        if(size == 0)
+        if (size == 0) {
             System.out.println("Can't pop empty stack!");
-        else
+        } else {
             value = strings[--size];
+        }
         return value;
     }
 	
 	public String top() {
         String value = null;
-        if(isEmpty())
+        if (isEmpty()) {
             System.out.println("No top on an empty stack!");
-        else
+        } else {
             value = strings[size - 1];
+        }
         return value;
     }
 	

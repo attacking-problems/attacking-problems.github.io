@@ -562,7 +562,7 @@ node.
 
 [source, java]
 ----
-include::{programsdir}/SortedLinkedList.java[lines=40..52]
+include::{programsdir}/SortedLinkedList.java[lines=40..53]
 ----
 
 
@@ -1061,52 +1061,63 @@ var list = new GenericLinkedList<>(); // Don't do this!
 
 In this case, the type inferred for `list` is `GenericLinkedList<Object>`. Using
 `var` infers a type from the right half of the assignment, and using the diamond
-operator infers a type from the left half of the assignment. Both guess and wind
-up with a legal but unspecific type. Avoid combining the two.
+operator infers a type from the left half of the assignment. Both are forced to
+guess and wind up with a legal but unspecific type. Avoid combining the two.
 
-==== Using Java Libraries
+==== The Java Collections Framework
 
-Many Java library classes use generics to make them more flexible. The
-`java.util` package includes many classes to implement stacks, queues,
-dynamic arrays, sets, and other useful data structures. These container classes
-are parameterized so that they can be created to hold many different types. We
-illustrate three examples here: `Vector`, `ArrayList`, and `HashMap`. Note that
-there's also a `LinkedList` class, which is a great deal more powerful than the
-`LinkedList` class defined in this chapter. Any class that implements the
-`Iterable` interface can also be used in the enhanced `for` loops described in
-<<Enhanced `for` loops>>. The `ArrayDeque`, `ArrayList`, `HashSet`, `TreeSet`,
-and `Vector` classes all implement `Iterable`. In our examples, a `Vector`
-object and a `Set` (returned by the `entrySet()` method of a `HashMap`) are
-used as targets of enhanced `for` loops.
+The Java Collections Framework (JCF) contains many classes and interfaces that
+use generics for flexibility. The `java.util` package includes classes to
+implement stacks, queues, lists, sets, maps, and other useful data structures.
+These container classes are parameterized so that they can be created to hold
+many different types. We illustrate two examples here: `ArrayList` and
+`HashMap`. Note that there's also a `LinkedList` class which is a great deal
+more powerful than the `LinkedList` class defined in this chapter.
 
-.Vectors
+Any class that implements the `Iterable` interface can also be used in the
+enhanced `for` loops described in <<Enhanced `for` loops>>. All classes that
+implement the `List` interface (including `ArrayList`, `LinkedList`, and
+`Vector`) as well as those that implement the `Set` interface (including
+`HashSet` and `TreeSet`) also implement `Iterable`. In our examples, a `List`
+object and a `Set` object (returned by the `entrySet()` method of a `HashMap`)
+are used as targets of enhanced `for` loops.
+
+.Lists
 ====
 
-A `Vector` (`java.util.Vector`) implements an array of objects that can
-grow at run time. The array is automatically extended whenever an
-attempt is made to store an item exactly one location beyond the last
-element. Unlike a linked list, `Vector` elements can be efficiently
-accessed in any order (by specifying the index, just like an ordinary
-array). An element can be inserted into the middle of the `Vector`,
-causing any elements after the insertion point to be pushed back by an index.
-Arbitrary elements can also be deleted from the `Vector` using the `remove()`
-method.
+Lists of data are useful for almost every Java program. An array is a simple
+implementation of a list, but arrays can't shrink or grow as needed. When you
+need a list with that kind of flexibility, the `List` interface is a great
+choice. It contains `add()` methods to add elements, a `get()` method to 
+retrieve an element, and `remove()` methods to remove elements. To simplify
+code, we often store lists in a variable with a `List` type, but `List` is an
+interface, not a class that can be instantiated.
 
-<<VectorExampleProgram>> illustrates a use of the `Vector`
-class. The program creates an empty `Vector` and generates random
-integers between 1 and 10, appending them to the end of the vector,
+The three most common classes that implement `List` are `ArrayList`,
+`LinkedList`, and `Vector`. `ArrayList` (`java.util.ArrayList`) implements an
+array of objects that can grow at run time. The array is automatically extended
+when it's full and an attempt is made to store another item. Unlike using a
+linked list, `ArrayList` elements can be efficiently accessed in any order (by
+specifying the index, just like an ordinary array). An element can be inserted
+into the middle of the `ArrayList`, causing any elements after the insertion
+point to be pushed back by one index. Arbitrary elements can also be deleted
+from the `ArrayList` using the `remove()` method.
+
+<<ArrayListExampleProgram>> illustrates a use of the `ArrayList`
+class. The program creates an empty `ArrayList` and generates random
+integers between 1 and 10, appending them to the end of the list,
 until their sum is at least 100. Then, it prints the integers, their
 sum, and how many were generated.
 
-.Illustrates the use of the Vector class.
+.Illustrates the use of the `ArrayList` class.
 [source, java]
-[[VectorExampleProgram]]
+[[ArrayListExampleProgram]]
 ----
-include::{programsdir}/VectorExample.java[]
+include::{programsdir}/ArrayListExample.java[]
 ----
 
-Output from a typical run of <<VectorExampleProgram>> is shown
-below:
+Output from a typical run of <<ArrayListExampleProgram>> is shown
+below.
 
 ....
   9
@@ -1127,25 +1138,34 @@ below:
 104 (14 values)
 ....
 
+We recommend the `ArrayList` class for most situations when you want to store
+a list of data. It will usually be the list option whose operations execute
+fastest. However, the `LinkedList` class can perform better in some situations
+when the size of the list is rapidly increasing and decreasing, especially when
+elements are being added to and removed from near the beginning of the list. As
+we'll discuss in <<vectorExample>>, a `Vector` is similar to an `ArrayList` in
+functionality, but its operations are synchronized so that it's safe to share
+between multiple threads.
 ====
 
 [[mapsExample]]
 .Maps
 ====
 
-The `HashMap`(`java.util.HashMap`) is a very useful, general-purpose
-data structure that maintains a dictionary of entries. A dictionary
-associates unique keys with values. You can think of it as _mapping_ a
-_key_ to a _value_. In the Java `HashMap` class, keys and values can be
-arbitrary Java classes.
+The `Map`(`java.util.Map`) is an interface for a useful, general-purpose data
+structure that maintains a dictionary of entries. A dictionary associates unique
+keys with values. You can think of it as _mapping_ a _key_ to a _value_. In the
+Java `Map` interface, keys and values can be arbitrary Java classes. As with the
+`List` interface, there are several different implementations of the `Map`
+interface. The most common are the `HashMap` and `TreeMap` classes.
 
-<<HashMapExampleProgram>> reads a sequence of lines containing
-names and ages. For simplicity, each name is one word, and each age is a
-simple integer. It stores these (name, age) pairs in a
+To show a map in action, <<HashMapExampleProgram>> reads a sequence of lines
+containing names and ages. For simplicity, each name is one word, and each age
+is a simple integer. It stores these (name, age) pairs in a
 `HashMap<String,Integer>` data structure. Once all the input is read and
-`in.hasNext()` returns `false`, the program prints all the keys
-(names), then all the values (ages), and finally it prints the names and
-ages of each person in the input file.
+`in.hasNext()` returns `false`, the program prints all the keys (names), then
+all the values (ages), and finally it prints the names and ages of each person
+in the input file.
 
 .Illustrates using a `HashMap` dictionary to store a mapping from names to ages.
 [source, java]
@@ -1194,7 +1214,45 @@ Tim -> 57
 Hamcost -> 2
 ....
 
+In general, the `HashMap` class will be the faster implementation of the `Map`
+interface. It uses a data structure called a hash table that contains a large
+array with many empty locations. By cleverly jumping to the location associated
+with a key, adding, finding, and removing data from a `HashMap` can be
+remarkably quick. Unfortunately, a `HashMap` doesn't order the keys. If you want
+to be able to retrieve your keys in order (assuming that they can be ordered,
+like the `Integer` and `String` classes can be), you should use a `TreeMap`,
+which internally uses a binary search tree data structure, similar to the one
+we'll discuss in <<Trees>>.
+
+Sets are similar to maps, except that they only have keys with no associated
+values. They're useful data structures for holding collections of unique
+values. If you add a value that's already present in a set, nothing will happen.
+Unsurprisingly, Java provides the `Set` interface for sets. `HashSet`, an
+implementation using a hash table, will usually be the fastest option. As with
+maps, `TreeSet`, an implementation using a binary search tree, might be slower
+but will allow the values in the set to be retrieved in order.
 ====
+
+The following table summarizes several important JCF classes. All of these are
+used frequently in professional Java code.
+
+[.center%autowidth,cols="<.^,<.^,<.^,<.^",]
+|=======================================================================
+|Interface  |Use |Implementation |Details
+
+.3+|`List` .3+|Stores sequential list of data
+|`ArrayList` | Uses dynamic array
+|`LinkedList` | Uses linked list
+|`Vector` | Like `ArrayList` but thread-safe
+
+.2+|`Map` .2+|Stores key-value pairs
+|`HashMap`| Uses hash table
+|`TreeMap`| Uses tree, allows ordering
+
+.2+|`Set` .2+|Stores unique values
+|`HashSet`| Uses hash table
+|`TreeSet`| Uses tree, allows ordering
+|=======================================================================
 
 === Solution: Infix conversion
 
@@ -1246,7 +1304,7 @@ default value.
 
 [source, java]
 ----
-include::{programsdir}/Term.java[lines=20..32]
+include::{programsdir}/Term.java[lines=20..33]
 ----
 
 The most complicated addition to the `Term` class is the
@@ -1322,7 +1380,7 @@ implementation in <<LinkedListQueueProgram>>.
 [source, java]
 [[UseLinkedListQueueProgram]]
 ----
-include::{programsdir}/UseLinkedListQueue.java[lines=1..28]
+include::{programsdir}/UseLinkedListQueue.java[lines=1..31]
 ----
 <.> The program creates a queue.
 <.> It then creates and starts 10 threads, passing them the queue and `true`
@@ -1333,7 +1391,7 @@ for their `adding` value.
 
 [source, java]
 ----
-include::{programsdir}/UseLinkedListQueue.java[lines=30..46]
+include::{programsdir}/UseLinkedListQueue.java[lines=33..49]
 ----
 <.> Each thread's constructor takes a reference to the shared queue and a
 `boolean` that specifies whether it's an adding or a removing thread.
@@ -1440,9 +1498,9 @@ Thread ID removed from queue: 11
 === Concurrency: Thread-safe libraries
 
 As we mentioned in <<Concurrency: Objects>>, some libraries are
-thread safe and some are not. The Java Collections Framework (JCF) is a
-very useful library, but it's also a library that requires you to manage
-your own thread safety if it matters for your program.
+thread-safe and some are not. The JCF is a useful library, but it's also a
+library that requires you to manage your own thread safety if it matters for
+your program.
 
 The JCF defines the `Collection` interface and the `Map` interface. The
 `Collection` interface, which any collection of objects should
@@ -1456,46 +1514,72 @@ As we mentioned in <<interfaces#interfaces>>, an interface can't
 mark a method with the `synchronized` keyword. Consequently, the JCF makes
 no guarantee about the thread safety of a container based on which
 interface it implements. The programmer must read the documentation
-carefully in order to know if a container is thread safe and react accordingly.
+carefully in order to know if a container is thread-safe and react accordingly.
 
-.ArrayList
+[[vectorExample]]
+.`Vector`
 ====
 
-An `ArrayList` is like a `Vector`, with essentially the same interface
-but without synchronization. That is, if two threads attempt to insert or
+A `Vector` is like an `ArrayList`, with essentially the same interface
+but adding synchronization. That is, if two threads attempt to insert or
 remove an element from the same `ArrayList` at the same time, the
 internal state of the `ArrayList` might become corrupt, or the results might be
-incorrect.
+incorrect. For a `Vector`, however, these problems won't happen.
 
-<<ArrayListExampleProgram>> is an example of synchronizing updates to the
-`ArrayList` class with multiple threads.
+<<VectorExampleProgram>> is an example that makes updates to a `Vector` class
+with multiple threads.
 
-.Example of thread-safe use of an `ArrayList`.
+.Example of thread-safe use of an `Vector`.
 [source, java]
-[[ArrayListExampleProgram]]
+[[VectorExampleProgram]]
 ----
-include::{programsdir}/ArrayListExample.java[lines=1..19]
+include::{programsdir}/VectorExample.java[lines=1..20]
 ----
-<.> The `main()` method creates an `ArrayList`.
-<.> It then creates and starts two threads, passing in the `ArrayList` as an
+<.> The `main()` method creates a `Vector`.
+<.> It then creates and starts two threads, passing in the `Vector` as an
 argument to each so that they both share the list.
 <.> After waiting for the threads to finish, the `main()` method prints
 out the contents of the list.
 
 [source, java]
 ----
-include::{programsdir}/ArrayListExample.java[lines=21..38]
+include::{programsdir}/VectorExample.java[lines=22..38]
 ----
-<.> The constructor stores a reference to the shared `ArrayList`.
+<.> The constructor stores a reference to the shared `Vector`.
 <.> Each thread repeats a loop 10 times, appending a `String` to the
-`ArrayList` on each iteration.
+`Vector` on each iteration.
 <.> To prevent concurrent updates from happening, each thread
 synchronizes on the shared variable `list`.
 <.> To make concurrent update attempts more likely without synchronization,
 the thread sleeps for a millisecond on each iteration.
 
+By using `Vector`, each run includes exactly the same number of entries from
+each thread, although the threads don't always alternate in strict lockstep.
 
-*Without* the `synchronized` keyword, a typical run, shown below,
+....
+Thread-0: 0
+Thread-1: 0
+Thread-0: 1
+Thread-1: 1
+Thread-1: 2
+Thread-0: 2
+Thread-1: 3
+Thread-0: 3
+Thread-1: 4
+Thread-0: 4
+Thread-0: 5
+Thread-1: 5
+Thread-1: 6
+Thread-0: 6
+Thread-1: 7
+Thread-0: 7
+Thread-1: 8
+Thread-0: 8
+Thread-1: 9
+Thread-0: 9
+....
+
+However, if we had used an `ArrayList` instead, a possible run, shown below,
 includes a `null` reference in the output, indicating that the internal
 `ArrayList` data structure wasn't updated correctly.
 
@@ -1522,40 +1606,14 @@ Thread-0: 9
 Thread-1: 9
 ....
 
-*With* the `synchronized` keyword, each run includes exactly the same
-number of entries from each thread, although the threads don't always
-alternate in strict lockstep.
-
-....
-Thread-0: 0
-Thread-1: 0
-Thread-0: 1
-Thread-1: 1
-Thread-1: 2
-Thread-0: 2
-Thread-1: 3
-Thread-0: 3
-Thread-1: 4
-Thread-0: 4
-Thread-0: 5
-Thread-1: 5
-Thread-1: 6
-Thread-0: 6
-Thread-1: 7
-Thread-0: 7
-Thread-1: 8
-Thread-0: 8
-Thread-1: 9
-Thread-0: 9
-....
 
 `ArrayList` is much more widely used than `Vector`, not in spite of its lack
-synchronization but *because* of that lack.  Synchronization tools have overhead,
-slowing down execution.  Most programmers aren't focused on writing thread-safe
-code and prefer faster execution.
+synchronization but *because* of that lack.  Synchronization tools have
+overhead, slowing down execution.  Most programmers aren't focused on writing 
+thread-safe code and prefer faster execution.
 
-Whenever synchronization doesn't matter, `ArrayList` is clearly a better choice
-than `Vector`.  When synchronization does matter, the programmer must decide
+Whenever synchronization doesn't matter, `ArrayList` is a better choice than
+`Vector`.  When synchronization does matter, the programmer must decide
 whether to use `Vector` or to use `ArrayList` with explicit synchronization
 tools.
 ====
@@ -1574,7 +1632,7 @@ situations is it better to use a linked list? Explain why in each case.
 .  [[fixedArrayExceptionExercise]] On which line in
 <<ReadIntoFixedArrayProgram>> is an exception generated? Why?
 .  [[alternateGrowArrayExercise]] In
-<<ReadAndGrowArrayProgram>>, is it possible to post-increment
+<<ReadAndGrowArrayProgram>>, is it possible to increment
 `count` inside the `try` clause rather than at the bottom of the `while`
 loop?
 .  [[threeQuarterFullArrayExercise]] Explain why the array inside the `names`

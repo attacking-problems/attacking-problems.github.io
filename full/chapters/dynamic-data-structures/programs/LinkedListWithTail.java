@@ -13,20 +13,22 @@ public class LinkedListWithTail {
         temp.value = value;
         temp.next = head;
         head = temp;
-        if(tail == null)
+        if (tail == null) {
             tail = head;
-        size++;
+        }
+        ++size;
     }
     
     public void addLast(String value) { //<.>
         Node temp = new Node();
         temp.value = value;        
-        if(tail == null)
+        if (tail == null) {
             head = temp;
-        else 
+        } else {
             tail.next = temp;
+        }
 		tail = temp;
-        size++;     
+        ++size;     
     }
     
     public int size() {
@@ -36,8 +38,9 @@ public class LinkedListWithTail {
     public void fillArray(String[] array) {     
         Node temp = head;
         int position = 0;
-        while(temp != null) {
-            array[position++] = temp.value;
+        while (temp != null) {
+            array[position] = temp.value;
+            ++position;
             temp = temp.next;
         }           
     }
