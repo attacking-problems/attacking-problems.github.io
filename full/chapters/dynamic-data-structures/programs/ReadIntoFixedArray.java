@@ -7,12 +7,15 @@ public class ReadIntoFixedArray {
         String[] names = new String[10];
         int count = 0;
 
-        while(in.hasNextLine())
-            names[count++] = in.nextLine();
+        while (in.hasNextLine()) {
+            names[count] = in.nextLine();
+            ++count;
+        }
         
         Arrays.sort(names, 0, count);
         
-        for(String name: names) //<.>
+        for (String name: names) { //<.>
             System.out.println(name);
+        }
     }
 }

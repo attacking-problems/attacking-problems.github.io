@@ -1,21 +1,39 @@
-import java.util.Random;
-import java.util.Vector;
+import java.util.*;
 
-public class VectorExample {
-    public static void main(String[] args) {
-        Random random = new Random();        
-        Vector<Integer> vector = new Vector<Integer>();
+public class VectorExample extends Thread {
+    private List<String> list;
+
+    public static void main(String[] args) throws InterruptedException {
+        List<String> list = new ArrayList<>();   //<.>
         
-        int sum = 0;
-        while(sum < 100) {
-            int n = random.nextInt(10) + 1;
-            vector.add(n);  // append n to end of vector
-            sum += n;
-        }
+        Thread t1 = new VectorExample(list);     //<.>
+        Thread t2 = new VectorExample(list);
+        t1.start(); 
+        t2.start();
 
-        for(int n: vector)
-            System.out.format("%3d%n", n);
-        System.out.println("---");
-        System.out.format("%3d (%d values)%n", sum, vector.size());
+		t1.join();
+		t2.join();
+        
+        for (String text: list) {                //<.>
+            System.out.println(text);
+        }
+    }
+	
+	public VectorExample(List<String> list) {
+		this.list = list; 				         //<.>
+	}
+    
+    public void run() { 
+        for (int i = 0; i < 10; i++) { 	         //<.>
+            list.add(this.getName() + ": " + i); //<.>
+            try { 
+				Thread.sleep(1); 		         //<.>
+			}
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
+
+

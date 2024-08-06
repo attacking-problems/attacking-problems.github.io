@@ -12,7 +12,7 @@ public class LinkedList {
         temp.value = value;
         temp.next = head;
         head = temp;
-        size++;
+        ++size;
     }
     
     public int size() {
@@ -22,8 +22,9 @@ public class LinkedList {
     public void fillArray(String[] array) {     
         Node temp = head;
         int position = 0;
-        while(temp != null) {
-            array[position++] = temp.value;
+        while (temp != null) {
+            array[position] = temp.value;
+            ++position;
             temp = temp.next;
         }           
     }

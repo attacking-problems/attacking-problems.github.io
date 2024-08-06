@@ -15,9 +15,9 @@ public class TermStack {
 
     public Term pop() {
         Term value = null;
-        if (isEmpty())
+        if (isEmpty()) {
             System.out.println("Can't pop empty stack!");
-        else {
+        } else {
             value = head.value;
             head = head.next;
         }
@@ -26,10 +26,11 @@ public class TermStack {
 
     public Term top() {
         Term value = null;
-        if (isEmpty())
+        if (isEmpty()) {
             System.out.println("No top on an empty stack!");
-        else
+        } else {
             value = head.value;
+        }
         return value;
     }
 

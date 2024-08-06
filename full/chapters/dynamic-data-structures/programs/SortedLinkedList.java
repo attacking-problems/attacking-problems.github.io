@@ -13,17 +13,16 @@ public class SortedLinkedList {
         temp.value = value;
         temp.next = null;
         
-        if(head == null) // Empty list <.>
+        if (head == null) { // Empty list <.>
             head = tail = temp;
-        else if(value.compareTo(head.value) < 0) { // Insert at beginning <.>
+        } else if (value.compareTo(head.value) < 0) { // Insert at beginning <.>
             temp.next = head;
             head = temp;            
-        }
-        else { // Insert at middle or end <.>
+        } else { // Insert at middle or end <.>
             Node previous = head;
             Node current = head.next;
             
-            while(current != null && value.compareTo(current.value) >= 0) {
+            while (current != null && value.compareTo(current.value) >= 0) {
                 previous = current;
                 current = current.next;
             }
@@ -31,10 +30,11 @@ public class SortedLinkedList {
             previous.next = temp;
             temp.next = current;
             
-            if(current == null) // Inserting at end of list <.>
+            if (current == null) { // Inserting at end of list <.>
                 tail = temp;
+            }
         }
-        size++;
+        ++size;
     }
     
     public int size() {
@@ -45,7 +45,8 @@ public class SortedLinkedList {
         Node temp = head;
         int position = 0;
         while(temp != null) {
-            array[position++] = temp.value;
+            array[position] = temp.value;
+            ++position;
             temp = temp.next;
         }           
     }

@@ -7,24 +7,27 @@ public class UseLinkedListQueue extends Thread {
         Thread[] threads = new Thread[THREADS];
 		LinkedListQueue queue = new LinkedListQueue(); // <.>
 		
-        for(int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; i++) {
             threads[i] = new UseLinkedListQueue(queue, true);
             threads[i].start();	// <.>
         }
         
-        for(int i = 0; i < THREADS; i++)
+        for (int i = 0; i < THREADS; i++) {
 			threads[i].join(); 	// <.>
+        }
                     
-        for(int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; i++) {
             threads[i] = new UseLinkedListQueue(queue, false);
             threads[i].start();	// <.>
         }
  
-        for(int i = 0; i < THREADS; i++)
+        for (int i = 0; i < THREADS; i++) {
             threads[i].join();
+        }
         
-        while(!queue.isEmpty())
+        while (!queue.isEmpty()) {
             System.out.println("Left in queue: ID = " + queue.dequeue());
+        }
     }
 	
 	public UseLinkedListQueue(LinkedListQueue queue, boolean adding) { //<.>
@@ -33,7 +36,7 @@ public class UseLinkedListQueue extends Thread {
 	}
     
     public void run() {
-        if(adding) {
+        if (adding) {
             long ID = Thread.currentThread().getId();
             System.out.println("Thread ID added to queue: " + ID);
             queue.enqueue("" + ID); // <.>

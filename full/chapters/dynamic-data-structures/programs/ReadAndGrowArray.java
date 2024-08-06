@@ -8,21 +8,22 @@ public class ReadAndGrowArray {
         int count = 0;
         String line = null;
         
-        while(in.hasNextLine()) {
+        while (in.hasNextLine()) {
             line = in.nextLine();
             try {
                 names[count] = line;
             }
-            catch(ArrayIndexOutOfBoundsException e) { // <.>
+            catch (ArrayIndexOutOfBoundsException e) { // <.>
                 names = Arrays.copyOfRange(names, 0, names.length*2); // <.>
                 names[count] = line;
             }
-            count++;
+            ++count;
         }
         
         Arrays.sort(names, 0, count);
         
-        for(String name: names)
+        for (String name: names) {
             System.out.println(name);
+        }
     }
 }
