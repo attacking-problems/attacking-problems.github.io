@@ -33,9 +33,10 @@ they do at the end of the previous paragraph.
 The table below shows more examples of correctly and incorrectly nested
 expressions.
 
-[.center%autowidth%header,cols="<l,<l",]
+[.center%autowidth%unbreakable,cols="<l,<l",]
 |===========================================
 |Correctly Nested |Incorrectly Nested
+
 | |(
 |(){}|}{
 |((abc)){x}|( a { b ) c }
@@ -548,10 +549,11 @@ can be accessed by code from the same class. The following table gives
 the contexts outside the class that can access a field or method marked
 with each modifier.
 
-[.center%autowidth%header,cols=">.>,3*^.>",]
+[.center%autowidth%unbreakable%header,cols=">.>,3*^.>",]
 |======================================================
 |Modifier |Package |Subclass |Unrelated +
 Classes
+
 |`public` |Yes |Yes |Yes
 |`protected` |Yes |Yes |No
 |Package-private |Yes |No |No

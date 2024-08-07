@@ -67,7 +67,7 @@ letters of the alphabet over by a fixed amount.
 Here's a table showing all the unencrypted alphabet with the
 encrypted versions of each letter in each row below, when the key is 7.
 
-[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
 |=======================================================================
 |Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
 |Ciphertext |H|I|J|K|L|M|N|O|P|Q|R|S|T
@@ -106,7 +106,7 @@ Here's a table showing all the unencrypted alphabet in the first row and the
 encrypted versions of each letter in the second, with a value of 5 for _a_ and
 8 for _b_.
 
-[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
 |=======================================================================
 |Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
 |Ciphertext |I|N|S|X|C|H|M|R|W|B|G|L|Q
@@ -149,7 +149,7 @@ using a key of `"SHAKESPEARE"`. Note that the key `"SHAKESPEARE"` is repeated as
 many times as necessary to provide a letter to add to each letter in the
 plaintext.
 
-[.center%autowidth,cols="<.^s,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
 |=======================================================================
 |Plaintext  |C|R|Y|H|A|V|O|C|A|N|D|L|E|T|S
 |Key        |S|H|A|K|E|S|P|E|A|R|E|S|H|A|K

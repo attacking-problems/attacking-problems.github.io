@@ -228,20 +228,17 @@ have advocated that the terms kibibyte (KiB), mebibyte (MiB), gibibyte
 of 2 while the traditional names be used to refer only to the units
 based on powers of 10, but the new terms have not yet become popular.
 
-[.center%autowidth,cols="<,<,<,<",options="header",]
+[.center%autowidth%unbreakable,cols="<,<,<,<",]
 |=======================================================================
 |Unit |Size |Bytes |Practical Measure
-|byte |8 bits |2^0^ = 10^0^ |a single character
 
+|byte |8 bits |2^0^ = 10^0^ |a single character
 |kilobyte (KB) |1,024 bytes |2^10^ &#8776; 10^3^ |a
 paragraph of text
-
 |megabyte (MB) |1,024 kilobytes |2^20^ &#8776; 10^6^ |a
 minute of MP3 music
-
 |gigabyte (GB) |1,024 megabytes |2^30^ &#8776; 10^9^ |an
 hour of standard definition streaming video
-
 |terabyte (TB) |1,024 gigabytes |2^40^ &#8776; 10^12^
 |80% of human memory capacity, +
 estimated by Raymond Kurzweil
@@ -256,7 +253,7 @@ largest. Effective speed is hard to measure (and is changing as
 technology progresses), but note that each layer in the pyramid tends to
 be 10-100 times slower than the previous layer.
 
-[cols="<15,<25,<60",options="header",]
+[%unbreakable,cols="<15,<25,<60",]
 |=======================================================================
 |Memory |Typical Capacity |Use
 
@@ -683,18 +680,19 @@ written.
 Thus, 337~8~ = 255~10~, 377~10~ = 377~10~,
 and 377~16~ = 887~10~. Base numbers are always written
 in base 10. A number without a subscript is assumed to be in base 10. In
-Java, there's no way to mark subscripts, so prefixes are used. A
-prefix of `0` is used for octal, no prefix is used for decimal, and a prefix
-of `0x` is used for hexadecimal. A numeral cannot be marked as binary in
-Java. The corresponding numerals in Java code would thus be written `0377`, `377`,
-and `0x377`. Be careful not to pad numbers with zeroes in Java since they might be interpreted as base 8! Remember that
-the value `056` is *not* the same as the value `56` in Java.
+Java, there's no way to mark subscripts, so prefixes are used. A prefix of `0b`
+is used for binary, a prefix of `0` is used for octal, no prefix is used for
+decimal, and a prefix of `0x` is used for hexadecimal. The corresponding
+numerals in Java code would thus be written `0377`, `377`, and `0x377`. Be
+careful not to pad numbers with zeroes in Java since they might be interpreted
+as base 8! Remember that the value `056` is *not* the same as the value `56` in
+Java.
 
 The following table lists a few characteristics of the four number
 systems we have discussed with representations of the numbers 7 and
 29.
 
-[.center%autowidth,cols="<.^,^.^,<.^,<.^,<.^",options="header",]
+[.center%autowidth%unbreakable%header,cols="<.^,^.^,<.^,<.^,<.^",]
 |=======================================================================
 <.^|Number System
 ^.^|Base
@@ -703,7 +701,7 @@ systems we have discussed with representations of the numbers 7 and
 Numerals
 <.^|Java +
 Numerals
-|Binary |2 |0, 1 |111~2~, 11101~2~ | N/A
+|Binary |2 |0, 1 |111~2~, 11101~2~ | `0b111`, `0b11101`
 |Octal |8 |0, 1, 2, 3, 4, 5, 6, 7 |7~8~, 35~8~|`07`, `035`
 |Decimal |10 |0, 1, 2, 3, 4, 5, 6, 7, 8, 9 |7, 29|`7`, `29`
 |Hexadecimal |16 |0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F|7~16~, 1D~16~ |`0x7`,`0x1D`
@@ -757,9 +755,10 @@ column lists the step number. The second column contains the number to
 be divided by 2 at each step. The third column contains the quotient for
 each step, and the last column contains the current remainder.
 
-[.center%autowidth,cols="^,>,>,>",options="header",]
+[.center%autowidth%unbreakable,cols="^,>,>,>",]
 |=========================================
-|*Step* |*Number* |*Quotient* |*Remainder*
+|Step |Number |Quotient |Remainder
+
 |1 |23 |11 |1
 |2 |11 |5 |1
 |3 |5 |2 |1
@@ -791,7 +790,7 @@ We use hexadecimal because it's straightforward to convert from it to
 binary or back. The following table lists binary equivalents for the 16
 hexadecimal digits.
 
-[.center%autowidth,cols="^.>,^.>,^,^.>,^.>",options="header",]
+[.center%autowidth%unbreakable%header,cols="^.>,^.>,^,^.>,^.>",]
 |==============================================================
 |Hexadecimal +
 Digit
@@ -802,6 +801,7 @@ Equivalent
 Digit
 |Binary +
 Equivalent
+
 |0 |0000  | |8 |1000
 |1 |0001  | |9 |1001
 |2 |0010  | |A |1010
@@ -851,11 +851,12 @@ useful to understand how this process works and compare it to decimal arithmetic
 The table below lists rules for
 binary addition. +
 
-[.center%autowidth,cols="^,>,>"]
+[.center%autowidth%unbreakable,cols="^h,>,>"]
 |========
-|*+* |*0* |*1*
-|*0* |0 |1
-|*1* |1 |10
+|+ |0 |1
+
+|0 |0 |1
+|1 |1 |10
 |========
 
 As indicated above, the addition of two 1s leads to a 0 with a carry of
@@ -873,9 +874,10 @@ techniques described above, we can find that 60 = 111100~2~
 and 6 = 110~2~. Inside the computer, these numbers would
 already be in binary and padded to fill 8 bits. +
 
-[.center%autowidth,cols="^,>,>",options=header]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |=====================
 | |Binary |Decimal
+
 | m|0011 1100 m|60
 |+ m|0000 0110 m|6
 | m|0100 0010 m|66
@@ -888,11 +890,12 @@ binary without conversion to decimal at any point.
 Subtraction in binary is also similar to subtraction in decimal. The
 rules are given in the following table.
 
-[.center%autowidth,cols="^,>,>"]
+[.center%autowidth%unbreakable,cols="^h,>,>"]
 |==========
-|*-* |*0* |*1*
-|*0* |0 |1
-|*1* |(1)1 |0
+|- |0 |1
+
+|0 |0 |1
+|1 |(1)1 |0
 |==========
 
 When subtracting a 1 from a 0, a 1 is borrowed from the next left
@@ -902,9 +905,10 @@ position. The next example illustrates binary subtraction.
 ====
 Again, we'll use 60 and 6 and their binary equivalents given above.
 
-[.center%autowidth,cols="^,>,>",options=header]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |=====================
 | |Binary |Decimal
+
 | m|0011 1100 m|60
 |- m|0000 0110 m|6
 | m|0011 0110 m|54
@@ -996,9 +1000,10 @@ action.
 We'll add -126 and 126. After performing the needed conversions, their
 8-bit, two's complement representations are `1000 0010` and `0111 1110`.
 
-[.center%autowidth,cols="^,>,>",options=header]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |=====================
 | |Binary |Decimal
+
 | m|1000 0010 m|-126
 |+ m|0111 1110 m|126
 | m|0000 0000 m|0
@@ -1009,9 +1014,10 @@ As expected, the sum is 0.
 Now, let's add the two negative integers -126 and -2, whose 8-bit, two's
 complement representations are `1000 0010` and `1111 1110`.
 
-[.center%autowidth,cols="^,>,>",options=header]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |=====================
 | |Binary |Decimal
+
 | m|1000 0010 m|-126
 |+ m|1111 1110 m|-2
 | m|1000 0000 m|-128
@@ -1043,9 +1049,10 @@ number.
 Let's add the numbers 124 and 6. Their 8-bit, two's complement
 representations are `0111 1100` and `0000 0110`.
 
-[.center%autowidth,cols="^,>,>"]
+[.center%autowidth%unbreakable,cols="^,>,>"]
 |=====================
-| |*Binary* |*Decimal*
+| |Binary |Decimal
+
 | m|0111 1100 m|124
 |+ m|0000 0110 m|6
 | m|1000 0010 m|-126
@@ -1069,9 +1076,10 @@ and division, there are also operations that work directly on the binary
 representations of the numbers. Some of these operators have clear relationships
 to mathematical operations, and some don't.
 
-[.center,cols="^.<15,<.<20,<.<65",options="header",width=90%]
+[.center%unbreakable,cols="^.<15,<.<20,<.<65",width=90%]
 |=======================================================================
 |Operator |Name |Description
+
 | `&`  |Bitwise AND |Combines two binary representations into a new
 representation which has a 1 in every position where both the original
 representations have a 1
@@ -1137,9 +1145,10 @@ proceeding.
 
 Let's consider the result of `21 & 27`.
 
-[.center%autowidth,cols="^,>,>",options=header,]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |==================================================
 | |Binary |Decimal
+
 | |`0000 0000 0000 0000 0000 0000 0001 0101` |21
 |`&` |`0000 0000 0000 0000 0000 0000 0001 1011` |27
 | |`0000 0000 0000 0000 0000 0000 0001 0001` |17
@@ -1147,9 +1156,10 @@ Let's consider the result of `21 & 27`.
 
 Note how this result is different from `21 | 27`.
 
-[.center%autowidth,cols="^,>,>",options=header,]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |==================================================
 | |Binary |Decimal
+
 | |`0000 0000 0000 0000 0000 0000 0001 0101` |21
 |`\|` |`0000 0000 0000 0000 0000 0000 0001 1011` |27
 | |`0001 1111` |31
@@ -1157,9 +1167,10 @@ Note how this result is different from `21 | 27`.
 
 And also from `21 ^ 27`.
 
-[.center%autowidth,cols="^,>,>",options=header,]
+[.center%autowidth%unbreakable,cols="^,>,>",]
 |=================================================
 | |Binary |Decimal
+
 | |`0000 0000 0000 0000 0000 0000 0001 0101` |21
 |`^` |`0000 0000 0000 0000 0000 0000 0001 1011` |27
 | |`0000 1110` |14
@@ -1262,9 +1273,10 @@ the next example.
 Let's convert 0.8125 to binary. The table below shows the steps to do
 so.
 
-[.center,cols=">10,>20,>20,>25,>25",options="header",width=60%]
+[.center%unbreakable,cols=">10,>20,>20,>25,>25",width=60%]
 |=======================================================================
 |Step |_f_ |2__f__ |Integer part |Remainder
+
 |1 |0.8125 |1.625 |1 |0.625
 
 |2 |0.625 |1.25 |1 |0.25
@@ -1293,9 +1305,10 @@ Let's convert 0.3 to binary assuming that we have only five bits in
 which to represent the fraction. The following table shows the five
 steps in the conversion process. +
 
-[.center,cols=">10,>20,>20,>25,>25",options="header",width=60%]
+[.center%unbreakable,cols=">10,>20,>20,>25,>25",width=60%]
 |=======================================================================
 |Step |_f_ |2__f__ |Integer part |Remainder
+
 |1 |0.3 |0.6 |0 |0.6
 
 |2 |0.6 |1.2 |1 |0.2
@@ -1441,9 +1454,10 @@ largest positive number for both integers and floating-point values, but
 *smallest* means the most negative number for integers and the smallest
 positive non-zero value for floating-point values. +
 
-[.center%autowidth,cols="<,<,<",options="header"]
+[.center%autowidth%unbreakable,cols="<,<,<",]
 |=======================================================================
 |Format |Largest number |Smallest number
+
 |32-bit integer |2,147,483,647
 |-2,147,483,648
 
@@ -1517,9 +1531,10 @@ time and simply add the price of each item until all items have been
 scanned at the register. The table below shows the value of the total
 cost for different quantities of items.
 
-[.center%autowidth,cols=">,>,>,>,>",options="header"]
+[.center%autowidth%unbreakable,cols=">,>,>,>,>",]
 |=======================================================================
 |Items |Correct Cost |Calculated Cost |Absolute Error |Relative Error
+
 |100 |199.0 |1.9900015E02 |1.5258789E-04 |7.6677333E-07
 
 |500 |995.0 |9.9499670E02 |3.2958984E-03 |3.3124606E-06
@@ -1573,9 +1588,10 @@ more similar over time, and most people could be
 productive using any of the three. The following table lists some pros
 and cons for each OS.
 
-[.center,cols="<20h,<40,<40",options="header"]
+[.center%unbreakable,cols="<20h,<40,<40",]
 |=======================================================================
 |OS |Pros |Cons
+
 |Microsoft Windows
 a|
 [.text-left]

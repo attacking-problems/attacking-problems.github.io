@@ -14,7 +14,7 @@ def convert()
     source = 'index.adoc'
 
     Asciidoctor.convert_file source, to_file: true, to_dir: '../pdf', \
-        attributes: { "pdf-themesdir" => "..", "pdf-theme" => "book" }, backend: 'pdf', safe: 'unsafe'
+        attributes: { "pdf-themesdir" => "..", "pdf-theme" => "book", "pdf-fontsdir" => "../fonts" }, backend: 'pdf', safe: 'unsafe'
 
     $VERBOSE = old_verbose
 end

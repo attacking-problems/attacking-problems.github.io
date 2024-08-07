@@ -661,9 +661,10 @@ DNA is usually double stranded, with each base paired to another
 specific base, called its complementary base. The following table shows
 the association between each base and its complementary base.
 
-[.center%autowidth%header,cols="^,^,^",]
+[.center%autowidth%unbreakable,cols="^,^,^",]
 |============================================
 |Base|Abbreviation|Complementary Base
+
 |Adenine |A |T
 |Cytosine |C |G
 |Guanine |G |C

@@ -798,9 +798,10 @@ context of interfaces?
 constants storing the wavelengths in nanometers for each of the seven
 colors of light, as given below.
 +
-[.center%autowidth%header,cols="^,^",]
+[.center%autowidth%unbreakable,cols="^,^",]
 |======================
 |Color |Wavelength (nm)
+
 |Red |680
 |Orange |605
 |Yellow |580

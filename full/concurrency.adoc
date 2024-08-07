@@ -1009,10 +1009,10 @@ was executed for matrices of different sizes (_n_ × _n_).
 For each size, the sequential and concurrent execution times in seconds
 and the corresponding speedup are listed in the following table.
 
-[.center%autowidth%header,cols="4*<",]
+[.center%autowidth%unbreakable,cols="4*<",]
 |=======================================================================
-|Size (_n_) |_t_~_s_~ (s) |_t_~_c_~ (s)
-|Speedup
+|Size (_n_) |_t_~_s_~ (s) |_t_~_c_~ (s) |Speedup
+
 |100 |0.013 |0.9 |0.014
 
 |500 |1.75 |4.5 |0.39
@@ -1449,9 +1449,10 @@ Eight? What implications does Amdahl's Law have?
 .  [[minimumTimeForTasksExercise]] Consider the following table of
 tasks:
 +
-[.center%autowidth%header,cols="<.^,^.^,^.^,<.^",]
+[.center%autowidth%unbreakable,cols="<.^,^.^,^.^,<.^",]
 |===========================================
 |Task |Time |Concurrency |Dependency
+
 |Washing Dishes |30 |3 |
 |Cooking Dinner |45 |3 |Washing Dishes
 |Cleaning Bedroom |10 |2 |

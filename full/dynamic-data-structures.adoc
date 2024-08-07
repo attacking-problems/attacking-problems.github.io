@@ -30,9 +30,10 @@ after the operands it works on. The following table gives
 a few examples of expressions written in both infix and postfix
 notation.
 
-[.center%autowidth%header,cols="<,<"]
+[.center%autowidth%unbreakable,cols="<,<"]
 |============================
 |Infix  |Postfix
+
 |`3 + 7`  |`3 7 +`
 |`4 * 2`  |`4 2 *`
 |`1 + 9 * 2`  |`1 9 2 * +`
@@ -1236,7 +1237,7 @@ but will allow the values in the set to be retrieved in order.
 The following table summarizes several important JCF classes. All of these are
 used frequently in professional Java code.
 
-[.center%autowidth,cols="<.^,<.^,<.^,<.^",]
+[.center%autowidth%unbreakable,cols="<.^,<.^,<.^,<.^",]
 |=======================================================================
 |Interface  |Use |Implementation |Details
 
