@@ -23,9 +23,10 @@ player does not have a pair or better, he or she loses the money bet.
 Below is a table giving one possible set of payoffs for each possible
 hand.
 
-[.center%autowidth%header,cols="^,^,^,^,^"]
+[.center%autowidth%unbreakable,cols="^,^,^,^,^"]
 |===================
 |Hand |Payoff | |Hand | Payoff
+
 |Straight Flush |40| |Flush |2
 |Three of a Kind |30| |Pair |1
 |Straight |6| |Nothing |0
@@ -1114,9 +1115,10 @@ to the `Math` library.
 Here are some examples of the return values your method should give for
 various input values of _n_.
 +
-[.center%autowidth%header,cols="5*^"]
+[.center%autowidth%unbreakable,cols="5*^"]
 |=============================
 |_n_ |Return Value | |_n_ |Return Value
+
 |1 |0 | |16 |4
 |2 |1 | |100 |6
 |4 |2 | |512 |9

@@ -48,9 +48,10 @@ The `Bank` class has three methods, `disableAlarm()`, `breakIn()`, and
 The `Loot` class has a `carryAway()` method. Below is a table of the
 exceptions which can be thrown by each of the methods.
 
-[.center%autowidth%header,cols="3*<.^l",]
+[.center%autowidth%unbreakable,cols="3*<.^l",]
 |=================================================
 |Class |Method |Exceptions
+
 .6+|Bank .2+|disableAlarm() |BurglarAlarmException
 							|WatchmanException
 		.3+|breakIn()		|BurglarAlarmException
@@ -972,9 +973,10 @@ Write a short program with a `check()` method that takes a single
 an exception if the password does not meet the matching criteria listed
 below.
 +
-[.center%autowidth%header,cols="<.^,<.^l"]
+[.center%autowidth%unbreakable,cols="<.^,<.^l"]
 |==================================================================
 |Password criteria|Exception
+
 |At least 8 characters in length |TooShortException
 |Contains both upper- and lowercase letters |NoMixedCaseException
 |Contains at least one numerical digit |NoDigitException

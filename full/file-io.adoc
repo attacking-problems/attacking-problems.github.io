@@ -652,9 +652,10 @@ The following table summarizes the three approaches to binary I/O we've
 discussed.  Be sure to consult each class's documentation for more information.
 
 
-[.center%autowidth,cols="<,<,<.^,<.^",options="header",]
+[.center%autowidth%unbreakable,cols="<,<,<.^,<.^",]
 |=======================================================================
 |Class |Use |Purpose |Limitations
+
 |`FileInputStream` |Input .2+<.^|Simplest binary I/O .2+| Can only read and write `byte` values
 |`FileOutputStream`| Output
 |`DataInputStream` |Input .2+<.^|Binary I/O for primitive types .2+| Can't read and write whole objects

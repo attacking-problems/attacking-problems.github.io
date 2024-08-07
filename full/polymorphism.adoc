@@ -950,9 +950,10 @@ employees pay a 6.2% social security tax and a 1.45% Medicare tax every
 year, but neither kind of student pays these taxes. All three groups pay
 normal income tax according to the following table.
 +
-[.center%autowidth%header,cols="^,^"]
+[.center%autowidth%unbreakable,cols="^,^"]
 |=====================================
 |Marginal Tax Rate |Income Bracket
+
 |10% |$0 - $9,700
 |12% |$9,701 - $39,475
 |22% |$39,476 - $84,200

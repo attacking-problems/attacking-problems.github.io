@@ -1,9 +1,35 @@
 # Used with asciidoctor-pdf.
 extends: default-with-fallback-font
-literal:
+font:
+  catalog:
+    merge: true
+    RobotoMono:
+      normal: RobotoMono-Regular.ttf
+      bold: RobotoMono-Bold.ttf
+      italic: RobotoMono-Italic.ttf
+      bold_italic: RobotoMono-BoldItalic.ttf
+    NotoSerif:
+      normal: NotoSerif-Regular.ttf
+      bold: NotoSerif-Bold.ttf
+      italic: NotoSerif-Italic.ttf
+      bold_italic: NotoSerif-BoldItalic.ttf
+base:
+  font_family: NotoSerif
+caption:
+  align: center
+codespan:
+  font_family: RobotoMono
   font_color: 000000 # 101010
   background_color: ffffff # f7f7f7
-#image:
-#  align: center
-#caption:
-#  align: center
+code:
+  font_family: RobotoMono
+  font_size: 9
+  caption:
+    align: left
+image:
+  align: center
+table:
+  align: center
+example:
+  caption:
+    align: left

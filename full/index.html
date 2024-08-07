@@ -842,6 +842,11 @@ pre.rouge .err {
 <div class="sect1">
 <h2 id="computer-basics">1. Computer Basics</h2>
 <div class="sectionbody">
+<style>
+  .imageblock > .title {
+    text-align: inherit;
+  }
+</style>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -1743,12 +1748,13 @@ written.</p>
 <p>Thus, 337<sub>8</sub> = 255<sub>10</sub>, 377<sub>10</sub> = 377<sub>10</sub>,
 and 377<sub>16</sub> = 887<sub>10</sub>. Base numbers are always written
 in base 10. A number without a subscript is assumed to be in base 10. In
-Java, there&#8217;s no way to mark subscripts, so prefixes are used. A
-prefix of <code>0</code> is used for octal, no prefix is used for decimal, and a prefix
-of <code>0x</code> is used for hexadecimal. A numeral cannot be marked as binary in
-Java. The corresponding numerals in Java code would thus be written <code>0377</code>, <code>377</code>,
-and <code>0x377</code>. Be careful not to pad numbers with zeroes in Java since they might be interpreted as base 8! Remember that
-the value <code>056</code> is <strong>not</strong> the same as the value <code>56</code> in Java.</p>
+Java, there&#8217;s no way to mark subscripts, so prefixes are used. A prefix of <code>0b</code>
+is used for binary, a prefix of <code>0</code> is used for octal, no prefix is used for
+decimal, and a prefix of <code>0x</code> is used for hexadecimal. The corresponding
+numerals in Java code would thus be written <code>0377</code>, <code>377</code>, and <code>0x377</code>. Be
+careful not to pad numbers with zeroes in Java since they might be interpreted
+as base 8! Remember that the value <code>056</code> is <strong>not</strong> the same as the value <code>56</code> in
+Java.</p>
 </div>
 <div class="paragraph">
 <p>The following table lists a few characteristics of the four number
@@ -1780,7 +1786,7 @@ Numerals</th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">0, 1</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">111<sub>2</sub>, 11101<sub>2</sub></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0b111</code>, <code>0b11101</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Octal</p></td>
@@ -1873,10 +1879,10 @@ each step, and the last column contains the current remainder.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Step</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Number</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Quotient</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Remainder</strong></th>
+<th class="tableblock halign-center valign-top">Step</th>
+<th class="tableblock halign-right valign-top">Number</th>
+<th class="tableblock halign-right valign-top">Quotient</th>
+<th class="tableblock halign-right valign-top">Remainder</th>
 </tr>
 </thead>
 <tbody>
@@ -2078,19 +2084,21 @@ binary addition.<br></p>
 <col>
 <col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">+</th>
+<th class="tableblock halign-right valign-top">0</th>
+<th class="tableblock halign-right valign-top">1</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>+</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>0</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>0</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">0</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">1</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">10</p></td>
 </tr>
@@ -2161,19 +2169,21 @@ rules are given in the following table.</p>
 <col>
 <col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">-</th>
+<th class="tableblock halign-right valign-top">0</th>
+<th class="tableblock halign-right valign-top">1</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>-</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>0</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>0</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">0</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">1</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">(1)1</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 </tr>
@@ -2446,12 +2456,14 @@ representations are <code>0111 1100</code> and <code>0000 0110</code>.</p>
 <col>
 <col>
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>Binary</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>Decimal</strong></p></td>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-right valign-top">Binary</th>
+<th class="tableblock halign-right valign-top">Decimal</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><code>0111 1100</code></p></td>
@@ -5171,7 +5183,7 @@ the last line of the program displays this information with
 <code>showMessageDialog()</code>. <a href="#showInputDialogFigure">Figure 2.4</a> shows the
 GUI as the user is entering input.</p>
 </div>
-<div id="showInputDialogFigure" class="imageblock text-text-center text-center">
+<div id="showInputDialogFigure" class="imageblock text-center">
 <div class="content">
 <img src="chapters/intro/images/showInputDialog.png" alt="showInputDialog" width="45%">
 </div>
@@ -6611,8 +6623,8 @@ types and reference types.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Primitive Types</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Reference Types</strong></th>
+<th class="tableblock halign-left valign-top">Primitive Types</th>
+<th class="tableblock halign-left valign-top">Reference Types</th>
 </tr>
 </thead>
 <tbody>
@@ -6790,7 +6802,6 @@ hold. These ranges and the number of bytes used to represent variables
 from each type are given below.</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content center">
-<caption class="title">Table 3.1 Ranges for primitive integer types in Java.</caption>
 <colgroup>
 <col>
 <col>
@@ -6800,10 +6811,10 @@ from each type are given below.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Type</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Bytes</strong></th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-center valign-top">Bytes</th>
 <th class="tableblock halign-right valign-top"></th>
-<th class="tableblock halign-center valign-top"><strong>Range</strong></th>
+<th class="tableblock halign-center valign-top">Range</th>
 <th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
@@ -7125,8 +7136,8 @@ and the floating-point primitive types.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Operator</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -7347,9 +7358,9 @@ we cover in the next subsection.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Example</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Example</th>
+<th class="tableblock halign-center valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -7469,9 +7480,9 @@ their own special operators, <code>++</code> and <code>--</code>.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Example</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Example</th>
+<th class="tableblock halign-center valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -7608,9 +7619,9 @@ in Java.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Name</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -8052,8 +8063,8 @@ escape sequences.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Escape Sequence</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Character</strong></th>
+<th class="tableblock halign-center valign-top">Escape Sequence</th>
+<th class="tableblock halign-center valign-top">Character</th>
 </tr>
 </thead>
 <tbody>
@@ -8160,9 +8171,9 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Symbol</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Read as</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Example</strong></th>
+<th class="tableblock halign-center valign-top">Symbol</th>
+<th class="tableblock halign-left valign-top">Read as</th>
+<th class="tableblock halign-left valign-top">Example</th>
 </tr>
 </thead>
 <tbody>
@@ -8239,9 +8250,9 @@ logical NOT (<code>!</code>) operators.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Name</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Description</strong></th>
+<th class="tableblock halign-center valign-middle">Name</th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -8955,10 +8966,9 @@ of mathematical methods through the <code>Math</code> class.
 The following table lists a few of the methods available. For a
 complete list of methods provided by the <code>Math</code> class at the time of
 writing, see the Oracle
-<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html" target="_blank" rel="noopener">Math documentation</a>.</p>
+<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html" target="_blank" rel="noopener">Math documentation</a>. Note that all angles are given in radians.</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content center">
-<caption class="title">Table 3.2 A sample of methods available in the Java <code>Math</code> class. Arguments to trigonometric methods are given in radians.</caption>
 <colgroup>
 <col>
 <col>
@@ -8966,9 +8976,9 @@ writing, see the Oracle
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Sample use</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Purpose</strong></th>
+<th class="tableblock halign-center valign-middle">Method</th>
+<th class="tableblock halign-left valign-middle">Sample use</th>
+<th class="tableblock halign-left valign-middle">Purpose</th>
 </tr>
 </thead>
 <tbody>
@@ -9367,8 +9377,8 @@ do these tasks.<br></p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-middle"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Purpose</strong></th>
+<th class="tableblock halign-left valign-middle">Method</th>
+<th class="tableblock halign-left valign-middle">Purpose</th>
 </tr>
 </thead>
 <tbody>
@@ -9473,8 +9483,8 @@ value that can be represented. Here is a table listing these constants.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-middle"><strong>Constant</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-left valign-middle">Constant</th>
+<th class="tableblock halign-left valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -10703,7 +10713,7 @@ below.</p>
 <div class="paragraph">
 <p>This truth table gives all the values for <em>x</em> ⊕ <em>y</em>.</p>
 </div>
-<table class="tableblock frame-all grid-all fit-content text-center center">
+<table class="tableblock frame-all grid-all fit-content center">
 <colgroup>
 <col>
 <col>
@@ -10749,7 +10759,7 @@ then NOT applied to that condition will yield false, and vice versa.</p>
 <div class="paragraph">
 <p>Here&#8217;s a truth table for NOT, using the symbol ¬ to represent the NOT operation.</p>
 </div>
-<table class="tableblock frame-all grid-all fit-content text-center center">
+<table class="tableblock frame-all grid-all fit-content center">
 <colgroup>
 <col>
 <col>
@@ -24932,47 +24942,47 @@ following methods.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Purpose</strong></th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clone()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>clone()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Make a separate copy of an object.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>equals()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>equals()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determine if two objects are the same.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalize()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>finalize()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Perform cleanup when an object is garbage collected. Similar to a destructor in C&#43;&#43;. Rarely used.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getClass()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>getClass()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Find out what the class type of a given object is.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hashCode()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hashCode()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get the hash code for an object, useful for making hash
 tables of objects.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notify()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>notify()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used for synchronization with threaded programs. More in
 <a href="#synchronization">Chapter 15</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifyAll()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>notifyAll()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Same as previous.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toString()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>toString()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get a <code>String</code> representation of the given object.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>wait()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used with <code>notify()</code> and <code>notifyAll()</code>.</p></td>
 </tr>
 </tbody>
@@ -27390,7 +27400,7 @@ encrypted versions of each letter in each row below, when the key is 7.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">B</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
@@ -27406,7 +27416,7 @@ encrypted versions of each letter in each row below, when the key is 7.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">M</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">J</p></td>
@@ -27422,10 +27432,10 @@ encrypted versions of each letter in each row below, when the key is 7.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">T</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle" colspan="14"></td>
+<th class="tableblock halign-left valign-middle" colspan="14"></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
@@ -27441,7 +27451,7 @@ encrypted versions of each letter in each row below, when the key is 7.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">W</p></td>
@@ -27512,7 +27522,7 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">B</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
@@ -27528,7 +27538,7 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <td class="tableblock halign-center valign-middle"><p class="tableblock">M</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
@@ -27544,10 +27554,10 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Q</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle" colspan="14"></td>
+<th class="tableblock halign-left valign-middle" colspan="14"></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">N</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">O</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
@@ -27563,7 +27573,7 @@ encrypted versions of each letter in the second, with a value of 5 for <em>a</em
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Z</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">V</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">F</p></td>
@@ -27639,7 +27649,7 @@ plaintext.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
@@ -27657,7 +27667,7 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Key</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Key</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">H</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
@@ -27675,7 +27685,7 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">K</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">U</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">Y</p></td>
@@ -27693,10 +27703,10 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">C</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle" colspan="16"></td>
+<th class="tableblock halign-left valign-middle" colspan="16"></th>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Plaintext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Plaintext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">L</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">I</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
@@ -27714,7 +27724,7 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">R</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Key</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Key</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">S</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
@@ -27732,7 +27742,7 @@ plaintext.</p>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Ciphertext</strong></p></td>
+<th class="tableblock halign-left valign-middle"><p class="tableblock">Ciphertext</p></th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">P</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">A</p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">E</p></td>
@@ -49546,7 +49556,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-06-26 12:32:14 -0400
+Last updated 2024-08-07 14:58:36 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

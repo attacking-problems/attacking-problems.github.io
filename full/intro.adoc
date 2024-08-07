@@ -875,11 +875,10 @@ dialog.
 
 <<showMessageDialogFigure>> shows what the resulting GUI might look like.
 
-
 [[showMessageDialogFigure]]
 [.text-center]
 .Example of `showMessageDialog()` used for output.
-image::showMessageDialog.png[align=text-center,width=45%]
+image::showMessageDialog.png[width=45%]
 
 One way to do input with a GUI uses the `showInputDialog()` method,
 which is also inside the `JOptionPane` class. The `showInputDialog()`
@@ -913,7 +912,7 @@ GUI as the user is entering input.
 [[showInputDialogFigure]]
 [.text-center]
 .Example of `showInputDialog()` used for input.
-image::showInputDialog.png[align=text-center,width=45%]
+image::showInputDialog.png[width=45%]
 
 Remember that the value returned from the `showInputDialog()` method is
 always text; that is, it always has type `String`. Although there are
@@ -1126,9 +1125,10 @@ later.
 Imagine you're writing a program that sells fruit. Consider the
 following names for a variable that keeps track of the number of apples.
 
-[.center%autowidth,cols="<,<",options="header",]
+[.center%autowidth%unbreakable,cols="<,<",]
 |=======================================================================
 |Name |Attributes
+
 |`a` |Too short, gives no useful information
 
 |`apps` |Too short, vague, could mean applications or appetizers

@@ -15,6 +15,7 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 ifdef::ebook-format[:leveloffset: -1]
 :google-analytics-account: G-VEDGKRPMMK
 
+
 include::computer-basics.adoc[]
 
 include::intro.adoc[]
