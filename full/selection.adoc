@@ -873,9 +873,9 @@ permanently). These concepts are covered in later chapters.
 ====
 
 
-==== Basic `switch` statements
+==== `switch` statements
 
-_This section describes the "basic" `switch` statement as it was defined in versions before Java 12.  <<_enhanced_switch_statements>> describes enhancements made in Java 12 and subsequent versions._
+_This section describes the `switch` statement as it was defined in versions before Java 12 and 14.  <<_switch_expressions>> describes enhancements that allow the `switch` to be used anywhere an expression is used._
 
 The `if` statement is the workhorse of Java conditional execution. With
 enough care, you can craft code that can make any fixed sequence of
@@ -1004,7 +1004,7 @@ value (`int`, `long`, `short`, `byte`, `char`) or a `String` and jumps
 to a case corresponding to the input. We can recode the anniversary gift
 example using a `switch` statement as follows.
 
-[source,java]
+[source#gift-switch-statement,java]
 ----
 String gift;
 switch(year) {
@@ -1288,32 +1288,66 @@ down the sign.
 
 ====
 
-==== Enhanced `switch` statements
+==== `switch` expressions
 
-This section describes features added to the `switch` statement in versions starting with Java 12.  Most new `switch` features became permanent in Java 14, with pattern matching becoming permanent in Java 21.
+The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a single value.  There are two ways to indicate the value being computed:
 
-NOTE: This section is under construction.
+. Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch`--but also indicates the value to be used as the result.
 
-===== `switch` expressions
+. Use the new `+case L -> E+` syntax.  This syntax says that the resulting value for `case L` is the value of expression `E`.  The label `L` can be a list of labels separated by commas (see example below).
 
-NOTE: This section is under construction.
+Note that these two approaches cannot be mixed: A single `switch` expression uses either all cases of the form `case L:` or all cases of the form `+case L -> E+`.
 
-===== Arrow syntax
+The `switch` expression can result in simpler code than the traditional `switch` statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:
 
-NOTE: This section is under construction.
+[source,java]
+----
+int length =
+    switch (month) {
+        case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" -> 31;
+        case "Apr", "Jun", "Sep", "Nov" -> 30;
+        case "Feb" -> 28;
+        default -> 0;
+    };
+----
 
-===== Multiple `case` labels
+As another example, below is a `switch` expression to compute the anniversary gift based on the year (compare to the earlier <<gift-switch-statement,statement version>>).
 
-NOTE: This section is under construction.
+[source,java]
+----
+    String gift =
+        switch (year) {
+          case 1 -> "Paper";
+          case 2 -> "Cotton";
+          case 3 -> "Leather";
+          case 4 -> "Fruit";
+          case 5 -> "Wood";
+          case 6 -> "Candy / Iron";
+          case 7 -> "Wool / Copper";
+          case 8 -> "Bronze / Pottery";
+          case 9 -> "Pottery / Willow";
+          case 10 -> "Tin / Aluminum";
+          case 11 -> "Steel";
+          case 12 -> "Silk / Linen";
+          case 13 -> "Lace";
+          case 14 -> "Ivory";
+          case 15 -> "Crystal";
+          case 20 -> "China";
+          case 25 -> "Silver";
+          case 30 -> "Pearl";
+          case 35 -> "Coral";
+          case 40 -> "Ruby";
+          case 45 -> "Sapphire";
+          case 50 -> "Gold";
+          case 55 -> "Emerald";
+          case 60 -> "Diamond";
+          default -> "No traditional gift";
+        };
+----
 
-===== `yield` statement
+NOTE: It is possible to have a block of statements as the expression `E` in a `+case L -> E+` clause by including them in curly braces (`+{S1, S2, ..., Sn}+`).  In this case, at least one of the statements (typically `Sn`) is a `yield` statement that specifies the value of the `switch` expression.
 
-NOTE: This section is under construction.
-
-===== Pattern matching
-
-NOTE: This section is under construction.
-
+NOTE: The `switch` statement and expression now allow the expression to be an object and the `case` clauses specify class names to match the object type.  A full discussion should be introduced with the `instanceof` operator.
 
 === Solution: Monty Hall
 
@@ -1571,7 +1605,7 @@ any coin, print `unknown coin`.
 to find the last two digits of the number. Using an `if`
 statement, a `switch` statement, or a combination, check for those three
 cases before going into the normal cases.
-. At the bottom of <<_basic_switch_statements>>, we use a
+. At the bottom of <<_switch_statements>>, we use a
 `switch` statement to determine the location of various area codes in
 New York state. Write an equivalent fragment of code using `if`-`else`
 statements instead.
