@@ -875,7 +875,7 @@ permanently). These concepts are covered in later chapters.
 
 ==== `switch` statements
 
-_This section describes the "basic" `switch` statement as it was defined in versions before Java 12.  <<_switch_expressions>> describes enhancements that allow the `switch` to be used anywhere an expression is used._
+_This section describes the `switch` statement as it was defined in versions before Java 12 and 14.  <<_switch_expressions>> describes enhancements that allow the `switch` to be used anywhere an expression is used._
 
 The `if` statement is the workhorse of Java conditional execution. With
 enough care, you can craft code that can make any fixed sequence of
@@ -1290,7 +1290,7 @@ down the sign.
 
 ==== `switch` expressions
 
-The `switch` expression computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a single value.  There are two ways to indicate the value being computed:
+The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a single value.  There are two ways to indicate the value being computed:
 
 . Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch`--but also indicates the value to be used as the result.
 
@@ -1298,7 +1298,7 @@ The `switch` expression computes a single value and can be used anywhere an expr
 
 Note that these two approaches cannot be mixed: A single `switch` expression uses either all cases of the form `case L:` or all cases of the form `+case L -> E+`.
 
-The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:
+The `switch` expression can result in simpler code than the traditional `switch` statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:
 
 [source,java]
 ----
@@ -1311,7 +1311,7 @@ int length =
     };
 ----
 
-The `switch` expression can result in simpler code than the traditional `switch` statement, making it easier to write and maintain.  Below is a `switch` expression to compute the anniversary gift based on the year (compare to the earlier <<gift-switch-statement,statement version>>).
+As another example, below is a `switch` expression to compute the anniversary gift based on the year (compare to the earlier <<gift-switch-statement,statement version>>).
 
 [source,java]
 ----
@@ -1605,7 +1605,7 @@ any coin, print `unknown coin`.
 to find the last two digits of the number. Using an `if`
 statement, a `switch` statement, or a combination, check for those three
 cases before going into the normal cases.
-. At the bottom of <<_basic_switch_statements>>, we use a
+. At the bottom of <<_switch_statements>>, we use a
 `switch` statement to determine the location of various area codes in
 New York state. Write an equivalent fragment of code using `if`-`else`
 statements instead.
