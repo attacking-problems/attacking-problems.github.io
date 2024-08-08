@@ -14,15 +14,8 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 :listing-caption: Program
 ifdef::ebook-format[:leveloffset: -1]
 :google-analytics-account: G-VEDGKRPMMK
+:docinfo: shared-head
 
-// Hack to make image captions aligned with images
-++++
-<style>
-  .imageblock > .title {
-    text-align: inherit;
-  }
-</style>
-++++
 
 include::computer-basics.adoc[]
 

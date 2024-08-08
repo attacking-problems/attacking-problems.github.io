@@ -23,6 +23,9 @@ testing/*
 #JUnit folder
 JUnit/*
 
+#Program output
+full/chapters/file-io/programs/output.txt
+
 # Ignore IntelliJ and VS Code "personal" files...
 // See full list here: https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
 **/.idea/*
