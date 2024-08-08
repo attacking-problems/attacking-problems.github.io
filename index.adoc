@@ -11,6 +11,7 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 
 ifdef::ebook-format[:leveloffset: -1]
 
+
 __Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It is intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
 
 == The New Version is in the Works
@@ -27,15 +28,16 @@ This website is being updated during the summer of 2024, with changes to be comp
 * [ ] Describe enhancements to `switch` statements.
 * [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
 * [ ] Explain the `instanceof` binding variable.
-* [ ] Introduce type inference for type variables.
+* [x] Describe how type inference for type variables interacts with `var`.
 * [ ] Explain the `try`-with-resources feature.
 * [ ] Replace the `File` type with `Path`.
 * [ ] Include an explanation of the `enum` type.
-* [ ] Include a chapter on lambdas, closures, and functional expressions.
-* [ ] Include a chapter on streams (or add to an existing chapter). 
-* [ ] Add a brief outline of useful JCF classes and interfaces.
+* [x] Include a chapter on lambdas, closures, and functional expressions.
+* [x] Include a chapter on streams (or add to an existing chapter). 
+* [x] Add a brief outline of useful JCF classes and interfaces.
 * [ ] Unify discussion of annotations.
 * [ ] Explain the different versions of Java and their features.
+* [ ] Apply a unified style guide to all code in the book.
 
 == Availability
 

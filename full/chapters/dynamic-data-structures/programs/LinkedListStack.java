@@ -15,9 +15,9 @@ public class LinkedListStack implements Stack {
 
     public String pop() { // <.>
         String value = null;
-        if(isEmpty())
+        if (isEmpty()) {
             System.out.println("Can't pop empty stack!");
-        else {
+        } else {
             value = head.value;
             head = head.next;
         }
@@ -26,10 +26,11 @@ public class LinkedListStack implements Stack {
 
     public String top() {
         String value = null;
-        if(isEmpty())
+        if (isEmpty()) {
             System.out.println("No top on an empty stack!");
-        else
+        } else {
             value = head.value;
+        }
         return value;
     }
 

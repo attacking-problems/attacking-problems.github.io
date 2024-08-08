@@ -12,7 +12,6 @@ This repository contains the source for the textbook https://attacking-problems.
 https://github.com/attacking-problems/attacking-problems.github.io[Attacking Problems with Java repository])
 . https://www.ruby-lang.org/en/downloads/[Ruby]
 . https://asciidoctor.org[Asciidoctor]
-. https://github.com/asciidoctor/asciidoctor-mathematical[Asciidoctor-Mathematical]
 . https://github.com/wshito/asciidoctor-chunker[Asciidoctor Chunker] (to convert to HTML chunks)
 . https://github.com/jirutka/asciidoctor-rouge[Asciidoctor Rouge] (for syntax highlighting)
 . https://asciidoctor.org/docs/asciidoctor-pdf/[Asciidoctor PDF gem] (to generate a PDF version)

@@ -11,18 +11,19 @@ public class LinkedListQueueSafe implements Queue {
         Node temp = new Node();
         temp.value = value;
         temp.next = null;        
-        if(isEmpty())
+        if (isEmpty()) {
             head = temp;
-        else          
+        } else {          
             tail.next = temp;
+        }
 		tail = temp; 
     }
     
     public synchronized String dequeue() {
         String value = null;
-        if(isEmpty())
+        if (isEmpty()) {
             System.out.println("Can't dequeue an empty queue!");
-        else {
+        } else {
             value = head.value;
             head = head.next;
             if(head == null)
@@ -33,10 +34,11 @@ public class LinkedListQueueSafe implements Queue {
     
     public synchronized String front() {
         String value = null;
-        if(isEmpty())
+        if (isEmpty()) {
             System.out.println("No front on an empty queue!");
-        else
+        } else {
             value = head.value;
+        }
         return value;
     }
     

@@ -18,7 +18,7 @@ public class Term {
     public boolean isOperator() { return isOperator; }  
 
     public boolean greaterOrEqual(Term term) {
-        if(isOperator())
+        if (isOperator()) {
             switch(operator) {            
                 case '*':
                 case '/': return true;              
@@ -26,7 +26,8 @@ public class Term {
                 case '-': return term.operator != '*' && term.operator != '/';
                 default: return false;
             }       
-        else
+        } else {
             return false;
+        }
     }
 }

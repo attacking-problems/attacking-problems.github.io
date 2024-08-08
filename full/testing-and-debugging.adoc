@@ -917,7 +917,7 @@ that objects that are equivalent with `equals()` give the same hash
 value. It seems nit-picky to mention this issue, but many real-world
 applications depend on the efficient and correct operation of hash
 tables.  Hash tables are data structures used to store and
-retrieve a key and an associated value.  We'll discuss them briefly
+retrieve a key and an associated value.  We'll mention them briefly
 in <<mapsExample>>.
 
 ====

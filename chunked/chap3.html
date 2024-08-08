@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style0.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style1.css" type="text/css">
-<link rel="stylesheet" href="asciidoctor-chunker.css" type="text/css"></head>
+<link rel="stylesheet" href="stylesheet.css" type="text/css"></head>
 <body class="book toc2 toc-left">
 <div id="header">
 <h1>Attacking Problems with Java</h1>
@@ -158,14 +158,14 @@
 <li><a href="chap12.html#_exercises_12">12.6. Exercises</a></li>
 </ul>
 </li>
-<li><a href="chap13.html">13. Lambdas and Streams</a>
+<li><a href="chap13.html">13. Lambda Expressions and Streams</a>
 <ul class="sectlevel2">
 <li><a href="chap13.html#_problem_cryptography_tools">13.1. Problem: Cryptography tools</a></li>
 <li><a href="chap13.html#_concepts_passing_and_storing_methods">13.2. Concepts: Passing and storing methods</a></li>
-<li><a href="chap13.html#_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</a></li>
+<li><a href="chap13.html#_syntax_method_references_and_lambda_expressions">13.3. Syntax: Method references and lambda expressions</a></li>
 <li><a href="chap13.html#_advanced_streams">13.4. Advanced: Streams</a></li>
 <li><a href="chap13.html#_solution_cryptography_tools">13.5. Solution: Cryptography tools</a></li>
-<li><a href="chap13.html#_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</a></li>
+<li><a href="chap13.html#_concurrency_lambda_expressions_and_parallel_streams">13.6. Concurrency: Lambda expressions and parallel streams</a></li>
 <li><a href="chap13.html#_exercises_13">13.7. Exercises</a></li>
 </ul>
 </li>
@@ -562,8 +562,8 @@ types and reference types.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Primitive Types</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Reference Types</strong></th>
+<th class="tableblock halign-left valign-top">Primitive Types</th>
+<th class="tableblock halign-left valign-top">Reference Types</th>
 </tr>
 </thead>
 <tbody>
@@ -741,7 +741,6 @@ hold. These ranges and the number of bytes used to represent variables
 from each type are given below.</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content center">
-<caption class="title">Table 3.1 Ranges for primitive integer types in Java.</caption>
 <colgroup>
 <col>
 <col>
@@ -751,10 +750,10 @@ from each type are given below.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Type</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Bytes</strong></th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-center valign-top">Bytes</th>
 <th class="tableblock halign-right valign-top"></th>
-<th class="tableblock halign-center valign-top"><strong>Range</strong></th>
+<th class="tableblock halign-center valign-top">Range</th>
 <th class="tableblock halign-left valign-top"></th>
 </tr>
 </thead>
@@ -1076,8 +1075,8 @@ and the floating-point primitive types.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Operator</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -1298,9 +1297,9 @@ we cover in the next subsection.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Example</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Example</th>
+<th class="tableblock halign-center valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -1420,9 +1419,9 @@ their own special operators, <code>++</code> and <code>--</code>.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Example</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Example</th>
+<th class="tableblock halign-center valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -1559,9 +1558,9 @@ in Java.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Name</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2003,8 +2002,8 @@ escape sequences.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Escape Sequence</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Character</strong></th>
+<th class="tableblock halign-center valign-top">Escape Sequence</th>
+<th class="tableblock halign-center valign-top">Character</th>
 </tr>
 </thead>
 <tbody>
@@ -2111,9 +2110,9 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Symbol</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Read as</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Example</strong></th>
+<th class="tableblock halign-center valign-top">Symbol</th>
+<th class="tableblock halign-left valign-top">Read as</th>
+<th class="tableblock halign-left valign-top">Example</th>
 </tr>
 </thead>
 <tbody>
@@ -2190,9 +2189,9 @@ logical NOT (<code>!</code>) operators.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Name</strong></th>
-<th class="tableblock halign-center valign-middle"><strong>Operator</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Description</strong></th>
+<th class="tableblock halign-center valign-middle">Name</th>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2906,10 +2905,9 @@ of mathematical methods through the <code>Math</code> class.
 The following table lists a few of the methods available. For a
 complete list of methods provided by the <code>Math</code> class at the time of
 writing, see the Oracle
-<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html" target="_blank" rel="noopener">Math documentation</a>.</p>
+<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html" target="_blank" rel="noopener">Math documentation</a>. Note that all angles are given in radians.</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content center">
-<caption class="title">Table 3.2 A sample of methods available in the Java <code>Math</code> class. Arguments to trigonometric methods are given in radians.</caption>
 <colgroup>
 <col>
 <col>
@@ -2917,9 +2915,9 @@ writing, see the Oracle
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-middle"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Sample use</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Purpose</strong></th>
+<th class="tableblock halign-center valign-middle">Method</th>
+<th class="tableblock halign-left valign-middle">Sample use</th>
+<th class="tableblock halign-left valign-middle">Purpose</th>
 </tr>
 </thead>
 <tbody>
@@ -3318,8 +3316,8 @@ do these tasks.<br></p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-middle"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Purpose</strong></th>
+<th class="tableblock halign-left valign-middle">Method</th>
+<th class="tableblock halign-left valign-middle">Purpose</th>
 </tr>
 </thead>
 <tbody>
@@ -3424,8 +3422,8 @@ value that can be represented. Here is a table listing these constants.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-middle"><strong>Constant</strong></th>
-<th class="tableblock halign-left valign-middle"><strong>Meaning</strong></th>
+<th class="tableblock halign-left valign-middle">Constant</th>
+<th class="tableblock halign-left valign-middle">Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -4283,7 +4281,7 @@ bits (two bytes) in memory and is encoded using Unicode, use hexadecimal
 numbers to show how the word <code>"Java"</code> will be represented in computer
 memory. Unicode values for the Latin alphabet are the same as the values
 for the older ASCII standard. You can find a listing of these values on
-many websites such as <a href="https://www.asciitable.com" target="_blank" rel="noopener">AsciiTable</a>.</p>
+many websites such as <a href="https://www.asciitable.com" target="_blank" rel="noopener">Ascii Table</a>.</p>
 </li>
 <li>
 <p>What is the output from the following
@@ -4367,7 +4365,7 @@ display properly.</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-19 14:45:51 -0400
+Last updated 2024-08-07 14:58:36 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

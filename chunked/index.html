@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style0.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style1.css" type="text/css">
-<link rel="stylesheet" href="asciidoctor-chunker.css" type="text/css"></head>
+<link rel="stylesheet" href="stylesheet.css" type="text/css"></head>
 <body class="book toc2 toc-left">
 <div id="header">
 <h1>Attacking Problems with Java</h1>
@@ -158,14 +158,14 @@
 <li><a href="chap12.html#_exercises_12">12.6. Exercises</a></li>
 </ul>
 </li>
-<li><a href="chap13.html">13. Lambdas and Streams</a>
+<li><a href="chap13.html">13. Lambda Expressions and Streams</a>
 <ul class="sectlevel2">
 <li><a href="chap13.html#_problem_cryptography_tools">13.1. Problem: Cryptography tools</a></li>
 <li><a href="chap13.html#_concepts_passing_and_storing_methods">13.2. Concepts: Passing and storing methods</a></li>
-<li><a href="chap13.html#_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</a></li>
+<li><a href="chap13.html#_syntax_method_references_and_lambda_expressions">13.3. Syntax: Method references and lambda expressions</a></li>
 <li><a href="chap13.html#_advanced_streams">13.4. Advanced: Streams</a></li>
 <li><a href="chap13.html#_solution_cryptography_tools">13.5. Solution: Cryptography tools</a></li>
-<li><a href="chap13.html#_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</a></li>
+<li><a href="chap13.html#_concurrency_lambda_expressions_and_parallel_streams">13.6. Concurrency: Lambda expressions and parallel streams</a></li>
 <li><a href="chap13.html#_exercises_13">13.7. Exercises</a></li>
 </ul>
 </li>
@@ -303,6 +303,11 @@
 <div class="sect1">
 <h2 id="computer-basics">1. Computer Basics</h2>
 <div class="sectionbody">
+<style>
+  .imageblock > .title {
+    text-align: inherit;
+  }
+</style>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -1204,12 +1209,13 @@ written.</p>
 <p>Thus, 337<sub>8</sub> = 255<sub>10</sub>, 377<sub>10</sub> = 377<sub>10</sub>,
 and 377<sub>16</sub> = 887<sub>10</sub>. Base numbers are always written
 in base 10. A number without a subscript is assumed to be in base 10. In
-Java, there’s no way to mark subscripts, so prefixes are used. A
-prefix of <code>0</code> is used for octal, no prefix is used for decimal, and a prefix
-of <code>0x</code> is used for hexadecimal. A numeral cannot be marked as binary in
-Java. The corresponding numerals in Java code would thus be written <code>0377</code>, <code>377</code>,
-and <code>0x377</code>. Be careful not to pad numbers with zeroes in Java since they might be interpreted as base 8! Remember that
-the value <code>056</code> is <strong>not</strong> the same as the value <code>56</code> in Java.</p>
+Java, there’s no way to mark subscripts, so prefixes are used. A prefix of <code>0b</code>
+is used for binary, a prefix of <code>0</code> is used for octal, no prefix is used for
+decimal, and a prefix of <code>0x</code> is used for hexadecimal. The corresponding
+numerals in Java code would thus be written <code>0377</code>, <code>377</code>, and <code>0x377</code>. Be
+careful not to pad numbers with zeroes in Java since they might be interpreted
+as base 8! Remember that the value <code>056</code> is <strong>not</strong> the same as the value <code>56</code> in
+Java.</p>
 </div>
 <div class="paragraph">
 <p>The following table lists a few characteristics of the four number
@@ -1241,7 +1247,7 @@ Numerals</th>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">0, 1</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">111<sub>2</sub>, 11101<sub>2</sub></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0b111</code>, <code>0b11101</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Octal</p></td>
@@ -1334,10 +1340,10 @@ each step, and the last column contains the current remainder.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-center valign-top"><strong>Step</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Number</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Quotient</strong></th>
-<th class="tableblock halign-right valign-top"><strong>Remainder</strong></th>
+<th class="tableblock halign-center valign-top">Step</th>
+<th class="tableblock halign-right valign-top">Number</th>
+<th class="tableblock halign-right valign-top">Quotient</th>
+<th class="tableblock halign-right valign-top">Remainder</th>
 </tr>
 </thead>
 <tbody>
@@ -1539,19 +1545,21 @@ binary addition.<br></p>
 <col>
 <col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">+</th>
+<th class="tableblock halign-right valign-top">0</th>
+<th class="tableblock halign-right valign-top">1</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>+</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>0</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>0</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">0</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">1</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">10</p></td>
 </tr>
@@ -1622,19 +1630,21 @@ rules are given in the following table.</p>
 <col>
 <col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">-</th>
+<th class="tableblock halign-right valign-top">0</th>
+<th class="tableblock halign-right valign-top">1</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>-</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>0</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>0</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">0</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>1</strong></p></td>
+<th class="tableblock halign-center valign-top"><p class="tableblock">1</p></th>
 <td class="tableblock halign-right valign-top"><p class="tableblock">(1)1</p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 </tr>
@@ -1907,12 +1917,14 @@ representations are <code>0111 1100</code> and <code>0000 0110</code>.</p>
 <col>
 <col>
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-center valign-top"></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>Binary</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>Decimal</strong></p></td>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-right valign-top">Binary</th>
+<th class="tableblock halign-right valign-top">Decimal</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><code>0111 1100</code></p></td>
@@ -3486,7 +3498,7 @@ use?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-19 14:45:51 -0400
+Last updated 2024-08-07 14:58:36 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

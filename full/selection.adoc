@@ -161,9 +161,10 @@ abbreviate true to T and false to F.
 Given a condition _x_, a condition _y_, and the condition made by _x_ ∧ _y_,
 this truth table shows all possible values. As stipulated, _x_ ∧ _y_ is true only when both _x_ and _y_ are true.
 
-[.center%autowidth,cols="^,^,^",options="header",]
+[.center%autowidth%unbreakable,cols="^,^,^",]
 |=========================================================
 |_x_ |_y_ |_x_ ∧ _y_
+
 |T |T |T
 |T |F |F
 |F |T |F
@@ -172,9 +173,10 @@ this truth table shows all possible values. As stipulated, _x_ ∧ _y_ is true o
 
 This truth table gives all the values for _x_ ∨ _y_. As you can see, _x_ ∨ _y_ is true if _x_ or _y_ are true.
 
-[.center%autowidth,cols="^,^,^",options="header",]
+[.center%autowidth%unbreakable,cols="^,^,^",]
 |========================================================
 |_x_ |_y_ |_x_ ∨ _y_
+
 |T |T |T
 |T |F |T
 |F |T |T
@@ -194,10 +196,10 @@ below.
 
 This truth table gives all the values for _x_ ⊕ _y_.
 
-[.text-center]
-[.center%autowidth,cols="^,^,^",options="header",]
+[.center%autowidth%unbreakable,cols="^,^,^",]
 |==========================================================
 |_x_ |_y_ |_x_ ⊕ _y_
+
 |T |T |F
 |T |F |T
 |F |T |T
@@ -212,10 +214,10 @@ then NOT applied to that condition will yield false, and vice versa.
 
 Here's a truth table for NOT, using the symbol ¬ to represent the NOT operation.
 
-[.text-center]
-[.center%autowidth,cols="^,^",options="header",]
+[.center%autowidth%unbreakable,cols="^,^",]
 |======================================
 |_x_ |¬__x__
+
 |T |F
 |F |T
 |======================================
@@ -457,7 +459,7 @@ together. By design, these operations correspond exactly to the logical
 operations we described before. Here's a table giving the Java
 operators equivalent to the logical Boolean operations.
 
-[.center%autowidth,cols="^.^,^.^,^.^,<.^",options="header",]
+[.center%autowidth%unbreakable%header,cols="^.^,^.^,^.^,<.^",]
 |=======================================================================
 ^.>|Name
 ^.>|Math +
@@ -887,9 +889,10 @@ For example, imagine that we want to create a program that determines
 the appropriate gift for a wedding anniversary. Below is a table of
 traditional categories of gifts based on the anniversary year.
 
-[.center%autowidth,cols="^.^,<.^,^,^.^,<.^",options="header",]
+[.center%autowidth%unbreakable,cols="^.^,<.^,^,^.^,<.^",]
 |=================================
 |Year |Gift | |Year |Gift
+
 |1 |Paper | |13 |Lace
 |2 |Cotton | |14 |Ivory
 |3 |Leather | |15 |Crystal
@@ -1215,7 +1218,7 @@ Note that the names of these animals are also sometimes translated in slightly
 different ways.
 
 
-[.center%autowidth,cols="<.>,^.>,^,<.>,^.>",options="header",]
+[.center%autowidth%unbreakable%header,cols="<.>,^.>,^,<.>,^.>"]
 |=====================
 |Animal | Year +
 modulo 12| 
@@ -1245,9 +1248,10 @@ correctly output the animal corresponding to an input birth year.
 include::{programsdir}/ChineseZodiac.java[]
 ----
 
-[.center%autowidth,cols="<,<,<",options="header",]
+[.center%autowidth%unbreakable,cols="<,<,<",]
 |=====================================================
 |Sign |Symbol |Date Range
+
 |Aries |The Ram |March 21 to April 19
 |Taurus |The Bull |April 20 to May 20
 |Gemini |The Twins |May 21 to June 20
@@ -1579,9 +1583,10 @@ cents. Use `if` statements to print out the name of the corresponding
 coin in U.S. currency according to the table below. If the value doesn't
 match any coin, print `no coin`.
 +
-[.center%autowidth,cols="^,^",options="header",]
+[.center%autowidth%unbreakable,cols="^,^",]
 |===============
 |Cents |Coin
+
 |1 |penny
 |5 |nickel
 |10 |dime

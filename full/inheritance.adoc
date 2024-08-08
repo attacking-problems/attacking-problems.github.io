@@ -529,28 +529,29 @@ definition, you're making that class a direct child of `Object`.
 As a consequence, *all* classes in Java are guaranteed to have the
 following methods.
 
-[.center%autowidth%header,cols="<,<",]
+[.center%autowidth%unbreakable,cols="<l,<",]
 |=======================================================================
-|*Method* |*Purpose*
-|`clone()` |Make a separate copy of an object.
+|Method |Purpose
 
-|`equals()` |Determine if two objects are the same.
+|clone() |Make a separate copy of an object.
 
-|`finalize()` |Perform cleanup when an object is garbage collected. Similar to a destructor in {cpp}. Rarely used.
+|equals() |Determine if two objects are the same.
 
-|`getClass()` |Find out what the class type of a given object is.
+|finalize() |Perform cleanup when an object is garbage collected. Similar to a destructor in {cpp}. Rarely used.
 
-|`hashCode()` |Get the hash code for an object, useful for making hash
+|getClass() |Find out what the class type of a given object is.
+
+|hashCode() |Get the hash code for an object, useful for making hash
 tables of objects.
 
-|`notify()` |Used for synchronization with threaded programs. More in
+|notify() |Used for synchronization with threaded programs. More in
 <<synchronization#synchronization>>.
 
-|`notifyAll()` |Same as previous.
+|notifyAll() |Same as previous.
 
-|`toString()` |Get a `String` representation of the given object.
+|toString() |Get a `String` representation of the given object.
 
-|`wait()` |Used with `notify()` and `notifyAll()`.
+|wait() |Used with `notify()` and `notifyAll()`.
 |=======================================================================
 
 Java provides basic implementations for most of these, but if you want

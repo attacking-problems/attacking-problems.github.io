@@ -5,14 +5,14 @@ public class PostfixEvaluator {
         Scanner in = new Scanner(System.in);
         String expression = in.nextLine(); 				//<.>
         TermStack stack = new TermStack();
-        for(int i = 0; i < expression.length(); i++) {	//<.>
+        for (int i = 0; i < expression.length(); i++) {	//<.>
             char term = expression.charAt(i); 	
-            if(term >= '0'&& term <= '9')    			//<.>
+            if (term >= '0'&& term <= '9') {   			//<.>
                 stack.push(new Term(term - '0'));
-            else {
+            } else {
                 int b = stack.pop().getValue();             
                 int a = stack.pop().getValue();             
-                switch(term) {							//<.>
+                switch (term) {							//<.>
                     case '+': stack.push(new Term(a + b));
                         break;
                     case '-': stack.push(new Term(a - b));

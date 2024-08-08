@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style0.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style1.css" type="text/css">
-<link rel="stylesheet" href="asciidoctor-chunker.css" type="text/css"></head>
+<link rel="stylesheet" href="stylesheet.css" type="text/css"></head>
 <body class="book toc2 toc-left">
 <div id="header">
 <h1>Attacking Problems with Java</h1>
@@ -158,14 +158,14 @@
 <li><a href="chap12.html#_exercises_12">12.6. Exercises</a></li>
 </ul>
 </li>
-<li><a href="chap13.html">13. Lambdas and Streams</a>
+<li><a href="chap13.html">13. Lambda Expressions and Streams</a>
 <ul class="sectlevel2">
 <li><a href="chap13.html#_problem_cryptography_tools">13.1. Problem: Cryptography tools</a></li>
 <li><a href="chap13.html#_concepts_passing_and_storing_methods">13.2. Concepts: Passing and storing methods</a></li>
-<li><a href="chap13.html#_syntax_method_references_and_lambdas">13.3. Syntax: Method references and lambdas</a></li>
+<li><a href="chap13.html#_syntax_method_references_and_lambda_expressions">13.3. Syntax: Method references and lambda expressions</a></li>
 <li><a href="chap13.html#_advanced_streams">13.4. Advanced: Streams</a></li>
 <li><a href="chap13.html#_solution_cryptography_tools">13.5. Solution: Cryptography tools</a></li>
-<li><a href="chap13.html#_concurrency_lambdas_and_streams">13.6. Concurrency: Lambdas and streams</a></li>
+<li><a href="chap13.html#_concurrency_lambda_expressions_and_parallel_streams">13.6. Concurrency: Lambda expressions and parallel streams</a></li>
 <li><a href="chap13.html#_exercises_13">13.7. Exercises</a></li>
 </ul>
 </li>
@@ -966,47 +966,47 @@ following methods.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>Method</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Purpose</strong></th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clone()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>clone()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Make a separate copy of an object.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>equals()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>equals()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determine if two objects are the same.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>finalize()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>finalize()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Perform cleanup when an object is garbage collected. Similar to a destructor in C++. Rarely used.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>getClass()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>getClass()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Find out what the class type of a given object is.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hashCode()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>hashCode()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get the hash code for an object, useful for making hash
 tables of objects.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notify()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>notify()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used for synchronization with threaded programs. More in
 <a href="chap15.html">Chapter 15</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifyAll()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>notifyAll()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Same as previous.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toString()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>toString()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get a <code>String</code> representation of the given object.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>wait()</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used with <code>notify()</code> and <code>notifyAll()</code>.</p></td>
 </tr>
 </tbody>
@@ -1947,7 +1947,7 @@ processes. Is there a significant difference in the times you found?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-19 14:45:51 -0400
+Last updated 2024-08-07 14:58:36 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

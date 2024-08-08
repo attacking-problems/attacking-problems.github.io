@@ -227,9 +227,10 @@ object contains and what operations it can perform.
 The following table lists some of the differences between primitive
 types and reference types.
 
-[cols="<,<",options="header",]
+[%unbreakable,cols="<,<",]
 |=======================================================================
-|*Primitive Types* |*Reference Types*
+|Primitive Types |Reference Types
+
 |Created by the designers of Java |Created by any Java programmer
 
 |Use operators to perform operations |Use methods to perform operations
@@ -367,10 +368,10 @@ complement. They only differ by the range of values that each type can
 hold. These ranges and the number of bytes used to represent variables
 from each type are given below.
 
-.Ranges for primitive integer types in Java.
-[.center%autowidth,cols="<l,^,>,^,<",options="header",]
+[.center%autowidth%unbreakable,cols="<l,^,>,^,<",]
 |=======================================================================
-|*Type* |*Bytes* | |*Range* |
+|Type |Bytes | |Range |
+
 |byte|1 |-128 |to |127
 |short|2 |-32,768 |to |32,767
 |int|4 |-2,147,483,648 |to |2,147,483,647
@@ -622,9 +623,10 @@ The following table lists the arithmetic operators available in Java.
 All of these operators can be used on both the integer primitive types
 and the floating-point primitive types.
 
-[.center%autowidth,cols="^l,<",options="header",]
+[.center%autowidth%unbreakable,cols="^l,<",]
 |=========================
-|*Operator* |*Meaning*
+|Operator |Meaning
+
 |+|Add
 |-|Subtract
 |*|Multiply
@@ -795,9 +797,10 @@ a `pass:[-=]` operator that decreases a variable, a `pass:[*=]` operator that sc
 variable, and several others, including shortcuts for bitwise operations
 we cover in the next subsection.
 
-[.center%autowidth,cols="^.^l,^.^l,^.^l",options="header",]
+[.center%autowidth%unbreakable,cols="^.^l,^.^l,^.^l",options="header",]
 |===================================
-|*Operator* |*Example* | *Meaning*
+|Operator |Example | Meaning
+
 |+=|a += b;|a = a + b;
 |-=|a -= b;|a = a - b;
 |*=|a *= b;|a = a * b;
@@ -851,9 +854,10 @@ There are also two unary shortcuts. Incrementing a value by one and
 decrementing a value by one are such common operations that they get
 their own special operators, `pass:[++]` and `pass:[--]`.
 
-[.center%autowidth,cols="^.^l,^.^l,^.^l",options="header",]
+[.center%autowidth%unbreakable,cols="^.^l,^.^l,^.^l",]
 |==========================
-|*Operator* |*Example* | *Meaning*
+|Operator |Example | Meaning
+
 |++|a++;|a = a + 1;
 |--|a--;|a = a - 1;
 |==========================
@@ -954,9 +958,10 @@ operators: `<<` for signed left shift, `>>` for signed right shift, and
 `>>>` for unsigned right shift. There is no unsigned left shift operator
 in Java.
 
-[.center%autowidth,cols="^.^l,^.^,<",options="header",]
+[.center%autowidth%unbreakable,cols="^.^l,^.^,<",]
 |=======================================================================
-|*Operator* |*Name* |*Description*
+|Operator |Name |Description
+
 |&|Bitwise AND |Combines two binary representations into a new representation which has a 1 in every position where both the original representations have a 1
 
 |\||Bitwise OR |Combines two binary representations into a new representation which has a 1 in every position where either of the original representations has a 1
@@ -1315,9 +1320,10 @@ which is a combination of characters used to represent a specific
 difficult to type or represent character. Here is a table of common
 escape sequences.
 
-[.center%autowidth,cols="^l,^",options="header",]
+[.center%autowidth%unbreakable,cols="^l,^",]
 |==============================
-|*Escape Sequence* |*Character*
+|Escape Sequence |Character
+
 |\n|Newline
 |\t|Tab
 |\'|Single quote
@@ -1393,9 +1399,10 @@ if two numbers are equal, and the answer is either `true` or `false`.
 All Java relational operators are listed in the table below. Assume that
 all variables used in the *Example* column have a numeric type.
 
-[.center%autowidth,cols="^l,<,<l",options="header",]
+[.center%autowidth%unbreakable,cols="^l,<,<l",]
 |============================================
-|*Symbol* |*Read as* |*Example*
+|Symbol |Read as |Example
+
 |==|equal to |x + 3 == y * 2
 |!=|not equal to |x !=  y / 4
 |<|less than |x < 3.5
@@ -1435,9 +1442,10 @@ are the logical AND (`&&`), logical OR (`||`), logical XOR (`^`), and
 logical NOT (`!`) operators.
 
 
-[.center%autowidth,cols="^.^,^.^l,<.^",options="header",]
+[.center%autowidth%unbreakable,cols="^.^,^.^l,<.^",]
 |=====================================================
-|*Name* |*Operator* |*Description*
+|Name |Operator |Description
+
 |AND |&&|Returns `true` if both values are `true`
 |OR |\|\||Returns `true` if either value is `true`
 |XOR |^|Returns `true` if values are different
@@ -2043,12 +2051,13 @@ of mathematical methods through the `Math` class.
 The following table lists a few of the methods available. For a
 complete list of methods provided by the `Math` class at the time of
 writing, see the Oracle
-https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html[Math documentation^].
+https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html[Math documentation^]. Note that all angles are given in radians.
 
-.A sample of methods available in the Java `Math` class. Arguments to trigonometric methods are given in radians.
-[.center%autowidth,cols="^.^l,<.^l,<.^",options="header",]
+
+[.center%autowidth%unbreakable,cols="^.^l,<.^l,<.^"]
 |=======================================================================
-|*Method* |*Sample use* |*Purpose*
+|Method |Sample use |Purpose
+
 3+^.^d|Trigonometric functions
 |cos()|double adjacent = hypotenuse * Math.cos(theta);|Find the cosine of the argument.
 |sin()|double opposite = hypotenuse * Math.sin(theta);|Find the sine of the argument.
@@ -2307,9 +2316,10 @@ also be useful to convert a `char` to upper- or lowercase. Here is a
 partial list of the methods provided by the `Character` wrapper class to
 do these tasks. +
 
-[.center%autowidth,cols="<.^l,<.^",options="header",]
+[.center%autowidth%unbreakable,cols="<.^l,<.^",]
 |=======================================================================
-|*Method* |*Purpose*
+|Method |Purpose
+
 |isDigit(char value)|Returns `true` if `value` is a numerical digit
 and `false` otherwise.
 
@@ -2379,9 +2389,10 @@ confusing. For integer types, it's the largest magnitude negative
 number. For floating-point types, it's the smallest positive non-zero
 value that can be represented. Here is a table listing these constants.
 
-[.center%autowidth,cols="<.^l,<.^",options="header",]
+[.center%autowidth%unbreakable,cols="<.^l,<.^",]
 |======================================================================
-|*Constant* |*Meaning*
+|Constant |Meaning
+
 |Byte.MAX_VALUE|Most positive value a `byte` value can have
 |Byte.MIN_VALUE|Most negative value a `byte` value can have
 |Short.MAX_VALUE|Most positive value a `short` value can have
