@@ -842,11 +842,6 @@ pre.rouge .err {
 <div class="sect1">
 <h2 id="computer-basics">1. Computer Basics</h2>
 <div class="sectionbody">
-<style>
-  .imageblock > .title {
-    text-align: inherit;
-  }
-</style>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -5146,7 +5141,7 @@ dialog.</td>
 <div class="paragraph">
 <p><a href="#showMessageDialogFigure">Figure 2.3</a> shows what the resulting GUI might look like.</p>
 </div>
-<div id="showMessageDialogFigure" class="imageblock text-text-center text-center">
+<div id="showMessageDialogFigure" class="imageblock text-center">
 <div class="content">
 <img src="chapters/intro/images/showMessageDialog.png" alt="showMessageDialog" width="45%">
 </div>
@@ -11733,9 +11728,9 @@ permanently). These concepts are covered in later chapters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_basic_switch_statements">4.3.3. Basic <code>switch</code> statements</h4>
+<h4 id="_switch_statements">4.3.3. <code>switch</code> statements</h4>
 <div class="paragraph">
-<p><em>This section describes the "basic" <code>switch</code> statement as it was defined in versions before Java 12.  <a href="#_enhanced_switch_statements">Section 4.3.4</a> describes enhancements made in Java 12 and subsequent versions.</em></p>
+<p><em>This section describes the <code>switch</code> statement as it was defined in versions before Java 12 and 14.  <a href="#_switch_expressions">Section 4.3.4</a> describes enhancements that allow the <code>switch</code> to be used anywhere an expression is used.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>if</code> statement is the workhorse of Java conditional execution. With
@@ -11956,7 +11951,7 @@ value (<code>int</code>, <code>long</code>, <code>short</code>, <code>byte</code
 to a case corresponding to the input. We can recode the anniversary gift
 example using a <code>switch</code> statement as follows.</p>
 </div>
-<div class="listingblock">
+<div id="gift-switch-statement" class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span><span class="o">;</span>
 <span class="k">switch</span><span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
@@ -12517,9 +12512,71 @@ down the sign.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enhanced_switch_statements">4.3.4. Enhanced <code>switch</code> statements</h4>
+<h4 id="_switch_expressions">4.3.4. <code>switch</code> expressions</h4>
 <div class="paragraph">
-<p>This section describes features added to the <code>switch</code> statement in versions starting with Java 12.  Most new <code>switch</code> features became permanent in Java 14, with pattern matching becoming permanent in Java 21.</p>
+<p>The <code>switch</code> expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each <code>case</code> must compute a single value.  There are two ways to indicate the value being computed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the new <code>yield E</code> statement.  The <code>yield</code> statement can be thought of as a <code>break</code> statement&#8212;&#8203;it interrupts the flow of the <code>switch</code>--but also indicates the value to be used as the result.</p>
+</li>
+<li>
+<p>Use the new <code>case L -&gt; E</code> syntax.  This syntax says that the resulting value for <code>case L</code> is the value of expression <code>E</code>.  The label <code>L</code> can be a list of labels separated by commas (see example below).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note that these two approaches cannot be mixed: A single <code>switch</code> expression uses either all cases of the form <code>case L:</code> or all cases of the form <code>case L -&gt; E</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>switch</code> expression can result in simpler code than the traditional <code>switch</code> statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">length</span> <span class="o">=</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="s">"Jan"</span><span class="o">,</span> <span class="s">"Mar"</span><span class="o">,</span> <span class="s">"May"</span><span class="o">,</span> <span class="s">"Jul"</span><span class="o">,</span> <span class="s">"Aug"</span><span class="o">,</span> <span class="s">"Oct"</span><span class="o">,</span> <span class="s">"Dec"</span> <span class="o">-&gt;</span> <span class="mi">31</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">"Apr"</span><span class="o">,</span> <span class="s">"Jun"</span><span class="o">,</span> <span class="s">"Sep"</span><span class="o">,</span> <span class="s">"Nov"</span> <span class="o">-&gt;</span> <span class="mi">30</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">"Feb"</span> <span class="o">-&gt;</span> <span class="mi">28</span><span class="o">;</span>
+        <span class="k">default</span> <span class="o">-&gt;</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As another example, below is a <code>switch</code> expression to compute the anniversary gift based on the year (compare to the earlier <a href="#gift-switch-statement">statement version</a>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java">    <span class="nc">String</span> <span class="n">gift</span> <span class="o">=</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">case</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="s">"Paper"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="s">"Cotton"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="s">"Leather"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="s">"Fruit"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="s">"Wood"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">6</span> <span class="o">-&gt;</span> <span class="s">"Candy / Iron"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">7</span> <span class="o">-&gt;</span> <span class="s">"Wool / Copper"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">8</span> <span class="o">-&gt;</span> <span class="s">"Bronze / Pottery"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">9</span> <span class="o">-&gt;</span> <span class="s">"Pottery / Willow"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">10</span> <span class="o">-&gt;</span> <span class="s">"Tin / Aluminum"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">11</span> <span class="o">-&gt;</span> <span class="s">"Steel"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">12</span> <span class="o">-&gt;</span> <span class="s">"Silk / Linen"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">13</span> <span class="o">-&gt;</span> <span class="s">"Lace"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">14</span> <span class="o">-&gt;</span> <span class="s">"Ivory"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">15</span> <span class="o">-&gt;</span> <span class="s">"Crystal"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">20</span> <span class="o">-&gt;</span> <span class="s">"China"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">25</span> <span class="o">-&gt;</span> <span class="s">"Silver"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">30</span> <span class="o">-&gt;</span> <span class="s">"Pearl"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">35</span> <span class="o">-&gt;</span> <span class="s">"Coral"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">40</span> <span class="o">-&gt;</span> <span class="s">"Ruby"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">45</span> <span class="o">-&gt;</span> <span class="s">"Sapphire"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">50</span> <span class="o">-&gt;</span> <span class="s">"Gold"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">55</span> <span class="o">-&gt;</span> <span class="s">"Emerald"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">60</span> <span class="o">-&gt;</span> <span class="s">"Diamond"</span><span class="o">;</span>
+          <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"No traditional gift"</span><span class="o">;</span>
+        <span class="o">};</span></code></pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -12528,13 +12585,11 @@ down the sign.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This section is under construction.
+It is possible to have a block of statements as the expression <code>E</code> in a <code>case L -&gt; E</code> clause by including them in curly braces (<code>{S1, S2, ..., Sn}</code>).  In this case, at least one of the statements (typically <code>Sn</code>) is a <code>yield</code> statement that specifies the value of the <code>switch</code> expression.
 </td>
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_switch_expressions"><code>switch</code> expressions</h5>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -12542,71 +12597,10 @@ This section is under construction.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This section is under construction.
+The <code>switch</code> statement and expression now allow the expression to be an object and the <code>case</code> clauses specify class names to match the object type.  A full discussion should be introduced with the <code>instanceof</code> operator.
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_arrow_syntax">Arrow syntax</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_multiple_case_labels">Multiple <code>case</code> labels</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_yield_statement"><code>yield</code> statement</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_pattern_matching">Pattern matching</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 </div>
@@ -13084,7 +13078,7 @@ statement, a <code>switch</code> statement, or a combination, check for those th
 cases before going into the normal cases.</p>
 </li>
 <li>
-<p>At the bottom of <a href="#_basic_switch_statements">Section 4.3.3</a>, we use a
+<p>At the bottom of <a href="#_switch_statements">Section 4.3.3</a>, we use a
 <code>switch</code> statement to determine the location of various area codes in
 New York state. Write an equivalent fragment of code using <code>if</code>-<code>else</code>
 statements instead.</p>
@@ -49556,7 +49550,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-07 14:58:36 -0400
+Last updated 2024-08-08 17:11:34 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>
