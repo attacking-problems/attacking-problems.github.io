@@ -8,7 +8,7 @@ require_relative './autoxref-treeprocessor.rb'
 def convert()
     old_verbose, $VERBOSE = $VERBOSE, false
 
-	Asciidoctor.convert_file 'index.adoc', to_file: true, header_footer: true, safe: 'safe', docinfo: 'shared'  
+	Asciidoctor.convert_file 'index.adoc', to_file: true, header_footer: true, safe: 'safe'  
 
     $VERBOSE = old_verbose
 end
