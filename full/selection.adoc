@@ -1345,9 +1345,15 @@ As another example, below is a `switch` expression to compute the anniversary gi
         };
 ----
 
-NOTE: It is possible to have a block of statements as the expression `E` in a `+case L -> E+` clause by including them in curly braces (`+{S1, S2, ..., Sn}+`).  In this case, at least one of the statements (typically `Sn`) is a `yield` statement that specifies the value of the `switch` expression.
+[NOTE]
+.Other `switch` Points
+====
+For discussion here or in a future chapter...
 
-NOTE: The `switch` statement and expression now allow the expression to be an object and the `case` clauses specify class names to match the object type.  A full discussion should be introduced with the `instanceof` operator.
+. It is possible to have a block of statements as the expression `E` in a `+case L -> E+` clause by including them in curly braces (`+{S1, S2, ..., Sn}+`).  In this case, at least one of the statements (typically `Sn`) is a `yield` statement that specifies the value of the `switch` expression.
+. A `switch` _statement_ can be used with the `case L -> E` syntax to avoid specifying the `break` statement at the end of each `case` block.  Multiple statements in a `case` must be included in curly braces (as above).  The `yield` statement is not used in this case.
+. The `switch` statement and expression now allow the expression to be an object and the `case` clauses specify class names to match the object type.  A full discussion should be introduced with the `instanceof` operator.
+====
 
 === Solution: Monty Hall
 
