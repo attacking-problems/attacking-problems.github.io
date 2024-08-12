@@ -1051,9 +1051,9 @@ One unusual feature of `switch` statements is that execution _falls
 through_ `case` statements. This means that you can use many different
 `case` statements for a single segment of executable code. The execution
 of code in a `switch` statement jumps out when it hits a `break`
-statement. However, `break` statements are not required, as shown in
+statement. However, a `break` statement is not required with every `case`, as shown in
 this `switch` statement that gives location information for all of the
-telephone area codes in New York state.
+telephone area codes in New York state.  If a `case` has no `break` statement, control falls through to the next `case` (or `default`).
 
 [source,java]
 ----
@@ -1292,7 +1292,7 @@ down the sign.
 
 The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a single value.  There are two ways to indicate the value being computed:
 
-. Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch`--but also indicates the value to be used as the result.
+. Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch` statement--but also indicates the value to be used as the result.
 
 . Use the new `+case L -> E+` syntax.  This syntax says that the resulting value for `case L` is the value of expression `E`.  The label `L` can be a list of labels separated by commas (see example below).
 
@@ -1345,9 +1345,32 @@ As another example, below is a `switch` expression to compute the anniversary gi
         };
 ----
 
-NOTE: It is possible to have a block of statements as the expression `E` in a `+case L -> E+` clause by including them in curly braces (`+{S1, S2, ..., Sn}+`).  In this case, at least one of the statements (typically `Sn`) is a `yield` statement that specifies the value of the `switch` expression.
+==== `switch` statements without `break` statements
 
-NOTE: The `switch` statement and expression now allow the expression to be an object and the `case` clauses specify class names to match the object type.  A full discussion should be introduced with the `instanceof` operator.
+As mentioned earlier, the use of `break` statments can result in careless errors--e.g., by accidentally omitting a `break` or adding one where it isn\'t needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block and there is no follow through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{}+`).
+
+Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid:
+
+[source,java]
+----
+boolean validMonth = true;
+switch (month) {
+    case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" ->
+        System.out.println("There are 31 days in " + month);
+    case "Apr", "Jun", "Sep", "Nov" ->
+        System.out.println("There are 30 days in " + month);
+    case "Feb" ->
+        System.out.println("There are 28 days in " + month);
+    default -> {
+        System.out.println("Unrecognized month: " + month);
+        validMonth = false;
+    }
+};
+
+if (validMonth) {
+    // Continue processing...
+}
+----
 
 === Solution: Monty Hall
 
