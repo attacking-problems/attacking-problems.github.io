@@ -11729,9 +11729,9 @@ permanently). These concepts are covered in later chapters.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_basic_switch_statements">4.3.3. Basic <code>switch</code> statements</h4>
+<h4 id="_switch_statements">4.3.3. <code>switch</code> statements</h4>
 <div class="paragraph">
-<p><em>This section describes the "basic" <code>switch</code> statement as it was defined in versions before Java 12.  <a href="#_enhanced_switch_statements">Section 4.3.4</a> describes enhancements made in Java 12 and subsequent versions.</em></p>
+<p><em>This section describes the <code>switch</code> statement as it was defined in versions before Java 12 and 14.  <a href="#_switch_expressions">Section 4.3.4</a> describes enhancements that allow the <code>switch</code> to be used anywhere an expression is used.</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>if</code> statement is the workhorse of Java conditional execution. With
@@ -11952,7 +11952,7 @@ value (<code>int</code>, <code>long</code>, <code>short</code>, <code>byte</code
 to a case corresponding to the input. We can recode the anniversary gift
 example using a <code>switch</code> statement as follows.</p>
 </div>
-<div class="listingblock">
+<div id="gift-switch-statement" class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span><span class="o">;</span>
 <span class="k">switch</span><span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
@@ -12001,9 +12001,9 @@ no <code>default</code> label, the entire <code>switch</code> statement is skipp
 through</em> <code>case</code> statements. This means that you can use many different
 <code>case</code> statements for a single segment of executable code. The execution
 of code in a <code>switch</code> statement jumps out when it hits a <code>break</code>
-statement. However, <code>break</code> statements are not required, as shown in
+statement. However, a <code>break</code> statement is not required with every <code>case</code>, as shown in
 this <code>switch</code> statement that gives location information for all of the
-telephone area codes in New York state.</p>
+telephone area codes in New York state.  If a <code>case</code> has no <code>break</code> statement, control falls through to the next <code>case</code> (or <code>default</code>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12445,10 +12445,10 @@ statements for each month to test the exact range of dates.</p>
             <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aquarius"</span><span class="o">;</span>
                 <span class="k">else</span>
-                    <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pices"</span><span class="o">;</span>
+                    <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pisces"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
             <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
-                    <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pices"</span><span class="o">;</span>
+                    <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pisces"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aries"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
@@ -12513,95 +12513,100 @@ down the sign.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enhanced_switch_statements">4.3.4. Enhanced <code>switch</code> statements</h4>
+<h4 id="_switch_expressions">4.3.4. <code>switch</code> expressions</h4>
 <div class="paragraph">
-<p>This section describes features added to the <code>switch</code> statement in versions starting with Java 12.  Most new <code>switch</code> features became permanent in Java 14, with pattern matching becoming permanent in Java 21.</p>
+<p>The <code>switch</code> expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each <code>case</code> must compute a single value.  There are two ways to indicate the value being computed:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the new <code>yield E</code> statement.  The <code>yield</code> statement can be thought of as a <code>break</code> statement&#8212;&#8203;it interrupts the flow of the <code>switch</code> statement&#8212;&#8203;but also indicates the value to be used as the result.</p>
+</li>
+<li>
+<p>Use the new <code>case L -&gt; E</code> syntax.  This syntax says that the resulting value for <code>case L</code> is the value of expression <code>E</code>.  The label <code>L</code> can be a list of labels separated by commas (see example below).</p>
+</li>
+</ol>
 </div>
-<div class="sect4">
-<h5 id="_switch_expressions"><code>switch</code> expressions</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Note that these two approaches cannot be mixed: A single <code>switch</code> expression uses either all cases of the form <code>case L:</code> or all cases of the form <code>case L -&gt; E</code>.</p>
 </div>
+<div class="paragraph">
+<p>The <code>switch</code> expression can result in simpler code than the traditional <code>switch</code> statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:</p>
 </div>
-<div class="sect4">
-<h5 id="_arrow_syntax">Arrow syntax</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">length</span> <span class="o">=</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="s">"Jan"</span><span class="o">,</span> <span class="s">"Mar"</span><span class="o">,</span> <span class="s">"May"</span><span class="o">,</span> <span class="s">"Jul"</span><span class="o">,</span> <span class="s">"Aug"</span><span class="o">,</span> <span class="s">"Oct"</span><span class="o">,</span> <span class="s">"Dec"</span> <span class="o">-&gt;</span> <span class="mi">31</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">"Apr"</span><span class="o">,</span> <span class="s">"Jun"</span><span class="o">,</span> <span class="s">"Sep"</span><span class="o">,</span> <span class="s">"Nov"</span> <span class="o">-&gt;</span> <span class="mi">30</span><span class="o">;</span>
+        <span class="k">case</span> <span class="s">"Feb"</span> <span class="o">-&gt;</span> <span class="mi">28</span><span class="o">;</span>
+        <span class="k">default</span> <span class="o">-&gt;</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">};</span></code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_multiple_case_labels">Multiple <code>case</code> labels</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>As another example, below is a <code>switch</code> expression to compute the anniversary gift based on the year (compare to the earlier <a href="#gift-switch-statement">statement version</a>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java">    <span class="nc">String</span> <span class="n">gift</span> <span class="o">=</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">case</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="s">"Paper"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="s">"Cotton"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="s">"Leather"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="s">"Fruit"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="s">"Wood"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">6</span> <span class="o">-&gt;</span> <span class="s">"Candy / Iron"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">7</span> <span class="o">-&gt;</span> <span class="s">"Wool / Copper"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">8</span> <span class="o">-&gt;</span> <span class="s">"Bronze / Pottery"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">9</span> <span class="o">-&gt;</span> <span class="s">"Pottery / Willow"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">10</span> <span class="o">-&gt;</span> <span class="s">"Tin / Aluminum"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">11</span> <span class="o">-&gt;</span> <span class="s">"Steel"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">12</span> <span class="o">-&gt;</span> <span class="s">"Silk / Linen"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">13</span> <span class="o">-&gt;</span> <span class="s">"Lace"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">14</span> <span class="o">-&gt;</span> <span class="s">"Ivory"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">15</span> <span class="o">-&gt;</span> <span class="s">"Crystal"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">20</span> <span class="o">-&gt;</span> <span class="s">"China"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">25</span> <span class="o">-&gt;</span> <span class="s">"Silver"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">30</span> <span class="o">-&gt;</span> <span class="s">"Pearl"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">35</span> <span class="o">-&gt;</span> <span class="s">"Coral"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">40</span> <span class="o">-&gt;</span> <span class="s">"Ruby"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">45</span> <span class="o">-&gt;</span> <span class="s">"Sapphire"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">50</span> <span class="o">-&gt;</span> <span class="s">"Gold"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">55</span> <span class="o">-&gt;</span> <span class="s">"Emerald"</span><span class="o">;</span>
+          <span class="k">case</span> <span class="mi">60</span> <span class="o">-&gt;</span> <span class="s">"Diamond"</span><span class="o">;</span>
+          <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"No traditional gift"</span><span class="o">;</span>
+        <span class="o">};</span></code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_yield_statement"><code>yield</code> statement</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
 </div>
+<div class="sect3">
+<h4 id="_switch_statements_without_break_statements">4.3.5. <code>switch</code> statements without <code>break</code> statements</h4>
+<div class="paragraph">
+<p>As mentioned earlier, the use of <code>break</code> statments can result in careless errors&#8212;&#8203;e.g., by accidentally omitting a <code>break</code> or adding one where it isn't needed.  With the introduction of the <code>case L -&gt; E</code> syntax, it is possible to use a <code>switch</code> <em>statement</em> without <code>break</code> statements at all.  Each <code>case</code> becomes a complete block and there is no follow through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (<code>{}</code>).</p>
 </div>
-<div class="sect4">
-<h5 id="_pattern_matching">Pattern matching</h5>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section is under construction.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">boolean</span> <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="s">"Jan"</span><span class="o">,</span> <span class="s">"Mar"</span><span class="o">,</span> <span class="s">"May"</span><span class="o">,</span> <span class="s">"Jul"</span><span class="o">,</span> <span class="s">"Aug"</span><span class="o">,</span> <span class="s">"Oct"</span><span class="o">,</span> <span class="s">"Dec"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 31 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">case</span> <span class="s">"Apr"</span><span class="o">,</span> <span class="s">"Jun"</span><span class="o">,</span> <span class="s">"Sep"</span><span class="o">,</span> <span class="s">"Nov"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 30 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">case</span> <span class="s">"Feb"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 28 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Unrecognized month: "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+        <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">validMonth</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Continue processing...</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -13080,7 +13085,7 @@ statement, a <code>switch</code> statement, or a combination, check for those th
 cases before going into the normal cases.</p>
 </li>
 <li>
-<p>At the bottom of <a href="#_basic_switch_statements">Section 4.3.3</a>, we use a
+<p>At the bottom of <a href="#_switch_statements">Section 4.3.3</a>, we use a
 <code>switch</code> statement to determine the location of various area codes in
 New York state. Write an equivalent fragment of code using <code>if</code>-<code>else</code>
 statements instead.</p>
@@ -49608,7 +49613,11 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
+<<<<<<< HEAD
 Last updated 2024-08-08 18:29:33 -0400
+=======
+Last updated 2024-08-08 17:11:34 -0400
+>>>>>>> c1536988403cf02cacfc8fdc249289301fb29ec8
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VEDGKRPMMK"></script>

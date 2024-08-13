@@ -26,7 +26,7 @@ This website is being updated during the summer of 2024, with changes to be comp
 === Changes Planned and Completed
 
 * [x] Add section on `var` declarations (Section 3.3.6).
-* [ ] Describe enhancements to `switch` statements.
+* [x] Describe enhancements to `switch` statements.
 * [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
 * [ ] Explain the `instanceof` binding variable.
 * [x] Describe how type inference for type variables interacts with `var`.

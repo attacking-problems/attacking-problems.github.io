@@ -17,10 +17,10 @@ public class WesternZodiac {
             case 2: if(day < 20)
                     sign = "Aquarius";
                 else
-                    sign = "Pices";
+                    sign = "Pisces";
                 break;
             case 3: if(day < 20)
-                    sign = "Pices";
+                    sign = "Pisces";
                 else
                     sign = "Aries";
                 break;
