@@ -12,6 +12,7 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 ifdef::ebook-format[:leveloffset: -1]
 
 
+
 __Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It is intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
 
 == The New Version is in the Works
