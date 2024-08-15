@@ -54,16 +54,19 @@ request. All `GET` requests have the following format.
 GET pass:quotes[_path_] HTTP/pass:quotes[_version_]
 ....
 
-In this request, `_path_` is the path of the file being requested and `_version_` is
-the HTTP version number. A typical request might be as follows.
+In this request, `_path_` is the path of the file being requested and
+`_version_` is the HTTP version number. A typical request might be as follows.
 
 ....
 GET /images/banner.jpg HTTP/1.1
 ....
 
-You should also note that all HTTP commands end with *two* newline
-characters (`'\n'`). The extra blank line makes it easier to separate
-the commands from other data being sent.
+You should also note that lines in HTTP commands end in two characters,`'\r'`
+and `'\n'`, sometimes called the carriage return and line feed characters. Text
+files in Windows end each line in both characters, while Linux and macOS files
+end in only the line feed. For historical reasons, HTTP adopted the
+two-character sequence now used in Windows.
+
 
 ==== HTTP responses
 
@@ -75,18 +78,20 @@ following message.
 HTTP/1.1 200 OK
 ....
 
-Again, note that this message is followed with two newline characters.
-After this message is sent, the server sends the requested file, byte by
-byte, across the network. If the file can't be found by the web server,
-it sends an error message as follows.
+We will not explore HTTP responses that contain multiple lines, but most web
+server responses do. To make it clear where the response lines end and the
+content begins, web servers send *two* newline sequences after the response,
+resulting in `HTTP/1.1 200 OK\r\n\r\n` in this example. After this message is
+sent, the server sends the requested file, byte by byte, across the network. If
+the file can't be found by the web server, it sends an error message as follows.
 
 ....
 HTTP/1.1 404 Not Found
 ....
 
-Of course, two newlines will be sent after this message as well. After the
-error message, servers will also typically send some default web page with an
-explanation in HTML.
+Of course, two newline sequences will be sent after this message as well. After
+the error message, servers will also typically send some default web page with
+an explanation in HTML.
 
 Now, we return to the more fundamental problem of how to communicate
 over a network.
@@ -97,8 +102,8 @@ We begin where many discussions of computer networking begin,
 the Open Systems Interconnection Basic Reference Model (or OSI
 model). As we mentioned before, the designers of Java wanted to make a
 networking API which was very similar to the file system API. This
-single API is intended for JVMs running on Windows or on macOS or on
-Linux or any other operating system. Even with the same operating
+single API is intended for JVMs running on Windows, macOS, Linux, or any other
+operating system. Even with the same operating
 system, different computers have different hardware. Some computers have
 wired connections to a router or gateway. Others are connected
 wirelessly. Beyond your own computer, you have to figure out the address of the
@@ -276,7 +281,9 @@ second parameter is the port you want to connect on.
 
 Note that the `Socket` and `ServerSocket` classes are both in the `java.net`
 package, so you'll need to import `java.net.*` to use them and the rest of the
-basic networking library.
+basic networking library. Also, they should both be closed; thus, creating
+`Socket` and `ServerSocket` objects should be done in the header of a
+`try`-with-resources.
 
 ****
 <<portExercise>>
@@ -333,7 +340,7 @@ when more is coming. There's no explicit end of file. Also, it's
 sometimes necessary to call a `flush()` method after doing a write.
 A socket might wait for a sizable chunk of data to be accumulated before it
 gets sent across the network. Without a `flush()`, the data you write might
-not be sent immediately.
+not be sent until a large amount of data is ready to go or the socket is closed.
 
 [[clientServerSummingExample]]
 .Simple client and server
@@ -345,36 +352,34 @@ the socket, and prints their sum.
 
 [source, java]
 ----
-try{
-    ServerSocket serverSocket = new ServerSocket(4321);
+try (ServerSocket serverSocket = new ServerSocket(4321);
     Socket socket = serverSocket.accept();
-    DataInputStream in = new DataInputStream(socket.getInputStream());
+    DataInputStream in = new DataInputStream(socket.getInputStream())) {
     int sum = 0;
-    for(int i = 0; i < 100; i++)
+    for (int i = 0; i < 100; ++i) {
         sum += in.readInt();
-    in.close();
+    }
     System.out.println("Sum: " + sum);
-}
-catch(IOException e) {
-	System.out.println("Network error: " + e.getMessage());
+} catch (IOException e) {
+    System.out.println("Network error: " + e.getMessage());
 }
 ----
 
 Now, here's a companion piece of client code which connects to port 4321
 and sends 100 `int` values in binary form, specifically the first 100
-perfect squares.
+perfect squares. As you can see, it creates the `ServerSocket`, `Socket`, and
+`DataInputStream` all in the header of the `try`-with-resources, so that they
+are all automatically closed.
 
 [source, java]
 ----
-try{
-    Socket socket = new Socket("127.0.0.1", 4321);
-    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-    for(int i = 1; i <= 100; i++)
+try (Socket socket = new Socket("127.0.0.1", 4321);
+    DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+    for (int i = 1; i <= 100; ++i) {
         out.writeInt(i*i);
-    out.close();
-}
-catch(IOException e) {
-	System.out.println("Network error: " + e.getMessage());
+    }
+} catch (IOException e) {
+    System.out.println("Network error: " + e.getMessage());
 }
 ----
 
@@ -386,9 +391,8 @@ computers. To test this client and server code together, you will
 need to run two virtual machines. The simplest way to do so is to open
 two command line prompts and run the client from one and the server from
 the other. Be sure that you start the server first so that the client
-has something to connect to.  IDEs like Eclipse and IntelliJ will also allow
-you to start two programs simultaneously, but it can be difficult to be certain
-which one is which.
+has something to connect to.  IDEs like IntelliJ and Eclipse can also allow
+you to start two programs simultaneously, creating two different console tabs.
 
 ====
 
@@ -414,7 +418,7 @@ encapsulate both client and server functionality in a class called
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=1..15]
+include::{programsdir}/Chat.java[lines=1..16]
 ----
 <.> The first step is the appropriate import statements.
 <.> In the `main()` method, if the first command-line argument is `"-s"`, the
@@ -427,7 +431,7 @@ IP address and the port number, respectively.
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=17..27]
+include::{programsdir}/Chat.java[lines=18..26]
 ----
 <.> The server `Chat` constructor takes the port and listens for a
 connection on it.
@@ -436,7 +440,7 @@ perform the actual business of sending and receiving chats.
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=29..38]
+include::{programsdir}/Chat.java[lines=28..36]
 ----
 
 The client constructor is similar but connects directly to the specified
@@ -445,7 +449,7 @@ IP address on the specified port.
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=40..50]
+include::{programsdir}/Chat.java[lines=38..48]
 ----
 <.> Once the client and server are connected, they both run the `runChat()`
 method, which creates a new `Sender` and a new `Receiver` to do the
@@ -468,16 +472,19 @@ so short. The only piece of data `Sender` shares with `Chat` is the
 all important `socket` variable. 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=52..73]
+include::{programsdir}/Chat.java[lines=50..72]
 ----
 <.> The `Sender` begins by creating a
 `PrintWriter` object from the `Socket` output stream.
 <.> It reads a name from the user.
 <.> Then, it waits for a line from the user.
-<.> If the user types `quit`, the `Socket` will be closed.
+<.> If the user types `quit`, `quit` will be sent, and the `Socket` will be
+closed.
 <.> Otherwise, each time a line is read, it's printed and flushed through the
 `PrintWriter` connected to the `Socket` output stream, with the user name
-inserted at the beginning.
+inserted at the beginning. 
+<.> This call to `flush()` is critical; otherwise, the message the user enters 
+won't actually be sent unless it's very long.
 
 
 Below is the private inner class `Receiver`, the simpler counterpart of
@@ -486,22 +493,30 @@ Below is the private inner class `Receiver`, the simpler counterpart of
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=74..87]
+include::{programsdir}/Chat.java[lines=74..92]
 ----
 <.> First, it creates a `Scanner` object connected to the input stream of the `Socket`.
-<.> Then, waits for a line of text to arrive from the connection. Each time a line
-arrives, it prints it to the screen.
+<.> Then, waits for a line of text to arrive from the connection.
+<.> If the line is `"quit"`, it closes the socket.
+<.> Otherwise, it prints it to the screen.
 
-You can see that this problem is solved with threads much more
-easily than without them. Both the `in.nextLine()` method called by `Sender`
-and the `netIn.nextLine()` method called by `Receiver` are blocking calls.
-Because each must wait for input before continuing, they can't easily be
-combined in one thread of execution.
+This problem is solved with threads more easily than without them. Both the
+`in.nextLine()` method called by `Sender` and the `netIn.nextLine()` method
+called by `Receiver` are blocking calls. Because each must wait for input before
+continuing, they can't easily be combined in one thread of execution.
+
+If you run this program as a client and a server in two different terminals,
+you'll notice one awkward issue: When one chat program ends with the user
+entering `quit`, the other program will not immediately stop running. It will be
+necessary for the user to type something (or even just hit enter) so that the
+code inside `Sender` will stop waiting for user input. In a GUI, one thread can
+interrupt another without difficulty, but there's no easy solution to this
+problem in a command-line interface.
 
 Although the fundamentals are present in this example, a real chat
 client should provide a contact list, the opportunity to talk to more than
 one other user at a time, better error-handling code in the
-`catch`-blocks, and many other features. Some of these features are
+`catch` blocks, and many other features. Some of these features are
 easier to provide in a GUI.
 
 ====
@@ -531,11 +546,11 @@ should be able to browse them.
 
 [source, java]
 ----
-include::{programsdir}/WebServer.java[lines=1..17]
+include::{programsdir}/WebServer.java[lines=1..19]
 ----
 <.> Our code starts with the necessary imports.
 <.> The server has fields for the port where communication will take place
-and the root directory for the web page.
+and the path of the root directory for the web page.
 <.> The `main()` method calls the constructor using port 80 and a path
 corresponding to the current directory (`.`) as arguments. Then, it starts
 the server.
@@ -546,47 +561,41 @@ the web server that waits for connections and loops forever.
 
 [source, java]
 ----
-include::{programsdir}/WebServer.java[lines=19..52]
+include::{programsdir}/WebServer.java[lines=21..45]
 ----
 <.> First, we create a `ServerSocket` to listen on the port.
+<.> The server repeatedly tries to accept a connection.
 <.> Once a connection has been made, the server creates input and output objects
-from the socket connection. Then, it tries to serve requests coming from
-the socket input.
+from the socket connection.
 <.> Our web server keeps reading lines until it finds a `GET` request.
 <.> When a `GET` request is made, the server removes the `"GET "` at the
 beginning of the request and the HTTP version information at the end.
 <.> It passes the remaining file path to the `serve()` method.
-<.> Afterward, it closes the connection and sets `requestRead` to `true` so that
-we stop looping through requests made on this particular connection to the
-server.
-<.> All that remains in the `start()` method is the necessary exception handling
-machinery.
+<.> Then, it sets `requestRead` to `true` so that we stop looking for a `GET`
+request.
+<.> If the network is functioning correctly, this `catch` will never be reached
+since the server is running in an infinite loop. Although servers do
+periodically go down, they are otherwise expected to run forever, serving
+whatever requests arrive.
 
 Note that the `out` object is of type `DataOutputStream`, allowing us
 to send binary data over the socket. However, the `in` variable is of
 type `Scanner`, because HTTP requests are text only.
 
-
-Next is a short utility method which provides some amount of platform
-independence. The `getPath()` method takes in a `String` representation
-of a path requested by a web browser and formats it. This path should
-always be given in the Unix or Linux style with slashes (`/`) separating
-each directory. 
+The short, utility method `getPath()` takes in a `String` representation of a
+path requested by a web browser and tacks it onto the end of the web root.
 
 [source, java]
 ----
-include::{programsdir}/WebServer.java[lines=54..61]
+include::{programsdir}/WebServer.java[lines=47..57]
 ----
-<.> To function smoothly with other operating systems,
-`getPath()` uses the class variable `File.separatorChar` which gives the
-`char` used to separate directories on whichever platform the JVM is
-currently running.
-<.> In addition, `getPath()` adds `"index.html"` to the
-end of the path if the path is a directory rather than a file
-name. Real web servers try a list of many different files such as
-`index.html`, `index.htm`, `index.php`, and so on, until a file is found
+<.> If the path ends with a slash, it's a directory, so we append `"index.html"`
+to the end of the path. Real web servers try a list of many different files such
+as `index.html`, `index.htm`, `index.php`, and so on, until a file is found
 or the list runs out.
-
+<.> If the request conforms to HTTP, it _should_ start with a slash, but we have
+to remove that slash or else it will be treated like an absolute path and
+resolving it against our web root will have no effect.
 
 The last method in the `WebServer` class takes in a path and transmits the
 corresponding file over the network.
@@ -594,7 +603,7 @@ corresponding file over the network.
 
 [source, java]
 ----
-include::{programsdir}/WebServer.java[lines=63..90]
+include::{programsdir}/WebServer.java[lines=59..81]
 ----
 <.> The `serve()` method first checks to see if the specified file exists. If
 it doesn't, the method sends an `HTTP 404` response with a short explanatory
@@ -605,15 +614,14 @@ response indicating success.
 <.> Then, it creates a new `DataInputStream` object to read the file. In this
 case, it's necessary to read the file in binary. In general, HTML files are
 human-readable text files, but the image files that web servers must often send
-such as GIF and JPEG files are binary files filled with unprintable characters.
+such as PNG and JPEG files are binary files filled with unprintable characters.
 Because we need to send binary data, we were also careful to open a
 `DataOutputStream` on the socket earlier.
-<.> Once the file's open, the `serve()` method simply reads it in, byte by
-byte, and sends each byte out over the socket.  It would be more efficient to
-read a block of bytes and send them together, but our approach is simpler.
-<.> After the file has been sent, the method closes the `DataInputStream` and
-returns.
-
+<.> Once the file's open, we read it in, byte by byte, and send each byte out
+over the socket.  It would be more efficient to read a block of bytes and send
+them together, but this approach is simpler.
+<.> Reaching the end of the file triggers this exception, automatically closing
+the `DataInputStream`.
 
 Because a web server is a real world application, we must repeat the
 caveat that this implementation is quite bare bones. There are
