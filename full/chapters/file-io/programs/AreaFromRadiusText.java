@@ -9,7 +9,7 @@ public class AreaFromRadiusText {
         Path outFile = Paths.get("areas.txt");
 
         try (var in = new Scanner(inFile);		                        //<.>
-             var out = new PrintWriter(outFile.toFile())) {             //<.>
+            var out = new PrintWriter(outFile.toFile())) {              //<.>
             while (in.hasNextDouble()) {		                        //<.>
                 double radius = in.nextDouble();				        //<.>
                 out.format("%.3f%n", Math.PI*radius*radius);	        //<.>
