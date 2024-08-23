@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.Paths;
 
 public class ConcurrentFileAccess implements Runnable {
     private boolean even;
@@ -15,16 +16,14 @@ public class ConcurrentFileAccess implements Runnable {
     }
     
     public void run() {
-        PrintWriter out = null;
         int start = even ? 0 : 1; //<.>
-        try {
-			out = new PrintWriter(new File("concurrent.out")); //<.>
-            for(int i = start; i < 10000; i += 2) //<.>
-                out.println(i);				
+        try (var out = new PrintWriter(Paths.get("concurrent.out").toFile())) { //<.>
+            for (int i = start; i < 10000; i += 2) { //<.>
+                out.println(i);
+            }				
         }
         catch (FileNotFoundException e) {
-            System.out.println("concurrent.out not found!");
+            System.out.println("concurrent.out not accessible!");
         }
-        finally { if(out != null) out.close(); } //<.>
     }   
 }

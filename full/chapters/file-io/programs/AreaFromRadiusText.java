@@ -1,26 +1,22 @@
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class AreaFromRadiusText {
     public static void main(String[] args) {
-        File inFile = new File("radiuses.txt");
-        File outFile = new File("areas.txt");
-        Scanner in = null;
-        PrintWriter out = null;     
-        try {
-            in = new Scanner(inFile);		//<.>
-            out = new PrintWriter(outFile);	//<.>
-            while(in.hasNextDouble()) {		//<.>
-                double radius = in.nextDouble();				//<.>
-                out.format("%.3f%n", Math.PI*radius*radius);	//<.>
+        Path inFile = Paths.get("radiuses.txt");
+        Path outFile = Paths.get("areas.txt");
+
+        try (var in = new Scanner(inFile);		                        //<.>
+            var out = new PrintWriter(outFile.toFile())) {              //<.>
+            while (in.hasNextDouble()) {		                        //<.>
+                double radius = in.nextDouble();				        //<.>
+                out.format("%.3f%n", Math.PI*radius*radius);	        //<.>
             }
         }
-        catch(FileNotFoundException e) { 	//<.>
+        catch (IOException e) { 	                                    //<.>
             System.out.println(e.getMessage());
-        }
-        finally { 							//<.>
-            if(in != null) in.close();
-            if(out != null) out.close();
         }
     }
 }

@@ -29,7 +29,7 @@ and turns, keeping track of where you've been, backtracking out of dead
 ends, and producing a resulting path once you make it through. You
 already have the basic tools necessary to solve this problem. You can,
 for example, represent the maze with a two-dimensional array of
-characters, where a plus (`+'+'+`) represents a wall and a space (`'{nbsp}'`)
+characters, where a plus (`'{plus}'`) represents a wall and a space (`'{nbsp}'`)
 represents a passageway. You could mark a path through the maze by
 replacing a contiguous (vertical and horizontal but not diagonal)
 sequence of `'{nbsp}'` characters by `'*'` characters, leading from the

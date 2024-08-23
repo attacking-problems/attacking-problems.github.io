@@ -14,6 +14,7 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 :listing-caption: Program
 ifdef::ebook-format[:leveloffset: -1]
 :google-analytics-account: G-VEDGKRPMMK
+:docinfo: shared-head
 
 
 include::computer-basics.adoc[]
