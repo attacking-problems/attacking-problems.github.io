@@ -15,30 +15,36 @@ ifdef::ebook-format[:leveloffset: -1]
 
 __Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It is intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
 
-== The New Version is in the Works
+== The New Version is (Still!) in the Works
 
 [WARNING]
 .Under Construction
 ====
-This website is being updated during the summer of 2024, with changes to be completed by mid-August.
+This website was created and updated during the summer of 2024 and is usable now for fall classes.  We are continuing to work on additional changes, noted below, during the fall semester.  Please let us know of any issues you spot--or of any changes you would particularly like to see.
 ====
 
 === Changes Planned and Completed
 
+* [ ] Improve `switch` examples in Selection (Chapter 4).  Add `yield` example(s).
+* [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
+* [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Inheritance (Chapter 11).  Add binding variable and `switch` examples.
+* [ ] Include an explanation of the `enum` type to Classes (Chapter 9).
+* [ ] Unify discussion of annotations (Chapters 13 and 17).
+* [ ] Add an explanation of _varargs_ in Methods (Chapter 8).
+* [ ] Add Summary sections to chapters that don't have them.
+* [ ] Apply a unified style guide to all code in the book.
+* [ ] Explain the different versions of Java and their features.
+
+'''
+
 * [x] Add section on `var` declarations (Section 3.3.6).
 * [x] Describe enhancements to `switch` statements.
-* [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
-* [ ] Explain the `instanceof` binding variable.
 * [x] Describe how type inference for type variables interacts with `var`.
 * [x] Explain the `try`-with-resources feature.
 * [x] Replace the `File` type with `Path`.
-* [ ] Include an explanation of the `enum` type.
 * [x] Include a chapter on lambdas, closures, and functional expressions.
 * [x] Include a chapter on streams (or add to an existing chapter). 
 * [x] Add a brief outline of useful JCF classes and interfaces.
-* [ ] Unify discussion of annotations.
-* [ ] Explain the different versions of Java and their features.
-* [ ] Apply a unified style guide to all code in the book.
 
 == Availability
 
