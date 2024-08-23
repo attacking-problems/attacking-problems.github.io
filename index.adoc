@@ -7,7 +7,7 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 :stem: latexmath
 :xrefstyle: short
 :listing-caption: Program
-:google-analytics-account: G-VEDGKRPMMK
+:google-analytics-account: G-VS8KWBN2CV
 
 ifdef::ebook-format[:leveloffset: -1]
 
