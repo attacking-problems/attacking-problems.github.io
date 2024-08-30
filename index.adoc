@@ -72,7 +72,7 @@ make changes to the source code, and submit a pull request.
 == About
 
 Welcome to __Attacking Problems with Java__!
-This book is intended as an entry point into the realm of programming.
+This book is intended as an entry point into the realm of software development.
 It's designed to teach students the basics of programming but also aims for the secondary goal
 of introducing students to concurrent programming early in their college days. After mastering the concepts covered
 here, students should be prepared when they encounter more complex forms of
