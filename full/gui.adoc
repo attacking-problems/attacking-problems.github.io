@@ -448,7 +448,7 @@ inside of this class. Inside, we have only created an
 `actionPerformed()` method, but we could have created fields as well as
 other methods. It's a little ugly to create a whole new class and
 instantiate it in the middle of calling the `addActionListener()`
-method, but it's also very convenient. We need to supply an object that
+method, but it's also convenient. We need to supply an object that
 reacts to the event exactly the way we want it to. Since one doesn't
 exist yet, we have to create it. Of course, it's possible to supply any
 object that implements the `ActionListener` interface, not just
@@ -512,8 +512,8 @@ In the previous example, we used anonymous inner classes to add an
 `ActionListener` object to each button and implement its `actionPerformed()`
 method. This example shows the same code using lambda expressions
 instead. Note that both programs generate the same GUI and exhibit identical
-behavior. In the future, we will use the lambda expression style whenever
-possible.
+behavior. In the future, we will use the lambda expression style unless there's
+a compelling reason not to.
 
 .Demonstrates handling of action events with lambda expressions.
 [source, java]
@@ -1577,8 +1577,8 @@ threads to manage the GUI behind the scenes.
 
 Although a GUI will create several threads, the most relevant of these
 is the _event dispatch thread_ (EDT). This thread handles events like
-button clicks. When you write `actionPerformed()` methods, remember
-that the EDT is the one that will actually execute the code inside.
+button clicks. Whether you write `actionPerformed()` methods or lambda expressions
+for listeners, the EDT is the one that will actually execute that code.
 
 If you're writing a complex program, the EDT may interact with many
 other threads, and the synchronization issues discussed in

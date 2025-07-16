@@ -886,7 +886,7 @@ inside of this class. Inside, we have only created an
 <code>actionPerformed()</code> method, but we could have created fields as well as
 other methods. It’s a little ugly to create a whole new class and
 instantiate it in the middle of calling the <code>addActionListener()</code>
-method, but it’s also very convenient. We need to supply an object that
+method, but it’s also convenient. We need to supply an object that
 reacts to the event exactly the way we want it to. Since one doesn’t
 exist yet, we have to create it. Of course, it’s possible to supply any
 object that implements the <code>ActionListener</code> interface, not just
@@ -995,8 +995,8 @@ before the frame is made visible.</p>
 <code>ActionListener</code> object to each button and implement its <code>actionPerformed()</code>
 method. This example shows the same code using lambda expressions
 instead. Note that both programs generate the same GUI and exhibit identical
-behavior. In the future, we will use the lambda expression style whenever
-possible.</p>
+behavior. In the future, we will use the lambda expression style unless there’s
+a compelling reason not to.</p>
 </div>
 <div id="FrameWithPanelAndActionsLambdasProgram" class="listingblock">
 <div class="title">Program 16.4 Demonstrates handling of action events with lambda expressions.</div>
@@ -2977,8 +2977,8 @@ threads to manage the GUI behind the scenes.</p>
 <div class="paragraph">
 <p>Although a GUI will create several threads, the most relevant of these
 is the <em>event dispatch thread</em> (EDT). This thread handles events like
-button clicks. When you write <code>actionPerformed()</code> methods, remember
-that the EDT is the one that will actually execute the code inside.</p>
+button clicks. Whether you write <code>actionPerformed()</code> methods or lambda expressions
+for listeners, the EDT is the one that will actually execute that code.</p>
 </div>
 <div class="paragraph">
 <p>If you’re writing a complex program, the EDT may interact with many

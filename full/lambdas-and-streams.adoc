@@ -573,7 +573,7 @@ values with the same length). By subtracting the lengths of the two `String`
 values, the lambda expression returns a negative number if the first `String`
 has a length shorter than the second, a positive number if the first `String`
 has a length longer than the second, and zero if the two `String` values have
-the same length. Although unintuitive, this approach using subtraction can be
+the same length. Although unintuitive, this approach of subtraction can be
 used for many kinds of comparisons.
 
 Since most comparisons are based on characteristics of objects that can be
