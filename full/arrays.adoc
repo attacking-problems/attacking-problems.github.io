@@ -701,7 +701,7 @@ follows. This program's not very long, but there's a lot going on.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=1..11]
+include::{programsdir}/SelectionSort.java[lines=1..12]
 ----
 <.> After
 instantiating a `Scanner`, we read in the total number of values the
@@ -715,7 +715,7 @@ first `for` loop.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=12..20]
+include::{programsdir}/SelectionSort.java[lines=13..23]
 ----
 <.> The next `for` loop is where the actual sort happens. We start at index
 `0` and then try to find the smallest value to be put in that spot.
@@ -737,7 +737,7 @@ simple swap to do exactly that.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=21..25]
+include::{programsdir}/SelectionSort.java[lines=24..29]
 ----
 <.> After all the sorting is done, the final `for` loop prints out the newly
 sorted list.
@@ -777,7 +777,7 @@ the text we want to search through.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=1..11]
+include::{programsdir}/WordCount.java[lines=1..12]
 ----
 <.> As in the last example, this program begins by reading in the length of
 the list of words.
@@ -791,7 +791,7 @@ the program reads in each word and stores it into the array `words`.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=12..20]
+include::{programsdir}/WordCount.java[lines=13..21]
 ----
 <.> The `while` loop reads in each word from the text following the list and
 stores it in a variable called `temp`.
@@ -802,7 +802,7 @@ same index and breaks out of the inner `for` loop.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=21..24]
+include::{programsdir}/WordCount.java[lines=22..27]
 ----
 <.> After all the words in the text have been processed, the final `for`
 loop prints out each word from the list, along with its counts.
@@ -916,7 +916,7 @@ solve after the previous examples.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=1..9]
+include::{programsdir}/Statistics.java[lines=1..10]
 ----
 <.> In our solution, the `main()` method begins by reading in the total
 number of scores.
@@ -927,7 +927,7 @@ number of scores.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=10..19]
+include::{programsdir}/Statistics.java[lines=11..22]
 ----
 <.> Here we declare variables `max`, `min`, and `sum` to hold, respectively,
 the maximum, minimum, and sum of the elements in the array. Then, we set
@@ -947,7 +947,7 @@ up to `scores.length - 1`, we must include the value at index `0` in
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=20..23]
+include::{programsdir}/Statistics.java[lines=23..26]
 ----
 
 In this short snippet of code, we compute the mean, being careful to
@@ -956,7 +956,7 @@ statistics we've computed.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=24..28]
+include::{programsdir}/Statistics.java[lines=27..32]
 ----
 <.> At this point, we use the mean we've already computed to find the
 sample standard deviation. Following the formula for sample standard
@@ -970,7 +970,7 @@ square root of the variance is the standard deviation.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=29..38]
+include::{programsdir}/Statistics.java[lines=33..44]
 ----
 <.> To find the median, we use our selection sort code.
 
@@ -984,7 +984,7 @@ your code, add a comment.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=39..46]
+include::{programsdir}/Statistics.java[lines=45..53]
 ----
 <.> After the array has been sorted, we need to do a quick check to see if
 its length is odd or even.
@@ -1652,7 +1652,7 @@ objects.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=1..13]
+include::{programsdir}/TicTacToe.java[lines=1..15]
 ----
 <.> First, we create a `Scanner` to read in data.
 <.> Then, we declare
@@ -1673,10 +1673,11 @@ really shorthand for the following.
 
 [source,java]
 ----
-if(turn)
+if (turn) {
     shape = 'X';
-else
+} else {
     shape = '0';
+}
 ----
 
 The ternary operator works with a condition followed by a question mark
@@ -1688,7 +1689,7 @@ ternary operator is a useful trick, but it shouldn't be overused.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=15..35]
+include::{programsdir}/TicTacToe.java[lines=17..37]
 ----
 <.> After assigning the appropriate value to `shape`, our code reads in the
 row and column values for the current player's next move.
@@ -1710,7 +1711,7 @@ win.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=36..62]
+include::{programsdir}/TicTacToe.java[lines=38..70]
 ----
 <.> First we check each row to see if it contains three in a row.
 <.> Then, we check each column.
@@ -1883,7 +1884,7 @@ columns, although it would be easy to change those dimensions.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=1..11]
+include::{programsdir}/Life.java[lines=1..13]
 ----
 <.> The `main()` method of our program starts by defining `ROWS`, `COLUMNS`,
 and `GENERATIONS` as named constants using the `final` keyword.
@@ -1899,7 +1900,7 @@ see how the patterns in the simulation are affected.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=12..29]
+include::{programsdir}/Life.java[lines=14..36]
 ----
 <.> The `for` loop at the beginning of this segment of code runs once for
 each generation we simulate.
@@ -1930,7 +1931,7 @@ is less efficient.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=30..44]
+include::{programsdir}/Life.java[lines=37..54]
 ----
 <.> The first `for` loop in this segment prints 100 blank lines to clear the
 screen, as we explained earlier.
