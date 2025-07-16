@@ -2732,7 +2732,7 @@ can read in a three-dimensional point and rotate it around the
         <span class="n">rotation</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">theta</span><span class="o">);</span>
         <span class="n">rotation</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">theta</span><span class="o">);</span>
         <span class="kt">double</span><span class="o">[]</span> <span class="n">rotatedPoint</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rotatedPoint</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span><i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rotatedPoint</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">point</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">rotatedPoint</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+=</span> <span class="n">rotation</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]*</span><span class="n">point</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
             <span class="o">}</span>
@@ -3044,8 +3044,9 @@ the loop.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">value</span> <span class="o">:</span> <span class="n">array</span><span class="o">)</span>
-    <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">value</span> <span class="o">:</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3075,9 +3076,11 @@ pieces, in both black and white colors.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span><span class="o">[]</span> <span class="n">colors</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Black"</span><span class="o">,</span> <span class="s">"White"</span><span class="o">};</span>
 <span class="nc">String</span><span class="o">[]</span> <span class="n">pieces</span> <span class="o">=</span> <span class="o">{</span><span class="s">"King"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"Rook"</span><span class="o">,</span> <span class="s">"Bishop"</span><span class="o">,</span> <span class="s">"Knight"</span><span class="o">,</span> <span class="s">"Pawn"</span><span class="o">};</span>
-<span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">color</span> <span class="o">:</span> <span class="n">colors</span><span class="o">)</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">piece</span> <span class="o">:</span> <span class="n">pieces</span><span class="o">)</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">color</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">piece</span><span class="o">);</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">color</span> <span class="o">:</span> <span class="n">colors</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">piece</span> <span class="o">:</span> <span class="n">pieces</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">color</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">piece</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3487,10 +3490,11 @@ balancing</em>, a broad term for dividing work across computing resources.</p>
         <span class="kt">int</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">k</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">k</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>       
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>      
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>      
             <span class="kt">int</span> <span class="n">work</span> <span class="o">=</span> <span class="n">quotient</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span>
-                <span class="n">work</span><span class="o">++;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">++</span><span class="n">work</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thread "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" does "</span> <span class="o">+</span> <span class="n">work</span>
                 <span class="o">+</span> <span class="s">" units of work, starting at index "</span> <span class="o">+</span> <span class="n">next</span>
                 <span class="o">+</span> <span class="s">" and ending at index "</span> <span class="o">+</span> <span class="o">(</span><span class="n">next</span> <span class="o">+</span> <span class="n">work</span> <span class="o">-</span> <span class="mi">1</span><span class="o">));</span>
@@ -3538,8 +3542,9 @@ linked list and vice versa.</p>
     <span class="n">array2</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array2</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="n">array2</span> <span class="o">=</span> <span class="n">array1</span><span class="o">;</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
-    <span class="n">array1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array1</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">array1</span><span class="o">[</span><span class="n">i</span><span class="o">];</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">array1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array1</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">array1</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

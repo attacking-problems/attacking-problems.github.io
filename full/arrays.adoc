@@ -1776,8 +1776,9 @@ the loop.
 [source,java]
 ----
 int sum = 0;
-for (int value : array)
+for (int value : array) {
     sum += value;
+}
 ----
 
 This code functions in exactly the same way as the traditional `for`
@@ -1804,9 +1805,11 @@ pieces, in both black and white colors.
 ----
 String[] colors = {"Black", "White"};
 String[] pieces = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-for (String color : colors)
-    for (String piece : pieces)
+for (String color : colors) {
+    for (String piece : pieces) {
         System.out.println(color + " " + piece);
+    }
+}
 ----
 
 Enhanced `for` loops do have a few drawbacks. For one, they're designed for iterating
@@ -2088,8 +2091,9 @@ for (int i = 0; i < array1.length; ++i) {
     array2[i] = array2.length - i;
 }
 array2 = array1;
-for (int i = 1; i < array1.length; ++i)
+for (int i = 1; i < array1.length; ++i) {
     array1[i] = array1[i - 1] + array1[i];
+}
 ----
 +
 What is the value in `array2[array2.length - 1]` after this code is
