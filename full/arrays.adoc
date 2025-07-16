@@ -10,7 +10,7 @@ ____
 
 === Introduction
 
-With one exception, all of the types we've talked about in this book
+With one exception, all the types we've talked about in this book
 have held a single value. For example, an `int` variable can only
 contain a single `int` value. If you try to put a second `int` value
 into a variable, it will overwrite the first.
@@ -115,7 +115,7 @@ of time is:
 [source,java]
 ----
 try { Thread.sleep(100); }
-catch(InterruptedException e) {}
+catch (InterruptedException e) {}
 ----
 
 We'll explain this code in much greater detail in <<concurrency#concurrency>>.
@@ -427,8 +427,9 @@ indexes.
 [source,java]
 ----
 int[] values = new int[100];
-for(int i = 0; i < 100; i++)
+for (int i = 0; i < 100; ++i) {
     values[i] = i;
+}
 ----
 
 This sample of code shows how easy it is to iterate over every element
@@ -446,8 +447,9 @@ field of the `values` array for the bound of the `for` loop.
 [source,java]
 ----
 int[] values = new int[100];
-for(int i = 0; i < values.length; i++)
+for (int i = 0; i < values.length; ++i) {
     values[i] = i;
+}
 ----
 
 The `length` field gives the length of the array that `values` points
@@ -466,8 +468,9 @@ the same summation is discussed in <<Enhanced `for` loops>>.
 [source,java]
 ----
 double sum = 0.0;
-for(int i = 0; i < data.length; i++)
+for (int i = 0; i < data.length; ++i) {
     sum += data[i];
+}
 System.out.println("The sum of your data is: " + sum);
 ----
 
@@ -479,19 +482,20 @@ the array.
 
 [source,java]
 ----
-char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; //<1>
-int start = 0; //<2>
-int end = letters.length - 1; //<3>
+char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; // <1>
+int start = 0; // <2>
+int end = letters.length - 1; // <3>
 char temp;
-while(start < end) { //<4>
-    temp = letters[start]; //<5>
+while (start < end) { // <4>
+    temp = letters[start]; // <5>
     letters[start] = letters[end];
     letters[end] = temp;
-    start++; //<6>
-    end--;
+    ++start; // <6>
+    --end;
 }
-for(int i = 0; i < letters.length; i++) //<7>
+for (int i = 0; i < letters.length; ++i) { //<7>
     System.out.print(letters[i]);
+}
 ----
 
 <1> After initializing the `letters`
@@ -644,9 +648,11 @@ the largest value in an `int` array named `values` in exactly this way.
 [source,java]
 ----
 int largest = values[0];
-for(int i = 1; i < values.length; i++)
-    if(values[i] > largest)
+for (int i = 1; i < values.length; ++i) {
+    if (values[i] > largest) {
         largest = values[i];
+    }
+}
 System.out.println("The largest value is " + largest);
 ----
 
@@ -662,9 +668,11 @@ could find the smallest value instead.
 [source,java]
 ----
 int smallest = values[0];
-for(int i = 1; i < values.length; i++)
-    if(values[i] < smallest)
+for (int i = 1; i < values.length; ++i) {
+    if (values[i] < smallest) {
         smallest = values[i];
+    }
+}
 System.out.println("The smallest value is " + smallest);
 ----
 
@@ -1202,11 +1210,12 @@ numbered increasing across each row.
 ----
 int[][] values = new int[3][4];
 int number = 1;
-for(int i = 0; i < values.length; i++)
-    for(int j = 0; j < values[i].length; j++) {
+for (int i = 0; i < values.length; ++i) {
+    for (int j = 0; j < values[i].length; ++j) {
         values[i][j] = number;
         number++;
     }
+}
 ----
 
 This code would result in an array filled up like the following table.
@@ -1244,8 +1253,9 @@ one-dimensional array aliasing.
 [source,java]
 ----
 int[] array1 = new int[10];
-for(int i = 0; i < array1.length; i++)
+for (int i = 0; i < array1.length; ++i) {
     array1[i] = i;
+}
 int[] array2 = array1;
 array2[3] = 17;
 System.out.println(array1[3]);
@@ -1309,11 +1319,11 @@ block.
 ----
 int[][] values = new int[3][];
 int number = 1;
-for(int i = 0; i < values.length; i++) {
+for (int i = 0; i < values.length; ++i) {
     values[i] = new int[4];
-    for(int j = 0; j < values[i].length; j++) {
+    for (int j = 0; j < values[i].length; ++j) {
         values[i][j] = number;
-            number++;
+        ++number;
     }
 }
 ----
@@ -1387,7 +1397,7 @@ user wants to use to find the distances between.
 
 [source,java]
 ----
-if(city1 > city2) {
+if (city1 > city2) {
     int temp = city1;
     city1 = city2;
     city2 = temp;
@@ -1420,8 +1430,9 @@ access an illegal element, it'll crash with an
 [source,java]
 ----
 int[] array = new int[100];
-for(int i = 0; i <= array.length; i++)
+for (int i = 0; i <= array.length; ++i) {
     array[i] = i;
+}
 ----
 
 Here's a classic example. By iterating through the loop one too many
@@ -1441,10 +1452,11 @@ in the file.
 Scanner in = new Scanner(System.in);
 int[] counts = new int[26];
 String word;
-while(in.hasNext()) {
+while (in.hasNext()) {
     word = in.next().toLowerCase();
-    for(int i = 0; i < word.length(); i++)
-        counts[word.charAt(i) - 'a']++;
+    for (int i = 0; i < word.length(); ++i) {
+        ++counts[word.charAt(i) - 'a'];
+    }
 }
 ----
 
@@ -1493,8 +1505,9 @@ The `NullPointerException` could be avoided as follows.
 [source,java]
 ----
 String[] references = new String[100];
-for(int i = 0; i < references.length; i++)
+for (int i = 0; i < references.length; ++i) {
     references[i] = new String();
+}
 int x = references[67].length();
 ----
 
@@ -1507,8 +1520,9 @@ A similar error can happen with multidimensional arrays.
 [source,java]
 ----
 int[][] table = new int[10][];
-for(int i = 0; i < table.length; i++)
+for (int i = 0; i < table.length; ++i) {
     table[i][i] = i;
+}
 ----
 
 Because an array is itself a reference type, the `table` array contains
@@ -1762,7 +1776,7 @@ the loop.
 [source,java]
 ----
 int sum = 0;
-for(int value : array)
+for (int value : array)
     sum += value;
 ----
 
@@ -1772,8 +1786,9 @@ loop we would use to solve the same problem.
 [source,java]
 ----
 int sum = 0;
-for(int i = 0; i < array.length; i++)
+for (int i = 0; i < array.length; ++i) {
     sum += array[i];
+}
 ----
 
 The advantage of the enhanced `for` loop is that it's shorter and clearer.
@@ -1789,8 +1804,8 @@ pieces, in both black and white colors.
 ----
 String[] colors = {"Black", "White"};
 String[] pieces = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-for(String color : colors)
-    for(String piece : pieces)
+for (String color : colors)
+    for (String piece : pieces)
         System.out.println(color + " " + piece);
 ----
 
@@ -1805,8 +1820,9 @@ in `array`.
 
 [source,java]
 ----
-for(int i = 0; i < array.length; i++)
+for (int i = 0; i < array.length; ++i) {
     array[i] = 5;
+}
 ----
 
 This kind of assignment is impossible in an enhanced `for` loop. The
@@ -1815,8 +1831,9 @@ variable `value` but never changes the contents of `array`.
 
 [source,java]
 ----
-for(int value : array)
+for (int value : array) {
     value = 5;
+}
 ----
 
 While enhanced `for` loops are great for arrays, they can also be used for
@@ -2066,12 +2083,12 @@ linked list and vice versa.
 ----
 double[] array1 = new double[50];
 double[] array2 = new double[50];
-for(int i = 0; i < array1.length; i++) {
+for (int i = 0; i < array1.length; ++i) {
     array1[i] = i + 1;
     array2[i] = array2.length - i;
 }
 array2 = array1;
-for(int i = 1; i < array1.length; i++)
+for (int i = 1; i < array1.length; ++i)
     array1[i] = array1[i - 1] + array1[i];
 ----
 +
