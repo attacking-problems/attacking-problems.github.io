@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SimpleMouseAdapter extends MouseAdapter { //<.>
+public class SimpleMouseAdapter extends MouseAdapter { // <.>
     private JFrame frame = new JFrame("Mouse Events");    
     private JTextField status = new JTextField("Mouse status comes here.");
     private JButton oneButton = new JButton("One");
@@ -23,19 +23,19 @@ public class SimpleMouseAdapter extends MouseAdapter { //<.>
     }
     
     // Override only those methods we want
-    public void mouseEntered(MouseEvent e) { //<.>
-        if (e.getSource() == oneButton)
+    public void mouseEntered(MouseEvent e) { // <.>
+        if (e.getSource() == oneButton) {
             status.setText("Mouse enters One.");
-        else
-            status.setText("Mouse enters Two.");      
+        } else {
+            status.setText("Mouse enters Two.");
+        }
     }
     
-    public void mouseClicked(MouseEvent e) { //<.>
+    public void mouseClicked(MouseEvent e) { // <.>
         if (e.getSource() == oneButton) {
             oneClicks++;
             status.setText("One clicked "+ oneClicks + " times.");
-        }           
-        else {
+        } else {
             twoClicks++;
             status.setText("Two clicked "+ twoClicks  + " times.");
         }

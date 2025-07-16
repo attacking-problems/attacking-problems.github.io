@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AnimalIdentifier extends MouseAdapter {  //<.>
-    private JLabel bison, dove, gecko, spider; //<.>
+public class AnimalIdentifier extends MouseAdapter {  // <.>
+    private JLabel bison, dove, gecko, spider; // <.>
     private JFrame frame = new JFrame("Animal Identifier");
 
     public AnimalIdentifier() { 
@@ -32,14 +32,15 @@ public class AnimalIdentifier extends MouseAdapter {  //<.>
   
 	public void mouseEntered(MouseEvent e) { // <.>
         Object label = e.getSource(); // <.>
-        if(label == bison)
-          frame.setTitle("Animal Identifier: Bison");
-        else if(label == dove)
-          frame.setTitle("Animal Identifier: Dove");
-        else if (label == gecko)
-          frame.setTitle("Animal Identifier: Gecko");    
-        else if (label == spider)
-          frame.setTitle("Animal Identifier: Spider");
+        if (label == bison) {
+            frame.setTitle("Animal Identifier: Bison");
+        } else if (label == dove) {
+            frame.setTitle("Animal Identifier: Dove");
+        } else if (label == gecko) {
+            frame.setTitle("Animal Identifier: Gecko");
+        } else if (label == spider) {
+            frame.setTitle("Animal Identifier: Spider");
+        }
     }
 
     public static void main(String[] args) { //<.>
