@@ -397,23 +397,24 @@ condition</em>. Below is a simple example of a race condition in Java.</p>
     
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>                              
         <span class="nc">RaceCondition</span><span class="o">[]</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RaceCondition</span><span class="o">[</span><span class="no">THREADS</span><span class="o">];</span>           
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RaceCondition</span><span class="o">();</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>         
         <span class="o">}</span>           
         <span class="k">try</span> <span class="o">{</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>           
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Counter:\t"</span> <span class="o">+</span> <span class="n">counter</span><span class="o">);</span>            
     <span class="o">}</span>   
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">COUNT</span><span class="o">/</span><span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">counter</span><span class="o">++;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">COUNT</span><span class="o">/</span><span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -438,11 +439,11 @@ the answer should always be correct.</p>
 </div>
 <div class="paragraph">
 <p>Looking at the code, the problem might not be obvious. Everything
-centers on the statement <code>counter++</code> in the <code>for</code> loop inside the
+centers on the statement <code>++counter</code> in the <code>for</code> loop inside the
 <code>run()</code> method. But, this statement appears to execute in a single step!
 Each thread should increase the value of <code>counter</code> a total of
 <code>COUNT/THREADS</code> times, adding up to <code>1000000</code>. The trouble is that
-<code>counter++</code> is <strong>not</strong> a single step. Recall that <code>counter++</code> is shorthand
+<code>++counter</code> is <strong>not</strong> a single step. Recall that <code>++counter</code> is shorthand
 for <code>counter = counter + 1</code>. To be even more explicit we could write it
 as follows.</p>
 </div>
@@ -454,10 +455,10 @@ as follows.</p>
 </div>
 <div class="paragraph">
 <p>One thread might get as far as storing <code>counter</code> into a temporary
-location, but then it runs out of time, allowing the next thread in the
-schedule to run. When that’s the case, this next thread may do a series of
+location, but before it can add 1, another thread continues to perform
+operations. When that’s the case, this next thread may do a series of
 increments to <code>count</code> which are all overwritten when the first thread
-runs again. Because the first thread had an old value of <code>counter</code>
+executes again. Because the first thread had an old value of <code>counter</code>
 stored in <code>temp</code>, adding 1 to <code>temp</code> has the effect of ignoring
 increments that happened in the interim. This situation can happen on a single
 processor with threads switching back and forth, but it’s even more dangerous
@@ -467,9 +468,9 @@ on a multicore system.</p>
 <p>The primary lesson here is that threads can switch between each other at
 any time with unpredictable effects. The secondary lesson is that the
 source code is too coarse-grained to show <em>atomic</em> operations. An atomic
-operation is one which cannot be interrupted by a context switch to
-another thread. The actual code that the JVM runs is much lower level
-than source code.</p>
+operation is one which happens in a single step and cannot be interrupted by a
+context switch to another thread. The actual code that the JVM runs is much
+lower level than source code.</p>
 </div>
 <div class="paragraph">
 <p>We can’t easily force a non-atomic operation to be atomic, but there are
@@ -560,8 +561,9 @@ removing occurrences of <code>"Danger, "</code> from the beginning of <code>mess
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">safety</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"Danger, "</span><span class="o">))</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"Danger, "</span><span class="o">))</span> <span class="o">{</span>
         <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -585,7 +587,7 @@ time for that object.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Perhaps this level of control is too restrictive. You may have six
+<p>Perhaps this level of control is too restrictive. You might have six
 methods which conflict with each other and four others which conflict
 with each other but not the first six. Using <code>synchronized</code> in each
 method declaration would unnecessarily limit the amount of concurrency
@@ -599,7 +601,7 @@ of code allows more fine-grained control. The following version of
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">danger</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s">"Danger, "</span> <span class="o">+</span> <span class="n">message</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -631,20 +633,20 @@ easily be shared, perhaps as static fields of a class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">synchronized</span><span class="o">(</span><span class="n">lock1</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock1</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// Do dangerous thing 1</span>
 <span class="o">}</span>
 
 <span class="c1">// Do safe things</span>
 
-<span class="kd">synchronized</span><span class="o">(</span><span class="n">lock2</span><span class="o">)</span> <span class="o">{</span>
+<span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock2</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// Do dangerous thing 2, unrelated to dangerous thing 1</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Since declaring a method with <code>synchronized</code> is equivalent to having its
-body enclosed in a block beginning with <code>synchronized(this)</code>, what about
+body enclosed in a block beginning with <code>synchronized (this)</code>, what about
 <code>static</code> methods? Can they be <code>synchronized</code>? Yes, they can. Whenever a
 class is loaded, Java creates an object of type <code>Class</code> which
 corresponds to that class. This object is what synchronized static
@@ -671,10 +673,11 @@ counting thread.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">votingComplete</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">votingComplete</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
 <span class="n">countVotes</span><span class="o">();</span></code></pre>
@@ -702,8 +705,8 @@ calling <code>sleep()</code>, calling <code>wait()</code>, or performing blockin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">while</span><span class="o">(!</span><span class="n">votingComplete</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">votingComplete</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">wait</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -731,7 +734,7 @@ complete.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="c1">// Finish collecting votes</span>
-<span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+<span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">votingComplete</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
     <span class="n">notifyAll</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
@@ -783,19 +786,21 @@ buffer, but all accesses will be controlled.</p>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">addItem</span><span class="o">(</span><span class="nc">Object</span> <span class="n">object</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="k">while</span><span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="no">SIZE</span><span class="o">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="n">wait</span><span class="o">();</span>     
+        <span class="k">while</span> <span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="no">SIZE</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">wait</span><span class="o">();</span>
+        <span class="o">}</span>
         <span class="n">objects</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">object</span><span class="o">;</span>
-        <span class="n">count</span><span class="o">++;</span>
-        <span class="n">notifyAll</span><span class="o">();</span>         <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="o">++</span><span class="n">count</span><span class="o">;</span>
+        <span class="n">notifyAll</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kd">synchronized</span> <span class="nc">Object</span> <span class="nf">removeItem</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="k">while</span><span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>    <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="k">while</span> <span class="o">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="n">wait</span><span class="o">();</span>
-        <span class="n">count</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="o">--</span><span class="n">count</span><span class="o">;</span>
         <span class="nc">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">objects</span><span class="o">[</span><span class="n">count</span><span class="o">];</span>     
-        <span class="n">notifyAll</span><span class="o">();</span>         <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="n">notifyAll</span><span class="o">();</span> <i class="conum" data-value="6"></i><b>(6)</b>
         <span class="k">return</span> <span class="n">object</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -901,13 +906,14 @@ the balance.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getBalance</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
         <span class="kt">double</span> <span class="n">amount</span><span class="o">;</span>      
-        <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>   <i class="conum" data-value="1"></i><b>(1)</b>
-            <span class="n">readers</span><span class="o">++;</span>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>     <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="o">++</span><span class="n">readers</span><span class="o">;</span>
         <span class="o">}</span>       
-        <span class="n">amount</span> <span class="o">=</span> <span class="n">balance</span><span class="o">;</span>      <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(--</span><span class="n">readers</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
-                <span class="n">notifyAll</span><span class="o">();</span>   <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="n">amount</span> <span class="o">=</span> <span class="n">balance</span><span class="o">;</span>         <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(--</span><span class="n">readers</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="n">notifyAll</span><span class="o">();</span>      <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="o">}</span>
         <span class="o">}</span>       
         <span class="k">return</span> <span class="n">amount</span><span class="o">;</span>      
     <span class="o">}</span></code></pre>
@@ -951,11 +957,12 @@ account can continue.</td>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">withdraw</span><span class="o">(</span><span class="kt">double</span> <span class="n">amount</span><span class="o">)</span>
         <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
         <span class="kt">boolean</span> <span class="n">success</span> <span class="o">=</span> <span class="n">changeBalance</span><span class="o">(-</span><span class="n">amount</span><span class="o">);</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">success</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">success</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Withdrew $"</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">+</span> <span class="s">"."</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Failed to withdraw $"</span> <span class="o">+</span>
                 <span class="n">amount</span> <span class="o">+</span> <span class="s">": insufficient funds."</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">success</span><span class="o">;</span>
     <span class="o">}</span></code></pre>
 </div>
@@ -970,10 +977,12 @@ controls.</p>
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">protected</span> <span class="kd">synchronized</span> <span class="kt">boolean</span> <span class="nf">changeBalance</span><span class="o">(</span><span class="kt">double</span> <span class="n">amount</span><span class="o">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
         <span class="kt">boolean</span> <span class="n">success</span><span class="o">;</span>    
-        <span class="k">while</span><span class="o">(</span><span class="n">readers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-			<span class="n">wait</span><span class="o">();</span>         
-        <span class="k">if</span><span class="o">(</span><span class="n">success</span> <span class="o">=</span> <span class="o">(</span><span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">))</span> <i class="conum" data-value="3"></i><b>(3)</b>
-            <span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span><span class="o">;</span>      
+        <span class="k">while</span> <span class="o">(</span><span class="n">readers</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+			<span class="n">wait</span><span class="o">();</span>
+        <span class="o">}</span>         
+        <span class="k">if</span> <span class="o">(</span><span class="n">success</span> <span class="o">=</span> <span class="o">(</span><span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+            <span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">success</span><span class="o">;</span> 
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1020,7 +1029,7 @@ synchronization tools has forced a blocking dependence onto a group of
 threads which will <strong>never</strong> be resolved.</p>
 </div>
 <div class="paragraph">
-<p>In the past, people have described four conditions which must exist for
+<p>Researchers have discovered four conditions which must exist for
 deadlock to happen.</p>
 </div>
 <div class="olist arabic">
@@ -1088,15 +1097,15 @@ can know which chopsticks are in use.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>        
         <span class="nc">DeadlockPhilosopher</span><span class="o">[]</span> <span class="n">philosophers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DeadlockPhilosopher</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DeadlockPhilosopher</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>    <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="o">}</span>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>                        
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>                        
                 <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>       
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All philosophers done."</span><span class="o">);</span>
@@ -1127,8 +1136,7 @@ in the <code>run()</code> method.</p>
             <span class="n">getChopstick</span><span class="o">(</span><span class="n">seat</span><span class="o">);</span>     			<i class="conum" data-value="1"></i><b>(1)</b>
             <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>       			<i class="conum" data-value="2"></i><b>(2)</b>
 			<span class="n">getChopstick</span><span class="o">((</span><span class="n">seat</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="no">SEATS</span><span class="o">);</span> 	<i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>           
         <span class="n">eat</span><span class="o">();</span>
@@ -1166,11 +1174,10 @@ above, we’ve already gotten ourselves into trouble.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">getChopstick</span><span class="o">(</span><span class="kt">int</span> <span class="n">location</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">location</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
-            <span class="n">location</span> <span class="o">+=</span> <span class="no">SEATS</span><span class="o">;</span>
-        <span class="kd">synchronized</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">while</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">[</span><span class="n">location</span><span class="o">])</span>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">[</span><span class="n">location</span><span class="o">])</span> <span class="o">{</span>
                 <span class="n">chopsticks</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+            <span class="o">}</span>
             <span class="n">chopsticks</span><span class="o">[</span><span class="n">location</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
         <span class="o">}</span>       
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Philosopher "</span> <span class="o">+</span> <span class="n">seat</span> <span class="o">+</span>
@@ -1179,12 +1186,9 @@ above, we’ve already gotten ourselves into trouble.</p>
     
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span>
         <span class="c1">// Done eating, put back chopsticks</span>
-        <span class="kd">synchronized</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">chopsticks</span><span class="o">[</span><span class="n">seat</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>           
-            <span class="k">if</span><span class="o">(</span><span class="n">seat</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-                <span class="n">chopsticks</span><span class="o">[</span><span class="no">SEATS</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="k">else</span>
-                <span class="n">chopsticks</span><span class="o">[</span><span class="n">seat</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>                           
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">chopsticks</span><span class="o">[</span><span class="n">seat</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="n">chopsticks</span><span class="o">[(</span><span class="n">seat</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="no">SEATS</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
             <span class="n">chopsticks</span><span class="o">.</span><span class="na">notifyAll</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1198,8 +1202,8 @@ above, we’ve already gotten ourselves into trouble.</p>
 <div class="content">
 <div class="paragraph">
 <p>Here’s another example of deadlock. We emphasize deadlock because it’s
-one of the most common and problematic issues with using synchronization
-carelessly.</p>
+one of the most common and problematic issues with carelessly using
+synchronization.</p>
 </div>
 <div class="paragraph">
 <p>Consider two threads which both need access to two separate resources.
@@ -1235,8 +1239,7 @@ spawns two new threads, passing <code>true</code> to one and <code>false</code> 
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">thread1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
             <span class="n">thread2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>                   
     <span class="o">}</span></code></pre>
@@ -1264,27 +1267,26 @@ between. The non-reversed thread tries to lock on <code>random1</code> and then
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">if</span><span class="o">(</span><span class="n">reverse</span><span class="o">)</span> <span class="o">{</span>         
-            <span class="kd">synchronized</span><span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">reverse</span><span class="o">)</span> <span class="o">{</span>         
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reversed Thread: locked random2"</span><span class="o">);</span>
 				<span class="k">try</span><span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span> <span class="o">}</span>
 				<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 					<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 				<span class="o">}</span>
-				<span class="kd">synchronized</span><span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
+				<span class="kd">synchronized</span> <span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
 					<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reversed Thread: locked random1"</span><span class="o">);</span>
 					<span class="n">sum</span> <span class="o">=</span> <span class="n">random1</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()</span> <span class="o">+</span> <span class="n">random2</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>                
 				<span class="o">}</span>
             <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>          
-            <span class="kd">synchronized</span><span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>          
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Normal Thread: locked random1"</span><span class="o">);</span>
 				<span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span> <span class="o">}</span>
-				<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 				  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 				<span class="o">}</span>
-				<span class="kd">synchronized</span><span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>
+				<span class="kd">synchronized</span> <span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>
 					<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Normal Thread: locked random2"</span><span class="o">);</span>              
 					<span class="n">sum</span> <span class="o">=</span> <span class="n">random1</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()</span> <span class="o">+</span> <span class="n">random2</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>                
 				<span class="o">}</span>
@@ -1297,7 +1299,7 @@ between. The non-reversed thread tries to lock on <code>random1</code> and then
 <div class="paragraph">
 <p>If you run this code, it should invariably deadlock with <code>thread1</code>
 locked on <code>random2</code> and <code>thread2</code> locked on <code>random1</code>. No sane
-programmer would intentionally code the threads like this. In fact, the
+programmer would intentionally code threads like this. In fact, the
 extra work we did to acquire the locks in opposite orders is exactly
 what causes the deadlock. For more complicated programs, there may be
 many different kinds of threads and many different resources. If two
@@ -1440,8 +1442,7 @@ objects representing each of the friends.</td>
             <span class="n">friend1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
             <span class="n">friend2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
             <span class="n">friend3</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>       
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All ready!"</span><span class="o">);</span>
@@ -1460,21 +1461,21 @@ successful, it’ll print <code>All ready!</code> to the screen.</p>
         <span class="kt">boolean</span> <span class="n">done</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
     
         <span class="k">try</span> <span class="o">{</span>       
-            <span class="k">while</span><span class="o">(!</span><span class="n">done</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="k">while</span> <span class="o">(!</span><span class="n">done</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
                 <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">75</span><span class="o">);</span> <span class="c1">// Prepare for party </span><i class="conum" data-value="2"></i><b>(2)</b>
-                <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">totalReady</span><span class="o">++;</span>       <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="o">++</span><span class="n">totalReady</span><span class="o">;</span>          <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="o">}</span>                   
                 <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">75</span><span class="o">);</span> <span class="c1">// Wait for friends  </span><i class="conum" data-value="4"></i><b>(4)</b>
-                <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">if</span><span class="o">(</span><span class="n">totalReady</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">)</span> <i class="conum" data-value="5"></i><b>(5)</b>
+                <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">totalReady</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
                         <span class="n">done</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-                    <span class="k">else</span>
-                        <span class="n">totalReady</span><span class="o">--;</span>   <i class="conum" data-value="6"></i><b>(6)</b>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="o">--</span><span class="n">totalReady</span><span class="o">;</span>      <i class="conum" data-value="6"></i><b>(6)</b>
+                    <span class="o">}</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1530,7 +1531,7 @@ ready at the same time, but it could take a long, long while.</p>
 indefinitely. Some people would decide that it was too late to go.
 Others would go alone. Others would go over to their friends' houses and
 demand to know what was taking so long. Computers are not nearly as
-sensible and must obey instructions, even if they cause useless
+sensible and must obey instructions, even if they cause useless,
 repetitive patterns. Realistic examples of livelock are hard to show in
 a short amount of code, but they do crop up in real systems and can be
 very difficult to predict.</p>
@@ -1556,11 +1557,14 @@ and use the <code>synchronized</code> keyword to lock on the matrix itself.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kd">synchronized</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">k</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">*</span> <span class="n">b</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1575,7 +1579,7 @@ the case of the producer/consumer problem, synchronization is necessary,
 and the only way to manage the buffer properly is to enforce sequential
 execution. Sometimes sequential execution can’t be avoided, but you
 should always know which pieces of code are truly executing in parallel
-and which aren’t if you hope to get the maximum amount of speedup. The
+and which aren’t if you hope to get the maximum speedup. The
 <code>synchronized</code> keyword should be used whenever it’s needed, but no
 more.</p>
 </div>
@@ -1647,15 +1651,15 @@ either pick up both chopsticks or neither.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>        
         <span class="nc">DiningPhilosopher</span><span class="o">[]</span> <span class="n">philosophers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DiningPhilosopher</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DiningPhilosopher</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>    <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="o">}</span>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>                        
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>                        
                 <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>       
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All philosophers done."</span><span class="o">);</span>
@@ -1678,7 +1682,7 @@ philosopher.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>               	<i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>	<i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">think</span><span class="o">();</span>				   
             <span class="n">getChopsticks</span><span class="o">();</span>           
             <span class="n">eat</span><span class="o">();</span>
@@ -1689,8 +1693,7 @@ philosopher.</td>
         <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">sleep</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span></code></pre>
@@ -1722,12 +1725,11 @@ deterministic.</td>
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">getChopsticks</span><span class="o">()</span> <span class="o">{</span>	  	<i class="conum" data-value="1"></i><b>(1)</b>
         <span class="kt">int</span> <span class="n">location1</span> <span class="o">=</span> <span class="n">seat</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">location2</span> <span class="o">=</span> <span class="o">(</span><span class="n">seat</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="no">SEATS</span><span class="o">;</span>              
-        <span class="kd">synchronized</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>	  	<i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="k">while</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">[</span><span class="n">location1</span><span class="o">]</span> <span class="o">||</span> <span class="n">chopsticks</span><span class="o">[</span><span class="n">location2</span><span class="o">])</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>	  	<i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="k">while</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">[</span><span class="n">location1</span><span class="o">]</span> <span class="o">||</span> <span class="n">chopsticks</span><span class="o">[</span><span class="n">location2</span><span class="o">])</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="k">try</span> <span class="o">{</span>
                     <span class="n">chopsticks</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>	<i class="conum" data-value="4"></i><b>(4)</b>
-                <span class="o">}</span>
-                <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
                 <span class="o">}</span>                               
             <span class="o">}</span>           
@@ -1765,12 +1767,9 @@ tries to get the first chopstick in the array.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span> 			  	<i class="conum" data-value="1"></i><b>(1)</b>
         <span class="c1">// Done eating, put back chopsticks</span>
-        <span class="kd">synchronized</span><span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>	  	<i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">chopsticks</span><span class="o">)</span> <span class="o">{</span>	  	<i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">chopsticks</span><span class="o">[</span><span class="n">seat</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>           
-            <span class="k">if</span><span class="o">(</span><span class="n">seat</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-                <span class="n">chopsticks</span><span class="o">[</span><span class="no">SEATS</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="k">else</span>
-                <span class="n">chopsticks</span><span class="o">[</span><span class="n">seat</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>               
+            <span class="n">chopsticks</span><span class="o">[(</span><span class="n">seat</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">%</span> <span class="no">SEATS</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
             <span class="n">chopsticks</span><span class="o">.</span><span class="na">notifyAll</span><span class="o">();</span>   	<i class="conum" data-value="3"></i><b>(3)</b>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1888,8 +1887,9 @@ method as follows.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">COUNT</span><span class="o">/</span><span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-        <span class="n">counter</span><span class="o">++;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">COUNT</span><span class="o">/</span><span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>

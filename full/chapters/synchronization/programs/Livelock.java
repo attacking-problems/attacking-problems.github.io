@@ -17,8 +17,7 @@ public class Livelock extends Thread {
             friend1.join();
             friend2.join();
             friend3.join();
-        }
-        catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }       
         System.out.println("All ready!");
@@ -28,21 +27,21 @@ public class Livelock extends Thread {
         boolean done = false;
     
         try {       
-            while(!done) { //<.>
+            while (!done) { //<.>
                 Thread.sleep(75); // Prepare for party <.>
-                synchronized(lock) {
-                    totalReady++;       //<.>
+                synchronized (lock) {
+                    ++totalReady;          //<.>
                 }                   
                 Thread.sleep(75); // Wait for friends  <.>
-                synchronized(lock) {
-                    if(totalReady >= 3) //<.>
+                synchronized (lock) {
+                    if (totalReady >= 3) { //<.>
                         done = true;
-                    else
-                        totalReady--;   //<.>
+                    } else {
+                        --totalReady;      //<.>
+                    }
                 }
             }
-        }
-        catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
