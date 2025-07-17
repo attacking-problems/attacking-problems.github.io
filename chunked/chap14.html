@@ -822,7 +822,8 @@ computed values.</p>
         <span class="k">this</span><span class="o">.</span><span class="na">K</span> <span class="o">=</span> <span class="no">K</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
-    <span class="o">}</span> 
+    <span class="o">}</span>
+    
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="no">K</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">;</span> <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span><span class="o">;</span> <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -837,6 +838,7 @@ computed values.</p>
         <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
         <span class="k">this</span><span class="o">.</span><span class="na">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
     <span class="o">}</span>
+    
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> <span class="n">value</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">exp</span><span class="o">(-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="o">);</span> <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span><span class="o">;</span> <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -916,8 +918,7 @@ being interrupted while waiting for <code>thread1</code> to finish.</p>
 	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Waiting for thread 1..."</span><span class="o">);</span>
 	<span class="n">thread1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
 	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thread 1 finished!"</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thread 1 didn't finish!"</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -969,8 +970,7 @@ these values, which is the result of the expression we want to evaluate.</p>
             <span class="n">thread2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Value of expression: "</span> <span class="o">+</span>
                     <span class="n">thread1</span><span class="o">.</span><span class="na">getValue</span><span class="o">()*</span><span class="n">thread2</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A thread didn't finish!"</span><span class="o">);</span>
         <span class="o">}</span>        
     <span class="o">}</span>
@@ -1043,8 +1043,9 @@ an array.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">sum</span> <span class="o">+=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">sum</span><span class="o">;</span> <span class="o">}</span>
@@ -1128,15 +1129,15 @@ declaration.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">NumberedThread</span><span class="o">[]</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberedThread</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">threads</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">threads</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NumberedThread</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="o">}</span>
 <span class="k">try</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">threads</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">threads</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
-<span class="o">}</span>
-<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A thread didn't finish!"</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1332,9 +1333,9 @@ elements of the array in its assigned partition.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SumThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">lower</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">upper</span><span class="o">;</span>
-	<span class="kd">private</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">array</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">lower</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">upper</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">array</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">SIZE</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREADS</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
     
@@ -1373,8 +1374,9 @@ is exclusive.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSum</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">sum</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -1401,15 +1403,17 @@ be retrieved.</td>
         <span class="kt">double</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="no">SIZE</span><span class="o">];</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
         <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SIZE</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>  
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SIZE</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span>  
         <span class="nc">SumThread</span><span class="o">[]</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SumThread</span><span class="o">[</span><span class="no">THREADS</span><span class="o">];</span>
         <span class="kt">int</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="no">THREADS</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">%</span> <span class="no">THREADS</span><span class="o">;</span>          
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="kt">int</span> <span class="n">work</span> <span class="o">=</span> <span class="n">quotient</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span>
-                <span class="n">work</span><span class="o">++;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">++</span><span class="n">work</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SumThread</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">work</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
             <span class="n">start</span> <span class="o">+=</span> <span class="n">work</span><span class="o">;</span>
@@ -1446,13 +1450,12 @@ threads, simple division isn’t enough.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="k">try</span> <span class="o">{</span> 
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
                 <span class="n">sum</span> <span class="o">+=</span> <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getSum</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="o">}</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sum: "</span> <span class="o">+</span> <span class="n">threads</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">getSum</span><span class="o">());</span> <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sum: "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="o">}</span>
     <span class="o">}</span>   
@@ -1526,10 +1529,13 @@ names with lowercase letters.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-            <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">*</span> <span class="n">b</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">];</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">*</span> <span class="n">b</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1557,10 +1563,13 @@ number of rows in the answer matrix <code>c</code>.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>              
-                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lower</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>              
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">k</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">c</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">*</span> <span class="n">b</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1599,19 +1608,20 @@ create.</p>
 <span class="kt">int</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="no">THREADS</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">length</span> <span class="o">%</span> <span class="no">THREADS</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">quotient</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span>
-        <span class="n">rows</span><span class="o">++;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">++</span><span class="n">rows</span><span class="o">;</span>
+    <span class="o">}</span>
     <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MatrixThread</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">rows</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
     <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="n">start</span> <span class="o">+=</span> <span class="n">rows</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="k">try</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1929,12 +1939,13 @@ first.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LeftThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>  <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
-            <span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <span class="o">}</span>  <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span> 
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="o">}</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Left"</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
@@ -1965,12 +1976,11 @@ first.</p>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
         <span class="k">try</span> <span class="o">{</span>
 			<span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
-			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 
+			<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> 
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Right "</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
 				<span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
 			<span class="o">}</span>
-		<span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -2009,8 +2019,7 @@ lines of <code>Left Left Left Right Left</code>, but there are a few problems.</
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">left</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
             <span class="n">right</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>       
     <span class="o">}</span>
@@ -2031,7 +2040,7 @@ dependent. We can try <code>Thread.yield()</code> instead of <code>Thread.sleep(
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LeftYieldThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>              
@@ -2046,7 +2055,7 @@ dependent. We can try <code>Thread.yield()</code> instead of <code>Thread.sleep(
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RightYieldThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>         
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> 
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Right "</span><span class="o">);</span>         
             <span class="nc">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
         <span class="o">}</span>
@@ -2086,12 +2095,12 @@ updated to add these in before starting the threads.</p>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Left "</span><span class="o">);</span>          
             <span class="n">done</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>            
-            <span class="k">while</span><span class="o">(!</span><span class="n">right</span><span class="o">.</span><span class="na">isDone</span><span class="o">());</span>           
+            <span class="k">while</span> <span class="o">(!</span><span class="n">right</span><span class="o">.</span><span class="na">isDone</span><span class="o">());</span>           
             <span class="n">right</span><span class="o">.</span><span class="na">setDone</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>                     
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Left"</span><span class="o">);</span>                 
         <span class="o">}</span>
@@ -2113,8 +2122,8 @@ updated to add these in before starting the threads.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>             
-            <span class="k">while</span><span class="o">(!</span><span class="n">left</span><span class="o">.</span><span class="na">isDone</span><span class="o">());</span>            
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>             
+            <span class="k">while</span> <span class="o">(!</span><span class="n">left</span><span class="o">.</span><span class="na">isDone</span><span class="o">());</span>            
             <span class="n">left</span><span class="o">.</span><span class="na">setDone</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>            
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Right "</span><span class="o">);</span>         
             <span class="n">done</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
@@ -2140,7 +2149,7 @@ from arbitrary threads.</p>
 <div class="paragraph">
 <p>Another issue is that there’s <strong>no</strong> parallel execution. Each thread must wait
 for the other to complete. Of course, this problem does not benefit from
-a parallelism, but applying this solution to problems which can
+parallelism, but applying this solution to problems which can
 benefit from parallelism might cause performance problems. Each thread
 wastes time busy waiting in a <code>while</code> loop for the other to be done,
 consuming CPU cycles while it does so. You’ll notice that the code
@@ -2152,7 +2161,7 @@ its own <code>done</code> to <code>false</code>.</p>
 </div>
 <div class="paragraph">
 <p>In short, coordinating two or more threads together is a difficult
-problem. None of the solutions we give here are fully acceptable. We
+problem. None of the solutions we give here is fully acceptable. We
 introduce better tools for coordination and synchronization in
 <a href="chap15.html">Chapter 15</a>.</p>
 </div>
@@ -2181,10 +2190,11 @@ thread.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">if</span><span class="o">(</span><span class="n">lower</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="c1">// Only check odd numbers</span>
-            <span class="n">lower</span><span class="o">++;</span>        
-        <span class="k">while</span><span class="o">(</span><span class="n">lower</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(</span><span class="nc">Factor</span><span class="o">.</span><span class="na">NUMBER</span> <span class="o">%</span> <span class="n">lower</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">lower</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Only check odd numbers</span>
+            <span class="o">++</span><span class="n">lower</span><span class="o">;</span>
+        <span class="o">}</span>        
+        <span class="k">while</span> <span class="o">(</span><span class="n">lower</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="nc">Factor</span><span class="o">.</span><span class="na">NUMBER</span> <span class="o">%</span> <span class="n">lower</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Security code: "</span> <span class="o">+</span> <span class="o">(</span><span class="n">lower</span> <span class="o">+</span> <span class="nc">Factor</span><span class="o">.</span><span class="na">NUMBER</span> <span class="o">/</span> <span class="n">lower</span><span class="o">));</span>
                 <span class="k">return</span><span class="o">;</span>
             <span class="o">}</span>
@@ -2220,19 +2230,20 @@ driver program <code>Factor</code>.</p>
         <span class="kt">long</span> <span class="n">quotient</span> <span class="o">=</span> <span class="n">root</span> <span class="o">/</span> <span class="no">THREADS</span><span class="o">;</span>
         <span class="kt">long</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">root</span> <span class="o">%</span> <span class="no">THREADS</span><span class="o">;</span>
         
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="kt">long</span> <span class="n">work</span> <span class="o">=</span> <span class="n">quotient</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span>
-                <span class="n">work</span><span class="o">++;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">remainder</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">++</span><span class="n">work</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FactorThread</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">work</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>
             <span class="n">start</span> <span class="o">+=</span> <span class="n">work</span><span class="o">;</span>
         <span class="o">}</span>   
         <span class="k">try</span> <span class="o">{</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -2483,14 +2494,17 @@ create array <code>out</code> which contains the sound with an echo.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span><span class="o">[]</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">delay</span><span class="o">];</span>
 <span class="c1">// Sound before echo starts</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">delay</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">delay</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">out</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">in</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
 <span class="c1">// Sound with echo</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">delay</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">in</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">delay</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">in</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">out</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">in</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">in</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">delay</span><span class="o">];</span>
+<span class="o">}</span>
 <span class="c1">// Echo after sound is over</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">out</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="n">out</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">in</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">delay</span><span class="o">];</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">out</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">out</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">in</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">delay</span><span class="o">];</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

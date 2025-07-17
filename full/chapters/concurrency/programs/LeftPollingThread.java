@@ -7,12 +7,12 @@ public class LeftPollingThread extends Thread {
     }
 
     public void run() {
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.print("Left ");
             System.out.print("Left ");
             System.out.print("Left ");          
             done = true;            
-            while(!right.isDone());           
+            while (!right.isDone());           
             right.setDone(false);                     
             System.out.println("Left");                 
         }

@@ -5,6 +5,7 @@ public class Thread2 extends Thread {
         this.a = a;
         this.t = t;
     }
+    
     public void run() { value = Math.exp(-a*t*t); }
     public double getValue() { return value; }
 }
