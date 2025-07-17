@@ -37,7 +37,7 @@ public abstract class BankAccount extends SynchronizedAccount { //<.>
         int months = 12*(current.get(Calendar.YEAR) -
 			lastAccess.get(Calendar.YEAR)) + (current.get(Calendar.MONTH) -
 			lastAccess.get(Calendar.MONTH));
-        if(months > 0) {
+        if (months > 0) {
 			lastAccess = current;
 			monthsPassed = months;
         }

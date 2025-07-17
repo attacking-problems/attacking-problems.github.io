@@ -11,7 +11,7 @@ public class Calendar {
         squares[0][5] = "Fri";
         squares[0][6] = "Sat";
         for (int i = 1; i < squares.length; ++i) { // <3>
-            for(int j = 0; j < squares[i].length; ++j) {
+            for (int j = 0; j < squares[i].length; ++j) {
                 squares[i][j] = " ";
             }
         }        

@@ -585,7 +585,7 @@ event that the data file contains a class that our program doesn't recognize.
 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("players.bin"))){
     int records = in.readInt();
     BaseballPlayer[] players = new BaseballPlayer[records];
-    for(int i = 0; i < players.length; ++i) {
+    for (int i = 0; i < players.length; ++i) {
         players[i] = (BaseballPlayer)in.readObject();
     }
 }

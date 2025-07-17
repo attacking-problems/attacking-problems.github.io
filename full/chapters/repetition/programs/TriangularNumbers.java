@@ -6,9 +6,9 @@ public class TriangularNumbers {
         System.out.print("How many triangular numbers? ");
         int n = in.nextInt();
         int sum;                        
-        for(int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; ++i) {
             sum = 0;            
-            for(int j = 1; j <= i; j++)
+            for (int j = 1; j <= i; ++j)
                 sum += j;
             System.out.println(sum);
         }

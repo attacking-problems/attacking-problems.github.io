@@ -16,10 +16,10 @@ public class SavingsAccount extends BankAccount {
     protected synchronized void update() throws InterruptedException {
         super.update(); 
         int months = getMonthsPassed();
-        for(int i = 0; i < months; i++) {
-            if(getBalance() > 0)
+        for (int i = 0; i < months; ++i) {
+            if (getBalance() > 0)
                 changeBalance(getBalance() * (1 + RATE/12));
-            if(getBalance() < getMinimum())
+            if (getBalance() < getMinimum())
                 changeBalance(-getFee());
         }               
     }

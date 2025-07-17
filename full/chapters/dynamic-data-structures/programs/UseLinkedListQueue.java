@@ -7,21 +7,21 @@ public class UseLinkedListQueue extends Thread {
         Thread[] threads = new Thread[THREADS];
 		LinkedListQueue queue = new LinkedListQueue(); // <.>
 		
-        for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; ++i) {
             threads[i] = new UseLinkedListQueue(queue, true);
             threads[i].start();	// <.>
         }
         
-        for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; ++i) {
 			threads[i].join(); 	// <.>
         }
                     
-        for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; ++i) {
             threads[i] = new UseLinkedListQueue(queue, false);
             threads[i].start();	// <.>
         }
  
-        for (int i = 0; i < THREADS; i++) {
+        for (int i = 0; i < THREADS; ++i) {
             threads[i].join();
         }
         

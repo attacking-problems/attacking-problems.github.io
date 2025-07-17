@@ -15,7 +15,7 @@ public class UseDynamicArray {
         
         names.sort(0, count);             //<.>
         
-        for (int i = 0; i < count; i++) { //<.>
+        for (int i = 0; i < count; ++i) { //<.>
             System.out.println(names.get(i));
         }
     }

@@ -13,7 +13,7 @@ public class RaceCondition extends Thread {
             for (int i = 0; i < THREADS; ++i) {
                 threads[i].join();
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }           
         System.out.println("Counter:\t" + counter);            

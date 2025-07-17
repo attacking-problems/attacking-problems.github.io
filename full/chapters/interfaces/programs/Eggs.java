@@ -10,7 +10,7 @@ public class Eggs implements Priceable {
     }       
 
     public double getPrice() {
-        if(extraLarge)
+        if (extraLarge)
             return dozens*PRICE_PER_DOZEN_EXTRA_LARGE;
         else
             return dozens*PRICE_PER_DOZEN_LARGE;            

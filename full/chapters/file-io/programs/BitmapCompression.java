@@ -8,7 +8,7 @@ public class BitmapCompression {
 			try (var in = new DataInputStream(new FileInputStream(args[1]))) { //<.>
 				if (args[0].equals("-c")) {	//<.>
 					compress(in, args[1]);
-				} else if(args[0].equals("-d")) {
+				} else if (args[0].equals("-d")) {
 					decompress(in, args[1]);          
 				}
 			}

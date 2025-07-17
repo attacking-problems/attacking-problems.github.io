@@ -12,7 +12,7 @@ public class CapitalQuiz {
             JOptionPane.QUESTION_MESSAGE, null, capitals, null);
         //Response is 0, 1, or 2 for the three options
         String message;     
-        if(response == correct) 
+        if (response == correct) 
             message = "You're right!";
         else
             message = "Sorry, the capital of " + country +

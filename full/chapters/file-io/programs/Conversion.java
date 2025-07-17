@@ -10,15 +10,15 @@ public class Conversion {
         try {
             in = new Scanner(inFile);
             out = new DataOutputStream(new FileOutputStream(outFile));           
-            while(in.hasNextDouble())
+            while (in.hasNextDouble())
                 out.writeDouble(in.nextDouble());
         }
-        catch(IOException e) {
+        catch (IOException e) {
             System.out.println(e.getMessage());
         }
         finally { 
-            if(in != null) in.close();
-            try { out.close(); } catch(Exception e){}
+            if (in != null) in.close();
+            try { out.close(); } catch (Exception e){}
         }
     }
 }

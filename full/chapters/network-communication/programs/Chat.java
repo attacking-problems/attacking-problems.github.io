@@ -8,7 +8,7 @@ public class Chat {
     public static void main(String[] args) {        
         if (args[0].equals("-s")) { 		//<.>
             new Chat(Integer.parseInt(args[1]));
-        } else if(args[0].equals("-c")) {	//<.>
+        } else if (args[0].equals("-c")) {	//<.>
             new Chat(args[1], Integer.parseInt(args[2]) );
         } else {
             System.out.println("Invalid command line flag.");
@@ -44,7 +44,7 @@ public class Chat {
 			sender.join();
 			receiver.join();
 		}
-		catch(InterruptedException e) {}
+		catch (InterruptedException e) {}
     }
 
     private class Sender extends Thread {
@@ -64,7 +64,7 @@ public class Chat {
 					}                               
                 }       
             }
-            catch(IOException e) {
+            catch (IOException e) {
 				System.out.println("Network error: " + e.getMessage());				
 			}         
         }       

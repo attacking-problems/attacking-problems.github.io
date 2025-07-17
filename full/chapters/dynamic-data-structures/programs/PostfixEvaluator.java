@@ -5,7 +5,7 @@ public class PostfixEvaluator {
         Scanner in = new Scanner(System.in);
         String expression = in.nextLine(); 				//<.>
         TermStack stack = new TermStack();
-        for (int i = 0; i < expression.length(); i++) {	//<.>
+        for (int i = 0; i < expression.length(); ++i) {	//<.>
             char term = expression.charAt(i); 	
             if (term >= '0'&& term <= '9') {   			//<.>
                 stack.push(new Term(term - '0'));

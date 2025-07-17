@@ -62,7 +62,7 @@ public class MathTutor implements ActionListener, ItemListener {
     }
     
     public void itemStateChanged(ItemEvent e) {
-        if(e.getStateChange() == ItemEvent.SELECTED) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
             add.setEnabled(false); 
             subtract.setEnabled(false);
             multiply.setEnabled(true); 

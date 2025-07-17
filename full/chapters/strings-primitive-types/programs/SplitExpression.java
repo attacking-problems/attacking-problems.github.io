@@ -14,7 +14,7 @@ public class SplitExpression {
             System.out.println("Result of g: " + gResult );
             System.out.println("Final answer: " + answer);        
         }
-        catch(InterruptedException e){
+        catch (InterruptedException e){
             System.out.println("Computation interrupted!");
         }             
     }   

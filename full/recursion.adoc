@@ -434,7 +434,7 @@ we can generate a method that computes the factorial function.
 [source, java]
 ----
 public static long factorial(int n) {
-	if(n == 0)     // Base case
+	if (n == 0)     // Base case
 		return 1;
 	else            // Recursive case
 		return n * factorial(n-1);
@@ -473,7 +473,7 @@ method in Java.
 [source, java]
 ----
 public static int fibonacci(int n) {
-    if(n == 0 || n == 1)  // Base cases
+    if (n == 0 || n == 1)  // Base cases
         return 1;
     else                  // Recursive case
         return fibonacci(n-1) + fibonacci(n-2);
@@ -501,8 +501,8 @@ the recursion and store the result in the array.
 [source, java]
 ----
 public static int fibonacci(int n, int[] results) {
-    if(results[n] == 0) {
-        if(n == 0 || n == 1)
+    if (results[n] == 0) {
+        if (n == 0 || n == 1)
             results[n] = 1;
         else
             results[n] = fibonacci(n-1) + fibonacci(n-2);
@@ -609,7 +609,7 @@ value.
 [source, java]
 ----
 public static double power(double a, int n) {
-    if(n == 1)    // Base case
+    if (n == 1)    // Base case
         return a;
     else          // Recursive case
         return a*power(a, n - 1);
@@ -649,7 +649,7 @@ size of _n_ in half at each recursive step instead of only reducing _n_ by 1.
 [source, java]
 ----
 public static double power(double a, int n) {
-    if(n == 1)    // Base case
+    if (n == 1)    // Base case
         return a;
     else {          // Recursive case
         double temp = power(a, n/2);
@@ -725,7 +725,7 @@ keeps track of the position it's swapping in the array with the
 [source, java]
 ----
 public static void reverse(int[] array, int position) {
-	if(position < array.length/2) {
+	if (position < array.length/2) {
 		int temp = array[position];
 		array[position] = array[array.length - position - 1];
 		array[array.length - position - 1] = temp;
@@ -769,12 +769,12 @@ sort algorithm.
 [source, java]
 ----
 public static void mergeSort(int[] array) {
-	if(array.length > 1) {
+	if (array.length > 1) {
 		int[] a = new int[array.length/2];
 		int[] b = new int[array.length - a.length];
-		for(int i = 0; i < a.length; ++i)
+		for (int i = 0; i < a.length; ++i)
 			a[i] = array[i];
-		for(int i = 0; i < b.length; ++i)
+		for (int i = 0; i < b.length; ++i)
 			b[i] = array[a.length + i];
 		mergeSort(a);
 		mergeSort(b);
@@ -801,12 +801,12 @@ much of the real work in the algorithm.
 public static void merge(int[] array, int[] a, int[] b) {
     int aIndex = 0;
     int bIndex = 0;
-    for(int i = 0; i < array.length; ++i) {
-        if(bIndex >= b.length)
+    for (int i = 0; i < array.length; ++i) {
+        if (bIndex >= b.length)
             array[i] = a[aIndex++];
-        else if(aIndex >= a.length)
+        else if (aIndex >= a.length)
             array[i] = b[bIndex++];
-        else if(a[aIndex] <= b[bIndex])
+        else if (a[aIndex] <= b[bIndex])
             array[i] = a[aIndex++];
         else
             array[i] = b[bIndex++];

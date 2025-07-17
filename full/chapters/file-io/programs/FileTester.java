@@ -61,7 +61,7 @@ public class FileTester {
             for (int i = 0; i < 100; ++i) {
                 out.println(random.nextInt());
             }
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File " + file + " not writable!");
         }
     }
@@ -72,7 +72,7 @@ public class FileTester {
             int[] homeRuns = new int[records];
             int[] rbi = new int[records];
             double[] battingAverage = new double[records];
-            for(int i = 0; i < records; ++i) {
+            for (int i = 0; i < records; ++i) {
                 homeRuns[i] = in.readInt();
                 rbi[i] = in.readInt();
                 battingAverage[i] = in.readDouble();
@@ -100,7 +100,7 @@ public class FileTester {
     public static void writeBaseballPlayers() {
         BaseballPlayer[] players = new BaseballPlayer[100];
         Random random = new Random();            
-        for(int i = 0; i < players.length; ++i) {
+        for (int i = 0; i < players.length; ++i) {
             players[i] = new BaseballPlayer(random.nextInt(800),
                 random.nextInt(2300), random.nextDouble() * .4);
         }
@@ -118,7 +118,7 @@ public class FileTester {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("full/chapters/file-io/programs/players.bin"))){
             int records = in.readInt();
             BaseballPlayer[] players = new BaseballPlayer[records];
-            for(int i = 0; i < players.length; ++i) {
+            for (int i = 0; i < players.length; ++i) {
                 players[i] = (BaseballPlayer)in.readObject();
             }
             Stream.of(players).forEach(e -> System.out.println(e.getBattingAverage()));

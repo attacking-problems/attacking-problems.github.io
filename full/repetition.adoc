@@ -310,7 +310,7 @@ int counter = 0;
 while (true) {
     System.out.print("the loop ");
     counter++;
-    if(counter >= 3)
+    if (counter >= 3)
         break;
 }
 System.out.println("is on fire!");
@@ -420,7 +420,7 @@ follows.
 
 [source,java]
 ----
-for(int i = 0; i < 3; i++) {
+for (int i = 0; i < 3; ++i) {
     System.out.print("the loop ");
 }
 System.out.println("is on fire!");
@@ -457,7 +457,7 @@ the powers of 2 that are less than 1000.
 
 [source,java]
 ----
-for(int i = 1; i < 1000; i *= 2) {
+for (int i = 1; i < 1000; i *= 2) {
     System.out.println(i);
 }
 ----
@@ -491,9 +491,9 @@ String s = "The quick brown fox jumps over the lazy dog.";
 String lower = s.toLowerCase();
 char latest = ' ';
 char c;
-for(int i = 0; i < lower.length(); i++) {
+for (int i = 0; i < lower.length(); ++i) {
     c = lower.charAt(i);
-    if(c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest)
         latest = c;
 }
 System.out.println("The latest character in the alphabet from your message is: '"
@@ -524,11 +524,11 @@ going to be the latest letter, no matter what. We can rewrite our
 
 [source,java]
 ----
-for(int i = 0; i < lower.length(); i++) {
+for (int i = 0; i < lower.length(); ++i) {
     c = lower.charAt(i);
-    if(c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest)
         latest = c;
-    if(latest == 'z')
+    if (latest == 'z')
         break;
 }
 ----
@@ -543,9 +543,9 @@ following.
 
 [source,java]
 ----
-for(int i = 0; i < lower.length() && latest != 'z'; i++) {
+for (int i = 0; i < lower.length() && latest != 'z'; ++i) {
     c = lower.charAt(i);
-    if(c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest)
         latest = c;
 }
 ----
@@ -831,8 +831,8 @@ repeating the process.
 
 [source,java]
 ----
-for(int number = 1; number <= 10; number++) {
-    for(int factor = 1; factor <= 12; factor++) {
+for (int number = 1; number <= 10; number++) {
+    for (int factor = 1; factor <= 12; factor++) {
         System.out.println(number + " x " + factor +
             " = " + number*factor);
     }
@@ -916,7 +916,7 @@ subtle, as in the following code.
 
 [source,java]
 ----
-for(int i = 0; i < 10; i += 0.5)
+for (int i = 0; i < 10; i += 0.5)
     System.out.println("Half a step forward, half a step back...");
 ----
 
@@ -940,7 +940,7 @@ billion increments instead of the expected 10 decrements.
 
 [source,java]
 ----
-for(int i = 10; i > 0; i++)
+for (int i = 10; i > 0; ++i)
     System.out.println(i);
 System.out.println("Blast off!");
 ----
@@ -970,7 +970,7 @@ loop that iterates 10 times is below.
 
 [source,java]
 ----
-for(int i = 0; i < 10; i++)
+for (int i = 0; i < 10; ++i)
     System.out.println(i);
 ----
 
@@ -980,7 +980,7 @@ that incorrectly iterates 9 times.
 
 [source,java]
 ----
-for(int i = 1; i < 10; i++)
+for (int i = 1; i < 10; ++i)
     System.out.println(i);
 ----
 
@@ -988,7 +988,7 @@ The correct version that iterates 10 times is below.
 
 [source,java]
 ----
-for(int i = 1; i <= 10; i++)
+for (int i = 1; i <= 10; ++i)
     System.out.println(i);
 ----
 
@@ -1072,7 +1072,7 @@ inserted after the loop header.
 [source,java]
 ----
 int i;
-for(i = 100; i > 0; i--); {
+for (i = 100; i > 0; --i); {
     System.out.println(i);
 }
 System.out.println("Ready or not, here I come!");
@@ -1189,10 +1189,10 @@ follows.
 [source,java]
 ----
 int found = 0;
-for(int i = 0; i < sequence.length() - subsequence.length() + 1; i++) {
-    for(int j = 0; j < subsequence.length() &&
-        subsequence.charAt(j) == sequence.charAt(i + j); j++)
-        if(j == subsequence.length() - 1) { // Matches
+for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
+    for (int j = 0; j < subsequence.length() &&
+        subsequence.charAt(j) == sequence.charAt(i + j); ++j)
+        if (j == subsequence.length() - 1) { // Matches
             System.out.println("Match found at index " + i);
             found++;
         }
@@ -1208,10 +1208,10 @@ matching process is done outside of the inner `for` loop.
 ----
 int found = 0;
 int j;
-for(int i = 0; i < sequence.length() - subsequence.length() + 1; i++) {
-    for(j = 0; j < subsequence.length() &&
-        subsequence.charAt(j) == sequence.charAt(i + j); j++);
-    if(j == subsequence.length()) { // Matches
+for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
+    for (j = 0; j < subsequence.length() &&
+        subsequence.charAt(j) == sequence.charAt(i + j); ++j);
+    if (j == subsequence.length()) { // Matches
         System.out.println("Match found at index " + i);
         found++;
     }
@@ -1263,7 +1263,7 @@ integers. At its heart is a loop from the start of the range to the end.
 
 [source,java]
 ----
-for(int i = start; i <= end; i++)
+for (int i = start; i <= end; ++i)
     sum += Math.sin(start);
 ----
 
@@ -1342,7 +1342,7 @@ of the `for` loop to the following?
 +
 [source,java]
 ----
-for(long i = 3; i <= Math.sqrt(number) && prime; i += 2)
+for (long i = 3; i <= Math.sqrt(number) && prime; i += 2)
 ----
 . How many different DNA sequences of length _n_ are
 there?
@@ -1351,7 +1351,7 @@ print out the numbers 1 through 10. What are they?
 +
 [source,java]
 ----
-for(int i = 1; i < 10; i--);
+for (int i = 1; i < 10; --i);
 {
     System.out.println(i);
 }
@@ -1363,8 +1363,8 @@ for(int i = 1; i < 10; i--);
 Scanner in = new Scanner(System.in);
 int n = in.nextInt();
 int count = 0;
-for(int i = 1; i <= n; i++)
-    for(int j = 1; j <= i; j++)
+for (int i = 1; i <= n; ++i)
+    for (int j = 1; j <= i; ++j)
         count++;
 ----
 +

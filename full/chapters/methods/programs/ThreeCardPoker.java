@@ -13,15 +13,15 @@ public class ThreeCardPoker {
     public static void main(String[] args) {
         int[] deck = new int[52]; //<.>
         int[] hand = new int[3];                
-        for(int i = 0; i < deck.length; i++) //<.>
+        for (int i = 0; i < deck.length; ++i) //<.>
             deck[i] = i;
         shuffle(deck);
-        for(int i = 0; i < hand.length; i++) //<.>
+        for (int i = 0; i < hand.length; ++i) //<.>
             hand[i] = deck[i];      
         int winnings = score(hand); //<.>
         System.out.println("Hand: ");
         print(hand);
-        if(winnings == 0) //<.>
+        if (winnings == 0) //<.>
             System.out.println("You win nothing.");
         else
             System.out.println("You win " + winnings +
@@ -30,7 +30,7 @@ public class ThreeCardPoker {
 
     public static void shuffle(int[] deck) {
         int index, temp;
-        for(int i = 0; i < deck.length; i++) {
+        for (int i = 0; i < deck.length; ++i) {
             index = i + (int)((deck.length - i)*Math.random());
             temp = deck[index];
             deck[index] = deck[i];
@@ -39,7 +39,7 @@ public class ThreeCardPoker {
     }
 
     public static void print(int[] hand) { //<.>
-        for(int i = 0; i < hand.length; i++)
+        for (int i = 0; i < hand.length; ++i)
             System.out.println(RANKS[getRank(hand[i])] + " of "
             + SUITS[getSuit(hand[i])]);
     }
@@ -49,25 +49,25 @@ public class ThreeCardPoker {
     
     private static int score(int[] hand) {  
         sortByRank(hand); 
-        if(hasStraight(hand) && hasFlush(hand))
+        if (hasStraight(hand) && hasFlush(hand))
             return STRAIGHT_FLUSH;
-        if(hasThree(hand))
+        if (hasThree(hand))
             return THREE_OF_A_KIND;
-        if(hasStraight(hand))
+        if (hasStraight(hand))
             return STRAIGHT;
-        if(hasFlush(hand))
+        if (hasFlush(hand))
             return FLUSH;
-        if(hasPair(hand))
+        if (hasPair(hand))
             return PAIR;        
         return NOTHING;
     }   
 
     private static void sortByRank(int[] hand) {
         int smallest, temp;
-        for(int i = 0; i < hand.length - 1; i++) {
+        for (int i = 0; i < hand.length - 1; ++i) {
             smallest = i;
-            for(int j = i + 1; j < hand.length; j++) {
-                if(getRank(hand[j]) < getRank(hand[smallest]))
+            for (int j = i + 1; j < hand.length; ++j) {
+                if (getRank(hand[j]) < getRank(hand[smallest]))
                     smallest = j;
             }
             temp = hand[smallest];

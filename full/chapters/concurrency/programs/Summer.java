@@ -11,7 +11,7 @@ public class Summer implements Runnable {
     }
     
     public void run() {
-        for(int i = lower; i < upper; ++i) {
+        for (int i = lower; i < upper; ++i) {
             sum += array[i];
         }
     }

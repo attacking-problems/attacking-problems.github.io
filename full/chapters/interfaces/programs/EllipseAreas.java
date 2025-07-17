@@ -6,7 +6,7 @@ public class EllipseAreas {
 	
 	public static double sumAreas(AreaGettable[] shapes) {
 		double sum  = 0.0;
-		for(int i = 0; i < shapes.length; i++)
+		for (int i = 0; i < shapes.length; ++i)
 			sum += shapes[i].getArea();
 
 		return sum;
@@ -15,7 +15,7 @@ public class EllipseAreas {
 	public static void createEllipses() {
 		AreaGettable[] ellipses = new AreaGettable[100];
 
-		for(int i = 0; i < 100; i++) {
+		for (int i = 0; i < 100; ++i) {
 			final double value1 = Math.random() * 25.0;
 			final double value2 = Math.random() * 25.0;
 

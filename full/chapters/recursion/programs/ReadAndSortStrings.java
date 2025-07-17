@@ -5,7 +5,7 @@ public class ReadAndSortStrings {
 		Tree tree = new Tree();
 		Scanner in = new Scanner(System.in);
 		
-		while(in.hasNextLine())           
+		while (in.hasNextLine())           
 			tree.add(in.nextLine());        
 		tree.print();
 	}

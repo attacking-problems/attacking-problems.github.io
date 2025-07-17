@@ -806,7 +806,7 @@ actor takes her umbrella when it’s raining.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">raining</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">raining</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">umbrella</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -844,7 +844,7 @@ if it’s raining. We might accomplish these tasks in Java as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">raining</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">raining</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">umbrella</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
     <span class="n">window</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
     <span class="n">raincoat</span><span class="o">.</span><span class="na">putOn</span><span class="o">();</span>
@@ -864,7 +864,7 @@ would have written our first example as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">raining</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">raining</span><span class="o">)</span>
     <span class="n">umbrella</span><span class="o">.</span><span class="na">take</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -885,7 +885,7 @@ dining options based on how much money we have.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">lobsterDinner</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
 <span class="o">}</span>
 <span class="k">else</span> <span class="o">{</span>
@@ -903,7 +903,7 @@ written code with the same functionality as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
     <span class="n">lobsterDinner</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
 <span class="k">else</span>
     <span class="n">fastFood</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span></code></pre>
@@ -937,7 +937,7 @@ does not contain braces, you might get the following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
     <span class="n">lobsterDinner</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
 <span class="k">else</span>
     <span class="n">fastFood</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
@@ -953,7 +953,7 @@ this decision is below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">fiftyDollars</span><span class="o">)</span>
     <span class="n">lobsterDinner</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
 <span class="k">else</span> <span class="o">{</span>
     <span class="n">fastFood</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
@@ -1058,7 +1058,7 @@ respectively, we can encode this statement in Java like so.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">bored</span> <span class="o">||</span> <span class="o">(</span><span class="n">late</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">canSleep</span><span class="o">))</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">bored</span> <span class="o">||</span> <span class="o">(</span><span class="n">late</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">canSleep</span><span class="o">))</span>
     <span class="n">television</span><span class="o">.</span><span class="na">watch</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -1084,7 +1084,7 @@ AND anything else is still <code>false</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="kc">true</span> <span class="o">||</span> <span class="o">((</span><span class="n">late</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">canSleep</span> <span class="o">&amp;&amp;</span> <span class="n">isTired</span> <span class="o">&amp;&amp;</span> <span class="n">isHungry</span><span class="o">)</span> <span class="o">||</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="kc">true</span> <span class="o">||</span> <span class="o">((</span><span class="n">late</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">canSleep</span> <span class="o">&amp;&amp;</span> <span class="n">isTired</span> <span class="o">&amp;&amp;</span> <span class="n">isHungry</span><span class="o">)</span> <span class="o">||</span>
     <span class="o">(</span><span class="n">wantsToFindOutWhatHappensNextInHisFavoriteShow</span> <span class="o">||</span>
     <span class="n">likesTV</span><span class="o">)))</span></code></pre>
 </div>
@@ -1099,7 +1099,7 @@ not be the literal <code>true</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">late</span> <span class="o">||</span> <span class="o">!</span><span class="n">canSleep</span> <span class="o">||</span> <span class="n">isTired</span> <span class="o">||</span> <span class="n">isHungry</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">late</span> <span class="o">||</span> <span class="o">!</span><span class="n">canSleep</span> <span class="o">||</span> <span class="n">isTired</span> <span class="o">||</span> <span class="n">isHungry</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
     <span class="o">(</span><span class="n">wantsToFindOutWhatHappensNextInHisFavoriteShow</span> <span class="o">||</span>
     <span class="n">likesTV</span><span class="o">)))</span></code></pre>
 </div>
@@ -1115,7 +1115,7 @@ let the <code>boolean</code> variable <code>working</code> be <code>false</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">working</span> <span class="o">&amp;&amp;</span> <span class="n">doSomethingImportant</span><span class="o">())</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">working</span> <span class="o">&amp;&amp;</span> <span class="n">doSomethingImportant</span><span class="o">())</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1151,7 +1151,7 @@ using the <code>&gt;</code> operator.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">pressure</span> <span class="o">&gt;</span> <span class="no">CRITICAL_PRESSURE</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">pressure</span> <span class="o">&gt;</span> <span class="no">CRITICAL_PRESSURE</span><span class="o">)</span>
     <span class="n">emergencyShutdown</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -1260,7 +1260,7 @@ values. Note that the following statement does not compile in Java.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="mi">4</span><span class="o">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="o">;</span></code></pre>
 </div>
 </div>
@@ -1282,7 +1282,7 @@ in the comparison operator.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="o">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="o">;</span></code></pre>
 </div>
 </div>
@@ -1302,7 +1302,7 @@ statement that would work only if their values are the same.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">likesDogs1</span> <span class="o">==</span> <span class="n">likesDogs2</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">likesDogs1</span> <span class="o">==</span> <span class="n">likesDogs2</span><span class="o">)</span>
     <span class="n">makeRoommates</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -1314,7 +1314,7 @@ However, a tiny mistake in the code could yield the following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">likesDogs1</span> <span class="o">=</span> <span class="n">likesDogs2</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">likesDogs1</span> <span class="o">=</span> <span class="n">likesDogs2</span><span class="o">)</span>
     <span class="n">makeRoommates</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -1370,11 +1370,11 @@ remainder after being divided by <code>100</code> and must be evenly divisible b
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span> <span class="nc">System</span><span class="o">.</span><span class="na">in</span> <span class="o">);</span>      
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a year: "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
-        <span class="k">if</span><span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">year</span> <span class="o">+</span> <span class="s">" is a leap year."</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">year</span> <span class="o">+</span> <span class="s">" is not a leap year."</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">year</span> <span class="o">+</span> <span class="s">" is a leap year."</span><span class="o">);</span>
         <span class="k">else</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">year</span> <span class="o">+</span> <span class="s">" is not a leap year."</span><span class="o">);</span>
@@ -1434,9 +1434,9 @@ these three possibilities into account.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a value for c: "</span><span class="o">);</span>
         <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
         <span class="kt">double</span> <span class="n">discriminant</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">if</span><span class="o">(</span><span class="n">discriminant</span> <span class="o">==</span> <span class="mf">0.0</span><span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">discriminant</span> <span class="o">==</span> <span class="mf">0.0</span><span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The answer is x = "</span> <span class="o">+</span> <span class="o">(-</span><span class="n">b</span><span class="o">/(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">)));</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">discriminant</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="o">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">discriminant</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="o">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The answers are x = "</span> <span class="o">+</span> <span class="o">(-</span><span class="n">b</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">))</span> <span class="o">+</span> <span class="s">" + "</span>
 				<span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(-</span><span class="n">discriminant</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">)</span> <span class="o">+</span> <span class="s">"i and x = "</span>
 				<span class="o">+</span> <span class="o">(-</span><span class="n">b</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">))</span> <span class="o">+</span> <span class="s">" - "</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(-</span><span class="n">discriminant</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">)</span> <span class="o">+</span> <span class="s">"i"</span><span class="o">);</span>
@@ -1482,7 +1482,7 @@ take up more than one line visually, Java interprets them as single
 lines because they each only have a single semicolon (<code>;</code>).</p>
 </div>
 <div class="paragraph">
-<p>The line <code>if(discriminant == 0.0)</code> is dangerous since we’re using
+<p>The line <code>if (discriminant == 0.0)</code> is dangerous since we’re using
 <code>double</code> values. Because of rounding errors, the discriminant might not
 be exactly zero even if it should be, mathematically. Industrial
 strength code would probably check to see if the absolute value of the
@@ -1538,14 +1538,14 @@ the things in the vegetable and mineral categories, matching
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>      
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Is it an animal, vegetable, or mineral? (a, v, or m): "</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"a"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"a"</span><span class="o">))</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Is it a mammal? (y or n): "</span><span class="o">);</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span>
                     <span class="s">"Does it live on land? (y or n): "</span><span class="o">);</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a human."</span><span class="o">);</span>                
                 <span class="k">else</span> <span class="c1">// Assume "n"</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a dolphin."</span><span class="o">);</span>              
@@ -1553,20 +1553,20 @@ the things in the vegetable and mineral categories, matching
             <span class="k">else</span> <span class="o">{</span> <span class="c1">// Assume "n"</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Does it fly? (y or n): "</span><span class="o">);</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's an eagle."</span><span class="o">);</span>               
                 <span class="k">else</span> <span class="c1">// Assume "n"</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a lizard."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"v"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"v"</span><span class="o">))</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Is it a fruit? (y or n): "</span><span class="o">);</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span>
                     <span class="s">"Does it grown on a vine? (y or n): "</span><span class="o">);</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a tomato."</span><span class="o">);</span>               
                 <span class="k">else</span> <span class="c1">// Assume "n"</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a peach."</span><span class="o">);</span>                
@@ -1574,7 +1574,7 @@ the things in the vegetable and mineral categories, matching
             <span class="k">else</span> <span class="o">{</span> <span class="c1">// Assume "n"</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Is it a tree? (y or n): "</span><span class="o">);</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a maple tree."</span><span class="o">);</span>
                 <span class="k">else</span> <span class="c1">// Assume "n"</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a potato."</span><span class="o">);</span>
@@ -1584,7 +1584,7 @@ the things in the vegetable and mineral categories, matching
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span>
                     <span class="s">"Is it the hardest mineral? (y or n): "</span><span class="o">);</span>
                 <span class="n">response</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">();</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">))</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's a diamond."</span><span class="o">);</span>              
                 <span class="k">else</span> <span class="c1">// Assume "n"</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"It's lead."</span><span class="o">);</span>
@@ -1750,53 +1750,53 @@ gift based on the year is below.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span><span class="o">;</span>
-<span class="k">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Paper"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Cotton"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Leather"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">4</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">4</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Fruit"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">5</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">5</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Wood"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">6</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">6</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Candy / Iron"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">7</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">7</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Wool / Copper"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Bronze / Pottery"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">9</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">9</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Pottery / Willow"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">10</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">10</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Tin / Aluminum"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">11</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">11</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Steel"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Silk / Linen"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">13</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">13</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Lace"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">14</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">14</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Ivory"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">15</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">15</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Crystal"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">20</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">20</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"China"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">25</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">25</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Silver"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">30</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">30</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Pearl"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">35</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">35</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Coral"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">40</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">40</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Ruby"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">45</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">45</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Sapphire"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">50</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">50</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Gold"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">55</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">55</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Emerald"</span><span class="o">;</span>
-<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">60</span><span class="o">)</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">60</span><span class="o">)</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Diamond"</span><span class="o">;</span>
 <span class="k">else</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"No traditional gift"</span><span class="o">;</span></code></pre>
@@ -1811,19 +1811,19 @@ become unreadable and unmanageably large.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span><span class="o">;</span>
-<span class="k">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">gift</span> <span class="o">=</span> <span class="s">"Paper"</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="k">else</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">gift</span> <span class="o">=</span> <span class="s">"Cotton"</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="k">else</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">gift</span> <span class="o">=</span> <span class="s">"Leather"</span><span class="o">;</span>
         <span class="o">}</span>
         <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">year</span> <span class="o">==</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">gift</span> <span class="o">=</span> <span class="s">"Fruit"</span><span class="o">;</span>
             <span class="o">}</span>
             <span class="o">.</span>
@@ -1846,7 +1846,7 @@ example using a <code>switch</code> statement as follows.</p>
 <div id="gift-switch-statement" class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span><span class="o">;</span>
-<span class="k">switch</span><span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="n">gift</span> <span class="o">=</span> <span class="s">"Paper"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
     <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>  <span class="n">gift</span> <span class="o">=</span> <span class="s">"Cotton"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
     <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>  <span class="n">gift</span> <span class="o">=</span> <span class="s">"Leather"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
@@ -1899,7 +1899,7 @@ telephone area codes in New York state.  If a <code>case</code> has no <code>bre
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">location</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-<span class="k">switch</span><span class="o">(</span><span class="n">code</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">code</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">case</span> <span class="mi">917</span><span class="o">:</span> <span class="n">location</span> <span class="o">=</span> <span class="s">"Cellular: "</span><span class="o">;</span>
     <span class="k">case</span> <span class="mi">212</span><span class="o">:</span>
     <span class="k">case</span> <span class="mi">347</span><span class="o">:</span>
@@ -1993,7 +1993,7 @@ that maps the number of the month to the number of days it contains.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please a month number (1-12): "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="kt">int</span> <span class="n">days</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">switch</span><span class="o">(</span> <span class="n">month</span> <span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span> <span class="n">month</span> <span class="o">)</span> <span class="o">{</span>
             <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>  <span class="n">days</span> <span class="o">=</span> <span class="mi">28</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
 
             <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
@@ -2078,7 +2078,7 @@ give the correct ordinal endings for most numbers as follows.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a positive number: "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="nc">String</span> <span class="n">ending</span><span class="o">;</span>
-        <span class="k">switch</span><span class="o">(</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">)</span> <span class="o">{</span>
             <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="n">ending</span> <span class="o">=</span> <span class="s">"st"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>  <span class="n">ending</span> <span class="o">=</span> <span class="s">"nd"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>  <span class="n">ending</span> <span class="o">=</span> <span class="s">"rd"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
@@ -2209,7 +2209,7 @@ correctly output the animal corresponding to an input birth year.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a year: "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>        
         <span class="nc">String</span> <span class="n">animal</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="k">switch</span><span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">12</span> <span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span> <span class="n">year</span> <span class="o">%</span> <span class="mi">12</span> <span class="o">)</span> <span class="o">{</span>
             <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>  <span class="n">animal</span> <span class="o">=</span> <span class="s">"Monkey"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>  <span class="n">animal</span> <span class="o">=</span> <span class="s">"Rooster"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>  <span class="n">animal</span> <span class="o">=</span> <span class="s">"Dog"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
@@ -2327,63 +2327,63 @@ statements for each month to test the exact range of dates.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a day number in that month (1-31): "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="nc">String</span> <span class="n">sign</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="k">switch</span><span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Capricorn"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aquarius"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aquarius"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pisces"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Pisces"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aries"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">4</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">4</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Aries"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Taurus"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">5</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">21</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">5</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">21</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Taurus"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Gemini"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">6</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">21</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">6</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">21</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Gemini"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Cancer"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Cancer"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Leo"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">8</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">8</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Leo"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Virgo"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">9</span><span class="o">:</span> <span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">9</span><span class="o">:</span> <span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Virgo"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Libra"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">10</span><span class="o">:</span><span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">10</span><span class="o">:</span><span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Libra"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Scorpio"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">11</span><span class="o">:</span><span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">11</span><span class="o">:</span><span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Scorpio"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Sagittarius"</span><span class="o">;</span>
                 <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="mi">12</span><span class="o">:</span><span class="k">if</span><span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
+            <span class="k">case</span> <span class="mi">12</span><span class="o">:</span><span class="k">if</span> <span class="o">(</span><span class="n">day</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="o">)</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Sagittarius"</span><span class="o">;</span>
                 <span class="k">else</span>
                     <span class="n">sign</span> <span class="o">=</span> <span class="s">"Capricorn"</span><span class="o">;</span>
@@ -2562,14 +2562,14 @@ user can choose to change over to.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">        <span class="k">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">winner</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="java">        <span class="k">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">winner</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="kt">int</span> <span class="n">low</span><span class="o">;</span>
             <span class="kt">int</span> <span class="n">high</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span>  <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="k">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span>  <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
                 <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
             <span class="o">}</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
                 <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
             <span class="o">}</span>
@@ -2579,7 +2579,7 @@ user can choose to change over to.</td>
             <span class="o">}</span>   
             <span class="c1">//randomly choose between other two doors</span>
             <span class="kt">double</span> <span class="n">threshold</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
-            <span class="k">if</span><span class="o">(</span> <span class="n">threshold</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="k">if</span> <span class="o">(</span> <span class="n">threshold</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
                 <span class="n">alternative</span> <span class="o">=</span> <span class="n">low</span><span class="o">;</span>
                 <span class="n">open</span> <span class="o">=</span> <span class="n">high</span><span class="o">;</span>
             <span class="o">}</span>
@@ -2625,20 +2625,20 @@ choice for the user and open the higher numbered door.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="k">else</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">alternative</span> <span class="o">=</span> <span class="n">winner</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                <span class="k">if</span><span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span>                 
+            <span class="k">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="k">if</span> <span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span>                 
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>               
                 <span class="k">else</span>
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>               
             <span class="o">}</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>                   
+            <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>                   
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>               
                 <span class="k">else</span>
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>               
             <span class="o">}</span>
             <span class="k">else</span> <span class="o">{</span> <span class="c1">//choice == 2 </span>
-                <span class="k">if</span><span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>                       
+                <span class="k">if</span> <span class="o">(</span> <span class="n">winner</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">)</span>                       
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>               
                 <span class="k">else</span>
                     <span class="n">open</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>               
@@ -2676,10 +2676,10 @@ necessary but are included for readability.</p>
             <span class="n">alternative</span> <span class="o">+</span> <span class="s">" from Door "</span> <span class="o">+</span> <span class="n">choice</span> <span class="o">+</span>
             <span class="s">"? (Enter 'y' or 'n'): "</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">change</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>      
-        <span class="k">if</span><span class="o">(</span> <span class="n">change</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span> <span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">change</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"y"</span><span class="o">)</span> <span class="o">)</span>
             <span class="n">choice</span> <span class="o">=</span> <span class="n">alternative</span><span class="o">;</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You chose Door "</span> <span class="o">+</span> <span class="n">choice</span><span class="o">);</span>
-        <span class="k">if</span><span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">winner</span> <span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="n">winner</span> <span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win a pile of gold!"</span><span class="o">);</span>
         <span class="k">else</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win a pile of junk."</span><span class="o">);</span>
@@ -2735,7 +2735,7 @@ following fragment of code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(!</span><span class="n">matches</span><span class="o">.</span><span class="na">areLit</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">flyingSparks</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(!</span><span class="n">matches</span><span class="o">.</span><span class="na">areLit</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">flyingSparks</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">storageRoom</span><span class="o">.</span><span class="na">enter</span><span class="o">();</span>
     <span class="n">dynamite</span><span class="o">.</span><span class="na">unpack</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
@@ -2855,7 +2855,7 @@ in Java to an equivalent statement that contains no negations.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-<span class="k">if</span><span class="o">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">)</span>
     <span class="n">y</span><span class="o">++;</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x: "</span> <span class="o">+</span> <span class="n">x</span><span class="o">);</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y: "</span> <span class="o">+</span> <span class="n">y</span><span class="o">);</span></code></pre>
@@ -2871,7 +2871,7 @@ statement is changed to <code>y &gt; 10 &amp; (x = 10) &gt; 5</code>? Why?</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">7</span><span class="o">;</span>
-<span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">++</span> <span class="o">==</span> <span class="mi">7</span><span class="o">)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">a</span><span class="o">++</span> <span class="o">==</span> <span class="mi">7</span><span class="o">)</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Seven"</span><span class="o">);</span>
 <span class="k">else</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Not seven"</span><span class="o">);</span></code></pre>

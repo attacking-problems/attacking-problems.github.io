@@ -14,9 +14,9 @@ public class Triangle extends Polygon {
         double a = points[0].distance(points[1]);
         double b = points[1].distance(points[2]);
         double c = points[2].distance(points[0]);
-        if(a == b && b == c)
+        if (a == b && b == c)
             return "Equilateral";
-        if(a == b || b == c || a == c)
+        if (a == b || b == c || a == c)
             return "Isosceles";
         return "Scalene";
     }

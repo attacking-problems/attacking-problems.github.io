@@ -2908,7 +2908,7 @@ button until another operation is chosen from the menu.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">add</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> 
             <span class="n">subtract</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
             <span class="n">multiply</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 

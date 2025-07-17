@@ -6,7 +6,7 @@ public class InfixToPostfix {
         String expression = in.nextLine(); 	//<.>
         TermStack stack = new TermStack();	//<.>
         String postfix = "";        		//<.>
-        for (int i = 0; i < expression.length(); i++) {	//<.>
+        for (int i = 0; i < expression.length(); ++i) {	//<.>
             char term = expression.charAt(i);
             if (term >= '0' && term <= '9') {			//<.>
                 postfix += term;        

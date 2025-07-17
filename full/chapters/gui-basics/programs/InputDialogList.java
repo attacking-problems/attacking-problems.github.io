@@ -7,7 +7,7 @@ public class InputDialogList {
 		String[] materials = {"Iron", "Uranium", "Steel", "Nitrogen"};
         Object response=JOptionPane.showInputDialog(null, question, title, JOptionPane.QUESTION_MESSAGE, null, materials, null); /*@\label{inputDialogListLine}@*/
         String message;
-		if(response.equals("Steel"))
+		if (response.equals("Steel"))
 			message = "You're right!";
 		else
 			message = "Sorry, correct answer: Steel."; /*@\label{incorrectAnswerLine}@*/            

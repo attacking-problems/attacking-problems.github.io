@@ -14,7 +14,7 @@ public class DeadlockSum extends Thread {
         try {
             thread1.join();
             thread2.join();
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }                   
     }
@@ -28,7 +28,7 @@ public class DeadlockSum extends Thread {
             synchronized (random2) {
 				System.out.println("Reversed Thread: locked random2");
 				try{ Thread.sleep(50); }
-				catch(InterruptedException e) {
+				catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				synchronized (random1) {

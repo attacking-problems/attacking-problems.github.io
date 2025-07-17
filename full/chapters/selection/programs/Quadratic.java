@@ -12,9 +12,9 @@ public class Quadratic {
         System.out.print("Please enter a value for c: ");
         double c = in.nextDouble();
         double discriminant = b*b - 4*a*c; // <.>
-        if(discriminant == 0.0) // <.>
+        if (discriminant == 0.0) // <.>
             System.out.println("The answer is x = " + (-b/(2*a)));
-        else if(discriminant < 0.0) // <.>
+        else if (discriminant < 0.0) // <.>
             System.out.println("The answers are x = " + (-b / (2*a)) + " + "
 				+ Math.sqrt(-discriminant) / (2*a) + "i and x = "
 				+ (-b / (2*a)) + " - " + Math.sqrt(-discriminant) / (2*a) + "i");

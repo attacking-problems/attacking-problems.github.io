@@ -37,30 +37,30 @@ public class TicTacToe {
                          + board[2][1] + "|" + board[2][2] + "\n");             
                 // Check rows <.>
                 for (int i = 0; i < board.length; ++i) {
-                    if(board[i][0] == shape && board[i][1] == shape
+                    if (board[i][0] == shape && board[i][1] == shape
                         && board[i][2] == shape) {
                         gameOver = true;
                     }
                 }
                 // Check column	<.>
                 for (int i = 0; i < board[0].length; ++i) {
-                    if(board[0][i] == shape && board[1][i] == shape
+                    if (board[0][i] == shape && board[1][i] == shape
                         && board[2][i] == shape) {
                         gameOver = true;
                     }
                 }
                 // Check diagonals <.>
-                if(board[0][0] == shape && board[1][1] == shape
+                if (board[0][0] == shape && board[1][1] == shape
                     && board[2][2] == shape) {
                     gameOver = true;
                 }
-                if(board[0][2] == shape && board[1][1] == shape
+                if (board[0][2] == shape && board[1][1] == shape
                     && board[2][0] == shape) {
                     gameOver = true;          
                 }  
-                if(gameOver) { // <.>
+                if (gameOver) { // <.>
                     System.out.println(shape + " wins!");
-                } else if(moves == 9) {	// <.>
+                } else if (moves == 9) {	// <.>
                     gameOver = true;            
                     System.out.println("Tie game!");        
                 }               

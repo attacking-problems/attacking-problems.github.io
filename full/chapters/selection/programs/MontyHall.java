@@ -10,14 +10,14 @@ public class MontyHall {
         int alternative; //<.>
         int open;
 
-        if( choice == winner ) { //<.>
+        if ( choice == winner ) { //<.>
             int low;
             int high;
-            if( choice ==  0 ) { //<.>
+            if ( choice ==  0 ) { //<.>
                 low = 1;
                 high = 2;
             }
-            else if( choice == 1 ) {
+            else if ( choice == 1 ) {
                 low = 0;
                 high = 2;
             }
@@ -27,7 +27,7 @@ public class MontyHall {
             }   
             //randomly choose between other two doors
             double threshold = random.nextDouble(); //<.>
-            if( threshold < 0.5 ) { //<.>
+            if ( threshold < 0.5 ) { //<.>
                 alternative = low;
                 open = high;
             }
@@ -38,20 +38,20 @@ public class MontyHall {
         }
         else { //<.>
             alternative = winner;
-            if( choice == 0 ) { //<.>
-                if( winner == 1 )                 
+            if ( choice == 0 ) { //<.>
+                if ( winner == 1 )                 
                     open = 2;               
                 else
                     open = 1;               
             }
-            else if( choice == 1 ) {
-                if( winner == 0 )                   
+            else if ( choice == 1 ) {
+                if ( winner == 0 )                   
                     open = 2;               
                 else
                     open = 0;               
             }
             else { //choice == 2 
-                if( winner == 0 )                       
+                if ( winner == 0 )                       
                     open = 1;               
                 else
                     open = 0;               
@@ -63,10 +63,10 @@ public class MontyHall {
             alternative + " from Door " + choice +
             "? (Enter 'y' or 'n'): ");
         String change = in.next();      
-        if( change.equals("y") )
+        if ( change.equals("y") )
             choice = alternative;
         System.out.println("You chose Door " + choice);
-        if( choice == winner ) //<.>
+        if ( choice == winner ) //<.>
             System.out.println("You win a pile of gold!");
         else
             System.out.println("You win a pile of junk.");

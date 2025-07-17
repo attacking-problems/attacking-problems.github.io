@@ -593,7 +593,7 @@ we could have coded the line checking to see if the user had correctly determin
 +
 [source,java]
 ----
-if((response == 0 && x % 2 != 0) ||
+if ((response == 0 && x % 2 != 0) ||
    (response == 1 && x % 2 == 0))
 ----
 +
@@ -601,7 +601,7 @@ Yet another option is below.
 +
 [source,java]
 ----
-if(response != x % 2)
+if (response != x % 2)
 ----
 +
 Which of these three implementations is best? Why?

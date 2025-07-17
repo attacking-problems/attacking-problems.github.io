@@ -12,7 +12,7 @@ public class RootFutures {
         int work = N/FUTURES; //<.>
         
         System.out.println("Creating futures...");
-        for(int i = 0; i < FUTURES; i++) {
+        for (int i = 0; i < FUTURES; ++i) {
             Callable<Double> summer = new RootSummer(1 + i*work, 1 + (i + 1)*work); //<.>
             Future<Double> future = executor.submit(summer); //<.>
             futures.add(future);
@@ -20,11 +20,11 @@ public class RootFutures {
         
         System.out.println("Getting results from futures...");
         double sum = 0.0;
-        for(Future<Double> future: futures) { //<.>
+        for (Future<Double> future: futures) { //<.>
             try {
                 sum += future.get(); //<.>
             }
-            catch(InterruptedException | ExecutionException e) { //<.>
+            catch (InterruptedException | ExecutionException e) { //<.>
                 e.printStackTrace();
             }
         }

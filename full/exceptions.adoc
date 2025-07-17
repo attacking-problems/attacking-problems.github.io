@@ -152,7 +152,7 @@ thrown by the JVM, we're also allowed to throw them explicitly.
 
 [source,java]
 ----
-if(y < 14)
+if (y < 14)
     throw new NullPointerException();
 ----
 
@@ -181,7 +181,7 @@ try {
     int x = text.length(); // NullPointerException
     System.out.println("This will never be printed.");
 }
-catch(NullPointerException e) {
+catch (NullPointerException e) {
     System.out.println("Surprise! A NullPointerException!");
 }
 ----
@@ -209,7 +209,7 @@ try {
     int x = text.length(); // NullPointerException
     System.out.println("This will never be printed.");
 }
-catch(Exception e) {
+catch (Exception e) {
     System.out.println("Well, of course you got a NullPointerException!");
 }
 ----
@@ -226,12 +226,12 @@ throw either a `NullPointerException` or an
 try {
     String text = null;
     int x;
-    if(Math.random() > 0.5)
+    if (Math.random() > 0.5)
         x = text.length(); // NullPointerException
     else
         x = 5 / 0; // ArithmeticException
 }
-catch(Exception e) {
+catch (Exception e) {
     System.out.println("You got some kind of exception!");
 }
 ----
@@ -245,15 +245,15 @@ block for each possible kind of exception.
 try {
     String text = null;
     int x;
-    if(Math.random() > 0.5)
+    if (Math.random() > 0.5)
         x = text.length(); // NullPointerException
     else
         x = 5 / 0; // ArithmeticException
 }
-catch(NullPointerException e) {
+catch (NullPointerException e) {
     System.out.println("You used a null pointer!");
 }
-catch(ArithmeticException e) {
+catch (ArithmeticException e) {
     System.out.println("You divided by zero!");
 }
 ----
@@ -285,10 +285,10 @@ block for `InterruptedException`.
 
 [source,java]
 ----
-try{
+try {
     Thread.sleep(100);
 }
-catch(InterruptedException  e) {
+catch (InterruptedException  e) {
     System.out.println("Wake up!");
 }
 ----
@@ -508,10 +508,10 @@ This method takes in an array of `int` values and prints them all out.
 public static void exceptionalArrayPrint(int[] array) {
     try {
         int i = 0;
-        while(true)
+        while (true)
             System.out.print(array[i++] + " ");
     }
-    catch(ArrayIndexOutOfBoundsException e) {}
+    catch (ArrayIndexOutOfBoundsException e) {}
 }
 ----
 
@@ -578,7 +578,7 @@ the component is out of range, an appropriate exception will be thrown.
 ----
 public static Color increaseRed(Color color)
     throws ColorOverflowException {
-    if(color.getRed() + 5 > 255)
+    if (color.getRed() + 5 > 255)
         throw new ColorOverflowException("Red: " + (color.getRed() + 5));
     else
         return new Color(color.getRed() + 5, color.getGreen(), color.getBlue());
@@ -586,7 +586,7 @@ public static Color increaseRed(Color color)
 
 public static Color increaseGreen(Color color)
     throws ColorOverflowException {
-    if(color.getGreen() + 5 > 255)
+    if (color.getGreen() + 5 > 255)
         throw new ColorOverflowException("Green: " + (color.getGreen() + 5));
     else
         return new Color(color.getRed(), color.getGreen() + 5, color.getBlue());
@@ -594,14 +594,14 @@ public static Color increaseGreen(Color color)
 
 public static Color increaseBlue(Color color)
     throws ColorOverflowException {
-    if(color.getBlue() + 5 > 255)
+    if (color.getBlue() + 5 > 255)
         throw new ColorOverflowException("Blue: " + (color.getBlue() + 5));
     else
         return new Color(color.getRed(), color.getGreen(), color.getBlue() + 5);
 }
 
 public static Color decreaseRed(Color color) throws ColorUnderflowException {
-    if(color.getRed() - 5 < 0)
+    if (color.getRed() - 5 < 0)
         throw new ColorUnderflowException("Red: " + (color.getRed() - 5));
     else
         return new Color(color.getRed() - 5, color.getGreen(), color.getBlue());
@@ -609,7 +609,7 @@ public static Color decreaseRed(Color color) throws ColorUnderflowException {
 
 public static Color decreaseGreen(Color color)
     throws ColorUnderflowException {
-    if(color.getGreen() - 5 < 0)
+    if (color.getGreen() - 5 < 0)
         throw new ColorUnderflowException("Green: " + (color.getGreen() - 5));
     else
         return new Color(color.getRed(), color.getGreen() - 5, color.getBlue());
@@ -617,7 +617,7 @@ public static Color decreaseGreen(Color color)
 
 public static Color decreaseBlue(Color color)
     throws ColorUnderflowException {
-    if(color.getBlue() - 5 < 0)
+    if (color.getBlue() - 5 < 0)
         throw new ColorUnderflowException("Blue: " + (color.getBlue() - 5));
     else
         return new Color(color.getRed(), color.getGreen(), color.getBlue() - 5);
@@ -636,7 +636,7 @@ public static Color changeColor(Color color) {
         "red, green, or blue in your color.");
         Scanner in = new Scanner(System.in);
     try {
-        switch(in.next().trim().charAt(0)) {
+        switch (in.next().trim().charAt(0)) {
             case 'R': color = increaseRed(color); break;
             case 'G': color = increaseGreen(color); break;
             case 'B': color = increaseBlue(color); break;
@@ -645,10 +645,10 @@ public static Color changeColor(Color color) {
             case 'b': color = decreaseBlue(color); break;
         }
     }
-    catch(ColorOverflowException e) {
+    catch (ColorOverflowException e) {
         System.out.println(e);
     }
-    catch(ColorUnderflowException e) {
+    catch (ColorUnderflowException e) {
         System.out.println(e);
     }
     return color;
@@ -680,7 +680,7 @@ as follows.
 [source,java]
 ----
     try {
-        switch(in.next().trim().charAt(0)) {
+        switch (in.next().trim().charAt(0)) {
             case 'R': color = increaseRed(color); break;
             case 'G': color = increaseGreen(color); break;
             case 'B': color = increaseBlue(color); break;
@@ -689,7 +689,7 @@ as follows.
             case 'b': color = decreaseBlue(color); break;
         }
     }
-    catch(ColorOverflowException | ColorUnderflowException e) {
+    catch (ColorOverflowException | ColorUnderflowException e) {
         System.out.println(e);
     }
 ----
@@ -905,7 +905,7 @@ public static int magic(String value) {
         int x = Integer.parseInt(value);
         return x;
     }
-    catch(Exception e) {
+    catch (Exception e) {
         System.out.println("Some exception occurred.");
         return 0;
     }
@@ -922,10 +922,10 @@ segment of code fail to compile?
 try{
     Thread.sleep(1000);
 }
-catch(Exception e) {
+catch (Exception e) {
     System.out.println("Exception occurred!");
 }
-catch(InterruptedException e) {
+catch (InterruptedException e) {
     System.out.println("Woke up early!");
 }
 ----

@@ -858,8 +858,8 @@ their own special operators, `pass:[++]` and `pass:[--]`.
 |==========================
 |Operator |Example | Meaning
 
-|++|a++;|a = a + 1;
-|--|a--;|a = a - 1;
+|++|++a;|a = a + 1;
+|--|--a;|a = a - 1;
 |==========================
 
 Using either an increment or decrement changes the value of a variable.
@@ -945,7 +945,10 @@ version when executed.
 Nevertheless, many programmers enjoy squeezing their code down to the
 smallest number of lines of code possible. You may have to read code
 that uses increments and decrements in clever (if obscure) ways, but you
-should always strive to make your own code as readable as possible.
+should always strive to make your own code as readable as possible. Throughout
+this book we will prefer the prefix style for increments and decrements,
+because it's guaranteed to be as fast or faster than postfix and because it
+matches what most people intuitively expect, that the update happens first. 
 
 ===== Bitwise operators
 

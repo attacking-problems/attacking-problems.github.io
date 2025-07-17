@@ -473,7 +473,7 @@ double b = a - 1;
 double c = b + b + b;
 double d = c - 1;
 System.out.println(d);
-if(d == 0.0)
+if (d == 0.0)
 	System.out.println("Success!");
 ----
 
@@ -510,7 +510,7 @@ the following loop does not terminate.
 
 [source,java]
 ----
-for(char letter = '\0'; letter < 100000; letter++)
+for (char letter = '\0'; letter < 100000; letter++)
     System.out.print(letter);
 ----
 
@@ -649,7 +649,7 @@ at 1 and go up to *and including* _n_.
 
 [source,java]
 ----
-for(int i = 1; i < 50; i++)
+for (int i = 1; i < 50; ++i)
 	System.out.println("Question " + i + ".");
 ----
 
@@ -672,7 +672,7 @@ int i = 0;
 double sum = 0;
 int count = 0;
 Scanner scanner = new Scanner(System.in);
-while(i >= 0) {
+while (i >= 0) {
     sum += i;
     System.out.print("Enter an integer (negative to quit): ");
     i = scanner.nextInt();
@@ -709,7 +709,7 @@ the most classic is:
 [source,java]
 ----
 int i = 1;
-while(i <= 100);
+while (i <= 100);
 {
     System.out.println(i);
     i++;
@@ -729,10 +729,10 @@ cause an infinite loop.
 public double average(int[] array) {
     double sum = 0;
     int count = 0;
-    for(int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; ++i) {
         sum += array[i];
         count++;
-        if(i == 0)
+        if (i == 0)
             i--;
     }
     return sum / count;
@@ -748,7 +748,7 @@ statement.
 
 [source,java]
 ----
-        if(array[i] == 0)
+        if (array[i] == 0)
             count--;
 ----
 
@@ -766,7 +766,7 @@ possibility just a little later.
 
 [source,java]
 ----
-for(i = 10; i > 0; i++)
+for (i = 10; i > 0; ++i)
 	System.out.println(i + "!");
 	
 System.out.println("Blast-off!");
@@ -793,7 +793,7 @@ int i = 0;
 double sum = 0;
 int count = -1;
 Scanner scanner = new Scanner(System.in);
-while(i > 0) {
+while (i > 0) {
     sum += i;
     System.out.print("Enter an integer (negative to quit): ");
     i = scanner.nextInt();
@@ -812,8 +812,8 @@ value of `i`, is too small.
 [source,java]
 ----
 public static boolean isPrime(int n) {
-    for(int i = 1; i < n; i++) {
-        if(n % i == 0)
+    for (int i = 1; i < n; ++i) {
+        if (n % i == 0)
             return false;
     }
 	return true;
@@ -829,8 +829,8 @@ times, but only once is still just as wrong.
 [source,java]
 ----
 public static boolean isPrime(int n) {
-    for(int i = 2; i < n; i++) {
-        if(n % i == 0)
+    for (int i = 2; i < n; ++i) {
+        if (n % i == 0)
             return false;
         else
             return true;
@@ -867,7 +867,7 @@ object.
 ----
 String string1 = new String("Test");
 String string2 = new String("Test");
-if(string1 == string2)
+if (string1 == string2)
     System.out.println("Identical");
 else
     System.out.println("Different");
@@ -882,7 +882,7 @@ is further confused by a Java optimization called `String` pooling.
 ----
 String string1 = "Test";
 String string2 = "Test";
-if(string1 == string2)
+if (string1 == string2)
     System.out.println("Identical");
 else
     System.out.println("Different");
@@ -945,7 +945,7 @@ bounds of an array, particularly with a loop.
 [source,java]
 ----
 int[] array = new int[100];
-for(int i = 0; i <= 100; i++)
+for (int i = 0; i <= 100; ++i)
 	array[i] = i;
 ----
 
@@ -1005,7 +1005,7 @@ the array before you try to feed those hungry, hungry hippos.
 [source,java]
 ----
 Hippopotamus[] hippos = new Hippopotamus[15];
-for(int i = 0; i < hippos.length; i++)
+for (int i = 0; i < hippos.length; ++i)
     hippos[i] = new Hippopotamus();
 hippos[3].feed();
 ----
@@ -1052,7 +1052,7 @@ fix the problem in the preceding example.
 ----
 	public void deepen(int darkness) {
 		this.darkness += darkness;
-		if(this.darkness > 100)
+		if (this.darkness > 100)
 			this.darkness = 100;
 	}
 ----
@@ -1425,7 +1425,7 @@ Although it's tempting to do so when working under time pressure, *never*
 write empty exception handlers. Doing so swallows exceptions blindly,
 giving the user no information about the errors in his or her program. By
 the same token, always make your exception handlers as narrow as
-possible. Simply putting `catch(Exception e)` at the end of any
+possible. Simply putting `catch (Exception e)` at the end of any
 `try`-block has one of two possible outcomes: In one case your handler
 is vague and the user is informed that a general error of some kind has
 occurred. In the other your handler is more specific than it has a right
@@ -2122,7 +2122,7 @@ executed?
 ----
 int j = 1;
 int i;
-for(i = 0; i < 10; i++);
+for (i = 0; i < 10; ++i);
 	j += i;
 ----
 +
@@ -2134,7 +2134,7 @@ many times will it execute?
 +
 [source,java]
 ----
-for(byte value = 0; value < 256; ++value)
+for (byte value = 0; value < 256; ++value)
 	System.out.println("Byte: " + value);
 ----
 . What are all the possible run-time errors that could occur in this
@@ -2145,7 +2145,7 @@ method that reverses a section of an array?
 public void reverse(Object[] array, int start, int end) {
     Object temp;
     end--;  // Up to but not including end
-    while(start < end) {
+    while (start < end) {
         temp = array[start];
         array[start] = array[end];
         array[end] = temp;

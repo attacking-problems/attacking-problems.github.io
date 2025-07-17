@@ -815,7 +815,7 @@ encapsulate both client and server functionality in a class called
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
         <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-s"</span><span class="o">))</span> <span class="o">{</span> 		<i class="conum" data-value="2"></i><b>(2)</b>
             <span class="k">new</span> <span class="nf">Chat</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]));</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span>	<i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span>	<i class="conum" data-value="3"></i><b>(3)</b>
             <span class="k">new</span> <span class="nf">Chat</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">);</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Invalid command line flag."</span><span class="o">);</span>
@@ -898,7 +898,7 @@ IP address on the specified port.</p>
 			<span class="n">sender</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
 			<span class="n">receiver</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
 		<span class="o">}</span>
-		<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+		<span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
     <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -951,7 +951,7 @@ all important <code>socket</code> variable.</p>
 					<span class="o">}</span>                               
                 <span class="o">}</span>       
             <span class="o">}</span>
-            <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Network error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>				
 			<span class="o">}</span>         
         <span class="o">}</span>       

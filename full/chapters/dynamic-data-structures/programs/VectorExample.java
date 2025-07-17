@@ -24,7 +24,7 @@ public class VectorExample extends Thread {
 	}
     
     public void run() { 
-        for (int i = 0; i < 10; i++) { 	         //<.>
+        for (int i = 0; i < 10; ++i) { 	         //<.>
             list.add(this.getName() + ": " + i); //<.>
             try { 
 				Thread.sleep(1); 		         //<.>

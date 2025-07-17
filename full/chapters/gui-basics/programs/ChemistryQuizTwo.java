@@ -8,7 +8,7 @@ public class ChemistryQuizTwo {
         String response = (String)JOptionPane.showInputDialog(null, // <.>
             query, title, JOptionPane.QUESTION_MESSAGE, null, elements, null);
         String message;
-        if(response.equals("Copernicium")) // <.>
+        if (response.equals("Copernicium")) // <.>
             message = "You're right!";
         else
             message = "Sorry, correct answer: Copernicium.";               

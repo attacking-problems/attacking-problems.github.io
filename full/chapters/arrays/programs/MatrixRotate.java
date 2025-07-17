@@ -21,7 +21,7 @@ public class MatrixRotate {
         rotation[2][2] = Math.cos(theta);
         double[] rotatedPoint = new double[3];
         for (int i = 0; i < rotatedPoint.length; ++i) { // <5>
-            for(int j = 0; j < point.length; ++j) {
+            for (int j = 0; j < point.length; ++j) {
                 rotatedPoint[i] += rotation[i][j]*point[j];
             }
         }

@@ -364,10 +364,10 @@ ascending order.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">boolean</span> <span class="n">swapped</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">temp</span><span class="o">;</span>
-<span class="k">while</span><span class="o">(</span><span class="n">swapped</span><span class="o">)</span> <span class="o">{</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">swapped</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">swapped</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="o">{</span>
             <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
@@ -510,8 +510,8 @@ interface. In the following snippet of code, we do this by creating 100
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Guitarist</span><span class="o">[]</span> <span class="n">guitarists</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Guitarist</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
 <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">guitarists</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">())</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">guitarists</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">())</span>
         <span class="n">guitarists</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RockGuitarist</span><span class="o">();</span>
     <span class="k">else</span>
         <span class="n">guitarists</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassicalGuitarist</span><span class="o">();</span></code></pre>
@@ -541,7 +541,7 @@ and use it to strum a chord.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">Guitarist</span> <span class="n">player</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Guitarist</span><span class="o">)</span><span class="n">unknown</span><span class="o">;</span>
         <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
     <span class="o">}</span>
@@ -715,11 +715,11 @@ simply utility methods that perform some task associated with the interface.</p>
     
 	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">nextNote</span><span class="o">(</span><span class="nc">String</span> <span class="n">note</span><span class="o">)</span> <span class="o">{</span>
 		<span class="kt">char</span> <span class="n">letter</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-			<span class="k">if</span><span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">)</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">)</span>
 				<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="n">letter</span><span class="o">;</span>
 			<span class="k">else</span> <span class="o">{</span>
-				<span class="k">switch</span><span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
 				<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
 				<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
 					<span class="k">return</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
@@ -731,7 +731,7 @@ simply utility methods that perform some task associated with the interface.</p>
 			<span class="o">}</span>
 		<span class="o">}</span>
 		<span class="k">else</span> <span class="o">{</span>
-			<span class="k">switch</span><span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
 			<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
 				<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
@@ -844,7 +844,7 @@ large eggs, we can define the <code>Eggs</code> class as follows.</p>
     <span class="o">}</span>       
 
     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPrice</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">extraLarge</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">extraLarge</span><span class="o">)</span>
             <span class="k">return</span> <span class="n">dozens</span><span class="o">*</span><span class="no">PRICE_PER_DOZEN_EXTRA_LARGE</span><span class="o">;</span>
         <span class="k">else</span>
             <span class="k">return</span> <span class="n">dozens</span><span class="o">*</span><span class="no">PRICE_PER_DOZEN_LARGE</span><span class="o">;</span>            
@@ -881,7 +881,7 @@ write a simple method to total the values like so.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">getTotal</span><span class="o">(</span><span class="nc">Priceable</span><span class="o">[]</span> <span class="n">cart</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">double</span> <span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cart</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cart</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
         <span class="n">total</span> <span class="o">+=</span> <span class="n">cart</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getPrice</span><span class="o">();</span>
 
     <span class="k">return</span> <span class="n">total</span><span class="o">;</span>
@@ -988,7 +988,7 @@ areas.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">sumAreas</span><span class="o">(</span><span class="nc">AreaGettable</span><span class="o">[]</span> <span class="n">shapes</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">double</span> <span class="n">sum</span>  <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">shapes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">shapes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
         <span class="n">sum</span> <span class="o">+=</span> <span class="n">shapes</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getArea</span><span class="o">();</span>
 
     <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
@@ -1019,7 +1019,7 @@ the local <code>Ellipse</code> class in this way and fill an array with
     <span class="o">}</span>
 
     <span class="nc">AreaGettable</span><span class="o">[]</span> <span class="n">ellipses</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AreaGettable</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ellipses</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ellipses</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
         <span class="n">ellipses</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Ellipse</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mf">25.0</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mf">25.0</span><span class="o">);</span>
     <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">sumAreas</span><span class="o">(</span><span class="n">ellipses</span><span class="o">);</span>
 
@@ -1057,7 +1057,7 @@ so that it creates an anonymous class which behaves exactly like the
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">createEllipses</span><span class="o">()</span> <span class="o">{</span>
     <span class="nc">AreaGettable</span><span class="o">[]</span> <span class="n">ellipses</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AreaGettable</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
 
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
         <span class="kd">final</span> <span class="kt">double</span> <span class="n">value1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mf">25.0</span><span class="o">;</span>
         <span class="kd">final</span> <span class="kt">double</span> <span class="n">value2</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mf">25.0</span><span class="o">;</span>
 
@@ -1244,10 +1244,10 @@ to generalize the sort beyond <code>int</code> values.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="nc">Object</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">boolean</span> <span class="n">swapped</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
     <span class="nc">Object</span> <span class="n">temp</span><span class="o">;</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">swapped</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">swapped</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">swapped</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">outOfOrder</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">],</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">outOfOrder</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">],</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
                 <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
                 <span class="n">array</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
@@ -1270,7 +1270,7 @@ comparison (<code>&gt;</code>) with the <code>outOfOrder()</code> method, which 
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">outOfOrder</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o1</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">o2</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">age</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">Ageable</span> <span class="n">age1</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Ageable</span><span class="o">)</span><span class="n">o1</span><span class="o">;</span>
         <span class="nc">Ageable</span> <span class="n">age2</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Ageable</span><span class="o">)</span><span class="n">o2</span><span class="o">;</span>
         <span class="k">return</span> <span class="n">age1</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">age2</span><span class="o">.</span><span class="na">getAge</span><span class="o">();</span>

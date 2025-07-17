@@ -3,7 +3,7 @@ public class Shadow {
 
     public void deepen(int darkness) {
         darkness += darkness;
-        if(darkness > 100)
+        if (darkness > 100)
             darkness = 100;
     }
 

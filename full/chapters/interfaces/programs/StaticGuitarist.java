@@ -4,11 +4,11 @@ public interface StaticGuitarist {
     
 	static String nextNote(String note) {
 		char letter = note.charAt(0);
-		if(note.length() == 2) {
-			if(note.charAt(1) == 'b')
+		if (note.length() == 2) {
+			if (note.charAt(1) == 'b')
 				return "" + letter;
 			else {
-				switch(letter) {
+				switch (letter) {
 				case 'B':
 				case 'E':
 					return letter + "#";
@@ -20,7 +20,7 @@ public interface StaticGuitarist {
 			}
 		}
 		else {
-			switch(letter) {
+			switch (letter) {
 			case 'B':
 			case 'E':
 				return "" + (letter + 1);

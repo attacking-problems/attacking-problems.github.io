@@ -20,7 +20,7 @@ public class WordCount {
             }
         }
         System.out.println("The word counts are: ");
-        for(int i = 0; i < words.length; ++i) { // <.>
+        for (int i = 0; i < words.length; ++i) { // <.>
             System.out.println(words[i] + " " + counts[i]);
         }
     }

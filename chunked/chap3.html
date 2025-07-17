@@ -1428,12 +1428,12 @@ their own special operators, <code>++</code> and <code>--</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>++</pre></div></td>
-<td class="tableblock halign-center valign-middle"><div class="literal"><pre>a++;</pre></div></td>
+<td class="tableblock halign-center valign-middle"><div class="literal"><pre>++a;</pre></div></td>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>a = a + 1;</pre></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>--</pre></div></td>
-<td class="tableblock halign-center valign-middle"><div class="literal"><pre>a--;</pre></div></td>
+<td class="tableblock halign-center valign-middle"><div class="literal"><pre>--a;</pre></div></td>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>a = a - 1;</pre></div></td>
 </tr>
 </tbody>
@@ -1536,7 +1536,10 @@ version when executed.</p>
 <p>Nevertheless, many programmers enjoy squeezing their code down to the
 smallest number of lines of code possible. You may have to read code
 that uses increments and decrements in clever (if obscure) ways, but you
-should always strive to make your own code as readable as possible.</p>
+should always strive to make your own code as readable as possible. Throughout
+this book we will prefer the prefix style for increments and decrements,
+because it’s guaranteed to be as fast or faster than postfix and because it
+matches what most people intuitively expect, that the update happens first.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3835,7 +3838,7 @@ illustrates this concurrent approach.</p>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result of g: "</span> <span class="o">+</span> <span class="n">gResult</span> <span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final answer: "</span> <span class="o">+</span> <span class="n">answer</span><span class="o">);</span>        
         <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+        <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Computation interrupted!"</span><span class="o">);</span>
         <span class="o">}</span>             
     <span class="o">}</span>   

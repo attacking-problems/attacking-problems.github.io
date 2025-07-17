@@ -14,7 +14,7 @@ public class DirectDepositAccount extends CheckingAccount {
         lastDirectDeposit.get(Calendar.YEAR)) +
         (current.get(Calendar.MONTH) -
         lastDirectDeposit.get(Calendar.MONTH));
-        if(months <= 1)
+        if (months <= 1)
             return 0;
         else
             return super.getFee();

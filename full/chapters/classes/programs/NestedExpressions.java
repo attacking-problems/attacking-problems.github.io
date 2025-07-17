@@ -7,9 +7,9 @@ public class NestedExpressions {
         SymbolStack stack = new SymbolStack(input.length()); //<.>
         char symbol;    
         boolean correct = true; //<.>
-        for(int i = 0; i < input.length() && correct; i++) { //<.>
+        for (int i = 0; i < input.length() && correct; ++i) { //<.>
             symbol = input.charAt(i);
-            switch(symbol) {
+            switch (symbol) {
                 case '(':
                 case '[':
                 case '{':
@@ -18,7 +18,7 @@ public class NestedExpressions {
                 case ')':
 				case ']':
 				case '}':
-                    if(stack.isEmpty() || stack.top() != symbol) //<.>
+                    if (stack.isEmpty() || stack.top() != symbol) //<.>
                         correct = false;
                     else
                         stack.pop();
@@ -26,10 +26,10 @@ public class NestedExpressions {
             }
         }
             
-        if(!stack.isEmpty()) //unmatched left symbols <.>
+        if (!stack.isEmpty()) //unmatched left symbols <.>
             correct = false;
         
-        if(correct) //<.>
+        if (correct) //<.>
             System.out.println("The input is correctly nested!");
         else
             System.out.println("The input is incorrectly nested!");
