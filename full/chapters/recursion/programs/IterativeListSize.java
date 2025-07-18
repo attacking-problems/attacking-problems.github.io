@@ -18,7 +18,7 @@ public class IterativeListSize {
         int counter = 0;
         while (current != null) {
             current = current.next;
-            counter++;
+            ++counter;
         }           
         return counter;
     }

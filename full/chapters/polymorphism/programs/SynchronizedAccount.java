@@ -5,7 +5,7 @@ public class SynchronizedAccount {
     public double getBalance() throws InterruptedException {
         double amount;      
         synchronized (this) {   // <.>
-            readers++;
+            ++readers;
         }       
         amount = balance;      // <.>
         synchronized (this) {

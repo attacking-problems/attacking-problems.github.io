@@ -309,9 +309,10 @@ repeats more than once.
 int counter = 0;
 while (true) {
     System.out.print("the loop ");
-    counter++;
-    if (counter >= 3)
+    ++counter;
+    if (counter >= 3) {
         break;
+    }
 }
 System.out.println("is on fire!");
 ----
@@ -325,7 +326,7 @@ could have written equivalent code as follows.
 int counter = 0;
 while (counter < 3) {
     System.out.print("the loop ");
-    counter++;
+    ++counter;
 }
 System.out.println("is on fire!");
 ----
@@ -401,7 +402,7 @@ Let's return to our code that prints out
 int counter = 0;
 while (counter < 3) {
     System.out.print("the loop ");
-    counter++;
+    ++counter;
 }
 System.out.println("is on fire!");
 ----
@@ -451,7 +452,7 @@ the loop, which you often do. You can think of the first part of the
 `for` loop header as the starting point, the second part as the ending
 point, and the third part as how you get from the start to the end. Many
 beginning programmers get stuck on the idea that every `for` loop starts
-with `int i = 0` and ends with `i++`. While this pattern is often true,
+with `int i = 0` and ends with `++i`. While this pattern is often true,
 there are many other ways to use a for loop. For example, we could print
 the powers of 2 that are less than 1000.
 
@@ -776,7 +777,7 @@ as follows.
 int x = 1;
 do {
     System.out.println(x*x);
-    x++;
+    ++x;
 } while (x <= 10);
 ----
 
@@ -787,7 +788,7 @@ This loop behaves exactly the same as the following loop.
 int x = 1;
 while (x <= 10) {
     System.out.println(x*x);
-    x++;
+    ++x;
 }
 ----
 
@@ -1049,7 +1050,7 @@ statement is empty. Thus, the following is a legal (but infinite) loop.
 int i = 100;
 while (i > 0); {
     System.out.println(i);
-    i--;
+    --i;
 }
 System.out.println("Ready or not, here I come!");
 ----
@@ -1194,7 +1195,7 @@ for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
         subsequence.charAt(j) == sequence.charAt(i + j); ++j)
         if (j == subsequence.length() - 1) { // Matches
             System.out.println("Match found at index " + i);
-            found++;
+            ++found;
         }
     }
 }
@@ -1213,7 +1214,7 @@ for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
         subsequence.charAt(j) == sequence.charAt(i + j); ++j);
     if (j == subsequence.length()) { // Matches
         System.out.println("Match found at index " + i);
-        found++;
+        ++found;
     }
 }
 ----
@@ -1363,9 +1364,11 @@ for (int i = 1; i < 10; --i);
 Scanner in = new Scanner(System.in);
 int n = in.nextInt();
 int count = 0;
-for (int i = 1; i <= n; ++i)
-    for (int j = 1; j <= i; ++j)
-        count++;
+for (int i = 1; i <= n; ++i) {
+    for (int j = 1; j <= i; ++j) {
+        ++count;
+    }
+}
 ----
 +
 In terms of the value of `n`, how many times is `count` incremented? If

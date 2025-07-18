@@ -12,7 +12,7 @@ public class GenericLinkedList<T> {
         temp.value = value;
         temp.next = head;
         head = temp;
-        size++;
+        ++size;
     }
     
     public int size() {

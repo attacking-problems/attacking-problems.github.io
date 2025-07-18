@@ -40,7 +40,7 @@ public class DNASearch {
                     break;
                 if (j == subsequence.length() - 1) { //matches <.>
                     System.out.println("Match found at index " + i);
-                    found++;
+                    ++found;
                 }
             }
         }

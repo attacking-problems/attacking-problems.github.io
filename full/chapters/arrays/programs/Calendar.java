@@ -29,7 +29,7 @@ public class Calendar {
             ++column;
             if (column >= squares[row].length) {
                 column = 0;
-                row++;
+                ++row;
             }
         }
         for (int i = 0; i < squares.length; ++i) { // <7>

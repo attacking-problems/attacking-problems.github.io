@@ -991,8 +991,10 @@ This method takes in an array of <code>int</code> values and prints them all out
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">exceptionalArrayPrint</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">++]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+            <span class="o">++</span><span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
 <span class="o">}</span></code></pre>

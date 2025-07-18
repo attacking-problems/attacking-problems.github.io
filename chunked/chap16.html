@@ -1620,10 +1620,10 @@ In that situation, you’ll be forced to implement <code>MouseListener</code>.</
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">oneClicks</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">oneClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"One clicked "</span><span class="o">+</span> <span class="n">oneClicks</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">twoClicks</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">twoClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Two clicked "</span><span class="o">+</span> <span class="n">twoClicks</span>  <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>

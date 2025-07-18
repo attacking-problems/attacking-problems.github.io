@@ -1213,7 +1213,7 @@ int number = 1;
 for (int i = 0; i < values.length; ++i) {
     for (int j = 0; j < values[i].length; ++j) {
         values[i][j] = number;
-        number++;
+        ++number;
     }
 }
 ----
@@ -1488,7 +1488,7 @@ it's an array of primitive values, the following code works fine.
 [source,java]
 ----
 int[] primitives = new int[100];
-primitives[67]++;
+++primitives[67];
 ----
 
 The following code, however, will cause a `NullPointerException`.

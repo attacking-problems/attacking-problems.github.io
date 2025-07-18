@@ -33,10 +33,10 @@ public class SimpleMouseAdapter extends MouseAdapter { // <.>
     
     public void mouseClicked(MouseEvent e) { // <.>
         if (e.getSource() == oneButton) {
-            oneClicks++;
+            ++oneClicks;
             status.setText("One clicked "+ oneClicks + " times.");
         } else {
-            twoClicks++;
+            ++twoClicks;
             status.setText("Two clicked "+ twoClicks  + " times.");
         }
     }

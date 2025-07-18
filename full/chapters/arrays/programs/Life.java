@@ -20,7 +20,7 @@ public class Life {
                         for (int j = Math.max(column - 1, 0);
 							j < Math.min(column + 2, COLUMNS); ++j) {
                             if ((i != row || j != column) && board[i][j]) {
-                                total++;
+                                ++total;
                             }
                         }
                     }

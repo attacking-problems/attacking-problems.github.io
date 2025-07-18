@@ -1565,7 +1565,7 @@ identify which line will cause an error and why.</p>
 <span class="k">while</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">potato</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Potato</span><span class="o">)</span><span class="n">vegetable</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
     <span class="n">potato</span><span class="o">.</span><span class="na">peel</span><span class="o">();</span>
-	<span class="n">index</span><span class="o">--;</span>
+	<span class="o">--</span><span class="n">index</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1714,7 +1714,7 @@ long it takes to run to completion.</p>
 <div class="paragraph">
 <p>Then, take <a href="chap15.html#RaceConditionProgram">Program 15.1</a> and increase its <code>COUNT</code> to
 <code>100000000</code> as well. Change the body of the <code>for</code> loop inside the
-<code>run()</code> method so that <code>count++;</code> is inside of a <code>synchronized</code> block
+<code>run()</code> method so that <code>++count;</code> is inside of a <code>synchronized</code> block
 that uses <code>RaceCondition.class</code> as the lock. (The choice of
 <code>RaceCondition.class</code> is arbitrary, but it’s an object that all the
 threads can see.) In this way, the increment will occur atomically,

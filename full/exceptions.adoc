@@ -508,8 +508,10 @@ This method takes in an array of `int` values and prints them all out.
 public static void exceptionalArrayPrint(int[] array) {
     try {
         int i = 0;
-        while (true)
-            System.out.print(array[i++] + " ");
+        while (true) {
+            System.out.print(array[i] + " ");
+            ++i;
+        }
     }
     catch (ArrayIndexOutOfBoundsException e) {}
 }

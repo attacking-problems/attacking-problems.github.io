@@ -10,7 +10,7 @@ public class UseDynamicArray {
         while (in.hasNextLine()) {
             line = in.nextLine();
             names.set(count, line);       // <.>
-            count++;
+            ++count;
         }
         
         names.sort(0, count);             // <.>

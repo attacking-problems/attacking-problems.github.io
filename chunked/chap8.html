@@ -861,7 +861,7 @@ method.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">(</span><span class="kt">int</span> <span class="n">counter</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">counter</span><span class="o">++;</span>
+    <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -873,8 +873,9 @@ argument is unchanged. Thus, the following fragment is an infinite loop.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">)</span>
-    <span class="n">increment</span><span class="o">(</span><span class="n">i</span><span class="o">);</span></code></pre>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">increment</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -980,14 +981,15 @@ that increases the class variable <code>counter</code> every time it’s called.
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">while</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="o">)</span>
+        <span class="k">while</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">record</span><span class="o">();</span>
+        <span class="o">}</span>
 
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Record was called "</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">record</span><span class="o">()</span> <span class="o">{</span>   
-        <span class="n">counter</span><span class="o">++;</span>  
+        <span class="o">++</span><span class="n">counter</span><span class="o">;</span>  
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1215,23 +1217,24 @@ scientific notation.</p>
     <span class="kt">double</span> <span class="n">fraction</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'-'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="n">negative</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="n">i</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">i</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'+'</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'+'</span><span class="o">)</span>
-        <span class="n">i</span><span class="o">++;</span>
     <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="sc">'.'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="n">temp</span> <span class="o">*=</span> <span class="mf">10.0</span><span class="o">;</span>
         <span class="n">temp</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
-        <span class="n">i</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="n">i</span><span class="o">++;</span> <span class="c1">//move past decimal point (if there) </span><i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="o">++</span><span class="n">i</span><span class="o">;</span> <span class="c1">// Move past decimal point (if there) </span><i class="conum" data-value="3"></i><b>(3)</b>
     <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="n">temp</span> <span class="o">+=</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">)</span> <span class="o">/</span> <span class="n">fraction</span><span class="o">;</span>
         <span class="n">fraction</span> <span class="o">*=</span> <span class="mf">10.0</span><span class="o">;</span>
-        <span class="n">i</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">negative</span><span class="o">)</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="k">if</span> <span class="o">(</span><span class="n">negative</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="n">temp</span> <span class="o">=</span> <span class="o">-</span><span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
     <span class="k">return</span> <span class="n">temp</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1669,12 +1672,13 @@ following program.</p>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>        
-        <span class="n">value</span><span class="o">++;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">++</span><span class="n">value</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Even"</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Odd"</span><span class="o">);</span>
-        <span class="n">value</span><span class="o">++;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="o">}</span>
+        <span class="o">++</span><span class="n">value</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>

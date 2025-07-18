@@ -1121,7 +1121,7 @@ public class A {
 
     public int getA() { return a; }
 
-    public static void increment() { a++; }
+    public static void increment() { ++a; }
 }
 
 public class B {

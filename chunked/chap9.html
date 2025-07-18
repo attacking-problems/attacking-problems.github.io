@@ -1512,7 +1512,7 @@ stack operations with methods of the same names.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span> <span class="kt">char</span> <span class="n">symbol</span> <span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span> <span class="n">size</span><span class="o">--;</span> <span class="o">}</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span> <span class="o">--</span><span class="n">size</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">top</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="o">}</span> <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
 <span class="o">}</span></code></pre>
@@ -1719,12 +1719,11 @@ pause in executing the <code>useCuriosity()</code> method.</p>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">lives</span> <span class="o">=</span> <span class="mi">9</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">useCuriosity</span><span class="o">()</span> <span class="o">{</span>         
-        <span class="k">if</span> <span class="o">(</span> <span class="n">lives</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-            <span class="n">lives</span><span class="o">--;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">lives</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="o">--</span><span class="n">lives</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Down to life "</span> <span class="o">+</span> <span class="n">lives</span><span class="o">);</span>
             <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No more lives left!"</span><span class="o">);</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>
@@ -1830,7 +1829,7 @@ use it? When can it be ignored?</p>
 
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getA</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">;</span> <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span> <span class="n">a</span><span class="o">++;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span> <span class="o">++</span><span class="n">a</span><span class="o">;</span> <span class="o">}</span>
 <span class="o">}</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="o">{</span>

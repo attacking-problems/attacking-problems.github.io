@@ -886,7 +886,7 @@ Potato potato;
 while (index >= 0) {
     potato = (Potato)vegetable[index];
     potato.peel();
-	index--;
+	--index;
 }
 ----
 . How many different structures can the keyword `final` be applied to in
@@ -983,7 +983,7 @@ long it takes to run to completion.
 +
 Then, take <<RaceConditionProgram>> and increase its `COUNT` to
 `100000000` as well. Change the body of the `for` loop inside the
-`run()` method so that `count++;` is inside of a `synchronized` block
+`run()` method so that `++count;` is inside of a `synchronized` block
 that uses `RaceCondition.class` as the lock. (The choice of
 `RaceCondition.class` is arbitrary, but it's an object that all the
 threads can see.) In this way, the increment will occur atomically,

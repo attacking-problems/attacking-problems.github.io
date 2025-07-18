@@ -2128,7 +2128,7 @@ numbered increasing across each row.</p>
 <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">values</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
-        <span class="n">number</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">number</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -2505,7 +2505,7 @@ it’s an array of primitive values, the following code works fine.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">primitives</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
-<span class="n">primitives</span><span class="o">[</span><span class="mi">67</span><span class="o">]++;</span></code></pre>
+<span class="o">++</span><span class="n">primitives</span><span class="o">[</span><span class="mi">67</span><span class="o">];</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2613,7 +2613,7 @@ falls under the appropriate day of the week.</p>
             <span class="o">++</span><span class="n">column</span><span class="o">;</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">column</span> <span class="o">&gt;=</span> <span class="n">squares</span><span class="o">[</span><span class="n">row</span><span class="o">].</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-                <span class="n">row</span><span class="o">++;</span>
+                <span class="o">++</span><span class="n">row</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">squares</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
@@ -3258,7 +3258,7 @@ see how the patterns in the simulation are affected.</td>
                         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">column</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
 							<span class="n">j</span> <span class="o">&lt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">column</span> <span class="o">+</span> <span class="mi">2</span><span class="o">,</span> <span class="no">COLUMNS</span><span class="o">);</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
                             <span class="k">if</span> <span class="o">((</span><span class="n">i</span> <span class="o">!=</span> <span class="n">row</span> <span class="o">||</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">column</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">board</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
-                                <span class="n">total</span><span class="o">++;</span>
+                                <span class="o">++</span><span class="n">total</span><span class="o">;</span>
                             <span class="o">}</span>
                         <span class="o">}</span>
                     <span class="o">}</span>
