@@ -1,7 +1,7 @@
 public class LeftThread extends Thread {
     public void run() {
         for (int i = 0; i < 10; ++i) {
-            System.out.print("Left ");  //<.>
+            System.out.print("Left ");  // <.>
             System.out.print("Left ");
             System.out.print("Left ");
             try { 
@@ -9,7 +9,7 @@ public class LeftThread extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Left"); //<.>
+            System.out.println("Left"); // <.>
         }
     }
 }

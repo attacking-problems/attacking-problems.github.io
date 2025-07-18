@@ -1,8 +1,8 @@
 public class Livelock extends Thread {
-    private static int totalReady = 0; 		   //<.>
-    private static Object lock = new Object(); //<.>
+    private static int totalReady = 0; 		   // <.>
+    private static Object lock = new Object(); // <.>
 
-    public static void main(String[] args) {   //<.>
+    public static void main(String[] args) {   // <.>
         Livelock friend1 = new Livelock();
         Livelock friend2 = new Livelock();
         Livelock friend3 = new Livelock();
@@ -27,17 +27,17 @@ public class Livelock extends Thread {
         boolean done = false;
     
         try {       
-            while (!done) { //<.>
+            while (!done) { // <.>
                 Thread.sleep(75); // Prepare for party <.>
                 synchronized (lock) {
-                    ++totalReady;          //<.>
+                    ++totalReady;          // <.>
                 }                   
                 Thread.sleep(75); // Wait for friends  <.>
                 synchronized (lock) {
-                    if (totalReady >= 3) { //<.>
+                    if (totalReady >= 3) { // <.>
                         done = true;
                     } else {
-                        --totalReady;      //<.>
+                        --totalReady;      // <.>
                     }
                 }
             }

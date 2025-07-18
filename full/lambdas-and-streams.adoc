@@ -1090,11 +1090,11 @@ identical streams.
 [source, java]
 ----
 int[] array = {3, 4, 5, 6, 7};
-var stream1 = IntStream.of(array);                       //<.>
-var stream2 = IntStream.of(3, 4, 5, 6, 7);               //<.>
-var stream3 = IntStream.range(3, 8);                     //<.>
-var stream4 = IntStream.rangeClosed(3, 7);               //<.>
-var stream5 = IntStream.iterate(3, e -> e + 1).limit(5); //<.>
+var stream1 = IntStream.of(array);                       // <.>
+var stream2 = IntStream.of(3, 4, 5, 6, 7);               // <.>
+var stream3 = IntStream.range(3, 8);                     // <.>
+var stream4 = IntStream.rangeClosed(3, 7);               // <.>
+var stream5 = IntStream.iterate(3, e -> e + 1).limit(5); // <.>
 ----
 <.> Creates `stream1` from an existing array.
 <.> Creates `stream2` from an explicit list of `int` values.

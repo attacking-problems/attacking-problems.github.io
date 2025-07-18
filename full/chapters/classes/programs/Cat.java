@@ -3,7 +3,7 @@ public class Cat {
     
     public boolean useCuriosity() {         
         if ( lives > 1 ) { // <.>
-            lives--; //<.>
+            lives--; // <.>
             System.out.println("Down to life " + lives);
             return true;
         }

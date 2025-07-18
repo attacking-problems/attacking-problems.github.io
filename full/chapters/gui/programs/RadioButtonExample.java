@@ -6,7 +6,7 @@ public class RadioButtonExample {
         JFrame frame = new JFrame("Radio Button Example");
         JPanel panel = new JPanel();
 		
-        JRadioButton halfEmptyButton = new JRadioButton("Half empty"); //<.>
+        JRadioButton halfEmptyButton = new JRadioButton("Half empty"); // <.>
 		JRadioButton halfFullButton = new JRadioButton("Half full"); 
 		JRadioButton twiceTheSizeButton = new JRadioButton("Twice the needed size"); 		
         JTextField positiveField = new JTextField("Positive statement about the glass.");

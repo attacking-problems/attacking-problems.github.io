@@ -12,7 +12,7 @@ public class Life {
             }
         }
         for (int generation = 0; generation < GENERATIONS; ++generation) { // <.>
-            for (int row = 0; row < ROWS; ++row) { //<.>
+            for (int row = 0; row < ROWS; ++row) { // <.>
                 for (int column = 0; column < COLUMNS; ++column) {
                     int total = 0;
                     for (int i = Math.max(row - 1, 0); // <.>

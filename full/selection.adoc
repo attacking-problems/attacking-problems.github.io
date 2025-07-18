@@ -357,8 +357,8 @@ umbrella to be taken, then the window to be closed, and finally the
 raincoat to be put on.
 
 If only a single line of code is contained within a block of code, the
-braces can be left out. For example, many experienced Java programmers
-would have written our first example as follows.
+braces can be left out. For example, some experienced Java programmers
+might have written our first example as follows.
 
 [source,java]
 ----
@@ -382,8 +382,7 @@ dining options based on how much money we have.
 ----
 if (fiftyDollars) {
     lobsterDinner.eat();
-}
-else {
+} else {
     fastFood.eat();
 }
 ----
@@ -435,8 +434,8 @@ else
 Although it looks like both `fastFood.eat();` and `peptoBismol.take();`
 are within the block of the `else` statement, only `fastFood.eat();` is.
 The line `peptoBismol.take();` is not part of the `if`-`else` structure
-at all and will be executed no matter what. The correct way to program
-this decision is below.
+at all and will be executed no matter what. Thus, braces are required as shown
+below.
 
 [source,java]
 ----
@@ -447,6 +446,10 @@ else {
     peptoBismol.take();
 }
 ----
+
+This kind of confusion can be avoided if braces are always used. Many style
+guides insist on always using braces, so we will adopt that style for the rest
+of the book.
 
 ====
 
@@ -501,8 +504,9 @@ respectively, we can encode this statement in Java like so.
 
 [source,java]
 ----
-if (bored || (late && !canSleep))
+if (bored || (late && !canSleep)) {
     television.watch();
+}
 ----
 
 Combining the `||` operator with other `||` operators is both
@@ -587,8 +591,9 @@ using the `>` operator.
 
 [source,java]
 ----
-if (pressure > CRITICAL_PRESSURE)
+if (pressure > CRITICAL_PRESSURE) {
     emergencyShutdown();
+}
 ----
 
 This code allows you to call the appropriate emergency method when
@@ -648,12 +653,13 @@ a specific point in the code, asking a question about the values that
 certain variables or literals (or the results of method calls) have at
 that moment in time. In another sense, using these comparisons is a way
 to take numerical data and convert it into the language of `boolean`
-values. Note that the following statement does not compile in Java.
+values. Note that the following code does not compile in Java.
 
 [source,java]
 ----
-if (4)
+if (4) {
     x = y + z;
+}
 ----
 
 To be used in an `if` statement, the value `4` must be first compared
@@ -668,8 +674,9 @@ in the comparison operator.
 
 [source,java]
 ----
-if (x = 4)
+if (x = 4) {
     x = y + z;
+}
 ----
 
 Again, this code won't compile. If it did, the variable `x` would be
@@ -686,8 +693,9 @@ statement that would work only if their values are the same.
 
 [source,java]
 ----
-if (likesDogs1 == likesDogs2)
+if (likesDogs1 == likesDogs2) {
     makeRoommates();
+}
 ----
 
 This code correctly calls the `makeRoommates()` method only if the two
@@ -697,8 +705,9 @@ However, a tiny mistake in the code could yield the following.
 
 [source,java]
 ----
-if (likesDogs1 = likesDogs2)
+if (likesDogs1 = likesDogs2) {
     makeRoommates();
+}
 ----
 
 In this case, `likesDogs1` would be assigned to whatever `likesDogs2` is.
@@ -795,12 +804,6 @@ two answers.
 <.> Finally, if the discriminant is positive, we find the two real
 answers and output them.
 
-Note that braces were not needed for the `if`,
-`else`-`if`, and `else` blocks because each is composed of only a single
-line of code. Although these `System.out.println()` method calls may
-take up more than one line visually, Java interprets them as single
-lines because they each only have a single semicolon (`;`).
-
 The line `if (discriminant == 0.0)` is dangerous since we're using
 `double` values. Because of rounding errors, the discriminant might not
 be exactly zero even if it should be, mathematically. Industrial
@@ -860,9 +863,6 @@ Note that we've added comments specifying what we assume is the case
 for each `else` block. If we were being more careful, we should test for
 the `"y"` and `"n"` cases and then give an error message when the user
 inputs something unexpected, like `"x"` or `"149"` or even `"no"`.
-Again, note that no braces are needed for the final `if`-`else` blocks
-in which the guess is made, since each of these guesses requires only a
-single line of code.
 
 You might be curious how to make a real 20 Questions game that could
 learn over time. To do so, many more programming tools are necessary:
@@ -914,61 +914,63 @@ gift based on the year is below.
 [source,java]
 ----
 String gift;
-if (year == 1)
+if (year == 1) {
     gift = "Paper";
-else if (year == 2)
+} else if (year == 2) {
     gift = "Cotton";
-else if (year == 3)
+} else if (year == 3) {
     gift = "Leather";
-else if (year == 4)
+} else if (year == 4) {
     gift = "Fruit";
-else if (year == 5)
+} else if (year == 5) {
     gift = "Wood";
-else if (year == 6)
+} else if (year == 6) {
     gift = "Candy / Iron";
-else if (year == 7)
+} else if (year == 7) {
     gift = "Wool / Copper";
-else if (year == 8)
+} else if (year == 8) {
     gift = "Bronze / Pottery";
-else if (year == 9)
+} else if (year == 9) {
     gift = "Pottery / Willow";
-else if (year == 10)
+} else if (year == 10) {
     gift = "Tin / Aluminum";
-else if (year == 11)
+} else if (year == 11) {
     gift = "Steel";
-else if (year == 12)
+} else if (year == 12) {
     gift = "Silk / Linen";
-else if (year == 13)
+} else if (year == 13) {
     gift = "Lace";
-else if (year == 14)
+} else if (year == 14) {
     gift = "Ivory";
-else if (year == 15)
+} else if (year == 15) {
     gift = "Crystal";
-else if (year == 20)
+} else if (year == 20) {
     gift = "China";
-else if (year == 25)
+} else if (year == 25) {
     gift = "Silver";
-else if (year == 30)
+} else if (year == 30) {
     gift = "Pearl";
-else if (year == 35)
+} else if (year == 35) {
     gift = "Coral";
-else if (year == 40)
+} else if (year == 40) {
     gift = "Ruby";
-else if (year == 45)
+} else if (year == 45) {
     gift = "Sapphire";
-else if (year == 50)
+} else if (year == 50) {
     gift = "Gold";
-else if (year == 55)
+} else if (year == 55) {
     gift = "Emerald";
-else if (year == 60)
+} else if (year == 60) {
     gift = "Diamond";
-else
+} else {
     gift = "No traditional gift";
+}
 ----
 
 This code stores the correct value in `gift`. Note that we are using the
 feature of `if` statements that treats an entire `if` statement as one
-statement. If we used braces to group things properly, the code would
+statement. If we used braces to group things as they actually are, with the
+contents of each `else` indented with each nested `if` inside, the code would
 become unreadable and unmanageably large.
 
 [source,java]
@@ -976,16 +978,13 @@ become unreadable and unmanageably large.
 String gift;
 if (year == 1) {
     gift = "Paper";
-}
-else {
+} else {
     if (year == 2) {
         gift = "Cotton";
-    }
-    else {
+    } else {
         if (year == 3) {
             gift = "Leather";
-        }
-        else {
+        } else {
             if (year == 4) {
                 gift = "Fruit";
             }
@@ -1347,7 +1346,7 @@ As another example, below is a `switch` expression to compute the anniversary gi
 
 ==== `switch` statements without `break` statements
 
-As mentioned earlier, the use of `break` statments can result in careless errors--e.g., by accidentally omitting a `break` or adding one where it isn\'t needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block and there is no follow through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{}+`).
+As mentioned earlier, the use of `break` statments can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no follow through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
 
 Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid:
 
@@ -1404,7 +1403,7 @@ Now, we have to navigate a complicated series of decisions.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[lines=13..38]
+include::{programsdir}/MontyHall.java[lines=13..34]
 ----
 <.> In this
 segment of code, we tackle the possibility that the user happened
@@ -1421,7 +1420,7 @@ choice for the user and open the higher numbered door.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[lines=39..59]
+include::{programsdir}/MontyHall.java[lines=35..56]
 ----
 <.> This `else` block covers the case that the player did *not* pick the
 winning door the first time. Unlike the previous code segment, we no
@@ -1430,14 +1429,9 @@ longer have a choice of which door to open.
 make the winner the alternative for the user to pick. Then, we simply
 determine which door is left over so that we can open it.
 
-Note that the
-braces surrounding the blocks for each of the braces surrounding the
-blocks for each of the three possible values of `choice` are not
-necessary but are included for readability.
-
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[lines=60..74]
+include::{programsdir}/MontyHall.java[lines=57..73]
 ----
 <.> This final segment of code informs the user which door has been opened.
 <.> It prompts the user to change his or her decision.
@@ -1467,7 +1461,7 @@ the biggest challenges of programming a computer is thinking in a
 completely sequential and logical way. Each line of code is executed one
 after the other. Adding in `if` statements means that some code is
 executed only if a condition is true and skipped otherwise. Consider the
-following fragment of code:
+following fragment of code.
 
 [source,java]
 ----
@@ -1494,7 +1488,7 @@ documentation to explain unusual side-effects of this kind. In a
 sequential program, the programmer can be reasonably sure that it's
 safe to unpack the dynamite.
 
-Consider another fragment of code:
+Consider another fragment of code.
 
 [source,java]
 ----
@@ -1567,8 +1561,9 @@ boolean value = !((x != 4) && (y < 2));
 ----
 int x = 5;
 int y = 3;
-if (y > 10 && (x = 10) > 5)
-    y++;
+if (y > 10 && (x = 10) > 5) {
+    ++y;
+}
 System.out.println("x: " + x);
 System.out.println("y: " + y);
 ----
@@ -1580,10 +1575,11 @@ statement is changed to `y > 10 & (x = 10) > 5`? Why?
 [source,java]
 ----
 int a = 7;
-if (a++ == 7)
+if (a++ == 7) {
     System.out.println("Seven");
-else
+} else {
     System.out.println("Not seven");
+}
 ----
 +
 What's the output? Is the output changed if the condition of the `if`

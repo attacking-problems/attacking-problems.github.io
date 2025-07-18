@@ -884,7 +884,7 @@ data type.
 ----
 ObjectStack stack = new ObjectStack();
 stack.push("hello");
-String result = (String)stack.pop(); //<.>
+String result = (String)stack.pop(); // <.>
 ----
 <.> Without the explicit cast to `String`, the compiler gives an error:
 `Type mismatch: cannot convert from Object to String`.

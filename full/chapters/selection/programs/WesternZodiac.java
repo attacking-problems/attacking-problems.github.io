@@ -9,65 +9,89 @@ public class WesternZodiac {
         int day = in.nextInt();
         String sign = "";
         switch (month) {
-            case 1: if (day < 20)
+            case 1: 
+                if (day < 20) {
                     sign = "Capricorn";
-                else
+                } else {
                     sign = "Aquarius";
+                }
                 break;
-            case 2: if (day < 20)
+            case 2:
+                if (day < 20) {
                     sign = "Aquarius";
-                else
+                } else {
                     sign = "Pisces";
+                }
                 break;
-            case 3: if (day < 20)
+            case 3:
+                if (day < 20) {
                     sign = "Pisces";
-                else
+                } else {
                     sign = "Aries";
+                }
                 break;
-            case 4: if (day < 20)
+            case 4:
+                if (day < 20) {
                     sign = "Aries";
-                else
+                } else {
                     sign = "Taurus";
+                }
                 break;
-            case 5: if (day < 21)
+            case 5:
+                if (day < 21) {
                     sign = "Taurus";
-                else
+                } else {
                     sign = "Gemini";
+                }
                 break;
-            case 6: if (day < 21)
+            case 6:
+                if (day < 21) {
                     sign = "Gemini";
-                else
+                } else {
                     sign = "Cancer";
+                }
                 break;
-            case 7: if (day < 23)
+            case 7:
+                if (day < 23) {
                     sign = "Cancer";
-                else
+                } else {
                     sign = "Leo";
+                }
                 break;
-            case 8: if (day < 23)
+            case 8:
+                if (day < 23) {
                     sign = "Leo";
-                else
+                } else {
                     sign = "Virgo";
+                }
                 break;
-            case 9: if (day < 23)
+            case 9:
+                if (day < 23) {
                     sign = "Virgo";
-                else
+                } else {
                     sign = "Libra";
+                }
                 break;
-            case 10:if (day < 23)
+            case 10:
+                if (day < 23) {
                     sign = "Libra";
-                else
+                } else {
                     sign = "Scorpio";
+                }
                 break;
-            case 11:if (day < 22)
+            case 11:
+                if (day < 22) {
                     sign = "Scorpio";
-                else
+                } else {
                     sign = "Sagittarius";
+                }
                 break;
-            case 12:if (day < 20)
+            case 12:
+                if (day < 20) {
                     sign = "Sagittarius";
-                else
+                } else {
                     sign = "Capricorn";
+                }
                 break;          
         }   
         System.out.println("The zodiac sign is: " + sign);

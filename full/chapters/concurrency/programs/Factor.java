@@ -1,5 +1,5 @@
 public class Factor {
-    public static final int THREADS = 4; //<.>
+    public static final int THREADS = 4; // <.>
     public static final long NUMBER = 59984005171248659L;
     
     public static void main(String[] args) {

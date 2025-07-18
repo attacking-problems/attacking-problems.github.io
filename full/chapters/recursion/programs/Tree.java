@@ -23,7 +23,7 @@ public class Tree {
         // Right recursive case   <.>
         else if (value.compareTo(tree.value) > 0)
             tree.right = add(value, tree.right);
-        return tree; 			  //<.>
+        return tree; 			  // <.>
     }
     
     // Proxy print
@@ -33,9 +33,9 @@ public class Tree {
         
     private static void print(Node tree) {
         if (tree != null) {
-            print(tree.left); 				//<.>
-            System.out.println(tree.value);	//<.>
-            print(tree.right);				//<.>
+            print(tree.left); 				// <.>
+            System.out.println(tree.value);	// <.>
+            print(tree.right);				// <.>
         }
     }
 }

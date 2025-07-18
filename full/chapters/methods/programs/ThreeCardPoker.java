@@ -1,9 +1,9 @@
 public class ThreeCardPoker {
-    public static final String[] SUITS = {"Spades", "Hearts", //<.>
+    public static final String[] SUITS = {"Spades", "Hearts", // <.>
         "Diamonds", "Clubs"};
     public static final String[] RANKS = {"2", "3", "4", "5", "6",
         "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};   
-    public static final int STRAIGHT_FLUSH = 40; //<.>
+    public static final int STRAIGHT_FLUSH = 40; // <.>
     public static final int THREE_OF_A_KIND = 30;
     public static final int STRAIGHT = 6;
     public static final int FLUSH = 2;  
@@ -11,17 +11,17 @@ public class ThreeCardPoker {
     public static final int NOTHING = 0;
 
     public static void main(String[] args) {
-        int[] deck = new int[52]; //<.>
+        int[] deck = new int[52]; // <.>
         int[] hand = new int[3];                
-        for (int i = 0; i < deck.length; ++i) //<.>
+        for (int i = 0; i < deck.length; ++i) // <.>
             deck[i] = i;
         shuffle(deck);
-        for (int i = 0; i < hand.length; ++i) //<.>
+        for (int i = 0; i < hand.length; ++i) // <.>
             hand[i] = deck[i];      
-        int winnings = score(hand); //<.>
+        int winnings = score(hand); // <.>
         System.out.println("Hand: ");
         print(hand);
-        if (winnings == 0) //<.>
+        if (winnings == 0) // <.>
             System.out.println("You win nothing.");
         else
             System.out.println("You win " + winnings +
@@ -38,14 +38,14 @@ public class ThreeCardPoker {
         }       
     }
 
-    public static void print(int[] hand) { //<.>
+    public static void print(int[] hand) { // <.>
         for (int i = 0; i < hand.length; ++i)
             System.out.println(RANKS[getRank(hand[i])] + " of "
             + SUITS[getSuit(hand[i])]);
     }
 
-    public static int getRank(int value) { return value % 13; } //<.>
-    public static int getSuit(int value) { return value / 13; } //<.>
+    public static int getRank(int value) { return value % 13; } // <.>
+    public static int getSuit(int value) { return value / 13; } // <.>
     
     private static int score(int[] hand) {  
         sortByRank(hand); 
@@ -76,22 +76,22 @@ public class ThreeCardPoker {
         }
     }
 
-    private static boolean hasPair(int[] hand) { //<.>
+    private static boolean hasPair(int[] hand) { // <.>
         return getRank(hand[0]) == getRank(hand[1]) ||
                getRank(hand[1]) == getRank(hand[2]);
     }
 
-    private static boolean hasThree(int[] hand) { //<.>
+    private static boolean hasThree(int[] hand) { // <.>
         return getRank(hand[0]) == getRank(hand[1]) &&
                getRank(hand[1]) == getRank(hand[2]);
     }
 
-    private static boolean hasFlush(int[] hand) { //<.>
+    private static boolean hasFlush(int[] hand) { // <.>
         return getSuit(hand[0]) == getSuit(hand[1]) &&
                getSuit(hand[1]) == getSuit(hand[2]);
     }
 
-    private static boolean hasStraight(int[] hand) { //<.>
+    private static boolean hasStraight(int[] hand) { // <.>
         return (getRank(hand[0]) == 0 && getRank(hand[1]) == 1
                 && getRank(hand[2]) == 12) || //ace low
                (getRank(hand[1]) == getRank(hand[0]) + 1 &&

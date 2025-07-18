@@ -1,4 +1,4 @@
-import javax.swing.*; //<.>
+import javax.swing.*; // <.>
 
 public class EmptyFrame {
     public static void main(String[] args){

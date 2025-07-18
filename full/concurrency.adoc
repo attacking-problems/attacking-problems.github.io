@@ -678,7 +678,7 @@ Now, suppose we want to create 10 thread objects of type
 
 [source,java]
 ----
-NumberedThread[] threads = new NumberedThread[10]; //<.>
+NumberedThread[] threads = new NumberedThread[10]; // <.>
 for (int i = 0; i < threads.length; ++i) {
     threads[i] = new NumberedThread(i); // <.>
     threads[i].start(); // <.>
@@ -978,12 +978,12 @@ for (int i = 0; i < THREADS; ++i) {
     if (i < remainder) {
         ++rows;
     }
-    threads[i] = new MatrixThread(a, b, c, start, start + rows); //<.>
-    threads[i].start(); //<.>
+    threads[i] = new MatrixThread(a, b, c, start, start + rows); // <.>
+    threads[i].start(); // <.>
     start += rows;
 }
 try {
-    for (int i = 0; i < THREADS; ++i) { //<.>
+    for (int i = 0; i < THREADS; ++i) { // <.>
         threads[i].join();
     }
 } catch (InterruptedException e) {

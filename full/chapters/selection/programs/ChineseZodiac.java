@@ -6,7 +6,7 @@ public class ChineseZodiac {
         System.out.print("Please enter a year: ");
         int year = in.nextInt();        
         String animal = "";
-        switch ( year % 12 ) {
+        switch (year % 12) {
             case 0:  animal = "Monkey"; break;
             case 1:  animal = "Rooster"; break;
             case 2:  animal = "Dog"; break;

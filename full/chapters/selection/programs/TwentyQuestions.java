@@ -12,49 +12,50 @@ public class TwentyQuestions {
                 System.out.print(
                     "Does it live on land? (y or n): ");
                 response = in.next().toLowerCase();
-                if (response.equals("y"))
+                if (response.equals("y")) {
                     System.out.println("It's a human.");                
-                else // Assume "n"
-                    System.out.println("It's a dolphin.");              
-            }
-            else { // Assume "n"
+                } else { // Assume "n"
+                    System.out.println("It's a dolphin.");
+                }              
+            } else { // Assume "n"
                 System.out.print("Does it fly? (y or n): ");
                 response = in.next().toLowerCase();
-                if (response.equals("y"))
+                if (response.equals("y")) {
                     System.out.println("It's an eagle.");               
-                else // Assume "n"
+                } else { // Assume "n"
                     System.out.println("It's a lizard.");
+                }
             }
-        }
-        else if (response.equals("v")) {
+        } else if (response.equals("v")) {
             System.out.print("Is it a fruit? (y or n): ");
             response = in.next().toLowerCase();
             if (response.equals("y")) {
                 System.out.print(
                     "Does it grown on a vine? (y or n): ");
                 response = in.next().toLowerCase();
-                if (response.equals("y"))
+                if (response.equals("y")) {
                     System.out.println("It's a tomato.");               
-                else // Assume "n"
-                    System.out.println("It's a peach.");                
-            }
-            else { // Assume "n"
+                } else { // Assume "n"
+                    System.out.println("It's a peach.");
+                }                
+            } else { // Assume "n"
                 System.out.print("Is it a tree? (y or n): ");
                 response = in.next().toLowerCase();
-                if (response.equals("y"))
+                if (response.equals("y")) {
                     System.out.println("It's a maple tree.");
-                else // Assume "n"
+                } else { // Assume "n"
                     System.out.println("It's a potato.");
+                }
             }
-        }
-        else { // Assume "m"
-                System.out.print(
-                    "Is it the hardest mineral? (y or n): ");
-                response = in.next().toLowerCase();
-                if (response.equals("y"))
-                    System.out.println("It's a diamond.");              
-                else // Assume "n"
-                    System.out.println("It's lead.");
+        } else { // Assume "m"
+            System.out.print(
+                "Is it the hardest mineral? (y or n): ");
+            response = in.next().toLowerCase();
+            if (response.equals("y")) {
+                System.out.println("It's a diamond.");              
+            } else { // Assume "n"
+                System.out.println("It's lead.");
+            }
         }       
     }
 }

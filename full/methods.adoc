@@ -700,10 +700,10 @@ as a palindrome, but neither of the other two examples would.
 
 [source,java]
 ----
-public static boolean isPalindrome(String text) { //<.>
-    text = text.toLowerCase(); //<.>
-    for (int i = 0; i < text.length() / 2; ++i) //<.>
-        if (text.charAt(i) != text.charAt(text.length() - i - 1)) //<.>
+public static boolean isPalindrome(String text) { // <.>
+    text = text.toLowerCase(); // <.>
+    for (int i = 0; i < text.length() / 2; ++i) // <.>
+        if (text.charAt(i) != text.charAt(text.length() - i - 1)) // <.>
             return false;
     return true;
 }
@@ -753,24 +753,24 @@ public static double parseDouble(String value) {
     boolean negative = false;
     double temp = 0.0;
     double fraction = 10.0;
-    if (value.charAt(i) == '-') { //<.>
+    if (value.charAt(i) == '-') { // <.>
         negative = true;
         i++;
     }
     else if (value.charAt(i) == '+')
         i++;
-    while (i < value.length() && value.charAt(i) != '.') { //<.>
+    while (i < value.length() && value.charAt(i) != '.') { // <.>
         temp *= 10.0;
         temp += value.charAt(i) - '0';
         i++;
     }
     i++; //move past decimal point (if there) <.>
-    while (i < value.length()) { //<.>
+    while (i < value.length()) { // <.>
         temp += (value.charAt(i) - '0') / fraction;
         fraction *= 10.0;
         i++;
     }
-    if (negative) //<.>
+    if (negative) // <.>
         temp = -temp;
     return temp;
 }

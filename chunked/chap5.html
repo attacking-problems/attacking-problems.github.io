@@ -1207,7 +1207,7 @@ manipulations on it to get the reverse complement.</p>
             <span class="o">}</span>       
         <span class="nc">String</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="c1">// Reverse the complement</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">complement</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">complement</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">)</span>	<i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">reverseComplement</span> <span class="o">+=</span> <span class="n">complement</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">);</span>
     <span class="o">}</span>
@@ -1738,7 +1738,7 @@ inserted after the loop header.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
-<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--);</span> <span class="o">{</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">);</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ready or not, here I come!"</span><span class="o">);</span></code></pre>
@@ -2163,7 +2163,7 @@ there?</p>
 print out the numbers 1 through 10. What are they?</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">--);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">);</span>
 <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span></code></pre>

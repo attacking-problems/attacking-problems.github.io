@@ -873,8 +873,8 @@ the `AudioSystem` class in the `javax.sound.sampled` package.  To use
 
 [source,java]
 ----
-File soundFile = new File("sounds/trumpet.wav");       //<.>
-clip.open(AudioSystem.getAudioInputStream(soundFile)); //<.>
+File soundFile = new File("sounds/trumpet.wav");       // <.>
+clip.open(AudioSystem.getAudioInputStream(soundFile)); // <.>
 ----
 
 <.> Here we create a `File` object corresponding to the location of an audio

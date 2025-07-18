@@ -9,13 +9,13 @@ public class UseDynamicArray {
 		
         while (in.hasNextLine()) {
             line = in.nextLine();
-            names.set(count, line);       //<.>
+            names.set(count, line);       // <.>
             count++;
         }
         
-        names.sort(0, count);             //<.>
+        names.sort(0, count);             // <.>
         
-        for (int i = 0; i < count; ++i) { //<.>
+        for (int i = 0; i < count; ++i) { // <.>
             System.out.println(names.get(i));
         }
     }

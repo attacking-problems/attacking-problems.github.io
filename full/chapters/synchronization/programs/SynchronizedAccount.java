@@ -4,13 +4,13 @@ public class SynchronizedAccount {
 
     public double getBalance() throws InterruptedException {
         double amount;      
-        synchronized (this) {     //<.>
+        synchronized (this) {     // <.>
             ++readers;
         }       
-        amount = balance;         //<.>
+        amount = balance;         // <.>
         synchronized (this) {
-            if (--readers == 0) { //<.>
-                notifyAll();      //<.>
+            if (--readers == 0) { // <.>
+                notifyAll();      // <.>
             }
         }       
         return amount;      
@@ -33,7 +33,7 @@ public class SynchronizedAccount {
         return success;
     }
     
-    protected synchronized boolean changeBalance(double amount) //<.>
+    protected synchronized boolean changeBalance(double amount) // <.>
         throws InterruptedException {
         boolean success;    
         while (readers > 0) { // <.>

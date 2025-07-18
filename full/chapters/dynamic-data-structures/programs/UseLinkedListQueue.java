@@ -30,7 +30,7 @@ public class UseLinkedListQueue extends Thread {
         }
     }
 	
-	public UseLinkedListQueue(LinkedListQueue queue, boolean adding) { //<.>
+	public UseLinkedListQueue(LinkedListQueue queue, boolean adding) { // <.>
 		this.queue = queue;
 		this.adding = adding;
 	}

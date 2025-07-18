@@ -13,13 +13,13 @@ public class WorkerGUI {
 
         JButton computeButton = new JButton("Compute");
         computeButton.addActionListener(e -> {
-            SwingWorker<String,Void> worker = new SwingWorker<>() { //<.>
-                public String doInBackground() { //<.>
+            SwingWorker<String,Void> worker = new SwingWorker<>() { // <.>
+                public String doInBackground() { // <.>
                     try {
                         Thread.sleep(5000);
                     }
                     catch (Exception ignore) {}
-                    return "Answer: " + Math.sqrt(2.0); //<.>
+                    return "Answer: " + Math.sqrt(2.0); // <.>
                 }
 
                 public void done() { // <.>

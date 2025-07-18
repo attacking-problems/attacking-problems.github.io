@@ -1,25 +1,25 @@
 import java.util.Scanner;
 
 public class MazeSolver {
-    private char[][] maze; 			 			//<.>
-    private final int ROWS, COLUMNS; 			//<.>
+    private char[][] maze; 			 			// <.>
+    private final int ROWS, COLUMNS; 			// <.>
 
     public static void main(String[] args) {
-        MazeSolver solver = new MazeSolver();	//<.>
+        MazeSolver solver = new MazeSolver();	// <.>
         if (solver.solve(0, 0))
             System.out.println("\nSolved!");
         else
             System.out.println("\nNot solvable!");
-        solver.print();							//<.>
+        solver.print();							// <.>
     }   
 
     public MazeSolver() {
-        Scanner in = new Scanner(System.in);	//<.>
-        ROWS = in.nextInt();					//<.>
+        Scanner in = new Scanner(System.in);	// <.>
+        ROWS = in.nextInt();					// <.>
         COLUMNS = in.nextInt();
         in.nextLine();
-        maze = new char[ROWS][COLUMNS];			//<.>
-        for (int row = 0; row < ROWS; row++) {	//<.>
+        maze = new char[ROWS][COLUMNS];			// <.>
+        for (int row = 0; row < ROWS; row++) {	// <.>
             String line = in.nextLine();
             System.out.println(line);
             for (int column = 0; column < COLUMNS; column++)

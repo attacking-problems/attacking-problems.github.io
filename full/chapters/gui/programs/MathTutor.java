@@ -45,7 +45,7 @@ public class MathTutor implements ActionListener, ItemListener {
         operationsMenu.add(subtract);
         operationsMenu.add(multiply);
         operationsMenu.add(divide);  
-        multiply.setEnabled(false); //<.>
+        multiply.setEnabled(false); // <.>
         divide.setEnabled(false);
         menuBar.add(typeMenu); // <.>
         menuBar.add(operationsMenu);        

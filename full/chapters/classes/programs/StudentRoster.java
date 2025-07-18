@@ -3,13 +3,13 @@ import java.util.*;
 public class StudentRoster {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-		int students = in.nextInt();		//<.>
-        Student[] roster = new Student[students]; //<.>
-        for (int i = 0; i < roster.length; ++i) { //<.>
+		int students = in.nextInt();		// <.>
+        Student[] roster = new Student[students]; // <.>
+        for (int i = 0; i < roster.length; ++i) { // <.>
             in.nextLine();          
             roster[i] = new Student(in.nextLine(), in.nextInt(), in.nextDouble());
         }
-        sort(roster); //<.>
+        sort(roster); // <.>
         for (int i = 0; i < roster.length; ++i)
             System.out.println(roster[i]);
     }
