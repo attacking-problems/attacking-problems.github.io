@@ -6,7 +6,7 @@ public class Chat {
     private Socket socket;
     
     public static void main(String[] args) {        
-        if (args[0].equals("-s")) { 		// <.>
+        if (args[0].equals("-s")) { // <.>
             new Chat(Integer.parseInt(args[1]));
         } else if (args[0].equals("-c")) {	// <.>
             new Chat(args[1], Integer.parseInt(args[2]) );
@@ -36,15 +36,14 @@ public class Chat {
     }
     
     public void runChat() {
-        Sender sender = new Sender();		// <.>
+        Sender sender = new Sender(); // <.>
         Receiver receiver = new Receiver();
-        sender.start();						// <.>
+        sender.start(); // <.>
         receiver.start();
 		try {
 			sender.join();
 			receiver.join();
-		}
-		catch (InterruptedException e) {}
+		} catch (InterruptedException e) {}
     }
 
     private class Sender extends Thread {
@@ -52,23 +51,22 @@ public class Chat {
             try (PrintWriter netOut = new PrintWriter(socket.getOutputStream())) { // <.>
                 Scanner in = new Scanner(System.in);      
                 System.out.print("Enter your name: ");
-                String name = in.nextLine();				// <.>
+                String name = in.nextLine(); // <.>
                 while (!socket.isClosed()) {                  
-					String line = in.nextLine(); 			// <.>
-					if (line.equals("quit")) {              // <.>
+					String line = in.nextLine(); // <.>
+					if (line.equals("quit")) { // <.>
                         netOut.println(line);
 						socket.close();
                     } else {
 						netOut.println(name + ": " + line); // <.>
-						netOut.flush();                     // <.>
+						netOut.flush(); // <.>
 					}                               
                 }       
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
 				System.out.println("Network error: " + e.getMessage());				
 			}         
         }       
-    }   
+    }
 
     private class Receiver extends Thread {
         public void run() {
@@ -76,10 +74,10 @@ public class Chat {
                 while (!socket.isClosed()) {                 
                     if (netIn.hasNextLine()) {
                         String line = netIn.nextLine(); // <.>
-                        if (line.equals("quit")) {      // <.>
+                        if (line.equals("quit")) { // <.>
                             socket.close();
                         } else {
-                            System.out.println(line);   // <.>
+                            System.out.println(line); // <.>
                         }
                     }
                 }

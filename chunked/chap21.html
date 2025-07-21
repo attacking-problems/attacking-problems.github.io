@@ -1001,8 +1001,7 @@ event that the data file contains a class that our program doesn’t recognize.<
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">players</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">players</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="nc">BaseballPlayer</span><span class="o">)</span><span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
     <span class="o">}</span>
-<span class="o">}</span>
-<span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"File reading failed."</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1050,8 +1049,7 @@ shown below.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="k">try</span> <span class="o">(</span><span class="nc">ObjectInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"players.bin"</span><span class="o">))){</span>
     <span class="nc">BaseballPlayer</span><span class="o">[]</span> <span class="n">players</span> <span class="o">=</span> <span class="o">(</span><span class="nc">BaseballPlayer</span><span class="o">[])</span><span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"File reading failed."</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1407,11 +1405,10 @@ is a directory.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Directory</span> <span class="o">{</span>    
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Path</span> <span class="n">directory</span> <span class="o">=</span> <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"."</span><span class="o">);</span>			                        <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="k">try</span> <span class="o">(</span><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Path</span><span class="o">&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">directory</span><span class="o">))</span> <span class="o">{</span>                  <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="nc">Path</span> <span class="n">directory</span> <span class="o">=</span> <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"."</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Path</span><span class="o">&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">directory</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">files</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">file</span> <span class="o">-&gt;</span> <span class="n">printFile</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>         
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Files in the directory could not be listed."</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1421,14 +1418,13 @@ is a directory.</p>
             <span class="kt">long</span> <span class="n">milliseconds</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">getLastModifiedTime</span><span class="o">(</span><span class="n">file</span><span class="o">).</span><span class="na">toMillis</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">String</span> <span class="n">date</span> <span class="o">=</span> <span class="nc">DateFormat</span><span class="o">.</span><span class="na">getDateInstance</span><span class="o">().</span><span class="na">format</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">milliseconds</span><span class="o">));</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">date</span> <span class="o">+</span> <span class="s">"\t"</span><span class="o">);</span>	                                
-            <span class="k">if</span> <span class="o">(</span><span class="nc">Files</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">(</span><span class="n">file</span><span class="o">))</span> <span class="o">{</span>                                  <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="k">if</span> <span class="o">(</span><span class="nc">Files</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">(</span><span class="n">file</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"directory"</span><span class="o">);</span>			
             <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\t"</span><span class="o">);</span>
             <span class="o">}</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\t"</span> <span class="o">+</span>  <span class="n">file</span><span class="o">.</span><span class="na">getFileName</span><span class="o">());</span>	                <i class="conum" data-value="5"></i><b>(5)</b>
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\t"</span> <span class="o">+</span>  <span class="n">file</span><span class="o">.</span><span class="na">getFileName</span><span class="o">());</span> <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Could not get last modified time from "</span> <span class="o">+</span> <span class="n">file</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1515,8 +1511,7 @@ formula <em>Area</em> = <em>πr</em><sup>2</sup>, and write those areas to a fil
                 <span class="kt">double</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>				        <i class="conum" data-value="4"></i><b>(4)</b>
                 <span class="n">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.3f%n"</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="o">);</span>	        <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 	                                    <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 	                                    <i class="conum" data-value="6"></i><b>(6)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1607,15 +1602,14 @@ and write to a binary file called <code>areas.bin</code>.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AreaFromRadiusBinary</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"radiuses.bin"</span><span class="o">));</span>     <i class="conum" data-value="1"></i><b>(1)</b>
-            <span class="kt">var</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"areas.bin"</span><span class="o">)))</span> <span class="o">{</span>    <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>	                                                        <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"radiuses.bin"</span><span class="o">));</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="kt">var</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"areas.bin"</span><span class="o">)))</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>                                                       <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="kt">double</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
                 <span class="n">out</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="n">radius</span><span class="o">);</span>              
             <span class="o">}</span>           
-        <span class="o">}</span>
-		<span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span> <span class="c1">// End of file reached                            </span><i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// End of file reached                        </span><i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1671,17 +1665,16 @@ method.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BitmapCompression</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
-		<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>				<i class="conum" data-value="1"></i><b>(1)</b>
+		<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
 			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Usage: java BitmapCompression (-c|-d) file"</span><span class="o">);</span>
 		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 			<span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">])))</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-				<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span>	<i class="conum" data-value="3"></i><b>(3)</b>
+				<span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
 					<span class="n">compress</span><span class="o">(</span><span class="n">in</span><span class="o">,</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
 				<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-d"</span><span class="o">))</span> <span class="o">{</span>
 					<span class="n">decompress</span><span class="o">(</span><span class="n">in</span><span class="o">,</span> <span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>          
 				<span class="o">}</span>
-			<span class="o">}</span>
-			<span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>			<i class="conum" data-value="4"></i><b>(4)</b>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"File not found: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
 			<span class="o">}</span>
 		<span class="o">}</span>
@@ -1722,25 +1715,23 @@ written.</td>
 			<span class="kt">byte</span> <span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 			<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 			<span class="k">try</span> <span class="o">{</span>
-				<span class="n">current</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> 		   <i class="conum" data-value="2"></i><b>(2)</b>
+				<span class="n">current</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
 				<span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-					<span class="kt">byte</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> 	   <i class="conum" data-value="3"></i><b>(3)</b>
+					<span class="kt">byte</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
 					<span class="k">if</span> <span class="o">(</span><span class="n">temp</span> <span class="o">==</span> <span class="n">current</span> <span class="o">&amp;&amp;</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">127</span><span class="o">)</span> <span class="o">{</span>
-						<span class="o">++</span><span class="n">count</span><span class="o">;</span>				   <i class="conum" data-value="4"></i><b>(4)</b>
-					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>					   <i class="conum" data-value="5"></i><b>(5)</b>
+						<span class="o">++</span><span class="n">count</span><span class="o">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
+					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
 						<span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
 						<span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>               
 						<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 						<span class="n">current</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
 					<span class="o">}</span>
 				<span class="o">}</span>
-			<span class="o">}</span>
-			<span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Last bytes </span><i class="conum" data-value="6"></i><b>(6)</b>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Last bytes </span><i class="conum" data-value="6"></i><b>(6)</b>
 				<span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
 				<span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
 			<span class="o">}</span>			
-        <span class="o">}</span>		
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>					   <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
 			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Compression failed: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span></code></pre>
@@ -1788,19 +1779,18 @@ to finish.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">decompress</span><span class="o">(</span><span class="nc">DataInputStream</span> <span class="n">in</span><span class="o">,</span> <span class="nc">String</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">String</span> <span class="n">original</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">file</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">".compress"</span><span class="o">));</span>   <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="nc">String</span> <span class="n">original</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">file</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">".compress"</span><span class="o">));</span> <i class="conum" data-value="1"></i><b>(1)</b>
 
         <span class="k">try</span> <span class="o">(</span><span class="kt">var</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">original</span><span class="o">))){</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>            
-				<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> 			<i class="conum" data-value="3"></i><b>(3)</b>
+				<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="kt">byte</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>           
                 <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
                     <span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">temp</span><span class="o">);</span>
 				<span class="o">}</span>                 
             <span class="o">}</span>
-        <span class="o">}</span>
-		<span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span> <span class="c1">// Input finished </span><i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>					    <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Input finished </span><i class="conum" data-value="4"></i><b>(4)</b>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
 			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Decompression failed: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1895,8 +1885,7 @@ prints the odd ones.</p>
             <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
                 <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="o">}</span>				
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"concurrent.out not accessible!"</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>   

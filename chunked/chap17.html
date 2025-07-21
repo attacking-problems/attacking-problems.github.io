@@ -886,8 +886,9 @@ evaluate to <code>false</code>.</p>
 <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
 <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">==</span> <span class="mf">0.0</span><span class="o">)</span>
-	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Success!"</span><span class="o">);</span></code></pre>
+<span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">==</span> <span class="mf">0.0</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Success!"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -926,8 +927,9 @@ the following loop does not terminate.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">letter</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="o">;</span> <span class="n">letter</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="o">;</span> <span class="n">letter</span><span class="o">++)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">letter</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">letter</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="o">;</span> <span class="n">letter</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="o">;</span> <span class="o">++</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">letter</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1077,8 +1079,9 @@ at 1 and go up to <strong>and including</strong> <em>n</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
-	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Question "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"."</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Question "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"."</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1203,9 +1206,9 @@ possibility just a little later.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
 	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">"!"</span><span class="o">);</span>
-
+<span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Blast-off!"</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1253,8 +1256,9 @@ value of <code>i</code>, is too small.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPrime</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 	<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
@@ -1271,10 +1275,11 @@ times, but only once is still just as wrong.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isPrime</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1310,10 +1315,11 @@ object.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">string1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Test"</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">string2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Test"</span><span class="o">);</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">string1</span> <span class="o">==</span> <span class="n">string2</span><span class="o">)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">string1</span> <span class="o">==</span> <span class="n">string2</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Identical"</span><span class="o">);</span>
-<span class="k">else</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Different"</span><span class="o">);</span></code></pre>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Different"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1326,10 +1332,11 @@ is further confused by a Java optimization called <code>String</code> pooling.</
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">string1</span> <span class="o">=</span> <span class="s">"Test"</span><span class="o">;</span>
 <span class="nc">String</span> <span class="n">string2</span> <span class="o">=</span> <span class="s">"Test"</span><span class="o">;</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">string1</span> <span class="o">==</span> <span class="n">string2</span><span class="o">)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">string1</span> <span class="o">==</span> <span class="n">string2</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Identical"</span><span class="o">);</span>
-<span class="k">else</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Different"</span><span class="o">);</span></code></pre>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Different"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1396,8 +1403,9 @@ bounds of an array, particularly with a loop.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
-	<span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1461,8 +1469,9 @@ the array before you try to feed those hungry, hungry hippos.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Hippopotamus</span><span class="o">[]</span> <span class="n">hippos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Hippopotamus</span><span class="o">[</span><span class="mi">15</span><span class="o">];</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hippos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hippos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">hippos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Hippopotamus</span><span class="o">();</span>
+<span class="o">}</span>
 <span class="n">hippos</span><span class="o">[</span><span class="mi">3</span><span class="o">].</span><span class="na">feed</span><span class="o">();</span></code></pre>
 </div>
 </div>
@@ -1488,12 +1497,13 @@ inner variable will <em>shadow</em> or hide the outer variable.</p>
 <div id="ShadowProgram" class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Shadow</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">darkness</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">darkness</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deepen</span><span class="o">(</span><span class="kt">int</span> <span class="n">darkness</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">darkness</span> <span class="o">+=</span> <span class="n">darkness</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">darkness</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">darkness</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">darkness</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getDarkness</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">darkness</span><span class="o">;</span> <span class="o">}</span>
@@ -1522,8 +1532,9 @@ fix the problem in the preceding example.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">deepen</span><span class="o">(</span><span class="kt">int</span> <span class="n">darkness</span><span class="o">)</span> <span class="o">{</span>
 		<span class="k">this</span><span class="o">.</span><span class="na">darkness</span> <span class="o">+=</span> <span class="n">darkness</span><span class="o">;</span>
-		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">darkness</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="o">)</span>
+		<span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">darkness</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">this</span><span class="o">.</span><span class="na">darkness</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+        <span class="o">}</span>
 	<span class="o">}</span></code></pre>
 </div>
 </div>
@@ -2908,8 +2919,9 @@ executed?</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
-<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">);</span>
-	<span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">);</span> <span class="o">{</span>
+	<span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2923,8 +2935,9 @@ values. What’s the conceptual error made in the following loop? How
 many times will it execute?</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">byte</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="o">;</span> <span class="o">++</span><span class="n">value</span><span class="o">)</span>
-	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Byte: "</span> <span class="o">+</span> <span class="n">value</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">byte</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="o">;</span> <span class="o">++</span><span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Byte: "</span> <span class="o">+</span> <span class="n">value</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 </li>

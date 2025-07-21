@@ -12,8 +12,7 @@ public class ReadAndGrowArray {
             line = in.nextLine();
             try {
                 names[count] = line;
-            }
-            catch (ArrayIndexOutOfBoundsException e) { // <.>
+            } catch (ArrayIndexOutOfBoundsException e) { // <.>
                 names = Arrays.copyOfRange(names, 0, names.length*2); // <.>
                 names[count] = line;
             }

@@ -11,25 +11,25 @@ public class BooleanCircuit {
         // Create gates
         for (int i = 0; i < count; ++i) {
             name = in.next().toUpperCase();
-            if (name.equals("true"))
+            if (name.equals("true")) {
                 gates[i] = new True();
-            else if (name.equals("false"))
+            } else if (name.equals("false")) {
                 gates[i] = new False();
-            else if (name.equals("AND"))
+            } else if (name.equals("AND")) {
                 gates[i] = new And();
-            else if (name.equals("OR"))
+            } else if (name.equals("OR")) {
                 gates[i] = new Or();
-            else if (name.equals("XOR"))
+            } else if (name.equals("XOR")) {
                 gates[i] = new Xor();
-            else if (name.equals("NOT"))
+            } else if (name.equals("NOT")) {
                 gates[i] = new Not();
-            else if (name.equals("OUTPUT")) {
+            } else if (name.equals("OUTPUT")) {
                 value = in.nextInt();
                 gates[i] = new Output(value);
             }
         }       
 
-        //connect gates
+        // Connect gates
         while (in.hasNextInt()) {
             value = in.nextInt();
             name = gates[value].getName();
@@ -45,8 +45,10 @@ public class BooleanCircuit {
         }
         
         // Compute output
-        for (int i = 0; i < count; ++i)
-          if (gates[i].getName().startsWith("OUTPUT"))
-            System.out.println(gates[i]);
-      }
+        for (int i = 0; i < count; ++i) {
+            if (gates[i].getName().startsWith("OUTPUT")) {
+                System.out.println(gates[i]);
+            }
+        }
+    }
 }

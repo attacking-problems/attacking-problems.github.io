@@ -804,7 +804,7 @@ two answers.
 <.> Finally, if the discriminant is positive, we find the two real
 answers and output them.
 
-The line `if (discriminant == 0.0)` is dangerous since we're using
+The condition `discriminant == 0.0` is dangerous since we're using
 `double` values. Because of rounding errors, the discriminant might not
 be exactly zero even if it should be, mathematically. Industrial
 strength code would probably check to see if the absolute value of the

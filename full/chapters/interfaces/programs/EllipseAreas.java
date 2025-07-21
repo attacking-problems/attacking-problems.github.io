@@ -6,8 +6,9 @@ public class EllipseAreas {
 	
 	public static double sumAreas(AreaGettable[] shapes) {
 		double sum  = 0.0;
-		for (int i = 0; i < shapes.length; ++i)
+		for (int i = 0; i < shapes.length; ++i) {
 			sum += shapes[i].getArea();
+		}
 
 		return sum;
 	}	

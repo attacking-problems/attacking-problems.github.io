@@ -7,10 +7,12 @@ public class MaxWithMinimum {
 
     public int max(int a, int b) {
         int result = minimum;
-        if (a >= result)
+        if (a >= result) {
             result = a;
-        if (b >= result)
+        }
+        if (b >= result) {
             result = b;
+        }
         return result;        
     }    
 }

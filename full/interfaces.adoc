@@ -55,13 +55,14 @@ boolean swapped = true;
 int temp;
 while (swapped) {
     swapped = false;
-    for (int i = 0; i < array.length - 1; ++i)
+    for (int i = 0; i < array.length - 1; ++i) {
         if (array[i] > array[i + 1]) {
             temp = array[i];
             array[i] = array[i + 1];
             array[i + 1] = temp;
             swapped = true;
         }
+    }
 }
 ----
 
@@ -162,11 +163,13 @@ interface. In the following snippet of code, we do this by creating 100
 ----
 Guitarist[] guitarists = new Guitarist[100];
 Random random = new Random();
-for (int i = 0; i < guitarists.length; ++i)
-    if (random.nextBoolean())
+for (int i = 0; i < guitarists.length; ++i) {
+    if (random.nextBoolean()) {
         guitarists[i] = new RockGuitarist();
-    else
+    } else {
         guitarists[i] = new ClassicalGuitarist();
+    }
+}
 ----
 
 One benefit of using interfaces is that more mistakes can be caught
@@ -406,8 +409,9 @@ write a simple method to total the values like so.
 ----
 public static double getTotal(Priceable[] cart) {
     double total = 0.0;
-    for (int i = 0; i < cart.length; ++i)
+    for (int i = 0; i < cart.length; ++i) {
         total += cart[i].getPrice();
+    }
 
     return total;
 }
@@ -501,8 +505,9 @@ areas.
 ----
 public static double sumAreas(AreaGettable[] shapes) {
     double sum  = 0.0;
-    for (int i = 0; i < shapes.length; ++i)
+    for (int i = 0; i < shapes.length; ++i) {
         sum += shapes[i].getArea();
+    }
 
     return sum;
 }
@@ -530,8 +535,9 @@ public static void createEllipses() {
     }
 
     AreaGettable[] ellipses = new AreaGettable[100];
-    for (int i = 0; i < ellipses.length; ++i)
+    for (int i = 0; i < ellipses.length; ++i) {
         ellipses[i] = new Ellipse(Math.random() * 25.0, Math.random() * 25.0);
+    }
     double sum = sumAreas(ellipses);
 
     System.out.println("The total area is " + sum);
@@ -693,13 +699,14 @@ public void sort(Object[] array, boolean age) {
     Object temp;
     while (swapped) {
         swapped = false;
-        for (int i = 0; i < array.length - 1; ++i)
+        for (int i = 0; i < array.length - 1; ++i) {
             if (outOfOrder(array[i], array[i + 1], age) {
                 temp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = temp;
                 swapped = true;
             }
+        }
     }
 }
 ----

@@ -1270,8 +1270,8 @@ between. The non-reversed thread tries to lock on <code>random1</code> and then
         <span class="k">if</span> <span class="o">(</span><span class="n">reverse</span><span class="o">)</span> <span class="o">{</span>         
             <span class="kd">synchronized</span> <span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reversed Thread: locked random2"</span><span class="o">);</span>
-				<span class="k">try</span><span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span> <span class="o">}</span>
-				<span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 					<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 				<span class="o">}</span>
 				<span class="kd">synchronized</span> <span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
@@ -1282,8 +1282,8 @@ between. The non-reversed thread tries to lock on <code>random1</code> and then
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>          
             <span class="kd">synchronized</span> <span class="o">(</span><span class="n">random1</span><span class="o">)</span> <span class="o">{</span>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Normal Thread: locked random1"</span><span class="o">);</span>
-				<span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span> <span class="o">}</span>
-				<span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">try</span> <span class="o">{</span> <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 				  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 				<span class="o">}</span>
 				<span class="kd">synchronized</span> <span class="o">(</span><span class="n">random2</span><span class="o">)</span> <span class="o">{</span>

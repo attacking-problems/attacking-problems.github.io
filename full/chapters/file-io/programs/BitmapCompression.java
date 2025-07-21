@@ -2,17 +2,16 @@ import java.io.*;
 
 public class BitmapCompression {
     public static void main(String[] args) {        
-		if (args.length != 2) {				// <.>
+		if (args.length != 2) { // <.>
 			System.out.println("Usage: java BitmapCompression (-c|-d) file");
 		} else {
 			try (var in = new DataInputStream(new FileInputStream(args[1]))) { // <.>
-				if (args[0].equals("-c")) {	// <.>
+				if (args[0].equals("-c")) { // <.>
 					compress(in, args[1]);
 				} else if (args[0].equals("-d")) {
 					decompress(in, args[1]);          
 				}
-			}
-			catch (IOException e) {			// <.>
+			} catch (IOException e) { // <.>
 				System.out.println("File not found: " + e.getMessage());
 			}
 		}
@@ -25,43 +24,40 @@ public class BitmapCompression {
 			byte current = 0;
 			int count = 1;
 			try {
-				current = in.readByte(); 		   // <.>
+				current = in.readByte(); // <.>
 				while (true) {
-					byte temp = in.readByte(); 	   // <.>
+					byte temp = in.readByte(); // <.>
 					if (temp == current && count < 127) {
-						++count;				   // <.>
-					} else {					   // <.>
+						++count; // <.>
+					} else { // <.>
 						out.writeByte(count);
 						out.writeByte(current);               
 						count = 1;
 						current = temp;
 					}
 				}
-			}
-			catch (EOFException e) { // Last bytes <.>
+			} catch (EOFException e) { // Last bytes <.>
 				out.writeByte(count);
 				out.writeByte(current);
 			}			
-        }		
-        catch (IOException e) {					   // <.>
+        } catch (IOException e) { // <.>
 			System.out.println("Compression failed: " + e.getMessage());
         }
     }
     
     public static void decompress(DataInputStream in, String file) {
-        String original = file.substring(0, file.lastIndexOf(".compress"));   // <.>
+        String original = file.substring(0, file.lastIndexOf(".compress")); // <.>
 
         try (var out = new DataOutputStream(new FileOutputStream(original))){ // <.>
             while (true) {            
-				int count = in.readByte(); 			// <.>
+				int count = in.readByte(); // <.>
                 byte temp = in.readByte();           
                 for (int i = 0; i < count; ++i) {
                     out.writeByte(temp);
 				}                 
             }
-        }
-		catch (EOFException e) {} // Input finished <.>
-        catch (IOException e) {					    // <.>
+        } catch (EOFException e) { // Input finished <.>
+		} catch (IOException e) { // <.>
 			System.out.println("Decompression failed: " + e.getMessage());
         }
     }

@@ -47,8 +47,8 @@ public class Life {
                 }
                 System.out.println();
             }           
-            try { Thread.sleep(500); } // <.>
-            catch (InterruptedException e) {}
+            try { Thread.sleep(500); // <.>
+            } catch (InterruptedException e) {}
         }
     }
 }

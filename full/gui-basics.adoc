@@ -491,7 +491,7 @@ detail.
 
 [source, java]
 ----
-include::{programsdir}/CodonExtractor.java[lines=1..19]
+include::{programsdir}/CodonExtractor.java[lines=1..20]
 ----
 <.> The `main()` method contains a `do`-`while` loop that allows the user to
 enter sequences repeatedly.
@@ -506,7 +506,7 @@ the codons in the sequence.
 
 [source, java]
 ----
-include::{programsdir}/CodonExtractor.java[lines=21..29]
+include::{programsdir}/CodonExtractor.java[lines=22..31]
 ----
 
 The `isValid()` method checks to see if the DNA contains only the
@@ -520,7 +520,7 @@ user.
 
 [source, java]
 ----
-include::{programsdir}/CodonExtractor.java[lines=31..46]
+include::{programsdir}/CodonExtractor.java[lines=33..50]
 ----
 <.> We build a large `String` with newlines separating each codon. To do so, we loop through the input, jumping ahead three characters each time. If the input length is not a multiple of three, we pad with asterisks.
 <.> We use the `showMessageDialog()` method to display an information dialog with the list of codons.

@@ -7,7 +7,7 @@ public class RootFutures {
     private static final int FUTURES = 1000;
     
     public static void main(String[] args) {
-        ArrayList<Future<Double>> futures = new ArrayList<>(FUTURES);     // <.>
+        ArrayList<Future<Double>> futures = new ArrayList<>(FUTURES); // <.>
         ExecutorService executor = Executors.newFixedThreadPool(THREADS); // <.>
         int work = N/FUTURES; // <.>
         
@@ -23,8 +23,7 @@ public class RootFutures {
         for (Future<Double> future: futures) { // <.>
             try {
                 sum += future.get(); // <.>
-            }
-            catch (InterruptedException | ExecutionException e) { // <.>
+            } catch (InterruptedException | ExecutionException e) { // <.>
                 e.printStackTrace();
             }
         }

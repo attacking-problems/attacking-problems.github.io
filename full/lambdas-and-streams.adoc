@@ -714,10 +714,12 @@ as the minimum.
 int minimum = 10;
 Operator operator = (a, b) -> {
     int result = minimum; // Use of local variable
-    if (a >= result)
+    if (a >= result) {
         result = a;
-    if (b >= result)
+    }
+    if (b >= result) {
         result = b;
+    }
     return result;     
 };
 ----
@@ -754,10 +756,12 @@ over the course of the program.
 int minimum = 10;
 Operator operator = (a, b) -> {
     int result = minimum; // Use of local variable
-    if (a >= result)
+    if (a >= result) {
         result = a;
-    if (b >= result)
+    }
+    if (b >= result) {
         result = b;
+    }
     minimum = result; // Reassignment of local variable    
     return result;     
 };

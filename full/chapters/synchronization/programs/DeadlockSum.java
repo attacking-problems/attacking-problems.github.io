@@ -27,8 +27,8 @@ public class DeadlockSum extends Thread {
         if (reverse) {         
             synchronized (random2) {
 				System.out.println("Reversed Thread: locked random2");
-				try{ Thread.sleep(50); }
-				catch (InterruptedException e) {
+				try { Thread.sleep(50);
+                } catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				synchronized (random1) {
@@ -39,8 +39,8 @@ public class DeadlockSum extends Thread {
         } else {          
             synchronized (random1) {
 				System.out.println("Normal Thread: locked random1");
-				try { Thread.sleep(50); }
-				catch (InterruptedException e) {
+				try { Thread.sleep(50);
+                } catch (InterruptedException e) {
 				  e.printStackTrace();
 				}
 				synchronized (random2) {

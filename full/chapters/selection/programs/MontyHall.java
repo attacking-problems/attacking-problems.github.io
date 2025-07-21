@@ -19,7 +19,7 @@ public class MontyHall {
             } else if (choice == 1) {
                 low = 0;
                 high = 2;
-            } else { //choice == 2
+            } else { // choice == 2
                 low = 0;
                 high = 1;
             }   

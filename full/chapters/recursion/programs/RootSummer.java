@@ -11,8 +11,9 @@ public class RootSummer implements Callable<Double> {
     
     public Double call() { 					// <.>
         double sum = 0.0;
-        for (int i = min; i < max; ++i)
+        for (int i = min; i < max; ++i) {
             sum += Math.sqrt(i);
+        }
         return sum;
     }
 }

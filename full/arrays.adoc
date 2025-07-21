@@ -114,8 +114,8 @@ of time is:
 
 [source,java]
 ----
-try { Thread.sleep(100); }
-catch (InterruptedException e) {}
+try { Thread.sleep(100);
+} catch (InterruptedException e) {}
 ----
 
 We'll explain this code in much greater detail in <<concurrency#concurrency>>.

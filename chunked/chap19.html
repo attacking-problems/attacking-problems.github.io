@@ -692,8 +692,7 @@ allocating a fixed-size array.</p>
             <span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
             <span class="k">try</span> <span class="o">{</span>
                 <span class="n">names</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
                 <span class="n">names</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">names</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">names</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="mi">2</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
                 <span class="n">names</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">;</span>
             <span class="o">}</span>
@@ -2892,8 +2891,9 @@ method is called anyway.</p>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
     <span class="o">}</span>
@@ -3036,8 +3036,7 @@ out the contents of the list.</td>
             <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="k">try</span> <span class="o">{</span> 
 				<span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> 		         <i class="conum" data-value="4"></i><b>(4)</b>
-			<span class="o">}</span>
-            <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="o">}</span>
         <span class="o">}</span>

@@ -17,16 +17,14 @@ public class WorkerGUI {
                 public String doInBackground() { // <.>
                     try {
                         Thread.sleep(5000);
-                    }
-                    catch (Exception ignore) {}
+                    } catch (Exception ignore) {}
                     return "Answer: " + Math.sqrt(2.0); // <.>
                 }
 
                 public void done() { // <.>
                     try {
                         answerLabel.setText(get());
-                    }
-                    catch (Exception ignore) {}
+                    } catch (Exception ignore) {}
                 }
             };
             worker.execute(); // <.>

@@ -36,18 +36,20 @@ public class DNASearch {
         int found = 0;
         for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) { // <.>
             for (int j = 0; j < subsequence.length(); ++j) { // <.>
-                if (subsequence.charAt(j) != sequence.charAt(i + j)) // <.>
+                if (subsequence.charAt(j) != sequence.charAt(i + j)) { // <.>
                     break;
-                if (j == subsequence.length() - 1) { //matches <.>
+                }
+                if (j == subsequence.length() - 1) { // Matches <.>
                     System.out.println("Match found at index " + i);
                     ++found;
                 }
             }
         }
         
-        if (found == 1)
+        if (found == 1) {
             System.out.println("One match found.");
-        else
+        } else {
             System.out.println(found + " matches found.");
+        }
     }
 }

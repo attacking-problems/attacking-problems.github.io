@@ -13,19 +13,22 @@ public class ThreeCardPoker {
     public static void main(String[] args) {
         int[] deck = new int[52]; // <.>
         int[] hand = new int[3];                
-        for (int i = 0; i < deck.length; ++i) // <.>
+        for (int i = 0; i < deck.length; ++i) { // <.>
             deck[i] = i;
+        }
         shuffle(deck);
-        for (int i = 0; i < hand.length; ++i) // <.>
+        for (int i = 0; i < hand.length; ++i) { // <.>
             hand[i] = deck[i];      
+        }
         int winnings = score(hand); // <.>
         System.out.println("Hand: ");
         print(hand);
-        if (winnings == 0) // <.>
+        if (winnings == 0) { // <.>
             System.out.println("You win nothing.");
-        else
+        } else {
             System.out.println("You win " + winnings +
             " times your bet.");
+        }
     }
 
     public static void shuffle(int[] deck) {
@@ -39,9 +42,10 @@ public class ThreeCardPoker {
     }
 
     public static void print(int[] hand) { // <.>
-        for (int i = 0; i < hand.length; ++i)
+        for (int i = 0; i < hand.length; ++i) {
             System.out.println(RANKS[getRank(hand[i])] + " of "
             + SUITS[getSuit(hand[i])]);
+        }
     }
 
     public static int getRank(int value) { return value % 13; } // <.>
@@ -49,17 +53,19 @@ public class ThreeCardPoker {
     
     private static int score(int[] hand) {  
         sortByRank(hand); 
-        if (hasStraight(hand) && hasFlush(hand))
+        if (hasStraight(hand) && hasFlush(hand)) {
             return STRAIGHT_FLUSH;
-        if (hasThree(hand))
+        } else if (hasThree(hand)) {
             return THREE_OF_A_KIND;
-        if (hasStraight(hand))
+        } else if (hasStraight(hand)) {
             return STRAIGHT;
-        if (hasFlush(hand))
+        } else if (hasFlush(hand)) {
             return FLUSH;
-        if (hasPair(hand))
-            return PAIR;        
-        return NOTHING;
+        } else if (hasPair(hand)) {
+            return PAIR;
+        } else { 
+            return NOTHING;
+        }
     }   
 
     private static void sortByRank(int[] hand) {
@@ -67,8 +73,9 @@ public class ThreeCardPoker {
         for (int i = 0; i < hand.length - 1; ++i) {
             smallest = i;
             for (int j = i + 1; j < hand.length; ++j) {
-                if (getRank(hand[j]) < getRank(hand[smallest]))
+                if (getRank(hand[j]) < getRank(hand[smallest])) {
                     smallest = j;
+                }
             }
             temp = hand[smallest];
             hand[smallest] = hand[i];
@@ -93,7 +100,7 @@ public class ThreeCardPoker {
 
     private static boolean hasStraight(int[] hand) { // <.>
         return (getRank(hand[0]) == 0 && getRank(hand[1]) == 1
-                && getRank(hand[2]) == 12) || //ace low
+                && getRank(hand[2]) == 12) || // Ace low
                (getRank(hand[1]) == getRank(hand[0]) + 1 &&
                 getRank(hand[2]) == getRank(hand[1]) + 1);
     }   

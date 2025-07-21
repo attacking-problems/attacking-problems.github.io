@@ -12,10 +12,11 @@ public class OddEvenTest {
         String message;     
         // Response is YES_OPTION for yes, NO_OPTION for no
         if ((response == JOptionPane.YES_OPTION && x % 2 != 0) ||
-            (response == JOptionPane.NO_OPTION && x % 2 == 0))
+            (response == JOptionPane.NO_OPTION && x % 2 == 0)) {
             message = "You're right!";
-        else
+        } else {
             message = "Sorry, that's incorrect.";
+        }
         JOptionPane.showMessageDialog(null, message, title, // <3>
             JOptionPane.INFORMATION_MESSAGE);
     }   

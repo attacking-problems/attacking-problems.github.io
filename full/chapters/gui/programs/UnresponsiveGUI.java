@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class UnresponsiveGUI  {
+public class UnresponsiveGUI {
     private int count = 0;
         
     public UnresponsiveGUI() {

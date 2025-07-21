@@ -290,7 +290,9 @@ the `Control` key and press `C`) because it won't end otherwise. Not
 all infinite loops are this obvious. A programmer will not usually use
 `true` as the condition of a loop, but doing so is not always wrong.
 Some loops are expected to continue for quite some time with no definite
-end. To leave a loop abruptly, you can use the `break` command.
+end. To leave a loop abruptly, you can use the `break` command. Note that the
+`break` command exists in many languages, but it should be used rarely, if at
+all, to leave a loop.
 
 [source,java]
 ----
@@ -494,8 +496,9 @@ char latest = ' ';
 char c;
 for (int i = 0; i < lower.length(); ++i) {
     c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest) {
         latest = c;
+    }
 }
 System.out.println("The latest character in the alphabet from your message is: '"
 	+ latest + "'.");
@@ -527,10 +530,12 @@ going to be the latest letter, no matter what. We can rewrite our
 ----
 for (int i = 0; i < lower.length(); ++i) {
     c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest) {
         latest = c;
-    if (latest == 'z')
+    }
+    if (latest == 'z') {
         break;
+    }
 }
 ----
 
@@ -546,8 +551,9 @@ following.
 ----
 for (int i = 0; i < lower.length() && latest != 'z'; ++i) {
     c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest)
+    if (c >= 'a' && c <= 'z' && c > latest) {
         latest = c;
+    }
 }
 ----
 
@@ -905,8 +911,9 @@ a counter.
 [source,java]
 ----
 int number = 1;
-while (number <= 100)
+while (number <= 100) {
     System.out.println(number);
+}
 ----
 
 This code is presumably intended to print out the first 100 integers,
@@ -917,8 +924,9 @@ subtle, as in the following code.
 
 [source,java]
 ----
-for (int i = 0; i < 10; i += 0.5)
+for (int i = 0; i < 10; i += 0.5) {
     System.out.println("Half a step forward, half a step back...");
+}
 ----
 
 One might expect this code to print out 20 lines of output. However,
@@ -941,8 +949,9 @@ billion increments instead of the expected 10 decrements.
 
 [source,java]
 ----
-for (int i = 10; i > 0; ++i)
+for (int i = 10; i > 0; ++i) {
     System.out.println(i);
+}
 System.out.println("Blast off!");
 ----
 
@@ -971,8 +980,9 @@ loop that iterates 10 times is below.
 
 [source,java]
 ----
-for (int i = 0; i < 10; ++i)
+for (int i = 0; i < 10; ++i) {
     System.out.println(i);
+}
 ----
 
 Of course, sometimes we need one-based counting instead. After being
@@ -981,16 +991,18 @@ that incorrectly iterates 9 times.
 
 [source,java]
 ----
-for (int i = 1; i < 10; ++i)
+for (int i = 1; i < 10; ++i) {
     System.out.println(i);
+}
 ----
 
 The correct version that iterates 10 times is below.
 
 [source,java]
 ----
-for (int i = 1; i <= 10; ++i)
+for (int i = 1; i <= 10; ++i) {
     System.out.println(i);
+}
 ----
 
 If you want to iterate _n_ times, start at 0 and go up to
@@ -1138,7 +1150,7 @@ virtually identical to the code to input `sequence`.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=36..46]
+include::{programsdir}/DNASearch.java[lines=36..47]
 ----
 <.> The workhorse of the search is found in these nested `for` loops.
 The outer loop iterates through every index in `sequence`, until it
@@ -1159,7 +1171,7 @@ offset, exactly matches a `char` in `subsequence`.
 <.> If, at any point, the
 two `char` values do not match, the inner `for` loop will immediately
 exit, using the `break` command.
-<.> However, on the last iteration of the
+<.> On the last iteration of the
 inner `for` loop, when `j` is one less than the length of `subsequence`,
 we know that all of `subsequence` matched a part of `sequence`. As a
 result, we print out the index of `sequence` where `subsequence` started
@@ -1178,7 +1190,7 @@ customize the output based on the value of `found`.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=48..53]
+include::{programsdir}/DNASearch.java[lines=49..55]
 ----
 
 The ideas needed to correctly implement the solution are not difficult,
@@ -1192,7 +1204,7 @@ follows.
 int found = 0;
 for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
     for (int j = 0; j < subsequence.length() &&
-        subsequence.charAt(j) == sequence.charAt(i + j); ++j)
+        subsequence.charAt(j) == sequence.charAt(i + j); ++j) {
         if (j == subsequence.length() - 1) { // Matches
             System.out.println("Match found at index " + i);
             ++found;
@@ -1264,8 +1276,9 @@ integers. At its heart is a loop from the start of the range to the end.
 
 [source,java]
 ----
-for (int i = start; i <= end; ++i)
+for (int i = start; i <= end; ++i) {
     sum += Math.sin(start);
+}
 ----
 
 If we want to allow the user to specify the start and the end and print
@@ -1352,8 +1365,7 @@ print out the numbers 1 through 10. What are they?
 +
 [source,java]
 ----
-for (int i = 1; i < 10; --i);
-{
+for (int i = 1; i < 10; --i); {
     System.out.println(i);
 }
 ----

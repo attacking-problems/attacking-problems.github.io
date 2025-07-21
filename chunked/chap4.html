@@ -1487,7 +1487,7 @@ answers and output them.</td>
 </tbody></table>
 </div>
 <div class="paragraph">
-<p>The line <code>if (discriminant == 0.0)</code> is dangerous since we’re using
+<p>The condition <code>discriminant == 0.0</code> is dangerous since we’re using
 <code>double</code> values. Because of rounding errors, the discriminant might not
 be exactly zero even if it should be, mathematically. Industrial
 strength code would probably check to see if the absolute value of the
@@ -2597,7 +2597,7 @@ user can choose to change over to.</td>
             <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">//choice == 2</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// choice == 2</span>
                 <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
             <span class="o">}</span>   

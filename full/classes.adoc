@@ -478,13 +478,15 @@ response, let's improve the mutators that set `length` and `width`.
 [source,java]
 ----
     public void setLength(int length) {
-        if (length > 0)
+        if (length > 0) {
             this.length = length;
+        }
     }
 
     public void setWidth(int width) {
-        if (width > 0)
+        if (width > 0) {
             this.width = width;
+        }
     }
 ----
 
@@ -600,7 +602,7 @@ of the error checking in the GPA mutator.
 
 [source, java]
 ----
-include::{programsdir}/Student.java[lines=13..21]
+include::{programsdir}/Student.java[lines=13..22]
 ----
 
 These are the mutators corresponding to each of the three fields. The
@@ -609,7 +611,7 @@ mutator checks to make sure that the GPA value is in the proper range.
 
 [source, java]
 ----
-include::{programsdir}/Student.java[lines=23..30]
+include::{programsdir}/Student.java[lines=24..31]
 ----
 
 Finally, these accessors allow the user to find out the name, year, or
@@ -623,7 +625,7 @@ create client code to use it.
 
 [source, java]
 ----
-include::{programsdir}/StudentRoster.java[lines=1..15]
+include::{programsdir}/StudentRoster.java[lines=1..16]
 ----
 <.> The `main()` method in the `StudentRoster` class begins by reading in
 the total number of students.
@@ -642,7 +644,7 @@ program malfunctions.
 
 [source, java]
 ----
-include::{programsdir}/StudentRoster.java[lines=17..28]
+include::{programsdir}/StudentRoster.java[lines=18..31]
 ----
 
 This `sort()` method is similar to others you've seen. It
@@ -770,17 +772,19 @@ public class Square {
         public static void main(String[] args) {
             Square square = new Square(5);
             System.out.print("Test 1: ");
-            if (square.getArea() == 25)
+            if (square.getArea() == 25) {
                 System.out.println("Passed");
-            else
+            } else {
                 System.out.println("Failed");
+            }
 
             square.side = 7;
             System.out.print("Test 2: ");
-            if (square.getArea() == 49)
+            if (square.getArea() == 49) {
                 System.out.println("Passed");
-            else
+            } else {
                 System.out.println("Failed");
+            }
         }
     }
 }
@@ -881,8 +885,9 @@ public class SafeArray {
     }
 
     public int set(int index, double value) {
-        if (index >= 0 && index < data.length)
+        if (index >= 0 && index < data.length) {
             data[index] = value;
+        }
     }
 }
 ----
@@ -902,8 +907,9 @@ public class SafeArray {
     }
 
     public void set(int index, double value) {
-        if ( index >= 0 && index < data.length )
+        if (index >= 0 && index < data.length) {
             data[index] = value;
+        }
     }
 
     public class Iterator {
@@ -914,10 +920,11 @@ public class SafeArray {
         }
 
         public double getNext() {
-            if (index >= 0 && index < data.length)
+            if (index >= 0 && index < data.length) {
                 return data[index++];
-            else
+            } else {
                 return Double.NaN;
+            }
         }
     }
 }
@@ -932,8 +939,9 @@ public static findSum(SafeArray array) {
     double sum = 0;
     SafeArray.Iterator iterator = array.new Iterator();
 
-    while (iterator.hasNext())
+    while (iterator.hasNext()) {
         sum += iterator.getNext();
+    }
 
     return sum;
 }
@@ -988,7 +996,7 @@ the input is correctly nested. We start by assuming that it is.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=10..27]
+include::{programsdir}/NestedExpressions.java[lines=10..28]
 ----
 <.> This `for` loop runs through each `char` in the input.
 <.> If it's a left parenthesis, left square bracket, or left curly brace, it pushes the
@@ -1003,7 +1011,7 @@ efficiency, the loop stops early if `correct` is no longer `true`.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=29..37]
+include::{programsdir}/NestedExpressions.java[lines=30..40]
 ----
 <.> After the input has been examined, we check to see if the stack is
 empty. If it isn't, there must be some left symbols that weren't

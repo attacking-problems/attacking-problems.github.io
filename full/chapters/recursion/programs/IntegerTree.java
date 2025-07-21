@@ -16,13 +16,11 @@ public class IntegerTree {
         if (tree == null) { // Base case
             tree = new Node();
             tree.value = value;
-        }
-        // Left recursive case
-        else if (value.compareTo(tree.value) < 0)
-            tree.left = add(value, tree.left);
-        // Right recursive case
-        else if (value.compareTo(tree.value) > 0)
+        } else if (value.compareTo(tree.value) < 0) { // Left recursive case
+            tree.left = add(value, tree.left); 
+        } else if (value.compareTo(tree.value) > 0) { // Right recursive case
             tree.right = add(value, tree.right);
+        }
         return tree;        
     }
     

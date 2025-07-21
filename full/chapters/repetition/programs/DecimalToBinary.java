@@ -6,12 +6,13 @@ public class DecimalToBinary {
         System.out.print("Please enter a base 10 number: ");
         int number = in.nextInt();
         int power = 1;
-        while (power <= number/2)
+        while (power <= number/2) {
             power *= 2;
+        }
         while (power > 0) {
-            if (power > number)
+            if (power > number) {
                 System.out.print(0);
-            else {
+            } else {
                 System.out.print(1);
                 number -= power;
             }

@@ -21,8 +21,7 @@ public class ConcurrentFileAccess implements Runnable {
             for (int i = start; i < 10000; i += 2) { // <.>
                 out.println(i);
             }				
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("concurrent.out not accessible!");
         }
     }   

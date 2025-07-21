@@ -442,8 +442,9 @@ the code magically work for each kind of `Vehicle`.
 
 [source,java]
 ----
-for (int i = 0; i < vehicles.length; ++i)
+for (int i = 0; i < vehicles.length; ++i) {
     vehicles[i].travel("Prague");
+}
 ----
 
 Each `Vehicle` will travel to Prague as it should. The only trouble is
@@ -510,8 +511,9 @@ the object is capable of it.
 [source,java]
 ----
 public void visitDenver(Vehicle vehicle) {
-    if (vehicle instanceof RocketShip)
+    if (vehicle instanceof RocketShip) {
         ((RocketShip)vehicle).blastOff();
+    }
     vehicle.travel("Denver");
 }
 ----
@@ -527,8 +529,9 @@ to be more specific.
 [source,java]
 ----
 public void visitDenver(Vehicle vehicle) {
-    if (vehicle.getClass() ==  RocketShip.class)
+    if (vehicle.getClass() ==  RocketShip.class) {
         ((RocketShip)vehicle).blastOff();
+    }
     vehicle.travel("Denver");
 }
 ----
@@ -900,12 +903,16 @@ What's the output of the following code and why?
 Quicksand quicksand = new Quicksand();
 if (quicksand instanceof Danger) {
 	System.out.printf("Run for your lives!");
-if (quicksand.getClass() == Danger.class)
+}
+if (quicksand.getClass() == Danger.class) {
 	System.out.printf("Run even faster!");
+}
 if (quicksand instanceof Quicksand) {
 	System.out.printf("The more you struggle, the faster you'll sink!");
-if (quicksand.getClass() == Quicksand.class)
+}
+if (quicksand.getClass() == Quicksand.class) {
 	System.out.printf("You'll need to find a vine to escape!");
+}
 ----
 . [[polymorphismExceptionsExercise]] Consider the following two classes.
 What's the problem that prevents compilation?
@@ -915,8 +922,9 @@ What's the problem that prevents compilation?
 public class Snake {
 	public void handle() throws BiteException {
 		System.out.println("You handled a snake!");
-		if (Math.random() > 0.9)
+		if (Math.random() > 0.9) {
 			throw new BiteException();	
+        }
 	}
 }
 ----
@@ -928,8 +936,9 @@ public class Cobra extends Snake {
 	public void handle() throws BiteException, PoisonException {
 		System.out.println("You handled a cobra!");
 		if (Math.random() > 0.8) {
-			if (Math.random() > 0.2)
+			if (Math.random() > 0.2) {
 				throw new PoisonException();			
+            }
 			throw new BiteException();
 		}
 	}

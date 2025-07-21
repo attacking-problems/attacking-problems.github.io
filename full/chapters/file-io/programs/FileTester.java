@@ -122,8 +122,7 @@ public class FileTester {
                 players[i] = (BaseballPlayer)in.readObject();
             }
             Stream.of(players).forEach(e -> System.out.println(e.getBattingAverage()));
-        }
-        catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("File reading failed.");
         }
     }

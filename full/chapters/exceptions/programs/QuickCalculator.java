@@ -18,8 +18,7 @@ public class QuickCalculator {
                     case '/': answer = a / b; break;
                 }
                 System.out.println("Answer: " + answer); // <.>
-            }
-            catch (ArithmeticException e) { // <.>
+            } catch (ArithmeticException e) { // <.>
                 System.out.println("You can't divide by 0!");
             }
             line = in.nextLine().trim().toLowerCase();

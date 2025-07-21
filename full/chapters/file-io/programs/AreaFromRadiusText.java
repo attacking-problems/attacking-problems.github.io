@@ -14,8 +14,7 @@ public class AreaFromRadiusText {
                 double radius = in.nextDouble();				        // <.>
                 out.format("%.3f%n", Math.PI*radius*radius);	        // <.>
             }
-        }
-        catch (IOException e) { 	                                    // <.>
+        } catch (IOException e) { 	                                    // <.>
             System.out.println(e.getMessage());
         }
     }

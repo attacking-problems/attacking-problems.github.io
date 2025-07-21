@@ -5,27 +5,26 @@ public interface StaticGuitarist {
 	static String nextNote(String note) {
 		char letter = note.charAt(0);
 		if (note.length() == 2) {
-			if (note.charAt(1) == 'b')
+			if (note.charAt(1) == 'b') {
 				return "" + letter;
-			else {
+			} else {
 				switch (letter) {
-				case 'B':
-				case 'E':
-					return letter + "#";
-				case 'G':
-					return "A";
-				default:
-					return "" + (letter + 1);
+					case 'B':
+					case 'E':
+						return (char)(letter + 1) + "#";
+					case 'G':
+						return "A";
+					default:
+						return "" + (char)(letter + 1);
 				}
 			}
-		}
-		else {
+		} else {
 			switch (letter) {
-			case 'B':
-			case 'E':
-				return "" + (letter + 1);
-			default:
-				return letter + "#";
+				case 'B':
+				case 'E':
+					return "" + (char)(letter + 1);
+				default:
+					return letter + "#";
 			}
 		}	
 	}

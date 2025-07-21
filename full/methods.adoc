@@ -228,10 +228,11 @@ wanted to write this method ourselves, the code would be as follows.
 [source,java]
 ----
 public static int max(int a, int b) {
-    if (a >= b)
+    if (a >= b) {
         return a;
-    else
+    } else {
         return b;
+    }
 }
 ----
 
@@ -280,20 +281,21 @@ follows the header of the method, surrounded by braces (`{ }`). Unlike
 
 Inside the body of a method, the usual rules for Java control flow
 apply. Each line is executed one by one unless there are selection
-statements or loops. Calling methods inside of methods is also allowed. In the `max()` method, we use an `if`-`else` construction to find
+statements or loops. Calling methods inside of methods is also allowed.
+In the `max()` method, we use an `if`-`else` construction to find
 the larger of `a` and `b`. A `return` statement immediately stops
 execution of the method, transfers execution back to the calling code,
 and gives back the value that comes after it. In this case, the value of
 `a` is returned if it is equal or larger, and the value of `b` is
 returned otherwise. Because a `return` statement immediately jumps out
-of a method, we could have written the method with one fewer line of
-code.
+of a method, we could have written the method without an `else`.
 
 [source,java]
 ----
 public static int max(int a, int b) {
-    if (a >= b)
+    if (a >= b) {
         return a;
+    }
     return b;
 }
 ----
@@ -504,8 +506,9 @@ instead of dropping it on the floor.
 [source,java]
 ----
 int i = 0;
-while (i < 100)
+while (i < 100) {
     i = increment(i);
+}
 ----
 
 A second way that methods can affect the values of outside variables is
@@ -522,8 +525,9 @@ order of an array.
 ----
 public static void badReverseArray(int[] array) {
     int[] temp = new int[array.length];
-    for (int i = 0; i < array.length; ++i)
+    for (int i = 0; i < array.length; ++i) {
         temp[i] = array[array.length - i - 1];
+    }
     array = temp;
 }
 ----
@@ -703,9 +707,11 @@ as a palindrome, but neither of the other two examples would.
 ----
 public static boolean isPalindrome(String text) { // <.>
     text = text.toLowerCase(); // <.>
-    for (int i = 0; i < text.length() / 2; ++i) // <.>
-        if (text.charAt(i) != text.charAt(text.length() - i - 1)) // <.>
+    for (int i = 0; i < text.length() / 2; ++i) { // <.>
+        if (text.charAt(i) != text.charAt(text.length() - i - 1)) { // <.>
             return false;
+        }
+    }
     return true;
 }
 ----
@@ -833,7 +839,7 @@ typical (and good style) to declare them at the top of the class.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=13..29]
+include::{programsdir}/ThreeCardPoker.java[lines=13..32]
 ----
 <.> In the `main()` method, an array representing a deck of 52 cards is
 created first, followed by an array representing the 3 cards to be
@@ -850,7 +856,7 @@ appropriate output, depending on the score.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=31..39]
+include::{programsdir}/ThreeCardPoker.java[lines=34..42]
 ----
 
 This method shuffles the deck. Its approach is to swap the first element
@@ -863,7 +869,7 @@ decks with equal probability.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=41..48]
+include::{programsdir}/ThreeCardPoker.java[lines=44..52]
 ----
 <.> The first of these methods prints out a human readable version of each
 card in an array (instead of 0 - 51). It does so using the second and
@@ -884,7 +890,7 @@ above `print()` or below it inside the class definition.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=50..63]
+include::{programsdir}/ThreeCardPoker.java[lines=54..69]
 ----
 
 This method computes the score by first sorting the hand and then
@@ -894,7 +900,7 @@ methods to determine if a hand has a certain characteristic.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=65..77]
+include::{programsdir}/ThreeCardPoker.java[lines=71..84]
 ----
 
 
@@ -906,7 +912,7 @@ effectively passed by reference.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=79..100]
+include::{programsdir}/ThreeCardPoker.java[lines=86..107]
 ----
 <.> The code in `hasPair()` works by
 checking to see if the first and second or second and third cards have
@@ -1042,8 +1048,9 @@ How many times does the following loop run, and why?
 [source,java]
 ----
 int x = 2;
-while (x < 128)
+while (x < 128) {
     twice(x);
+}
 ----
 . Consider the following signatures of two overloaded methods.
 +

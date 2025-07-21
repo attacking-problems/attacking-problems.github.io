@@ -18,20 +18,23 @@ public class NestedExpressions {
                 case ')':
 				case ']':
 				case '}':
-                    if (stack.isEmpty() || stack.top() != symbol) // <.>
+                    if (stack.isEmpty() || stack.top() != symbol) { // <.>
                         correct = false;
-                    else
+                    } else {
                         stack.pop();
+                    }
                     break;                
             }
         }
             
-        if (!stack.isEmpty()) //unmatched left symbols <.>
+        if (!stack.isEmpty()) { // Unmatched left symbols <.>
             correct = false;
+        }
         
-        if (correct) // <.>
+        if (correct) { // <.>
             System.out.println("The input is correctly nested!");
-        else
+        } else {
             System.out.println("The input is incorrectly nested!");
+        }
     }
 }

@@ -8,10 +8,11 @@ public class ChemistryQuizOne {
             query, title, JOptionPane.QUESTION_MESSAGE);
         int answer = Integer.parseInt(response); // <.>
         String message;         
-        if (answer == 3) // <.>
+        if (answer == 3) { // <.>
             message = "You're right!";
-        else
+        } else {
             message = "Sorry, that's incorrect.";
+        }
         JOptionPane.showMessageDialog(null, message, title, // <.>
             JOptionPane.INFORMATION_MESSAGE);
     }   

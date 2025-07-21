@@ -8,8 +8,9 @@ public class ExerciseTesting {
 
         int[] letters = new int[26];
         input.chars().forEach(e -> {
-            if (e >= 'A' && e <= 'Z')
+            if (e >= 'A' && e <= 'Z') {
                 ++letters[e - 'A'];
+            }
         });
 
 

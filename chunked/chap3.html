@@ -3837,8 +3837,7 @@ illustrates this concurrent approach.</p>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result of f: "</span> <span class="o">+</span> <span class="n">fResult</span> <span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result of g: "</span> <span class="o">+</span> <span class="n">gResult</span> <span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final answer: "</span> <span class="o">+</span> <span class="n">answer</span><span class="o">);</span>        
-        <span class="o">}</span>
-        <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Computation interrupted!"</span><span class="o">);</span>
         <span class="o">}</span>             
     <span class="o">}</span>   

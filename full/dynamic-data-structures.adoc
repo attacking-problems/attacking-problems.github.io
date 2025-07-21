@@ -1544,7 +1544,7 @@ out the contents of the list.
 
 [source, java]
 ----
-include::{programsdir}/VectorExample.java[lines=22..38]
+include::{programsdir}/VectorExample.java[lines=22..36]
 ----
 <.> The constructor stores a reference to the shared `Vector`.
 <.> Each thread repeats a loop 10 times, appending a `String` to the

@@ -1,8 +1,7 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-public class TemperatureGUI extends JFrame implements ActionListener {
+public class TemperatureGUI extends JFrame {
 		JTextField celsiusField = new JTextField();
 		JTextField fahrenheitField = new JTextField();
 		JButton celsiusToFahrenheitButton = new JButton("Convert to Fahrenheit");
@@ -22,28 +21,19 @@ public class TemperatureGUI extends JFrame implements ActionListener {
         panel.add(fahrenheitToCelsiusButton);
 		add(panel, BorderLayout.CENTER);
 		
-        celsiusToFahrenheitButton.addActionListener(this);
-        fahrenheitToCelsiusButton.addActionListener(this);
+        celsiusToFahrenheitButton.addActionListener(e -> convertToFahrenheit());
+        fahrenheitToCelsiusButton.addActionListener(e -> convertToCelsius());
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 		pack();
     }
-    
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        if (source == fahrenheitToCelsiusButton)
-			convertToCelsius();
-        else if (source == celsiusToFahrenheitButton)
-			convertToFahrenheit();    
-    }
-    
+
     private void convertToFahrenheit() {        
         try {
             double value = Double.parseDouble(celsiusField.getText());
             fahrenheitField.setText("" + (32.0+9.0/5.0*value));            
-        }
-		catch (NumberFormatException e){
+        } catch (NumberFormatException e){
 			JOptionPane.showMessageDialog(null, "Celsius value is incorrect.", "Format Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -52,8 +42,7 @@ public class TemperatureGUI extends JFrame implements ActionListener {
         try {
             double value = Double.parseDouble(fahrenheitField.getText());
             celsiusField.setText("" + (5.0/9*(value-32)));
-        }
-		catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Fahrenheit value is incorrect.", "Format Error", JOptionPane.ERROR_MESSAGE);
         }        
     }
