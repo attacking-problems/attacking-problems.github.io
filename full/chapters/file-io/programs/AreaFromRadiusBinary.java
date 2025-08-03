@@ -8,7 +8,7 @@ public class AreaFromRadiusBinary {
                 double radius = in.readDouble();
                 out.writeDouble(Math.PI*radius*radius);              
             }           
-        } catch (EOFException e) { // End of file reached                        <.>
+        } catch (EOFException e) { // End of file reached <.>
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

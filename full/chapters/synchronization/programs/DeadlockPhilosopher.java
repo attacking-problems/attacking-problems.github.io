@@ -1,13 +1,13 @@
 public class DeadlockPhilosopher extends Thread {
     public static final int SEATS = 5;     // <.>
-    private static boolean[] chopsticks = new boolean[SEATS]; // <.>
-    private int seat;
+    private static final boolean[] chopsticks = new boolean[SEATS]; // <.>
+    private final int seat;
     
     public DeadlockPhilosopher(int seat) { // <.>
         this.seat = seat;
     }
 	
-	public static void main(String args[]) {        
+	public static void main(String[] args) {
         DeadlockPhilosopher[] philosophers = new DeadlockPhilosopher[SEATS];
         for (int i = 0; i < SEATS; ++i) {
             philosophers[i] = new DeadlockPhilosopher(i);

@@ -5,7 +5,7 @@ public class SplitExpression {
         fThread.start(); // <.>
         gThread.start(); // <.>
         try {
-            fThread.join();  // <.>
+            fThread.join(); // <.>
             gThread.join(); // <.>
             double fResult = fThread.getResult(); // <.>
             double gResult = gThread.getResult(); // <.>

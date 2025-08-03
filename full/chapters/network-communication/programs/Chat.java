@@ -1,4 +1,4 @@
-import java.io.*;	// <.>
+import java.io.*; // <.>
 import java.net.*;
 import java.util.*;
 
@@ -8,7 +8,7 @@ public class Chat {
     public static void main(String[] args) {        
         if (args[0].equals("-s")) { // <.>
             new Chat(Integer.parseInt(args[1]));
-        } else if (args[0].equals("-c")) {	// <.>
+        } else if (args[0].equals("-c")) { // <.>
             new Chat(args[1], Integer.parseInt(args[2]) );
         } else {
             System.out.println("Invalid command line flag.");
@@ -19,7 +19,7 @@ public class Chat {
     public Chat(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) { // <.>
             socket = serverSocket.accept();
-            runChat();	// <.>
+            runChat(); // <.>
         } catch (IOException e) {
 			System.out.println("Network error: " + e.getMessage());		
 		}         

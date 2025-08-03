@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class DeadlockSum extends Thread {
-    private static Random random1 = new Random();
-    private static Random random2 = new Random();   
-    private boolean reverse;
+    private static final Random random1 = new Random();
+    private static final Random random2 = new Random();
+    private final boolean reverse;
     private int sum;
 
     public static void main(String[] args) {

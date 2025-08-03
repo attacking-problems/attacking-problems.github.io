@@ -2,14 +2,14 @@ import java.util.Random;
 
 public class DiningPhilosopher extends Thread {
     public static final int SEATS = 5; 
-    private static boolean[] chopsticks = new boolean[SEATS];   
+    private static final boolean[] chopsticks = new boolean[SEATS];
     private int seat;
     
     public DiningPhilosopher(int seat) {
         this.seat = seat;       
     }
     
-    public static void main(String args[]) {        
+    public static void main(String[] args) {
         DiningPhilosopher[] philosophers = new DiningPhilosopher[SEATS];
         for (int i = 0; i < SEATS; ++i) {
             philosophers[i] = new DiningPhilosopher(i);

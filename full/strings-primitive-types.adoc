@@ -2141,7 +2141,7 @@ int balance = random.nextInt();
 int humanAge = random.nextInt(130);
 
 // Random boolean value
- boolean gender = random.nextBoolean();
+boolean gender = random.nextBoolean();
 
 // Random floating-point value between 0.0 (inclusive) and 1.0 (exclusive)
 double percent = random.nextDouble();

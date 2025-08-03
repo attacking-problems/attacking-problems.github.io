@@ -805,7 +805,7 @@ encapsulate both client and server functionality in a class called
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>	<i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
 
@@ -815,7 +815,7 @@ encapsulate both client and server functionality in a class called
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
         <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-s"</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="k">new</span> <span class="nf">Chat</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]));</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span>	<i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">"-c"</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="k">new</span> <span class="nf">Chat</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">);</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Invalid command line flag."</span><span class="o">);</span>
@@ -849,7 +849,7 @@ IP address and the port number, respectively.</td>
     <span class="kd">public</span> <span class="nf">Chat</span><span class="o">(</span><span class="kt">int</span> <span class="n">port</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">try</span> <span class="o">(</span><span class="nc">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">port</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
-            <span class="n">runChat</span><span class="o">();</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">runChat</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Network error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>		
 		<span class="o">}</span>         
@@ -1090,13 +1090,13 @@ should be able to browse them.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>			<i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.nio.file.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebServer</span> <span class="o">{</span>        
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">port</span><span class="o">;</span>		<i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">port</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="kd">private</span> <span class="nc">Path</span> <span class="n">webRoot</span><span class="o">;</span>   
     
     <span class="kd">public</span> <span class="nf">WebServer</span><span class="o">(</span><span class="kt">int</span> <span class="n">port</span><span class="o">,</span> <span class="nc">Path</span> <span class="n">webRoot</span><span class="o">)</span> <span class="o">{</span>
@@ -1137,27 +1137,27 @@ the web server that waits for connections and loops forever.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">(</span><span class="nc">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">port</span><span class="o">))</span> <span class="o">{</span>      <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">ServerSocket</span> <span class="n">serverSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">port</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">try</span> <span class="o">(</span><span class="nc">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>             <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="k">try</span> <span class="o">(</span><span class="nc">Socket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">serverSocket</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
                     <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="n">socket</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">())</span> <span class="o">;</span>	<i class="conum" data-value="3"></i><b>(3)</b>
                     <span class="nc">DataOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">socket</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">()))</span> <span class="o">{</span>
 					<span class="kt">boolean</span> <span class="n">requestRead</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-                    <span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">requestRead</span><span class="o">)</span> <span class="o">{</span>	<i class="conum" data-value="4"></i><b>(4)</b>
+                    <span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">requestRead</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
                         <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
                         <span class="k">if</span> <span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"GET"</span><span class="o">))</span> <span class="o">{</span>
-                            <span class="nc">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span>		<i class="conum" data-value="5"></i><b>(5)</b>
+                            <span class="nc">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <i class="conum" data-value="5"></i><b>(5)</b>
 								<span class="n">line</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">"HTTP"</span><span class="o">)).</span><span class="na">trim</span><span class="o">();</span>
                             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Received request for: "</span> <span class="o">+</span> <span class="n">path</span><span class="o">);</span>
-                            <span class="n">serve</span><span class="o">(</span><span class="n">out</span><span class="o">,</span> <span class="n">getPath</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>			<i class="conum" data-value="6"></i><b>(6)</b>
-                            <span class="n">requestRead</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>                 <i class="conum" data-value="7"></i><b>(7)</b>
+                            <span class="n">serve</span><span class="o">(</span><span class="n">out</span><span class="o">,</span> <span class="n">getPath</span><span class="o">(</span><span class="n">path</span><span class="o">));</span> <i class="conum" data-value="6"></i><b>(6)</b>
+                            <span class="n">requestRead</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span> <i class="conum" data-value="7"></i><b>(7)</b>
                         <span class="o">}</span>
                     <span class="o">}</span>
                 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>						
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
                 <span class="o">}</span>              
             <span class="o">}</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>                               <i class="conum" data-value="8"></i><b>(8)</b>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>   </code></pre>
@@ -1218,11 +1218,11 @@ path requested by a web browser and tacks it onto the end of the web root.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="nc">Path</span> <span class="nf">getPath</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s">"/"</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">path</span> <span class="o">+=</span> <span class="s">"index.html"</span><span class="o">;</span>       <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="n">path</span> <span class="o">+=</span> <span class="s">"index.html"</span><span class="o">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="o">}</span>
 
         <span class="k">if</span> <span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"/"</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>   <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="o">}</span>
 
         <span class="k">return</span> <span class="n">webRoot</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
@@ -1254,7 +1254,7 @@ corresponding file over the network.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">serve</span><span class="o">(</span><span class="nc">DataOutputStream</span> <span class="n">out</span><span class="o">,</span> <span class="nc">Path</span> <span class="n">path</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Trying to serve "</span> <span class="o">+</span> <span class="n">path</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="nc">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>						<i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">if</span> <span class="o">(!</span><span class="nc">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="s">"HTTP/1.0 404 Not Found\r\n\r\n"</span><span class="o">);</span>
             <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="s">"&lt;html&gt;&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;"</span> <span class="o">+</span>
 				<span class="s">"&lt;body&gt;&lt;h1&gt;Not Found&lt;/h1&gt;The requested URL "</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span>
@@ -1262,13 +1262,13 @@ corresponding file over the network.</p>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"File not found."</span><span class="o">);</span>
         <span class="o">}</span>
         <span class="k">else</span> <span class="o">{</span>
-            <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="s">"HTTP/1.0 200 OK\r\n\r\n"</span><span class="o">);</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="s">"HTTP/1.0 200 OK\r\n\r\n"</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="k">try</span> <span class="o">(</span><span class="nc">DataInputStream</span> <span class="n">in</span> <span class="o">=</span> 
                 <span class="k">new</span> <span class="nf">DataInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">path</span><span class="o">.</span><span class="na">toString</span><span class="o">())))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">());</span>	    <i class="conum" data-value="4"></i><b>(4)</b>
+                    <span class="n">out</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">readByte</span><span class="o">());</span> <i class="conum" data-value="4"></i><b>(4)</b>
                 <span class="o">}</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>                  <i class="conum" data-value="5"></i><b>(5)</b>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
 				<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Request succeeded."</span><span class="o">);</span>
 			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error sending file: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>

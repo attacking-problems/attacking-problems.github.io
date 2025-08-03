@@ -363,7 +363,7 @@ following a `try` block. The code inside the `finally` block will be
 executed *whether or not* any exception was thrown. A `finally` block is
 often used with file I/O to close the file, which should be closed
 whether or not something went wrong in the process of reading it, as
-we'll demonstrate in <<Reading and writing text files>>.
+we'll demonstrate in <<Reading text files>>.
 
 The `finally` keyword is unusually powerful. If an exception isn't
 caught and propagates up another level, the `finally` block will be

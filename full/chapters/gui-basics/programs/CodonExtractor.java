@@ -13,7 +13,7 @@ public class CodonExtractor {
             } else {
                 message = "Invalid DNA Sequence.\n" + message;
             }
-            continueProgram = JOptionPane.showConfirmDialog(// <.>
+            continueProgram = JOptionPane.showConfirmDialog( // <.>
                 null, message, "Alert", JOptionPane.YES_NO_OPTION);            
         } while (continueProgram == JOptionPane.YES_OPTION);
         JOptionPane.showMessageDialog(null, "Thanks for using the Codon Extractor!");  

@@ -1,5 +1,5 @@
 public class SwitchMonth {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String month = args[0];
 
         boolean validMonth = true;

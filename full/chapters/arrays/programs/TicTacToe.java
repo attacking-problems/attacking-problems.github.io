@@ -2,7 +2,7 @@ import java.util.*;
 
 public class TicTacToe {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);  // <.>
+        Scanner in = new Scanner(System.in); // <.>
         char[][] board = new char[3][3]; // <.>
         for (int i = 0; i < board.length; ++i) { // <.>
             for (int j = 0; j < board[0].length; ++j) {
@@ -20,7 +20,7 @@ public class TicTacToe {
             row = in.nextInt();
             System.out.print("Enter column (0-2): ");
             column = in.nextInt();
-            if (board[row][column] != ' ') {  // <.>
+            if (board[row][column] != ' ') { // <.>
                 System.out.println("Illegal move");
             } else {  
                 board[row][column] = shape; // <.>
@@ -60,7 +60,7 @@ public class TicTacToe {
                 }  
                 if (gameOver) { // <.>
                     System.out.println(shape + " wins!");
-                } else if (moves == 9) {	// <.>
+                } else if (moves == 9) { // <.>
                     gameOver = true;            
                     System.out.println("Tie game!");        
                 }               

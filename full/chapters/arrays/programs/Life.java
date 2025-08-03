@@ -1,6 +1,6 @@
 public class Life {
     public static void main(String[] args) {
-        final int ROWS = 24;        // <.>
+        final int ROWS = 24; // <.>
         final int COLUMNS = 80;     
         final int GENERATIONS = 500;
         boolean[][] board = new boolean[ROWS][COLUMNS]; // <.>

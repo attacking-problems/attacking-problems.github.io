@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 public class ConcurrentFileAccess implements Runnable {
     private boolean even;
     
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Thread writer1 = new Thread(new ConcurrentFileAccess(true)); // <.>
         Thread writer2 = new Thread(new ConcurrentFileAccess(false));     
         writer1.start(); // <.>

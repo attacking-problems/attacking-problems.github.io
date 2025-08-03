@@ -782,7 +782,7 @@ buffer, but all accesses will be controlled.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Buffer</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">int</span> <span class="no">SIZE</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="nc">Object</span><span class="o">[]</span> <span class="n">objects</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="no">SIZE</span><span class="o">];</span>    
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Object</span><span class="o">[]</span> <span class="n">objects</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">[</span><span class="no">SIZE</span><span class="o">];</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">addItem</span><span class="o">(</span><span class="nc">Object</span> <span class="n">object</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -1068,8 +1068,8 @@ that scenario illustrated in code.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeadlockPhilosopher</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">SEATS</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>     <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">chopsticks</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">seat</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">chopsticks</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">seat</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="nf">DeadlockPhilosopher</span><span class="o">(</span><span class="kt">int</span> <span class="n">seat</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">this</span><span class="o">.</span><span class="na">seat</span> <span class="o">=</span> <span class="n">seat</span><span class="o">;</span>
@@ -1095,7 +1095,7 @@ can know which chopsticks are in use.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>        
+<pre class="rouge highlight"><code data-lang="java">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">DeadlockPhilosopher</span><span class="o">[]</span> <span class="n">philosophers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DeadlockPhilosopher</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DeadlockPhilosopher</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
@@ -1218,9 +1218,9 @@ since access to <code>Random</code> objects is synchronized.)</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeadlockSum</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Random</span> <span class="n">random1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Random</span> <span class="n">random2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>   
-    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">reverse</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Random</span> <span class="n">random1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Random</span> <span class="n">random2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">reverse</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">sum</span><span class="o">;</span></code></pre>
 </div>
 </div>
@@ -1403,7 +1403,7 @@ in code.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Livelock</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">totalReady</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> 		   <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Object</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Object</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>   <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="nc">Livelock</span> <span class="n">friend1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Livelock</span><span class="o">();</span>
@@ -1635,7 +1635,7 @@ either pick up both chopsticks or neither.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DiningPhilosopher</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">SEATS</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">chopsticks</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>   
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">chopsticks</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">seat</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="nf">DiningPhilosopher</span><span class="o">(</span><span class="kt">int</span> <span class="n">seat</span><span class="o">)</span> <span class="o">{</span>
@@ -1649,7 +1649,7 @@ either pick up both chopsticks or neither.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>        
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">DiningPhilosopher</span><span class="o">[]</span> <span class="n">philosophers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DiningPhilosopher</span><span class="o">[</span><span class="no">SEATS</span><span class="o">];</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">SEATS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">philosophers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DiningPhilosopher</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>

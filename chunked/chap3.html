@@ -3073,7 +3073,7 @@ value of the corresponding type.</p>
 <span class="kt">int</span> <span class="n">humanAge</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">130</span><span class="o">);</span>
 
 <span class="c1">// Random boolean value</span>
- <span class="kt">boolean</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">();</span>
+<span class="kt">boolean</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">();</span>
 
 <span class="c1">// Random floating-point value between 0.0 (inclusive) and 1.0 (exclusive)</span>
 <span class="kt">double</span> <span class="n">percent</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span></code></pre>
@@ -3829,7 +3829,7 @@ illustrates this concurrent approach.</p>
         <span class="n">fThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="n">gThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="n">fThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>  <i class="conum" data-value="5"></i><b>(5)</b>
+            <span class="n">fThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="n">gThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="6"></i><b>(6)</b>
             <span class="kt">double</span> <span class="n">fResult</span> <span class="o">=</span> <span class="n">fThread</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span> <i class="conum" data-value="7"></i><b>(7)</b>
             <span class="kt">double</span> <span class="n">gResult</span> <span class="o">=</span> <span class="n">gThread</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span> <i class="conum" data-value="8"></i><b>(8)</b>
