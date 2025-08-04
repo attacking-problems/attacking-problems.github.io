@@ -22,12 +22,12 @@ public class FrameWithPanelAndActionsClasses {
                 field.setText("You can get with this.");
             }
         });
-        thatButton.addActionListener(new ActionListener(){
+        thatButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 field.setText("Or you can get with that.");
             }
         });
-        exitButton.addActionListener(new ActionListener(){
+        exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.out.println("Exit");
                 frame.dispose();

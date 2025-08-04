@@ -952,12 +952,12 @@ message “You can get with this.” in the text field. Similarly, when the
                 <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"You can get with this."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span>
+        <span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
                 <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Or you can get with that."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span>
+        <span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Exit"</span><span class="o">);</span>
                 <span class="n">frame</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
