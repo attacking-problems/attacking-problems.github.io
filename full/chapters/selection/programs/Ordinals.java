@@ -6,7 +6,7 @@ public class Ordinals {
         System.out.print("Please enter a positive number: ");
         int number = in.nextInt();
         String ending;
-        switch( number % 10 ) {
+        switch (number % 10) {
             case 1:  ending = "st"; break;
             case 2:  ending = "nd"; break;
             case 3:  ending = "rd"; break;

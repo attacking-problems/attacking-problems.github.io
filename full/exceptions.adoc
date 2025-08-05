@@ -152,7 +152,7 @@ thrown by the JVM, we're also allowed to throw them explicitly.
 
 [source,java]
 ----
-if(y < 14)
+if (y < 14)
     throw new NullPointerException();
 ----
 
@@ -180,8 +180,7 @@ try {
     String text = null;
     int x = text.length(); // NullPointerException
     System.out.println("This will never be printed.");
-}
-catch(NullPointerException e) {
+} catch (NullPointerException e) {
     System.out.println("Surprise! A NullPointerException!");
 }
 ----
@@ -208,8 +207,7 @@ try {
     String text = null;
     int x = text.length(); // NullPointerException
     System.out.println("This will never be printed.");
-}
-catch(Exception e) {
+} catch (Exception e) {
     System.out.println("Well, of course you got a NullPointerException!");
 }
 ----
@@ -226,12 +224,12 @@ throw either a `NullPointerException` or an
 try {
     String text = null;
     int x;
-    if(Math.random() > 0.5)
+    if (Math.random() > 0.5) {
         x = text.length(); // NullPointerException
-    else
+    } else {
         x = 5 / 0; // ArithmeticException
-}
-catch(Exception e) {
+    }
+} catch (Exception e) {
     System.out.println("You got some kind of exception!");
 }
 ----
@@ -245,15 +243,14 @@ block for each possible kind of exception.
 try {
     String text = null;
     int x;
-    if(Math.random() > 0.5)
+    if (Math.random() > 0.5) {
         x = text.length(); // NullPointerException
-    else
+    } else {
         x = 5 / 0; // ArithmeticException
-}
-catch(NullPointerException e) {
+    }
+} catch (NullPointerException e) {
     System.out.println("You used a null pointer!");
-}
-catch(ArithmeticException e) {
+} catch (ArithmeticException e) {
     System.out.println("You divided by zero!");
 }
 ----
@@ -285,10 +282,9 @@ block for `InterruptedException`.
 
 [source,java]
 ----
-try{
+try {
     Thread.sleep(100);
-}
-catch(InterruptedException  e) {
+} catch (InterruptedException  e) {
     System.out.println("Wake up!");
 }
 ----
@@ -367,7 +363,7 @@ following a `try` block. The code inside the `finally` block will be
 executed *whether or not* any exception was thrown. A `finally` block is
 often used with file I/O to close the file, which should be closed
 whether or not something went wrong in the process of reading it, as
-we'll demonstrate in <<Reading and writing text files>>.
+we'll demonstrate in <<Reading text files>>.
 
 The `finally` keyword is unusually powerful. If an exception isn't
 caught and propagates up another level, the `finally` block will be
@@ -380,8 +376,7 @@ to the following bizarre possibility.
 public static boolean neverTrue() {
     try {
         return true;
-    }
-    finally {
+    } finally {
         return false;
     }
 }
@@ -475,7 +470,7 @@ include::{programsdir}/QuickCalculator.java[lines=1..12]
 
 [source, java]
 ----
-include::{programsdir}/QuickCalculator.java[lines=13..28]
+include::{programsdir}/QuickCalculator.java[lines=13..27]
 ----
 <.> Here we have a `try` block enclosing the code where the operations
 occur.
@@ -508,10 +503,11 @@ This method takes in an array of `int` values and prints them all out.
 public static void exceptionalArrayPrint(int[] array) {
     try {
         int i = 0;
-        while(true)
-            System.out.print(array[i++] + " ");
-    }
-    catch(ArrayIndexOutOfBoundsException e) {}
+        while (true) {
+            System.out.print(array[i] + " ");
+            ++i;
+        }
+    } catch (ArrayIndexOutOfBoundsException e) {}
 }
 ----
 
@@ -578,49 +574,55 @@ the component is out of range, an appropriate exception will be thrown.
 ----
 public static Color increaseRed(Color color)
     throws ColorOverflowException {
-    if(color.getRed() + 5 > 255)
+    if (color.getRed() + 5 > 255) {
         throw new ColorOverflowException("Red: " + (color.getRed() + 5));
-    else
+    } else {
         return new Color(color.getRed() + 5, color.getGreen(), color.getBlue());
+    }
 }
 
 public static Color increaseGreen(Color color)
     throws ColorOverflowException {
-    if(color.getGreen() + 5 > 255)
+    if (color.getGreen() + 5 > 255) {
         throw new ColorOverflowException("Green: " + (color.getGreen() + 5));
-    else
+    } else {
         return new Color(color.getRed(), color.getGreen() + 5, color.getBlue());
+    }
 }
 
 public static Color increaseBlue(Color color)
     throws ColorOverflowException {
-    if(color.getBlue() + 5 > 255)
+    if (color.getBlue() + 5 > 255) {
         throw new ColorOverflowException("Blue: " + (color.getBlue() + 5));
-    else
+    } else {
         return new Color(color.getRed(), color.getGreen(), color.getBlue() + 5);
+    }
 }
 
 public static Color decreaseRed(Color color) throws ColorUnderflowException {
-    if(color.getRed() - 5 < 0)
+    if (color.getRed() - 5 < 0) {
         throw new ColorUnderflowException("Red: " + (color.getRed() - 5));
-    else
+    } else {
         return new Color(color.getRed() - 5, color.getGreen(), color.getBlue());
+    }
 }
 
 public static Color decreaseGreen(Color color)
     throws ColorUnderflowException {
-    if(color.getGreen() - 5 < 0)
+    if (color.getGreen() - 5 < 0) {
         throw new ColorUnderflowException("Green: " + (color.getGreen() - 5));
-    else
+    } else {
         return new Color(color.getRed(), color.getGreen() - 5, color.getBlue());
+    }
 }
 
 public static Color decreaseBlue(Color color)
     throws ColorUnderflowException {
-    if(color.getBlue() - 5 < 0)
+    if (color.getBlue() - 5 < 0) {
         throw new ColorUnderflowException("Blue: " + (color.getBlue() - 5));
-    else
+    } else {
         return new Color(color.getRed(), color.getGreen(), color.getBlue() - 5);
+    }
 }
 ----
 
@@ -636,7 +638,7 @@ public static Color changeColor(Color color) {
         "red, green, or blue in your color.");
         Scanner in = new Scanner(System.in);
     try {
-        switch(in.next().trim().charAt(0)) {
+        switch (in.next().trim().charAt(0)) {
             case 'R': color = increaseRed(color); break;
             case 'G': color = increaseGreen(color); break;
             case 'B': color = increaseBlue(color); break;
@@ -644,11 +646,9 @@ public static Color changeColor(Color color) {
             case 'g': color = decreaseGreen(color); break;
             case 'b': color = decreaseBlue(color); break;
         }
-    }
-    catch(ColorOverflowException e) {
+    } catch (ColorOverflowException e) {
         System.out.println(e);
-    }
-    catch(ColorUnderflowException e) {
+    } catch (ColorUnderflowException e) {
         System.out.println(e);
     }
     return color;
@@ -680,7 +680,7 @@ as follows.
 [source,java]
 ----
     try {
-        switch(in.next().trim().charAt(0)) {
+        switch (in.next().trim().charAt(0)) {
             case 'R': color = increaseRed(color); break;
             case 'G': color = increaseGreen(color); break;
             case 'B': color = increaseBlue(color); break;
@@ -688,8 +688,7 @@ as follows.
             case 'g': color = decreaseGreen(color); break;
             case 'b': color = decreaseBlue(color); break;
         }
-    }
-    catch(ColorOverflowException | ColorUnderflowException e) {
+    } catch (ColorOverflowException | ColorUnderflowException e) {
         System.out.println(e);
     }
 ----
@@ -744,7 +743,7 @@ and react appropriately if there's a problem.
 
 [source, java]
 ----
-include::{programsdir}/Henchman.java[lines=1..13]
+include::{programsdir}/Henchman.java[lines=1..12]
 ----
 <.> To burgle a bank, one must create a `Henchman` object then pass a `Bank`
 object into its `burgle()` method.
@@ -759,7 +758,7 @@ at any point, the following `catch` blocks will deal with it.
 
 [source, java]
 ----
-include::{programsdir}/Henchman.java[lines=14..35]
+include::{programsdir}/Henchman.java[lines=13..30]
 ----
 <.> If a `BurglarAlarmException` happens, the henchman is forced to run
 away.
@@ -904,12 +903,10 @@ public static int magic(String value) {
     try {
         int x = Integer.parseInt(value);
         return x;
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
         System.out.println("Some exception occurred.");
         return 0;
-    }
-    finally {
+    } finally {
         return -1;
     }
 }
@@ -921,11 +918,9 @@ segment of code fail to compile?
 ----
 try{
     Thread.sleep(1000);
-}
-catch(Exception e) {
+} catch (Exception e) {
     System.out.println("Exception occurred!");
-}
-catch(InterruptedException e) {
+} catch (InterruptedException e) {
     System.out.println("Woke up early!");
 }
 ----
@@ -936,8 +931,7 @@ Java.
 ----
 try {
     throw new NullPointerException();
-}
-finally {
+} finally {
     throw new ArrayIndexOutOfBoundsException();
 }
 ----

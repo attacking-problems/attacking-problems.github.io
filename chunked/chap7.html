@@ -455,7 +455,7 @@ options. Static method <code>showOptionDialog()</code> creates such a dialog. Se
 <p>An input dialog is useful for obtaining data provided by the user.
 Static method <code>showInputDialog()</code> creates such a dialog. The user can
 input a <code>String</code> that might represent a number, a name, or any
-arbitrary text. See <a href="#inputDialogFigure" class="target-missing">[inputDialogFigure]</a> for an
+arbitrary text. See <a href="chap7.html#inputDialogTextFigure">Figure 7.7</a> for an
 example.</p>
 </dd>
 </dl>
@@ -681,11 +681,12 @@ to generate a dialog for such an interaction.</p>
             <span class="n">question</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_NO_OPTION</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">message</span><span class="o">;</span>     
         <span class="c1">// Response is YES_OPTION for yes, NO_OPTION for no</span>
-        <span class="k">if</span><span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span>
-            <span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">NO_OPTION</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">))</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span>
+            <span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">NO_OPTION</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"You're right!"</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"Sorry, that's incorrect."</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
     <span class="o">}</span>   
@@ -763,19 +764,20 @@ response for correctness and displays a suitable message.</p>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>     
         <span class="nc">String</span> <span class="n">title</span> <span class="o">=</span> <span class="s">"Capital Quiz"</span><span class="o">;</span>
         <span class="nc">String</span> <span class="n">country</span> <span class="o">=</span> <span class="s">"Azerbaijan"</span><span class="o">;</span>
-        <span class="nc">String</span><span class="o">[]</span> <span class="n">capitals</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Bujumbura"</span><span class="o">,</span><span class="s">"Baku"</span><span class="o">,</span> <span class="s">"Moroni"</span><span class="o">};</span>
-        <span class="kt">int</span> <span class="n">correct</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">//Baku is the correct answer        </span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">capitals</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Bujumbura"</span><span class="o">,</span> <span class="s">"Baku"</span><span class="o">,</span> <span class="s">"Moroni"</span><span class="o">};</span>
+        <span class="kt">int</span> <span class="n">correct</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// Baku is the correct answer        </span>
         <span class="nc">String</span> <span class="n">question</span> <span class="o">=</span> <span class="s">"Select the capital of "</span> <span class="o">+</span> <span class="n">country</span> <span class="o">+</span> <span class="s">"."</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showOptionDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">question</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">PLAIN_MESSAGE</span><span class="o">,</span>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">QUESTION_MESSAGE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">capitals</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-        <span class="c1">//Response is 0, 1, or 2 for the three options</span>
+        <span class="c1">// Response is 0, 1, or 2 for the three options</span>
         <span class="nc">String</span> <span class="n">message</span><span class="o">;</span>     
-        <span class="k">if</span><span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="n">correct</span><span class="o">)</span> 
+        <span class="k">if</span> <span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="n">correct</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"You're right!"</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"Sorry, the capital of "</span> <span class="o">+</span> <span class="n">country</span> <span class="o">+</span>
 				<span class="s">" is "</span> <span class="o">+</span> <span class="n">capitals</span><span class="o">[</span><span class="n">correct</span><span class="o">]</span> <span class="o">+</span> <span class="s">"."</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>        
     <span class="o">}</span>   
@@ -900,10 +902,11 @@ and report back to the user.</p>
             <span class="n">query</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">QUESTION_MESSAGE</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">response</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="nc">String</span> <span class="n">message</span><span class="o">;</span>         
-        <span class="k">if</span><span class="o">(</span><span class="n">answer</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">answer</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"You're right!"</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"Sorry, that's incorrect."</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <i class="conum" data-value="4"></i><b>(4)</b>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
     <span class="o">}</span>   
@@ -978,10 +981,11 @@ elements and asks the user to select the heaviest.</p>
         <span class="nc">String</span> <span class="n">response</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showInputDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">query</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">QUESTION_MESSAGE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">elements</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">message</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Copernicium"</span><span class="o">))</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Copernicium"</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"You're right!"</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s">"Sorry, correct answer: Copernicium."</span><span class="o">;</span>               
+        <span class="o">}</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">title</span><span class="o">,</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
     <span class="o">}</span>   
@@ -1065,13 +1069,14 @@ detail.</p>
             <span class="nc">String</span> <span class="n">input</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showInputDialog</span><span class="o">(</span><span class="s">"Enter a DNA sequence"</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">input</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Do you want to continue?"</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">isValid</span><span class="o">(</span><span class="n">input</span><span class="o">))</span> <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="k">if</span> <span class="o">(</span><span class="n">isValid</span><span class="o">(</span><span class="n">input</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
                 <span class="n">displayCodons</span><span class="o">(</span><span class="n">input</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="k">else</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="n">message</span> <span class="o">=</span> <span class="s">"Invalid DNA Sequence.\n"</span> <span class="o">+</span> <span class="n">message</span><span class="o">;</span>
-            <span class="n">continueProgram</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showConfirmDialog</span><span class="o">(</span><i class="conum" data-value="6"></i><b>(6)</b>
+            <span class="o">}</span>
+            <span class="n">continueProgram</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showConfirmDialog</span><span class="o">(</span> <i class="conum" data-value="6"></i><b>(6)</b>
                 <span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="s">"Alert"</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_NO_OPTION</span><span class="o">);</span>            
-        <span class="o">}</span> <span class="k">while</span><span class="o">(</span><span class="n">continueProgram</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">continueProgram</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span><span class="o">);</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Thanks for using the Codon Extractor!"</span><span class="o">);</span>  
     <span class="o">}</span></code></pre>
 </div>
@@ -1112,10 +1117,11 @@ the codons in the sequence.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">(</span><span class="nc">String</span> <span class="n">dna</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">String</span> <span class="n">validBases</span> <span class="o">=</span> <span class="s">"ACGT"</span><span class="o">;</span>                
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="kt">char</span> <span class="n">base</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">validBases</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">base</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>          
-                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">//base not in "ACGT"</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">validBases</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">base</span><span class="o">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>         
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// base not in "ACGT"</span>
+            <span class="o">}</span>
         <span class="o">}</span>        
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
     <span class="o">}</span></code></pre>
@@ -1137,14 +1143,16 @@ user.</p>
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">displayCodons</span><span class="o">(</span><span class="nc">String</span> <span class="n">dna</span><span class="o">)</span> <span class="o">{</span>                
         <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="c1">// Get as many complete codons as possible</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">3</span><span class="o">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">message</span> <span class="o">+=</span> <span class="s">"\n"</span> <span class="o">+</span> <span class="n">dna</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="c1">// 1-2 bases might be left over</span>
         <span class="kt">int</span> <span class="n">remaining</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">3</span><span class="o">;</span>        
-        <span class="k">if</span><span class="o">(</span><span class="n">remaining</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">remaining</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">+=</span> <span class="s">"\n"</span><span class="o">+</span> <span class="n">dna</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">+</span> <span class="s">"**"</span><span class="o">;</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">remaining</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">remaining</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">message</span> <span class="o">+=</span> <span class="s">"\n"</span><span class="o">+</span> <span class="n">dna</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">2</span><span class="o">,</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">+</span> <span class="s">"*"</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="n">message</span> <span class="o">=</span> <span class="s">"DNA length: "</span> <span class="o">+</span> <span class="n">dna</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n\nCodons: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">;</span>
         <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="s">"Codons in DNA"</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
@@ -1252,7 +1260,7 @@ you would use the five different message type constants in
 we could have coded the line&nbsp;checking to see if the user had correctly determined whether the number was odd or even as follows.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span>
    <span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">))</span></code></pre>
 </div>
 </div>
@@ -1261,7 +1269,7 @@ we could have coded the line&nbsp;checking to see if the user had correctly dete
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span><span class="o">(</span><span class="n">response</span> <span class="o">!=</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">response</span> <span class="o">!=</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1368,7 +1376,7 @@ There is, of course, no guarantee that an answer is correct just because it’s 
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

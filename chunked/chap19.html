@@ -692,8 +692,7 @@ allocating a fixed-size array.</p>
             <span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
             <span class="k">try</span> <span class="o">{</span>
                 <span class="n">names</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
                 <span class="n">names</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">names</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">names</span><span class="o">.</span><span class="na">length</span><span class="o">*</span><span class="mi">2</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
                 <span class="n">names</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">;</span>
             <span class="o">}</span>
@@ -843,12 +842,12 @@ exception.</p>
         <span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
             <span class="n">names</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">count</span><span class="o">,</span> <span class="n">line</span><span class="o">);</span>       <i class="conum" data-value="1"></i><b>(1)</b>
-            <span class="n">count</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">count</span><span class="o">;</span>
         <span class="o">}</span>
         
         <span class="n">names</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>             <i class="conum" data-value="2"></i><b>(2)</b>
         
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">names</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1257,7 +1256,7 @@ node.</td>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fillArray</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>     
         <span class="nc">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
             <span class="o">++</span><span class="n">position</span><span class="o">;</span>
             <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
@@ -1630,7 +1629,7 @@ short.</p>
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">expression</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> 				<i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">TermStack</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TermStack</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">expression</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">expression</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>	<i class="conum" data-value="2"></i><b>(2)</b>
             <span class="kt">char</span> <span class="n">term</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> 	
             <span class="k">if</span> <span class="o">(</span><span class="n">term</span> <span class="o">&gt;=</span> <span class="sc">'0'</span><span class="o">&amp;&amp;</span> <span class="n">term</span> <span class="o">&lt;=</span> <span class="sc">'9'</span><span class="o">)</span> <span class="o">{</span>   			<i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">term</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">));</span>
@@ -2058,7 +2057,7 @@ the type parameter <code>T</code> on the outer class as well as the nested class
         <span class="n">temp</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
         <span class="n">temp</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
         <span class="n">head</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="n">size</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">size</span><span class="o">;</span>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span>
@@ -2533,7 +2532,7 @@ default value.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">greaterOrEqual</span><span class="o">(</span><span class="nc">Term</span> <span class="n">term</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">isOperator</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">switch</span><span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
+            <span class="k">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
                 <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span>
                 <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>              
                 <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span>
@@ -2597,7 +2596,7 @@ is the client code that parses the input.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">expression</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>	<i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="java">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">expression</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>	<i class="conum" data-value="1"></i><b>(1)</b>
             <span class="kt">char</span> <span class="n">term</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">term</span> <span class="o">&gt;=</span> <span class="sc">'0'</span> <span class="o">&amp;&amp;</span> <span class="n">term</span> <span class="o">&lt;=</span> <span class="sc">'9'</span><span class="o">)</span> <span class="o">{</span>			<i class="conum" data-value="2"></i><b>(2)</b>
                 <span class="n">postfix</span> <span class="o">+=</span> <span class="n">term</span><span class="o">;</span>        
@@ -2710,21 +2709,21 @@ implementation in <a href="chap19.html#LinkedListQueueProgram">Program 19.15</a>
         <span class="nc">Thread</span><span class="o">[]</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">[</span><span class="no">THREADS</span><span class="o">];</span>
 		<span class="nc">LinkedListQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedListQueue</span><span class="o">();</span> <i class="conum" data-value="1"></i><b>(1)</b>
 		
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UseLinkedListQueue</span><span class="o">(</span><span class="n">queue</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>	<i class="conum" data-value="2"></i><b>(2)</b>
         <span class="o">}</span>
         
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
 			<span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span> 	<i class="conum" data-value="3"></i><b>(3)</b>
         <span class="o">}</span>
                     
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UseLinkedListQueue</span><span class="o">(</span><span class="n">queue</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">start</span><span class="o">();</span>	<i class="conum" data-value="4"></i><b>(4)</b>
         <span class="o">}</span>
  
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">THREADS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">threads</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">join</span><span class="o">();</span>
         <span class="o">}</span>
         
@@ -2892,8 +2891,9 @@ method is called anyway.</p>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
     <span class="o">}</span>
@@ -3032,12 +3032,11 @@ out the contents of the list.</td>
 	<span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 	         <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> 	         <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="k">try</span> <span class="o">{</span> 
 				<span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> 		         <i class="conum" data-value="4"></i><b>(4)</b>
-			<span class="o">}</span>
-            <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="o">}</span>
         <span class="o">}</span>
@@ -3346,7 +3345,7 @@ How much slower are the adds to the <code>Vector&lt;Integer&gt;</code> container
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

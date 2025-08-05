@@ -2,20 +2,22 @@ public class Vault {
 	private boolean isOpen = false;
 	private Loot loot = new Loot();
 	public Loot getLoot() throws WatchmanException {
-		if(Math.random() > 0.9)
+		if (Math.random() > 0.9) {
 			throw new WatchmanException();
-		else if(isOpen)
+		} else if (isOpen) {
 			return loot;
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	public void open() throws LockPickFailException, WatchmanException {
-		if(Math.random() > 0.9)
+		if (Math.random() > 0.9) {
 			throw new WatchmanException();
-		else if(Math.random() > 0.75)
+		} else if (Math.random() > 0.75) {
 			throw new LockPickFailException();
-		else
+		} else {
 			isOpen = true;	
+		}
 	}
 }

@@ -10,8 +10,7 @@ public class MathExpression {
             thread2.join();
             System.out.println("Value of expression: " +
                     thread1.getValue()*thread2.getValue());
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             System.out.println("A thread didn't finish!");
         }        
     }

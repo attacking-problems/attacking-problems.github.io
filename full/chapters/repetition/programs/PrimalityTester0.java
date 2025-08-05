@@ -6,12 +6,15 @@ public class PrimalityTester0 {
         System.out.print("Please enter a number: ");
         long number = in.nextLong();        
         boolean prime = true;
-        for(long i = 2; i < number && prime; i++)
-            if(number % i  ==  0)
+        for (long i = 2; i < number && prime; ++i) {
+            if (number % i  ==  0) {
                 prime = false;
-        if(prime)
+            }
+        }
+        if (prime) {
             System.out.println(number + " is prime.");
-        else
+        } else {
             System.out.println(number + " is not prime.");
+        }
     }
 }

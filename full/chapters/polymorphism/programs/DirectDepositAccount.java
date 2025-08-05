@@ -1,4 +1,5 @@
 import java.util.Calendar;
+
 public class DirectDepositAccount extends CheckingAccount {
     protected Calendar lastDirectDeposit;
     
@@ -14,10 +15,11 @@ public class DirectDepositAccount extends CheckingAccount {
         lastDirectDeposit.get(Calendar.YEAR)) +
         (current.get(Calendar.MONTH) -
         lastDirectDeposit.get(Calendar.MONTH));
-        if(months <= 1)
+        if (months <= 1) {
             return 0;
-        else
+        } else {
             return super.getFee();
+        }
     }
     
     public void directDeposit(double amount) throws InterruptedException {

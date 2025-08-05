@@ -1,7 +1,7 @@
 public class Human {    
     private String name;
     private String DOB;
-    private int height; //in cm 
+    private int height; // in cm 
 
     public static void main(String[] args) {
         Human einstein = new Human();

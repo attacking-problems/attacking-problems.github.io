@@ -1000,10 +1000,11 @@ maximum of two <code>int</code> values.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Max</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="k">return</span> <span class="n">b</span><span class="o">;</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1043,10 +1044,12 @@ for situations where a value must always be above a certain threshold.</p>
 
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
         <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">result</span><span class="o">;</span>        
     <span class="o">}</span>    
 <span class="o">}</span></code></pre>
@@ -1341,7 +1344,7 @@ values with the same length). By subtracting the lengths of the two <code>String
 values, the lambda expression returns a negative number if the first <code>String</code>
 has a length shorter than the second, a positive number if the first <code>String</code>
 has a length longer than the second, and zero if the two <code>String</code> values have
-the same length. Although unintuitive, this approach using subtraction can be
+the same length. Although unintuitive, this approach of subtraction can be
 used for many kinds of comparisons.</p>
 </div>
 <div class="paragraph">
@@ -1506,10 +1509,12 @@ as the minimum.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">minimum</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 <span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span> <span class="c1">// Use of local variable</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 <span class="o">};</span></code></pre>
 </div>
@@ -1554,10 +1559,12 @@ over the course of the program.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">minimum</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 <span class="nc">Operator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">minimum</span><span class="o">;</span> <span class="c1">// Use of local variable</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
     <span class="n">minimum</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span> <span class="c1">// Reassignment of local variable</span>
     <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 <span class="o">};</span></code></pre>
@@ -2852,7 +2859,7 @@ performs the same task?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

@@ -8,7 +8,7 @@ public class LinkedListWithTail {
     private Node tail = null;
     private int size = 0;
     
-    public void addFirst(String value) { //<.>
+    public void addFirst(String value) { // <.>
         Node temp = new Node();
         temp.value = value;
         temp.next = head;
@@ -19,7 +19,7 @@ public class LinkedListWithTail {
         ++size;
     }
     
-    public void addLast(String value) { //<.>
+    public void addLast(String value) { // <.>
         Node temp = new Node();
         temp.value = value;        
         if (tail == null) {

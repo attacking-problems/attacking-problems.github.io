@@ -434,10 +434,11 @@ we can generate a method that computes the factorial function.
 [source, java]
 ----
 public static long factorial(int n) {
-	if(n == 0)     // Base case
+	if (n == 0) { // Base case
 		return 1;
-	else            // Recursive case
+    } else {      // Recursive case
 		return n * factorial(n-1);
+    }
 }
 ----
 
@@ -473,10 +474,11 @@ method in Java.
 [source, java]
 ----
 public static int fibonacci(int n) {
-    if(n == 0 || n == 1)  // Base cases
+    if (n == 0 || n == 1) { // Base cases
         return 1;
-    else                  // Recursive case
+    } else {                // Recursive case
         return fibonacci(n-1) + fibonacci(n-2);
+    }
 }
 ----
 
@@ -501,11 +503,12 @@ the recursion and store the result in the array.
 [source, java]
 ----
 public static int fibonacci(int n, int[] results) {
-    if(results[n] == 0) {
-        if(n == 0 || n == 1)
+    if (results[n] == 0) {
+        if (n == 0 || n == 1) {
             results[n] = 1;
-        else
+        } else {
             results[n] = fibonacci(n-1) + fibonacci(n-2);
+        }
     }
     return results[n];
 }
@@ -609,10 +612,11 @@ value.
 [source, java]
 ----
 public static double power(double a, int n) {
-    if(n == 1)    // Base case
+    if (n == 1) { // Base case
         return a;
-    else          // Recursive case
+    } else        // Recursive case
         return a*power(a, n - 1);
+    }
 }
 ----
 
@@ -649,9 +653,9 @@ size of _n_ in half at each recursive step instead of only reducing _n_ by 1.
 [source, java]
 ----
 public static double power(double a, int n) {
-    if(n == 1)    // Base case
+    if (n == 1) { // Base case
         return a;
-    else {          // Recursive case
+    } else {      // Recursive case
         double temp = power(a, n/2);
         return temp*temp;
     }
@@ -725,7 +729,7 @@ keeps track of the position it's swapping in the array with the
 [source, java]
 ----
 public static void reverse(int[] array, int position) {
-	if(position < array.length/2) {
+	if (position < array.length/2) {
 		int temp = array[position];
 		array[position] = array[array.length - position - 1];
 		array[array.length - position - 1] = temp;
@@ -769,13 +773,15 @@ sort algorithm.
 [source, java]
 ----
 public static void mergeSort(int[] array) {
-	if(array.length > 1) {
+	if (array.length > 1) {
 		int[] a = new int[array.length/2];
 		int[] b = new int[array.length - a.length];
-		for(int i = 0; i < a.length; ++i)
+		for (int i = 0; i < a.length; ++i) {
 			a[i] = array[i];
-		for(int i = 0; i < b.length; ++i)
+        }
+		for (int i = 0; i < b.length; ++i) {
 			b[i] = array[a.length + i];
+        }
 		mergeSort(a);
 		mergeSort(b);
 		merge(array, a, b);
@@ -801,15 +807,16 @@ much of the real work in the algorithm.
 public static void merge(int[] array, int[] a, int[] b) {
     int aIndex = 0;
     int bIndex = 0;
-    for(int i = 0; i < array.length; ++i) {
-        if(bIndex >= b.length)
+    for (int i = 0; i < array.length; ++i) {
+        if (bIndex >= b.length) {
             array[i] = a[aIndex++];
-        else if(aIndex >= a.length)
+        } else if (aIndex >= a.length) {
             array[i] = b[bIndex++];
-        else if(a[aIndex] <= b[bIndex])
+        } else if (a[aIndex] <= b[bIndex]) {
             array[i] = a[aIndex++];
-        else
+        } else {
             array[i] = b[bIndex++];
+        }
     }
 }
 ----
@@ -945,12 +952,12 @@ root is the starting point for a tree data structure, it's almost
 always drawn at the top.
 
 [[figure-tree_visualization]]
-.Visualization of a tree. The root is shown in light red. The leaves are shown in blue. The interior nodes are show in light purple.
+.Visualization of a tree. The root (containing `"on"`) is shown in light red. The leaves (containing `"and"`, `"fortune"`, `"life"`, `"slender"`, and `"what"`) are shown in blue. The interior nodes (containing `"do"`, `"hang"`, and `"threads"`) are show in light purple.
 image::treevisualization.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
 
 Abstractly, a tree is either empty (the base case) or contains
-references to 0 or more other trees (the recursive case). Trees are
+references to zero or more other trees (the recursive case). Trees are
 useful for storing and retrieving sorted data efficiently. Some
 applications include dictionaries, catalogs, ordered lists, and any
 other sorted set of objects. For these purposes, we can define an
@@ -1187,7 +1194,7 @@ squares in the four directions, we call our own method recursively.
 
 [source, java]
 ----
-include::{programsdir}/MazeSolver.java[lines=1..14]
+include::{programsdir}/MazeSolver.java[lines=1..15]
 ----
 <.> The `MazeSolver` class needs a two-dimensional array of `char` values to
 store a representation of the maze.
@@ -1200,7 +1207,7 @@ symbols if the maze is solvable.
 
 [source, java]
 ----
-include::{programsdir}/MazeSolver.java[lines=16..28]
+include::{programsdir}/MazeSolver.java[lines=17..30]
 ----
 <.> The constructor for `MazeSolver` creates a `Scanner`. It assumes that
 the file describing the maze is redirected from standard input, although
@@ -1217,7 +1224,7 @@ it reads, it prints out each line to the screen, showing the initial
 
 [source, java]
 ----
-include::{programsdir}/MazeSolver.java[lines=30..36]
+include::{programsdir}/MazeSolver.java[lines=32..39]
 ----
 
 The `print()` method is a utility method that prints out the maze. It
@@ -1226,7 +1233,7 @@ that row.
 
 [source, java]
 ----
-include::{programsdir}/MazeSolver.java[lines=38..56]
+include::{programsdir}/MazeSolver.java[lines=41..59]
 ----
 
 The heart of the solution is the recursive method `solve()`. The
@@ -1400,7 +1407,7 @@ directly into the list `futures`.
 
 [source, java]
 ----
-include::{programsdir}/RootFutures.java[lines=21..34]
+include::{programsdir}/RootFutures.java[lines=21..33]
 ----
 <.> To collect the values from each future, we iterate
 through the list of futures with an enhanced `for` loop.

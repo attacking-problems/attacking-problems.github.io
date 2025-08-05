@@ -670,7 +670,9 @@ the <code>Control</code> key and press <code>C</code>) because it won’t end ot
 all infinite loops are this obvious. A programmer will not usually use
 <code>true</code> as the condition of a loop, but doing so is not always wrong.
 Some loops are expected to continue for quite some time with no definite
-end. To leave a loop abruptly, you can use the <code>break</code> command.</p>
+end. To leave a loop abruptly, you can use the <code>break</code> command. Note that the
+<code>break</code> command exists in many languages, but it should be used rarely, if at
+all, to leave a loop.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -690,9 +692,10 @@ repeats more than once.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"the loop "</span><span class="o">);</span>
-    <span class="n">counter</span><span class="o">++;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">counter</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">)</span>
+    <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">counter</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"is on fire!"</span><span class="o">);</span></code></pre>
 </div>
@@ -707,7 +710,7 @@ could have written equivalent code as follows.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"the loop "</span><span class="o">);</span>
-    <span class="n">counter</span><span class="o">++;</span>
+    <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"is on fire!"</span><span class="o">);</span></code></pre>
 </div>
@@ -761,12 +764,13 @@ definition of a number written in base 2.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a base 10 number: "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="kt">int</span> <span class="n">power</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">power</span> <span class="o">&lt;=</span> <span class="n">number</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">power</span> <span class="o">&lt;=</span> <span class="n">number</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">power</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">power</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">power</span> <span class="o">&gt;</span> <span class="n">number</span><span class="o">)</span>
+        <span class="o">}</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">power</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">power</span> <span class="o">&gt;</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-            <span class="k">else</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
                 <span class="n">number</span> <span class="o">-=</span> <span class="n">power</span><span class="o">;</span>
             <span class="o">}</span>
@@ -812,7 +816,7 @@ correct sequence.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"the loop "</span><span class="o">);</span>
-    <span class="n">counter</span><span class="o">++;</span>
+    <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"is on fire!"</span><span class="o">);</span></code></pre>
 </div>
@@ -832,7 +836,7 @@ follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"the loop "</span><span class="o">);</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"is on fire!"</span><span class="o">);</span></code></pre>
@@ -867,13 +871,13 @@ the loop, which you often do. You can think of the first part of the
 <code>for</code> loop header as the starting point, the second part as the ending
 point, and the third part as how you get from the start to the end. Many
 beginning programmers get stuck on the idea that every <code>for</code> loop starts
-with <code>int i = 0</code> and ends with <code>i++</code>. While this pattern is often true,
+with <code>int i = 0</code> and ends with <code>++i</code>. While this pattern is often true,
 there are many other ways to use a for loop. For example, we could print
 the powers of 2 that are less than 1000.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">;</span> <span class="n">i</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">;</span> <span class="n">i</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -910,10 +914,11 @@ than the length of the <code>String</code>.</p>
 <span class="nc">String</span> <span class="n">lower</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">();</span>
 <span class="kt">char</span> <span class="n">latest</span> <span class="o">=</span> <span class="sc">' '</span><span class="o">;</span>
 <span class="kt">char</span> <span class="n">c</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">lower</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">latest</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The latest character in the alphabet from your message is: '"</span>
 	<span class="o">+</span> <span class="n">latest</span> <span class="o">+</span> <span class="s">"'."</span><span class="o">);</span></code></pre>
@@ -945,12 +950,14 @@ going to be the latest letter, no matter what. We can rewrite our
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">lower</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">latest</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">latest</span> <span class="o">==</span> <span class="sc">'z'</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">latest</span> <span class="o">==</span> <span class="sc">'z'</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -965,10 +972,11 @@ following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">latest</span> <span class="o">!=</span> <span class="sc">'z'</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lower</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">latest</span> <span class="o">!=</span> <span class="sc">'z'</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">lower</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">'a'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">'z'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">latest</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">latest</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1021,13 +1029,16 @@ must be prime. Here is this basic solution.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a number: "</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLong</span><span class="o">();</span>        
         <span class="kt">boolean</span> <span class="n">prime</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">prime</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">prime</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">prime</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is prime."</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is not prime."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1056,13 +1067,16 @@ can do half the checking with a few simple modifications.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a number: "</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLong</span><span class="o">();</span>        
         <span class="kt">boolean</span> <span class="n">prime</span> <span class="o">=</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">;</span>      
-        <span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">)</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">number</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">prime</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">prime</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">prime</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is prime."</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is not prime."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1104,13 +1118,16 @@ the square root of <em>n</em>, which will save much more time.</p>
         <span class="kt">long</span> <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLong</span><span class="o">();</span>        
         <span class="kt">boolean</span> <span class="n">prime</span> <span class="o">=</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">;</span>      
         <span class="kt">long</span> <span class="n">root</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">root</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">)</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">root</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="n">i</span>  <span class="o">==</span>  <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">prime</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">prime</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">prime</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is prime."</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" is not prime."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1198,17 +1215,19 @@ manipulations on it to get the reverse complement.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a DNA sequence: "</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">sequence</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>              
         <span class="nc">String</span> <span class="n">complement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> 		<i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
                 <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"T"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"G"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"C"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"A"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="o">}</span>       
+        <span class="o">}</span>
         <span class="nc">String</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="c1">// Reverse the complement</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">complement</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>	<i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">complement</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">reverseComplement</span> <span class="o">+=</span> <span class="n">complement</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1246,13 +1265,14 @@ a separate step.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a DNA sequence: "</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">sequence</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>              
         <span class="nc">String</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
                 <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"T"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"G"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"C"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"A"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
             <span class="o">}</span>               
+        <span class="o">}</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1293,13 +1313,14 @@ calling the <code>toString()</code> method on the <code>StringBuilder</code> obj
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Please enter a DNA sequence: "</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">sequence</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>              
         <span class="nc">StringBuilder</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
                 <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"T"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"G"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"C"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
                 <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"A"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>               
+            <span class="o">}</span>
+        <span class="o">}</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1350,7 +1371,7 @@ as follows.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="k">do</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">);</span>
-    <span class="n">x</span><span class="o">++;</span>
+    <span class="o">++</span><span class="n">x</span><span class="o">;</span>
 <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1362,7 +1383,7 @@ as follows.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">);</span>
-    <span class="n">x</span><span class="o">++;</span>
+    <span class="o">++</span><span class="n">x</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1410,8 +1431,8 @@ repeating the process.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">number</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">factor</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="o">;</span> <span class="n">factor</span><span class="o">++)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">number</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">factor</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="o">;</span> <span class="n">factor</span><span class="o">++)</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" x "</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">+</span>
             <span class="s">" = "</span> <span class="o">+</span> <span class="n">number</span><span class="o">*</span><span class="n">factor</span><span class="o">);</span>
     <span class="o">}</span>
@@ -1451,10 +1472,11 @@ triangular numbers, where <em>n</em> is specified by the user.</p>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"How many triangular numbers? "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="kt">int</span> <span class="n">sum</span><span class="o">;</span>                        
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>            
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">sum</span> <span class="o">+=</span> <span class="n">j</span><span class="o">;</span>
+            <span class="o">}</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1482,7 +1504,7 @@ that we can keep track of the previous triangular number and add
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"How many triangular numbers? "</span><span class="o">);</span>
         <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="kt">int</span> <span class="n">triangular</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>                     
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>         
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>         
             <span class="n">triangular</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">triangular</span><span class="o">);</span>
         <span class="o">}</span>
@@ -1524,8 +1546,9 @@ a counter.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-<span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span><span class="o">);</span></code></pre>
+<span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1537,8 +1560,9 @@ subtle, as in the following code.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Half a step forward, half a step back..."</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Half a step forward, half a step back..."</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1571,8 +1595,9 @@ billion increments instead of the expected 10 decrements.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Blast off!"</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1612,8 +1637,9 @@ loop that iterates 10 times is below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1623,8 +1649,9 @@ that incorrectly iterates 9 times.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1632,8 +1659,9 @@ that incorrectly iterates 9 times.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1713,7 +1741,7 @@ statement is empty. Thus, the following is a legal (but infinite) loop.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">);</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="n">i</span><span class="o">--;</span>
+    <span class="o">--</span><span class="n">i</span><span class="o">;</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ready or not, here I come!"</span><span class="o">);</span></code></pre>
 </div>
@@ -1738,7 +1766,7 @@ inserted after the loop header.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--);</span> <span class="o">{</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">);</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ready or not, here I come!"</span><span class="o">);</span></code></pre>
@@ -1807,14 +1835,14 @@ also declares a <code>boolean</code> and a <code>char</code> we’ll use for inp
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter the DNA sequence you wish to search in: "</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">sequence</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">valid</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">valid</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="n">c</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">'A'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'C'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'G'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'T'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+                <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">'A'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'C'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'G'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'T'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Invalid DNA sequence!"</span><span class="o">);</span>
                     <span class="n">valid</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-        <span class="o">}</span> <span class="k">while</span><span class="o">(!</span><span class="n">valid</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+        <span class="o">}</span> <span class="k">while</span> <span class="o">(!</span><span class="n">valid</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1854,14 +1882,14 @@ sequences.</td>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter the subsequence you wish to search for: "</span><span class="o">);</span>
             <span class="n">subsequence</span>  <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>
             <span class="n">valid</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">valid</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>                
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">valid</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>                
                 <span class="n">c</span> <span class="o">=</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">'A'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'C'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'G'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'T'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">!=</span> <span class="sc">'A'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'C'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'G'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="sc">'T'</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Invalid DNA sequence!"</span><span class="o">);</span>
                     <span class="n">valid</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-        <span class="o">}</span> <span class="k">while</span><span class="o">(!</span><span class="n">valid</span><span class="o">);</span></code></pre>
+        <span class="o">}</span> <span class="k">while</span> <span class="o">(!</span><span class="n">valid</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1871,13 +1899,14 @@ virtually identical to the code to input <code>sequence</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="kt">int</span> <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                <span class="k">if</span><span class="o">(</span><span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">))</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="k">if</span> <span class="o">(</span><span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                     <span class="k">break</span><span class="o">;</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//matches </span><i class="conum" data-value="4"></i><b>(4)</b>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Matches </span><i class="conum" data-value="4"></i><b>(4)</b>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Match found at index "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
-                    <span class="n">found</span><span class="o">++;</span>
+                    <span class="o">++</span><span class="n">found</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span></code></pre>
@@ -1915,7 +1944,7 @@ exit, using the <code>break</code> command.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>However, on the last iteration of the
+<td>On the last iteration of the
 inner <code>for</code> loop, when <code>j</code> is one less than the length of <code>subsequence</code>,
 we know that all of <code>subsequence</code> matched a part of <code>sequence</code>. As a
 result, we print out the index of <code>sequence</code> where <code>subsequence</code> started
@@ -1941,10 +1970,11 @@ customize the output based on the value of <code>found</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">        <span class="k">if</span><span class="o">(</span><span class="n">found</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java">        <span class="k">if</span> <span class="o">(</span><span class="n">found</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"One match found."</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">found</span> <span class="o">+</span> <span class="s">" matches found."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1959,12 +1989,12 @@ follows.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
-        <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="n">j</span><span class="o">++)</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Matches</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
+        <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Matches</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Match found at index "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
-            <span class="n">found</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">found</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1979,12 +2009,12 @@ matching process is done outside of the inner <code>for</code> loop.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">found</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">j</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
-        <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="n">j</span><span class="o">++);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// Matches</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
+        <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="o">++</span><span class="n">j</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// Matches</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Match found at index "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
-        <span class="n">found</span><span class="o">++;</span>
+        <span class="o">++</span><span class="n">found</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -2039,8 +2069,9 @@ integers. At its heart is a loop from the start of the range to the end.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">start</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">start</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2062,8 +2093,9 @@ output around this loop.</p>
         <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         
         <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>     
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>     
             <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">start</span><span class="o">);</span>
+        <span class="o">}</span>
         
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sum of sines: "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span>
     <span class="o">}</span>
@@ -2150,7 +2182,7 @@ before the loop, how would performance be affected by changing the head
 of the <code>for</code> loop to the following?</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">number</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">number</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">prime</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">)</span></code></pre>
 </div>
 </div>
 </li>
@@ -2163,8 +2195,7 @@ there?</p>
 print out the numbers 1 through 10. What are they?</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">--);</span>
-<span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">);</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -2177,9 +2208,11 @@ print out the numbers 1 through 10. What are they?</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
 <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
 <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-        <span class="n">count</span><span class="o">++;</span></code></pre>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">++</span><span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2327,7 +2360,7 @@ pieces run significantly faster or slower than the others?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

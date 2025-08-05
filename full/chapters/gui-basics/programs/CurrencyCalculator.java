@@ -1,8 +1,7 @@
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-public class CurrencyCalculator extends JFrame implements ActionListener {
+public class CurrencyCalculator extends JFrame {
     JTextField euroField = new JTextField ();
 	JTextField dollarField = new JTextField ();
 	JButton eurosToDollarsButton = new JButton("Convert to Dollars");
@@ -24,28 +23,19 @@ public class CurrencyCalculator extends JFrame implements ActionListener {
         panel.add(dollarsToEurosButton);         
 		add(panel);
 		
-        eurosToDollarsButton.addActionListener(this);
-        dollarsToEurosButton.addActionListener(this);
+        eurosToDollarsButton.addActionListener(e -> eurosToDollars());
+        dollarsToEurosButton.addActionListener(e -> dollarsToEuros());
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 		pack();
     }
     
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        if(source == dollarsToEurosButton)
-			dollarsToEuros();
-        else if(source == eurosToDollarsButton)
-			eurosToDollars();    
-    }
-    
     private void eurosToDollars() {        
         try {
             double value = Double.parseDouble(euroField.getText());
             dollarField.setText("" + value*EURO_TO_DOLLAR_RATE);            
-        }
-		catch(NumberFormatException e){
+        } catch (NumberFormatException e){
 			JOptionPane.showMessageDialog(null, "Euro value is incorrect.", "Format Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -54,8 +44,7 @@ public class CurrencyCalculator extends JFrame implements ActionListener {
         try {
             double value = Double.parseDouble(dollarField.getText());
             euroField.setText("" + value*DOLLAR_TO_EURO_RATE);
-        }
-		catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "Dollar value is incorrect.", "Format Error", JOptionPane.ERROR_MESSAGE);
         }        
     }

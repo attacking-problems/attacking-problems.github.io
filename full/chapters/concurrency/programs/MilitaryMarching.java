@@ -7,8 +7,7 @@ public class MilitaryMarching {
         try {
             left.join();
             right.join();
-        }
-        catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }       
     }

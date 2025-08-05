@@ -8,10 +8,11 @@ public class FactorThread extends Thread {
     }
     
     public void run() { 
-        if(lower % 2 == 0) // Only check odd numbers
-            lower++;        
-        while(lower < upper) {
-            if(Factor.NUMBER % lower == 0) {
+        if (lower % 2 == 0) { // Only check odd numbers
+            ++lower;
+        }        
+        while (lower < upper) {
+            if (Factor.NUMBER % lower == 0) {
                 System.out.println("Security code: " + (lower + Factor.NUMBER / lower));
                 return;
             }

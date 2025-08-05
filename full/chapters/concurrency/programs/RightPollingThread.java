@@ -7,8 +7,8 @@ public class RightPollingThread extends Thread {
     }
     
     public void run() { 
-        for(int i = 0; i < 10; i++) {             
-            while(!left.isDone());            
+        for (int i = 0; i < 10; ++i) {             
+            while (!left.isDone());            
             left.setDone(false);            
             System.out.print("Right ");         
             done = true;

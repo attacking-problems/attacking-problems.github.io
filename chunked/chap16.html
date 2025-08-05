@@ -716,7 +716,7 @@ of the components we’ve introduced into one program.</p>
 <div class="paragraph">
 <p>We can write an application with a GUI that contains three buttons
 labeled “This,” “That,” and “Exit.” In addition, it contains a
-text field that initially displays the text, “Text input and output area”</p>
+text field that initially displays the text “Text input and output area.”</p>
 </div>
 <div class="paragraph">
 <p>In this example the buttons are only for display. You can click each
@@ -886,7 +886,7 @@ inside of this class. Inside, we have only created an
 <code>actionPerformed()</code> method, but we could have created fields as well as
 other methods. It’s a little ugly to create a whole new class and
 instantiate it in the middle of calling the <code>addActionListener()</code>
-method, but it’s also very convenient. We need to supply an object that
+method, but it’s also convenient. We need to supply an object that
 reacts to the event exactly the way we want it to. Since one doesn’t
 exist yet, we have to create it. Of course, it’s possible to supply any
 object that implements the <code>ActionListener</code> interface, not just
@@ -894,8 +894,30 @@ instances of anonymous classes. For more information about nested
 classes, inner classes, and anonymous classes, refer to
 <a href="chap9.html#_advanced_nested_classes">Section 9.4</a> and <a href="chap10.html#_advanced_local_and_anonymous_classes">Section 10.4</a>.</p>
 </div>
+<div class="paragraph">
+<p>Anonymous classes have been part of Java since almost the beginning, but their
+syntax is clunky. Java 8 introduced lambda expressions, which can be used in
+place of anonymous classes in many cases, including making a custom
+<code>ActionListener</code>. The reason a lambda expression can be used in this situation
+is that an <code>ActionListener</code> is a functional interface, meaning that it has only
+a single method. Here’s the code from above using a lambda expression instead
+of an anonymous class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">JButton</span> <span class="n">thisButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"This"</span><span class="o">);</span>
+<span class="n">thisButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="cm">/* Code to perform an action goes here */</span> <span class="o">});</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since almost everyone uses Java 8 or higher, we prefer the lambda expression
+style for making an <code>ActionListener</code> simply because it’s more readable. The code
+itself is functionally equivalent and performs almost exactly the same actions
+inside the JVM. For more details about lambda expressions, refer to
+<a href="chap13.html#_lambda_expressions">Section 13.3.3</a>.</p>
+</div>
 <div class="exampleblock">
-<div class="title">Example 16.3 GUI with actions</div>
+<div class="title">Example 16.3 GUI with actions using anonymous classes</div>
 <div class="content">
 <div class="paragraph">
 <p>Now we can modify <a href="chap16.html#FrameWithPanelProgram">Program 16.2</a> to respond to button
@@ -903,13 +925,13 @@ clicks. When the <code>thisButton</code> button is clicked, the program will dis
 message “You can get with this.” in the text field. Similarly, when the
 <code>thatButton</code> button is clicked, the program will display “Or you can get with that.”</p>
 </div>
-<div id="FrameWithPanelAndActionsProgram" class="listingblock">
-<div class="title">Program 16.3 Demonstrates handling of action events.</div>
+<div id="FrameWithPanelAndActionsClassesProgram" class="listingblock">
+<div class="title">Program 16.3 Demonstrates handling of action events with anonymous inner classes.</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FrameWithPanelAndActions</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FrameWithPanelAndActionsClasses</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
         <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Button Example"</span><span class="o">);</span> 
         <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
@@ -925,22 +947,23 @@ message “You can get with this.” in the text field. Similarly, when the
         <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">exitButton</span><span class="o">);</span>
 		
         <span class="c1">// Add action listeners to various buttons</span>
-        <span class="n">thisButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span> 
+        <span class="n">thisButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
                 <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"You can get with this."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span>
+        <span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
                 <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Or you can get with that."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span>
+        <span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Exit"</span><span class="o">);</span>
                 <span class="n">frame</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
             <span class="o">}</span>
         <span class="o">});</span>
+
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">350</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
@@ -950,7 +973,7 @@ message “You can get with this.” in the text field. Similarly, when the
 </div>
 </div>
 <div class="paragraph">
-<p><a href="chap16.html#FrameWithPanelAndActionsProgram">Program 16.3</a> is largely the same as
+<p><a href="chap16.html#FrameWithPanelAndActionsClassesProgram">Program 16.3</a> is largely the same as
 <a href="chap16.html#FrameWithPanelProgram">Program 16.2</a>. It adds the same buttons and text
 field but then adds an action listener to each button. The action
 performed when the <code>thisButton</code> and <code>thatButton</code> buttons are clicked is to display
@@ -965,65 +988,50 @@ before the frame is made visible.</p>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 16.4 GUI with alternate action listener style</div>
+<div class="title">Example 16.4 GUI with actions using lambda expressions</div>
 <div class="content">
 <div class="paragraph">
-<p>In the previous example, we added an <code>ActionListener</code> object to each
-button and implemented its <code>actionPerformed()</code> method with anonymous
-inner classes. An alternate way to use <code>ActionListener</code> is to implement
-<code>ActionListener</code> on the surrounding class and include an
-<code>actionPerformed()</code> method exactly once instead of creating several
-individual anonymous inner classes which each handle an event. Let’s
-examine one such implementation in
-<a href="chap16.html#AlternateActionListenerProgram">Program 16.4</a> and contrast it with
-<a href="chap16.html#FrameWithPanelAndActionsProgram">Program 16.3</a>. Note that both programs
-generate the same GUI and exhibit identical behavior.</p>
+<p>In the previous example, we used anonymous inner classes to add an
+<code>ActionListener</code> object to each button and implement its <code>actionPerformed()</code>
+method. This example shows the same code using lambda expressions
+instead. Note that both programs generate the same GUI and exhibit identical
+behavior. In the future, we will use the lambda expression style unless there’s
+a compelling reason not to.</p>
 </div>
-<div id="AlternateActionListenerProgram" class="listingblock">
-<div class="title">Program 16.4 Demonstrates handling of action events by implementing <code>ActionListener</code> at the class level.</div>
+<div id="FrameWithPanelAndActionsLambdasProgram" class="listingblock">
+<div class="title">Program 16.4 Demonstrates handling of action events with lambda expressions.</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AlternateActionListener</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
-	<span class="kd">private</span> <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Button Example"</span><span class="o">);</span> 
-	<span class="kd">private</span> <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>	
-	<span class="kd">private</span> <span class="nc">JButton</span> <span class="n">thisButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"This"</span><span class="o">);</span> 
-	<span class="kd">private</span> <span class="nc">JButton</span> <span class="n">thatButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"That"</span><span class="o">);</span> 
-	<span class="kd">private</span> <span class="nc">JButton</span> <span class="n">exitButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Exit"</span><span class="o">);</span> 
-	<span class="kd">private</span> <span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Text input and output area"</span><span class="o">);</span>
-  
-	<span class="kd">public</span> <span class="nf">AlternateActionListener</span> <span class="o">(){</span> <i class="conum" data-value="1"></i><b>(1)</b>
-		<span class="n">thisButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> 
-		<span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-		<span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FrameWithPanelAndActionsLambdas</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+		<span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Button Example"</span><span class="o">);</span>
+		<span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
+
+		<span class="nc">JButton</span> <span class="n">thisButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"This"</span><span class="o">);</span>
+		<span class="nc">JButton</span> <span class="n">thatButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"That"</span><span class="o">);</span>
+		<span class="nc">JButton</span> <span class="n">exitButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Exit"</span><span class="o">);</span>
+		<span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Text input and output area"</span><span class="o">);</span>
 
 		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">thisButton</span><span class="o">);</span>
 		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">thatButton</span><span class="o">);</span>
 		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">exitButton</span><span class="o">);</span>    
-		<span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
+		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">exitButton</span><span class="o">);</span>
 
-		<span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">350</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
-		<span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
-		<span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>       
-	<span class="o">}</span>     
-
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span> <i class="conum" data-value="2"></i><b>(2)</b>
-		<span class="nc">Object</span> <span class="n">button</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
-		<span class="k">if</span><span class="o">(</span><span class="n">button</span> <span class="o">==</span> <span class="n">thisButton</span><span class="o">)</span> <i class="conum" data-value="4"></i><b>(4)</b>
-			<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"You can get with this."</span><span class="o">);</span> 
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">button</span> <span class="o">==</span> <span class="n">thatButton</span><span class="o">)</span> 
-			<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Or you can get with that."</span><span class="o">);</span>
-		<span class="k">else</span> <span class="o">{</span>
+		<span class="c1">// Add action listeners to various buttons</span>
+		<span class="n">thisButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"You can get with this."</span><span class="o">));</span>    <i class="conum" data-value="1"></i><b>(1)</b>
+		<span class="n">thatButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Or you can get with that."</span><span class="o">));</span> <i class="conum" data-value="2"></i><b>(2)</b>
+		<span class="n">exitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>                                            <i class="conum" data-value="3"></i><b>(3)</b>
 			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Exit"</span><span class="o">);</span>
 			<span class="n">frame</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
-		<span class="o">}</span>
-	<span class="o">}</span>
+		<span class="o">});</span>
 
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span> <i class="conum" data-value="5"></i><b>(5)</b>
-		<span class="k">new</span> <span class="nf">AlternateActionListener</span><span class="o">();</span> 
-	<span class="o">}</span>   
+		<span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
+		<span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">350</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
+		<span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
+		<span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+	<span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1031,50 +1039,23 @@ generate the same GUI and exhibit identical behavior.</p>
 <table>
 <tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The constructor adds an <code>ActionListener</code> to each button. The listener added is <code>this</code>, specifying that the <code>AlternateActionListener</code> object is the one that will process any action event generated by the buttons. The remainder of the code for the constructor is essentially the same as that from the <code>main()</code> method in <a href="chap16.html#FrameWithPanelAndActionsProgram">Program 16.3</a>.</td>
+<td>Using only a single line of code, this lambda expression creates an
+<code>ActionListener</code> that changes the text field to “You can get with this.”</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>A class that implements <code>ActionListener</code> must include an <code>actionPerformed()</code> method.  It has exactly one parameter, an <code>ActionEvent</code> object. Whenever an action event occurs, its attributes are bundled into an <code>ActionEvent</code> object and passed into the <code>actionPerformed()</code> method.</td>
+<td>Similarly, this lambda expression creates an <code>ActionListener</code> that changes
+the text field to “Or you can get with that.”</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>getSource()</code> method returns a reference to the object that generated the event. Variable <code>button</code> holds the object returned by
-<code>getSource()</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>These <code>if</code> statements compare <code>button</code> with <code>thisButton</code> and <code>thatButton</code> to determine if either of these generated the event. Then, a suitable message is displayed in the <code>field</code> text field. If neither button generated the event, it must have been <code>exitButton</code>, so the frame disposes itself after displaying “Exit” on the terminal.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The <code>main()</code> method creates an instance of <code>AlternateActionListener</code> and finishes. The program doesn’t end there because the threads of the GUI are already running.</td>
+<td>The previous lambda expressions did not require braces, but this one does
+since it contains multiple lines: one that prints “Exit” and one that disposes
+the frame.</td>
 </tr>
 </tbody></table>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>There are a few differences between
-<a href="chap16.html#FrameWithPanelAndActionsProgram">Program 16.3</a> and
-<a href="chap16.html#AlternateActionListenerProgram">Program 16.4</a>. In
-the second program, most of the code has been
-moved from the <code>main()</code> method to the constructor. Various objects,
-namely the frame, the panel, all three
-buttons, and the text box are now fields of the object instead of local
-variables in the <code>main()</code> method. The buttons need to be fields so that the
-<code>actionPerformed()</code> method can compare against them, and the text box needs
-to be a field so that the method can change it.</p>
-</div>
-<div class="paragraph">
-<p>We’ve examined two styles of adding an <code>ActionListener</code> to a Java
-program. The choice of style depends on your needs. Adding
-an anonymous <code>ActionListener</code> to each component makes it easy to specify an
-action for each one, but the syntax is ugly. Using a named class (often the main program class or a
-subclass of <code>JFrame</code>) as the <code>ActionListener</code> allows you to handle many
-events in a centralized location. It can be easier to find errors when
-all events are handled in one <code>actionPerformed()</code> method, but the method
-can become complex since it needs to determine which component generated the event.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1104,9 +1085,10 @@ When it’s initially created, a check box is unchecked.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Just as the <code>ActionListener</code> interface only has a single method, the
-<code>ItemListener</code> interface only has one as well, <code>itemStateChanged()</code>, which
-takes a single parameter of type <code>ItemEvent</code>.</p>
+<p>Just as <code>ActionListener</code> is a functional interface with a single method,
+<code>ItemListener</code> is a functional interface with only one method as well,
+<code>itemStateChanged()</code>, which takes a single parameter of type <code>ItemEvent</code>. For
+that reason, we can also use a lambda expression to create an <code>ItemListener</code>.</p>
 </div>
 <div class="paragraph">
 <p>An <code>ActionEvent</code> and an <code>ItemEvent</code> are similar, but one reason that Java
@@ -1117,12 +1099,11 @@ that fired the <code>ItemEvent</code> is now selected or deselected.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">checkBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">(){</span>
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-			<span class="n">checkBox</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"We checked the oven!"</span><span class="o">);</span>
-		<span class="k">else</span>
-			<span class="n">checkBox</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"No one checked the oven!"</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">checkBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">checkBox</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"We checked the oven!"</span><span class="o">);</span>
+	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		<span class="n">checkBox</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"No one checked the oven!"</span><span class="o">);</span>
 	<span class="o">}</span>
 <span class="o">});</span></code></pre>
 </div>
@@ -1151,41 +1132,39 @@ the clicked check box is currently selected.</p>
         <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
 		
         <span class="nc">JCheckBox</span> <span class="n">nastyCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBox</span><span class="o">(</span><span class="s">"Nasty"</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-		<span class="nc">JCheckBox</span> <span class="n">brutishCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBox</span><span class="o">(</span><span class="s">"Brutish"</span><span class="o">);</span> 
-		<span class="nc">JCheckBox</span> <span class="n">shortCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBox</span><span class="o">(</span><span class="s">"Short"</span><span class="o">);</span> 		
+        <span class="nc">JCheckBox</span> <span class="n">brutishCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBox</span><span class="o">(</span><span class="s">"Brutish"</span><span class="o">);</span>
+        <span class="nc">JCheckBox</span> <span class="n">shortCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBox</span><span class="o">(</span><span class="s">"Short"</span><span class="o">);</span>
         <span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Here's what your life is like."</span><span class="o">);</span>
 		
         <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nastyCheckBox</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">brutishCheckBox</span><span class="o">);</span>
         <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">shortCheckBox</span><span class="o">);</span>
-		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-		
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+
         <span class="c1">// Add item listeners to the check boxes</span>
-        <span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is nasty."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't nasty."</span><span class="o">);</span>
+        <span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is nasty."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't nasty."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">brutishCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">(){</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is brutish."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't brutish."</span><span class="o">);</span>
+        <span class="n">brutishCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is brutish."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't brutish."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">shortCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">(){</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is short."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't short."</span><span class="o">);</span>
+        <span class="n">shortCheckBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is short."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't short."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>  <i class="conum" data-value="5"></i><b>(5)</b>
+
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">350</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>       
@@ -1209,7 +1188,7 @@ the clicked check box is currently selected.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We create an <code>ItemListener</code> for each check box
+<td>Using lambda expressions, we create an <code>ItemListener</code> for each check box
 to update the text field with an appropriate message
 based on whether the check box is now checked or unchecked.  Note that
 the most recent message will overwrite whatever text was previously
@@ -1240,13 +1219,12 @@ currently selected by calling its <code>isSelected()</code> method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">		<span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">if</span><span class="o">(</span><span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">isSelected</span><span class="o">())</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is nasty."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't nasty."</span><span class="o">);</span>
-            <span class="o">}</span>
+<pre class="rouge highlight"><code data-lang="java">		<span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">nastyCheckBox</span><span class="o">.</span><span class="na">isSelected</span><span class="o">())</span> <span class="o">{</span>
+				<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life is nasty."</span><span class="o">);</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+				<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Your life isn't nasty."</span><span class="o">);</span>
+			<span class="o">}</span>
         <span class="o">});</span></code></pre>
 </div>
 </div>
@@ -1327,33 +1305,31 @@ different perspective.</p>
         <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">twiceTheSizeButton</span><span class="o">);</span>
 		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">positiveField</span><span class="o">);</span>
 		<span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">negativeField</span><span class="o">);</span>
-		
+
         <span class="c1">// Add item listeners to the radio buttons</span>
-        <span class="n">halfEmptyButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is half empty."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not half empty."</span><span class="o">);</span>
+        <span class="n">halfEmptyButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is half empty."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+              <span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not half empty."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">halfFullButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">(){</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is half full."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not half full."</span><span class="o">);</span>
+        <span class="n">halfFullButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is half full."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not half full."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">twiceTheSizeButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemListener</span><span class="o">(){</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span>
-					<span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is twice the needed size."</span><span class="o">);</span>
-				<span class="k">else</span>
-					<span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not twice the needed size."</span><span class="o">);</span>
+        <span class="n">twiceTheSizeButton</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">positiveField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"The glass is twice the needed size."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">negativeField</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"And it's not twice the needed size."</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">});</span>
-        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>  <i class="conum" data-value="5"></i><b>(5)</b>
+
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span> <i class="conum" data-value="5"></i><b>(5)</b>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">350</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>       
@@ -1377,11 +1353,11 @@ different perspective.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We create an <code>ItemListener</code> for each radio button. When the event
-is a selection, it will update the first text field with a message
-that matches the radio button.  When the event is a deselection,
-it will update the second text field with a message that suggests
-the opposite of the radio button.</td>
+<td>Using lambda expressions, we create an <code>ItemListener</code> for each radio button.
+When the event  is a selection, it will update the first text field with a
+message that matches the radio button.  When the event is a deselection, it will
+update the second text field with a message that suggests the opposite of the
+radio button.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -1477,10 +1453,10 @@ clicked.</p>
 <span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleMouseEvents</span> <span class="kd">implements</span> <span class="nc">MouseListener</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="kd">private</span> <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Mouse Events"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JTextField</span> <span class="n">status</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Mouse status comes here."</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">oneButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"One"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">twoButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Two"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Mouse Events"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JTextField</span> <span class="n">status</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Mouse status comes here."</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JButton</span> <span class="n">oneButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"One"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JButton</span> <span class="n">twoButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Two"</span><span class="o">);</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">oneClicks</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">twoClicks</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Number of clicks</span>
     
     <span class="kd">public</span> <span class="nf">SimpleMouseEvents</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -1498,19 +1474,19 @@ clicked.</p>
 
     <span class="c1">// Implement all abstract methods in MouseListener</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> 
+        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters One."</span><span class="o">);</span>
-        <span class="k">else</span>
-            <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters Two."</span><span class="o">);</span>      
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters Two."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">oneClicks</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">oneClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"One clicked "</span><span class="o">+</span> <span class="n">oneClicks</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
-        <span class="o">}</span>           
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="n">twoClicks</span><span class="o">++;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="o">++</span><span class="n">twoClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Two clicked "</span><span class="o">+</span> <span class="n">twoClicks</span>  <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1580,11 +1556,12 @@ keep a variable local if it can be. The next two lines add a <code>MouseListener
 <h5 id="_mouse_adapter">Mouse adapter</h5>
 <div class="paragraph">
 <p>Creating a <code>MouseListener</code> requires all five methods in the interface to
-be implemented. In many cases, as in <a href="chap16.html#mouseListenerExample">Example 16.7</a>,
-there’s no need to implement all the methods because we’re not
-interested in all the corresponding events. In such situations we’re
-forced to include empty methods.
-However, you might want to include the methods only when they’re
+be implemented, and a <code>MouseListener</code> can’t be replaced with a lambda
+expression because it has more than a single method. In many cases, as in
+<a href="chap16.html#mouseListenerExample">Example 16.7</a>, there’s no need to implement all the methods because
+we’re not interested in all the corresponding events. In such situations we’re
+forced to include empty methods;
+however, you might want to include methods only when they’re
 needed. The <code>MouseAdapter</code> class helps us avoid implementing
 methods we don’t need.</p>
 </div>
@@ -1601,7 +1578,9 @@ don’t need to provide an implementation of a method that’s not used.</p>
 <div class="paragraph">
 <p><a href="chap16.html#SimpleMouseAdapterProgram">Program 16.6</a> is a revised version of
 <a href="chap16.html#SimpleMouseEventsProgram">Program 16.5</a>. Remember that an abstract class is
-<strong>extended</strong> whereas an interface is <strong>implemented</strong>.</p>
+<strong>extended</strong> whereas an interface is <strong>implemented</strong>. Of course, <code>MouseAdapter</code>
+cannot be extended if the class in question is already extending another class.
+In that situation, you’ll be forced to implement <code>MouseListener</code>.</p>
 </div>
 <div id="SimpleMouseAdapterProgram" class="listingblock">
 <div class="title">Program 16.6 Handles mouse generated events using the <code>MouseAdapter</code> abstract class.</div>
@@ -1632,19 +1611,19 @@ don’t need to provide an implementation of a method that’s not used.</p>
     
     <span class="c1">// Override only those methods we want</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters One."</span><span class="o">);</span>
-        <span class="k">else</span>
-            <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters Two."</span><span class="o">);</span>      
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Mouse enters Two."</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseClicked</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">oneButton</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">oneClicks</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">oneClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"One clicked "</span><span class="o">+</span> <span class="n">oneClicks</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
-        <span class="o">}</span>           
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="n">twoClicks</span><span class="o">++;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="o">++</span><span class="n">twoClicks</span><span class="o">;</span>
             <span class="n">status</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Two clicked "</span><span class="o">+</span> <span class="n">twoClicks</span>  <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -1659,7 +1638,8 @@ don’t need to provide an implementation of a method that’s not used.</p>
 <table>
 <tbody><tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Class <code>SimpleMouseAdapter</code> extends the abstract class <code>MouseAdapter</code>. Thus, it inherits all the empty methods defined in <code>MouseAdapter</code>.</td>
+<td>Class <code>SimpleMouseAdapter</code> extends the abstract class <code>MouseAdapter</code>. Thus,
+it inherits an empty method for every method required by <code>MouseListener</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1676,7 +1656,7 @@ don’t need to provide an implementation of a method that’s not used.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="chap16.html#MouseAdaptorExercise">Exercise 16.2</a></p>
+<p><a href="chap16.html#MouseAdapterExercise">Exercise 16.2</a></p>
 </div>
 </div>
 </div>
@@ -1821,25 +1801,25 @@ showing that it’s disabled. The complete program is shown below.</p>
 <span class="kn">import</span> <span class="nn">javax.sound.sampled.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnimalSounds</span> <span class="o">{</span> 
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-    <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Animal Sounds"</span><span class="o">);</span>
-    <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
-    <span class="nc">JButton</span> <span class="n">chirpButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Chirp"</span><span class="o">);</span>
-    <span class="nc">JButton</span> <span class="n">barkButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Bark"</span><span class="o">);</span>
-    <span class="nc">JButton</span> <span class="n">stopButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Stop Sound"</span><span class="o">);</span>
-    <span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Click Chirp or Bark."</span><span class="o">);</span>
-    <span class="nc">File</span> <span class="n">chirpFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"sounds/chirp.wav"</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="nc">File</span> <span class="n">barkFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"sounds/bark.wav"</span><span class="o">);</span>
-    <span class="nc">Clip</span> <span class="n">chirpClip</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
-	<span class="n">chirpClip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="n">chirpFile</span><span class="o">));</span>
-    <span class="nc">Clip</span> <span class="n">barkClip</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
-	<span class="n">barkClip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="n">barkFile</span><span class="o">));</span>
-    <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">chirpButton</span><span class="o">);</span>
-    <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">barkButton</span><span class="o">);</span>
-    <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">stopButton</span><span class="o">);</span>
-    <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
-    <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
-    <span class="n">stopButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Animal Sounds"</span><span class="o">);</span>
+        <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
+        <span class="nc">JButton</span> <span class="n">chirpButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Chirp"</span><span class="o">);</span>
+        <span class="nc">JButton</span> <span class="n">barkButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Bark"</span><span class="o">);</span>
+        <span class="nc">JButton</span> <span class="n">stopButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Stop Sound"</span><span class="o">);</span>
+        <span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="s">"Click Chirp or Bark."</span><span class="o">);</span>
+        <span class="nc">File</span> <span class="n">chirpFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"sounds/chirp.wav"</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="nc">File</span> <span class="n">barkFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"sounds/bark.wav"</span><span class="o">);</span>
+        <span class="nc">Clip</span> <span class="n">chirpClip</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="n">chirpClip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="n">chirpFile</span><span class="o">));</span>
+        <span class="nc">Clip</span> <span class="n">barkClip</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
+        <span class="n">barkClip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="n">barkFile</span><span class="o">));</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">chirpButton</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">barkButton</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">stopButton</span><span class="o">);</span>
+        <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">field</span><span class="o">);</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
+        <span class="n">stopButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1867,37 +1847,31 @@ corresponding to their sound files.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">    <span class="n">chirpButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
+<pre class="rouge highlight"><code data-lang="java">        <span class="n">chirpButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Playing chirp."</span><span class="o">);</span>
             <span class="n">barkButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
             <span class="n">chirpClip</span><span class="o">.</span><span class="na">loop</span><span class="o">(</span><span class="nc">Clip</span><span class="o">.</span><span class="na">LOOP_CONTINUOUSLY</span><span class="o">);</span>
             <span class="n">stopButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">});</span>
-    <span class="n">barkButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
+        <span class="o">});</span>
+        <span class="n">barkButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Playing bark."</span><span class="o">);</span>
             <span class="n">chirpButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
             <span class="n">barkClip</span><span class="o">.</span><span class="na">loop</span><span class="o">(</span><span class="nc">Clip</span><span class="o">.</span><span class="na">LOOP_CONTINUOUSLY</span><span class="o">);</span>
             <span class="n">stopButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">});</span>
-    <span class="n">stopButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">(){</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
+        <span class="o">});</span>
+        <span class="n">stopButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Click Chirp or Bark."</span><span class="o">);</span>
-            <span class="n">chirpClip</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>            
+            <span class="n">chirpClip</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
             <span class="n">barkClip</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
-			<span class="n">barkButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">barkButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
             <span class="n">chirpButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
             <span class="n">stopButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">});</span>
+        <span class="o">});</span>
 
-    <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">275</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span> <span class="c1">// Set size in pixels</span>
-    <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
-    <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Display it      </span>
-  <span class="o">}</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">275</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span> <span class="c1">// Set size in pixels</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Display it</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1937,8 +1911,8 @@ so it stops both sounds and then disables the <code>stopButton</code>.</td>
 <div class="sect4">
 <h5 id="_images_and_icons">Images and icons</h5>
 <div class="paragraph">
-<p>Images are often useful when creating GUIs. In this section we show you
-how to use images to create icons and then use those icons to decorate
+<p>Images are often useful for decorating GUIs. In this section we show you
+how to use images to create icons and then use those icons to customize
 buttons and labels. First, let’s see how an icon object can be created.
 Suppose we have a picture file named <code>smile.jpg</code> in a directory named
 <code>pictures</code>. Note that the <code>pictures</code> directory should be located in same
@@ -2180,8 +2154,9 @@ buttons.</p>
         <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"FlowLayout Example"</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">JPanel</span> <span class="n">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">());</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="kd">final</span> <span class="kt">int</span> <span class="no">MAX_BUTTONS</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>    
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">MAX_BUTTONS</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">MAX_BUTTONS</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">panel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"   "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"   "</span><span class="o">));</span>
+        <span class="o">}</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">panel</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">200</span><span class="o">);</span>    
         <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>    
@@ -2209,7 +2184,7 @@ buttons.</p>
 </div>
 <div class="paragraph">
 <p>The <code>FlowLayout</code> manager places the buttons along a number of rows depending on the width of the frame.
-If the container changes size, the components will react by "'flowing'" into different rows, hence the name.
+If the container changes size, the components will react by “flowing” into different rows, hence the name.
 The GUI created is shown in <a href="chap16.html#FlowLayoutFigure">Figure 16.11</a>.</p>
 </div>
 <div id="FlowLayoutFigure" class="imageblock text-center">
@@ -2362,20 +2337,20 @@ be added as a <code>MouseListener</code> without the need to implement all of it
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">mouseEntered</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">Object</span> <span class="n">label</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">if</span><span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">bison</span><span class="o">)</span>
-          <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Bison"</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">dove</span><span class="o">)</span>
-          <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Dove"</span><span class="o">);</span>
-        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">gecko</span><span class="o">)</span>
-          <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Gecko"</span><span class="o">);</span>    
-        <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">spider</span><span class="o">)</span>
-          <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Spider"</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">bison</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Bison"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">dove</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Dove"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">gecko</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Gecko"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">label</span> <span class="o">==</span> <span class="n">spider</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">frame</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Animal Identifier: Spider"</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">new</span> <span class="nf">AnimalIdentifier</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2709,8 +2684,8 @@ which is handled by an <code>ActionListener</code>. Like a <code>JCheckBox</code
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">JMenuItem</span> <span class="n">clickHere</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JMenuItem</span><span class="o">(</span><span class="s">"Click here"</span><span class="o">);</span>
 <span class="nc">JCheckBoxMenuItem</span> <span class="n">checkBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCheckBoxMenuItem</span><span class="o">(</span><span class="s">"Check yourself"</span><span class="o">);</span>
-<span class="n">clickHere</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-<span class="n">checkBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span></code></pre>
+<span class="n">clickHere</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="cm">/* Code for menu click */</span> <span class="o">});</span>
+<span class="n">checkBox</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="cm">/* Code for check box */</span> <span class="o">});</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2811,7 +2786,7 @@ symbols.</p>
     <span class="kd">private</span> <span class="nc">JTextField</span> <span class="n">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JTextField</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
     <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">submitButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Submit"</span><span class="o">);</span>
 	<span class="kd">private</span> <span class="nc">ProblemGenerator</span> <span class="n">generator</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProblemGenerator</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-	<span class="kd">private</span> <span class="kt">int</span> <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>	<i class="conum" data-value="3"></i><b>(3)</b>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">incorrect</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span></code></pre>
 </div>
@@ -2846,20 +2821,18 @@ symbols.</p>
         <span class="n">multiply</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="n">divide</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 		<span class="n">advanced</span><span class="o">.</span><span class="na">addItemListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
-		<span class="c1">//Add anonymous ActionListener to submitButton </span><i class="conum" data-value="4"></i><b>(4)</b>
-		<span class="n">submitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
-			<span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-				<span class="kt">int</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">field</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
-				<span class="k">if</span><span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="n">answer</span><span class="o">)</span>
-					<span class="n">correct</span><span class="o">++;</span>
-				<span class="k">else</span>
-					<span class="n">incorrect</span><span class="o">++;</span>                        
-				<span class="n">label</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
-				<span class="n">score</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Score: "</span> <span class="o">+</span> <span class="n">correct</span> <span class="o">+</span> <span class="s">" Correct "</span> <span class="o">+</span>
-					<span class="n">incorrect</span> <span class="o">+</span> <span class="s">" Incorrect"</span><span class="o">);</span>
-				<span class="n">submitButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-			<span class="o">}</span>			
-		<span class="o">});</span>        </code></pre>
+        <span class="c1">// Add lambda expression ActionListener to submitButton </span><i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="n">submitButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">field</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">response</span> <span class="o">==</span> <span class="n">answer</span><span class="o">)</span> <span class="o">{</span>
+                <span class="o">++</span><span class="n">correct</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="o">++</span><span class="n">incorrect</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">label</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+            <span class="n">score</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Score: "</span> <span class="o">+</span> <span class="n">correct</span> <span class="o">+</span> <span class="s">" Correct "</span> <span class="o">+</span> <span class="n">incorrect</span> <span class="o">+</span> <span class="s">" Incorrect"</span><span class="o">);</span>
+            <span class="n">submitButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="o">});</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2870,15 +2843,15 @@ symbols.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Action listeners are added to the four operations menu items.</td>
+<td>Action listeners are added to the four operations menu items. We could have used lambda expressions here, but it makes sense to share a single <code>actionPerformed()</code> method among all four operations since they all enable <code>submitButton</code> and clear <code>field</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>An item listener is added to the “Advanced” check box menu item because it requires a different kind of event handler. Note that <code>MathTutor</code> implements both the <code>ActionListener</code> and <code>ItemListener</code> interfaces, allowing it to handle both kinds of events.</td>
+<td>An item listener is added to the “Advanced” check box menu item because it requires a different kind of event handler. Note that <code>MathTutor</code> implements both the <code>ActionListener</code> and <code>ItemListener</code> interfaces, allowing it to handle both kinds of events. We could have used a lambda expression here, but we decided that a separate method was more readable.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Next, we add an anonymous <code>ActionListener</code> just for the submit button. It
+<td>Next, we add a lambda expression as an <code>ActionListener</code> just for the submit button. It
 reads the response from the text field, converts it into an integer, and checks against the answer.  If the response is correct, it increments the counter for correct answers.  Otherwise, it increments the counter for incorrect answers. Finally, it updates the score label and disables the submit
 button until another operation is chosen from the menu.</td>
 </tr>
@@ -2935,13 +2908,12 @@ button until another operation is chosen from the menu.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">itemStateChanged</span><span class="o">(</span><span class="nc">ItemEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getStateChange</span><span class="o">()</span> <span class="o">==</span> <span class="nc">ItemEvent</span><span class="o">.</span><span class="na">SELECTED</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">add</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> 
             <span class="n">subtract</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
             <span class="n">multiply</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 
             <span class="n">divide</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">add</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
             <span class="n">subtract</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 
             <span class="n">multiply</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> 
@@ -2958,15 +2930,16 @@ selected and does the reverse if it’s been unselected.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">){</span>
-        <span class="nc">Object</span> <span class="n">menuItem</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span>	
-		<span class="k">if</span><span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">add</span><span class="o">)</span>
-			<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">addPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">subtract</span><span class="o">)</span>
-			<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">subtractPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">multiply</span><span class="o">)</span>
-			<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">multiplyPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">divide</span><span class="o">)</span>
-			<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">dividePractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+        <span class="nc">Object</span> <span class="n">menuItem</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">add</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">addPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">subtract</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">subtractPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">multiply</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">multiplyPractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">menuItem</span> <span class="o">==</span> <span class="n">divide</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="na">dividePractice</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+        <span class="o">}</span>
 		<span class="n">submitButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>	
 		<span class="n">field</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>		
     <span class="o">}</span></code></pre>
@@ -2977,7 +2950,7 @@ selected and does the reverse if it’s been unselected.</p>
 appropriate method from the <code>ProblemGenerator</code> object to create and then
 display a math problem on <code>label</code>.  The correct answer is stored in <code>answer</code>.
 Note that this <code>actionPerformed()</code> method doesn’t handle the submit button
-because it has its own anonymous class handler.  We use both styles of listener
+because it has its own lambda expression.  We use both styles of listener
 to keep the code simpler: Handling the submit button separately makes sense
 because it’s different, but handling the operations menu items together makes
 sense because they’re similar.</p>
@@ -3004,8 +2977,8 @@ threads to manage the GUI behind the scenes.</p>
 <div class="paragraph">
 <p>Although a GUI will create several threads, the most relevant of these
 is the <em>event dispatch thread</em> (EDT). This thread handles events like
-button clicks. When you write <code>actionPerformed()</code> methods, remember
-that the EDT is the one that will actually execute the code inside.</p>
+button clicks. Whether you write <code>actionPerformed()</code> methods or lambda expressions
+for listeners, the EDT is the one that will actually execute that code.</p>
 </div>
 <div class="paragraph">
 <p>If you’re writing a complex program, the EDT may interact with many
@@ -3045,19 +3018,28 @@ a counter and displays the value in the second label.</p>
 <span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UnresponsiveGUI</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">answerLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Answer:"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">computeButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Compute"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">countLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"0"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">incrementButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Increment"</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UnresponsiveGUI</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         
     <span class="kd">public</span> <span class="nf">UnresponsiveGUI</span><span class="o">()</span> <span class="o">{</span>
         <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Unresponsive GUI"</span><span class="o">);</span>
-		<span class="n">frame</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">1</span><span class="o">));</span>               
-        <span class="n">computeButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-		<span class="n">incrementButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-		<span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">answerLabel</span><span class="o">);</span>
+		<span class="n">frame</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">1</span><span class="o">));</span>
+        <span class="nc">JLabel</span> <span class="n">answerLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Answer:"</span><span class="o">);</span>
+        <span class="nc">JLabel</span> <span class="n">countLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"0"</span><span class="o">);</span>
+
+        <span class="nc">JButton</span> <span class="n">computeButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Compute"</span><span class="o">);</span>
+        <span class="n">computeButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Computing..."</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>
+            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Answer: "</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mf">2.0</span><span class="o">));</span>
+        <span class="o">});</span>
+
+        <span class="nc">JButton</span> <span class="n">incrementButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Increment"</span><span class="o">);</span>
+        <span class="n">incrementButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">countLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span> <span class="o">+</span> <span class="o">++</span><span class="n">count</span><span class="o">));</span>
+
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">answerLabel</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">computeButton</span><span class="o">);</span>       
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">countLabel</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">incrementButton</span><span class="o">);</span>
@@ -3065,23 +3047,8 @@ a counter and displays the value in the second label.</p>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">150</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>		
     <span class="o">}</span>   
-    
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">computeButton</span><span class="o">)</span> <span class="o">{</span>            
-            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Computing..."</span><span class="o">);</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
-            <span class="o">}</span>
-			<span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
-            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Answer: "</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mf">2.0</span><span class="o">));</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="n">count</span><span class="o">++;</span>
-            <span class="n">countLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span> <span class="o">+</span> <span class="n">count</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>	
-	
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">new</span> <span class="nf">UnresponsiveGUI</span><span class="o">();</span>              
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -3124,7 +3091,7 @@ The first type parameter specifies the type that the worker will return when
 it completes its work. The second specifies the type that the worker will return
 periodically in the process of doing work (which can be useful for
 updating progress bars). Examine the following program which has added a
-<code>SwingWorker</code> to its <code>actionPerformed()</code> method but is otherwise the
+<code>SwingWorker</code> to its action listener but is otherwise the
 same as <a href="chap16.html#UnresponsiveGUIProgram">Program 16.16</a>.</p>
 </div>
 <div id="WorkerGUIProgram" class="listingblock">
@@ -3134,55 +3101,48 @@ same as <a href="chap16.html#UnresponsiveGUIProgram">Program 16.16</a>.</p>
 <span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkerGUI</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">answerLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Answer:"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">computeButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Compute"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">countLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"0"</span><span class="o">);</span>
-    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">incrementButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Increment"</span><span class="o">);</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WorkerGUI</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  
        
     <span class="kd">public</span> <span class="nf">WorkerGUI</span><span class="o">()</span> <span class="o">{</span>
-		<span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Worker GUI"</span><span class="o">);</span>
+        <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Unresponsive GUI"</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span><span class="mi">1</span><span class="o">));</span>
-        <span class="n">computeButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="n">incrementButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">answerLabel</span><span class="o">);</span>     
-        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">computeButton</span><span class="o">);</span>       
+        <span class="nc">JLabel</span> <span class="n">answerLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Answer:"</span><span class="o">);</span>
+        <span class="nc">JLabel</span> <span class="n">countLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"0"</span><span class="o">);</span>
+
+        <span class="nc">JButton</span> <span class="n">computeButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Compute"</span><span class="o">);</span>
+        <span class="n">computeButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">SwingWorker</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="n">worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SwingWorker</span><span class="o">&lt;&gt;()</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">doInBackground</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>
+                    <span class="k">return</span> <span class="s">"Answer: "</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="o">}</span>
+
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">done</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">get</span><span class="o">());</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">worker</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span> <i class="conum" data-value="5"></i><b>(5)</b>
+            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Computing..."</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="nc">JButton</span> <span class="n">incrementButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Increment"</span><span class="o">);</span>
+        <span class="n">incrementButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">countLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span> <span class="o">+</span> <span class="o">++</span><span class="n">count</span><span class="o">));</span>
+
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">answerLabel</span><span class="o">);</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">computeButton</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">countLabel</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">incrementButton</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">DISPOSE_ON_CLOSE</span><span class="o">);</span>
         <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span><span class="mi">150</span><span class="o">);</span>
-        <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>		
-    <span class="o">}</span>
-    
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">()</span> <span class="o">==</span> <span class="n">computeButton</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">SwingWorker</span> <span class="n">worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SwingWorker</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Void</span><span class="o">&gt;()</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">doInBackground</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="k">try</span> <span class="o">{</span>
-                        <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
-                    <span class="o">}</span>
-					<span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>
-                    <span class="k">return</span> <span class="s">"Answer: "</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
-                <span class="o">}</span>
-                
-                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">done</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-                    <span class="k">try</span> <span class="o">{</span>
-                        <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">get</span><span class="o">());</span>
-                    <span class="o">}</span>
-					<span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>              
-                <span class="o">}</span>
-            <span class="o">};</span>            
-            <span class="n">worker</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">answerLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Computing..."</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="n">count</span><span class="o">++;</span>
-            <span class="n">countLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span> <span class="o">+</span> <span class="n">count</span><span class="o">);</span>
-        <span class="o">}</span>
+        <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
 	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 		<span class="k">new</span> <span class="nf">WorkerGUI</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -3273,7 +3233,7 @@ button clicks. Under which circumstances is <code>ActionListener</code> better? 
 which is <code>MouseListener</code> better?</p>
 </li>
 <li>
-<p><a id="MouseAdaptorExercise"></a> Why is the <code>MouseAdapter</code> abstract class useful?</p>
+<p><a id="MouseAdapterExercise"></a> Why is the <code>MouseAdapter</code> abstract class useful?</p>
 </li>
 <li>
 <p><a id="JMenuBarExercise"></a> What do you expect will happen if you used
@@ -3345,7 +3305,7 @@ the GUI.</p>
 <p>Remove the <code>actionPerformed()</code> and
 <code>itemStateChanged()</code> methods from the <code>MathTutor</code> class given in
 <a href="chap16.html#_solution_math_tutor">Section 16.4</a>. Move the code from these methods into
-individual anonymous inner classes added to the <code>add</code>, <code>subtract</code>,
+individual lambda expressions added to the <code>add</code>, <code>subtract</code>,
 <code>multiply</code>, <code>divide</code>, and <code>advanced</code> objects.</p>
 <div class="paragraph">
 <p>Note that you can now remove <code>ActionListener</code> and <code>ItemListener</code>
@@ -3356,7 +3316,7 @@ functionality of the program. Is doing so a good idea? Why or why not?</p>
 </li>
 <li>
 <p><a id="componentAddingOrderExercise"></a> In
-<a href="chap16.html#FrameWithPanelAndActionsProgram">Program 16.3</a> exchange the first two
+<a href="chap16.html#FrameWithPanelAndActionsClassesProgram">Program 16.3</a> exchange the first two
 <code>add()</code> method calls on the <code>panel</code> so that <code>thatButton</code> is added to the
 panel before <code>thisButton</code>. Explain how the appearance of the GUI is
 changed.</p>
@@ -3465,7 +3425,7 @@ but not others, why do you think that might be?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

@@ -11,12 +11,13 @@ public class Fish {
     public boolean isAlive() { return alive; }
     
     public void swim() {
-        if(alive) {
+        if (alive) {
             location += 0.5;
             energy -= 0.25;
         }
-        if(energy <= 0.0)
+        if (energy <= 0.0) {
             die();
+        }
     }
     
     public void feed() { energy = 100.0; }

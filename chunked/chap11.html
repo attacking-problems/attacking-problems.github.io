@@ -562,12 +562,13 @@ energy, it dies.</p>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAlive</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">alive</span><span class="o">;</span> <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swim</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">alive</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">alive</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">location</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">;</span>
             <span class="n">energy</span> <span class="o">-=</span> <span class="mf">0.25</span><span class="o">;</span>
         <span class="o">}</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">energy</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">energy</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">die</span><span class="o">();</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span> <span class="n">energy</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span> <span class="o">}</span>
@@ -1067,10 +1068,11 @@ another look at the <code>Student</code> class.</p>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setYear</span><span class="o">(</span><span class="kt">int</span> <span class="n">year</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">year</span> <span class="o">=</span> <span class="n">year</span><span class="o">;</span> <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGPA</span><span class="o">(</span><span class="kt">double</span> <span class="no">GPA</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="no">GPA</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="no">GPA</span> <span class="o">&lt;=</span> <span class="mf">4.0</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="no">GPA</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="no">GPA</span> <span class="o">&lt;=</span> <span class="mf">4.0</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="na">GPA</span> <span class="o">=</span> <span class="no">GPA</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Invalid GPA: "</span> <span class="o">+</span> <span class="no">GPA</span><span class="o">);</span>      
+        <span class="o">}</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">name</span><span class="o">;</span> <span class="o">};</span>
@@ -1189,15 +1191,17 @@ that the child classes we want to create can access it directly.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPerimeter</span><span class="o">()</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="kt">double</span> <span class="n">perimeter</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">perimeter</span> <span class="o">+=</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">distance</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]);</span>
+        <span class="o">}</span>
         <span class="n">perimeter</span> <span class="o">+=</span> <span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">distance</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span>
         <span class="k">return</span> <span class="n">perimeter</span><span class="o">;</span>
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">draw</span><span class="o">(</span><span class="nc">Graphics</span> <span class="n">g</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">g</span><span class="o">.</span><span class="na">drawLine</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">x</span><span class="o">,</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">y</span><span class="o">,</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">x</span><span class="o">,</span> <span class="n">points</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">y</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="n">g</span><span class="o">.</span><span class="na">drawLine</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">x</span><span class="o">,</span> <span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">y</span><span class="o">,</span>
 			<span class="n">points</span><span class="o">[</span><span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">].</span><span class="na">x</span><span class="o">,</span> <span class="n">points</span><span class="o">[</span><span class="n">points</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">].</span><span class="na">y</span><span class="o">);</span>
     <span class="o">}</span>
@@ -1275,10 +1279,12 @@ reason to let external code have access to it.</td>
         <span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">distance</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
         <span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="n">points</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">distance</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
         <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">points</span><span class="o">[</span><span class="mi">2</span><span class="o">].</span><span class="na">distance</span><span class="o">(</span><span class="n">points</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="s">"Equilateral"</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">||</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span> <span class="o">||</span> <span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">||</span> <span class="n">b</span> <span class="o">==</span> <span class="n">c</span> <span class="o">||</span> <span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="s">"Isosceles"</span><span class="o">;</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="s">"Scalene"</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1567,21 +1573,21 @@ and declare a few useful temporary variables.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="c1">// Create gates</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"true"</span><span class="o">))</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"true"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">True</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"false"</span><span class="o">))</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"false"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">False</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"AND"</span><span class="o">))</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"AND"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">And</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OR"</span><span class="o">))</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OR"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Or</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"XOR"</span><span class="o">))</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"XOR"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Xor</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"NOT"</span><span class="o">))</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"NOT"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Not</span><span class="o">();</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
                 <span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Output</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
             <span class="o">}</span>
@@ -1595,16 +1601,16 @@ that we can identify which OUTPUT gate is which later.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">        <span class="c1">//connect gates</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextInt</span><span class="o">())</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java">        <span class="c1">// Connect gates</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextInt</span><span class="o">())</span> <span class="o">{</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">gates</span><span class="o">[</span><span class="n">value</span><span class="o">].</span><span class="na">getName</span><span class="o">();</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"AND"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OR"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"XOR"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"AND"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"OR"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"XOR"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="nc">BinaryOperator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="nc">BinaryOperator</span><span class="o">)</span><span class="n">gates</span><span class="o">[</span><span class="n">value</span><span class="o">];</span>
                 <span class="n">operator</span><span class="o">.</span><span class="na">setOperand1</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()]);</span>
                 <span class="n">operator</span><span class="o">.</span><span class="na">setOperand2</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()]);</span>
             <span class="o">}</span>
-            <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"NOT"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"NOT"</span><span class="o">)</span> <span class="o">||</span> <span class="n">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span> <span class="o">{</span>
                 <span class="nc">UnaryOperator</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="nc">UnaryOperator</span><span class="o">)</span><span class="n">gates</span><span class="o">[</span><span class="n">value</span><span class="o">];</span>
                 <span class="n">operator</span><span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">()]);</span>
             <span class="o">}</span>
@@ -1621,10 +1627,12 @@ operator to the gate or gates at those indexes.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="c1">// Compute output</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-          <span class="k">if</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getName</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-      <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getName</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"OUTPUT"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">gates</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1948,7 +1956,7 @@ processes. Is there a significant difference in the times you found?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

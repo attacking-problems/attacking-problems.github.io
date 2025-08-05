@@ -4,13 +4,14 @@ public class SynchronizedAccount {
 
     public double getBalance() throws InterruptedException {
         double amount;      
-        synchronized(this) {   //<.>
-            readers++;
+        synchronized (this) {   // <.>
+            ++readers;
         }       
-        amount = balance;      //<.>
-        synchronized(this) {
-            if(--readers == 0) //<.>
-                notifyAll();   //<.>
+        amount = balance;      // <.>
+        synchronized (this) {
+            if (--readers == 0) { // <.>
+                notifyAll();   // <.>
+            }
         }       
         return amount;      
     }
@@ -23,21 +24,24 @@ public class SynchronizedAccount {
     public boolean withdraw(double amount)
         throws InterruptedException {
         boolean success = changeBalance(-amount);
-        if(success)
+        if (success) {
             System.out.println("Withdrew $" + amount + ".");
-        else
+        } else {
             System.out.println("Failed to withdraw $" +
                 amount + ": insufficient funds.");
+        }
         return success;
     }
     
-    protected synchronized boolean changeBalance(double amount) //<.>
+    protected synchronized boolean changeBalance(double amount) // <.>
         throws InterruptedException {
         boolean success;    
-        while(readers > 0) //<.>
+        while (readers > 0) { // <.>
 			wait();         
-        if(success = (balance + amount > 0)) //<.>
+        }
+        if (success = (balance + amount > 0)) { // <.>
             balance += amount;      
+        }
         return success; 
     }
 }

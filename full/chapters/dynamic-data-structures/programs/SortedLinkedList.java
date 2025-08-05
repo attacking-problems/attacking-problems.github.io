@@ -44,7 +44,7 @@ public class SortedLinkedList {
     public void fillArray(String[] array) {     
         Node temp = head;
         int position = 0;
-        while(temp != null) {
+        while (temp != null) {
             array[position] = temp.value;
             ++position;
             temp = temp.next;

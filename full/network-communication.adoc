@@ -449,7 +449,7 @@ IP address on the specified port.
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=38..48]
+include::{programsdir}/Chat.java[lines=38..47]
 ----
 <.> Once the client and server are connected, they both run the `runChat()`
 method, which creates a new `Sender` and a new `Receiver` to do the
@@ -472,7 +472,7 @@ so short. The only piece of data `Sender` shares with `Chat` is the
 all important `socket` variable. 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=50..72]
+include::{programsdir}/Chat.java[lines=49..69]
 ----
 <.> The `Sender` begins by creating a
 `PrintWriter` object from the `Socket` output stream.
@@ -493,7 +493,7 @@ Below is the private inner class `Receiver`, the simpler counterpart of
 
 [source, java]
 ----
-include::{programsdir}/Chat.java[lines=74..92]
+include::{programsdir}/Chat.java[lines=71..89]
 ----
 <.> First, it creates a `Scanner` object connected to the input stream of the `Socket`.
 <.> Then, waits for a line of text to arrive from the connection.

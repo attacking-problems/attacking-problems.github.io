@@ -13,16 +13,14 @@ public class IntegerTree {
     }
     
     private static Node add(Integer value, Node tree) {
-        if(tree == null) { // Base case
+        if (tree == null) { // Base case
             tree = new Node();
             tree.value = value;
-        }
-        // Left recursive case
-        else if(value.compareTo(tree.value) < 0)
-            tree.left = add(value, tree.left);
-        // Right recursive case
-        else if(value.compareTo(tree.value) > 0)
+        } else if (value.compareTo(tree.value) < 0) { // Left recursive case
+            tree.left = add(value, tree.left); 
+        } else if (value.compareTo(tree.value) > 0) { // Right recursive case
             tree.right = add(value, tree.right);
+        }
         return tree;        
     }
     
@@ -32,7 +30,7 @@ public class IntegerTree {
     }
         
     private static void print(Node tree) {
-        if(tree != null) {
+        if (tree != null) {
             print(tree.left);
             System.out.println(tree.value);
             print(tree.right);

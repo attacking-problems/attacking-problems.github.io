@@ -94,11 +94,11 @@ the answer should always be correct.
 ****
 
 Looking at the code, the problem might not be obvious. Everything
-centers on the statement `counter{plus}{plus}` in the `for` loop inside the
+centers on the statement `{plus}{plus}counter` in the `for` loop inside the
 `run()` method. But, this statement appears to execute in a single step!
 Each thread should increase the value of `counter` a total of
 `COUNT/THREADS` times, adding up to `1000000`. The trouble is that
-`counter{plus}{plus}` is *not* a single step. Recall that `counter{plus}{plus}` is shorthand
+`{plus}{plus}counter` is *not* a single step. Recall that `{plus}{plus}counter` is shorthand
 for `counter = counter + 1`. To be even more explicit we could write it
 as follows.
 
@@ -109,10 +109,10 @@ counter = temp + 1;
 ----
 
 One thread might get as far as storing `counter` into a temporary
-location, but then it runs out of time, allowing the next thread in the
-schedule to run. When that's the case, this next thread may do a series of
+location, but before it can add 1, another thread continues to perform
+operations. When that's the case, this next thread may do a series of
 increments to `count` which are all overwritten when the first thread
-runs again. Because the first thread had an old value of `counter`
+executes again. Because the first thread had an old value of `counter`
 stored in `temp`, adding 1 to `temp` has the effect of ignoring
 increments that happened in the interim. This situation can happen on a single
 processor with threads switching back and forth, but it's even more dangerous
@@ -121,9 +121,9 @@ on a multicore system.
 The primary lesson here is that threads can switch between each other at
 any time with unpredictable effects. The secondary lesson is that the
 source code is too coarse-grained to show _atomic_ operations. An atomic
-operation is one which cannot be interrupted by a context switch to
-another thread. The actual code that the JVM runs is much lower level
-than source code.
+operation is one which happens in a single step and cannot be interrupted by a
+context switch to another thread. The actual code that the JVM runs is much
+lower level than source code.
 
 We can't easily force a non-atomic operation to be atomic, but there are
 ways to restrict access to certain pieces of code under certain
@@ -198,8 +198,9 @@ removing occurrences of `"Danger, "` from the beginning of `message`.
 [source,java]
 ----
 public synchronized void safety() {
-    if(message.startsWith("Danger, "))
+    if (message.startsWith("Danger, ")) {
         message = message.substring(8);
+    }
 }
 ----
 
@@ -218,7 +219,7 @@ time for that object.
 <<synchronizedThreadIncrementExercise>>
 ****
 
-Perhaps this level of control is too restrictive. You may have six
+Perhaps this level of control is too restrictive. You might have six
 methods which conflict with each other and four others which conflict
 with each other but not the first six. Using `synchronized` in each
 method declaration would unnecessarily limit the amount of concurrency
@@ -231,7 +232,7 @@ of code allows more fine-grained control. The following version of
 [source,java]
 ----
 public void danger() {
-    synchronized(this) {
+    synchronized (this) {
         message = "Danger, " + message;
     }
 }
@@ -260,19 +261,19 @@ Then, wherever you need control over concurrency, you use them as locks.
 
 [source,java]
 ----
-synchronized(lock1) {
+synchronized (lock1) {
     // Do dangerous thing 1
 }
 
 // Do safe things
 
-synchronized(lock2) {
+synchronized (lock2) {
     // Do dangerous thing 2, unrelated to dangerous thing 1
 }
 ----
 
 Since declaring a method with `synchronized` is equivalent to having its
-body enclosed in a block beginning with `synchronized(this)`, what about
+body enclosed in a block beginning with `synchronized (this)`, what about
 `static` methods? Can they be `synchronized`? Yes, they can. Whenever a
 class is loaded, Java creates an object of type `Class` which
 corresponds to that class. This object is what synchronized static
@@ -296,10 +297,11 @@ counting thread.
 
 [source,java]
 ----
-while(true) {
-    synchronized(this) {
-        if(votingComplete)
+while (true) {
+    synchronized (this) {
+        if (votingComplete) {
             break;
+        }
     }
 }
 countVotes();
@@ -325,8 +327,8 @@ calling `sleep()`, calling `wait()`, or performing blocking I/O. Using
 
 [source,java]
 ----
-synchronized(this) {
-    while(!votingComplete) {
+synchronized (this) {
+    while (!votingComplete) {
         wait();
     }
 }
@@ -352,7 +354,7 @@ complete.
 [source,java]
 ----
 // Finish collecting votes
-synchronized(this) {
+synchronized (this) {
     votingComplete = true;
     notifyAll();
 }
@@ -463,7 +465,7 @@ the balance.
 
 [source, java]
 ----
-include::{programsdir}/SynchronizedAccount.java[lines=5..16]
+include::{programsdir}/SynchronizedAccount.java[lines=5..17]
 ----
 <.> Access to the `readers` variable is synchronized.
 <.> After passing that first `synchronized` block, the code which stores the
@@ -480,7 +482,7 @@ account can continue.
 
 [source, java]
 ----
-include::{programsdir}/SynchronizedAccount.java[lines=18..32]
+include::{programsdir}/SynchronizedAccount.java[lines=19..34]
 ----
 
 The `deposit()` and `withdraw()` methods are wrappers for the
@@ -489,7 +491,7 @@ controls.
 
 [source, java]
 ----
-include::{programsdir}/SynchronizedAccount.java[lines=34..43]
+include::{programsdir}/SynchronizedAccount.java[lines=36..47]
 ----
 <.> The `changeBalance()` method is synchronized so that it can have
 exclusive access to the `readers` variable. It's also marked `protected`
@@ -514,7 +516,7 @@ for the others to complete, forever. Some combination of locks or other
 synchronization tools has forced a blocking dependence onto a group of
 threads which will *never* be resolved.
 
-In the past, people have described four conditions which must exist for
+Researchers have discovered four conditions which must exist for
 deadlock to happen.
 
 .  Mutual Exclusion: Only one thread can access the resource (often a
@@ -562,7 +564,7 @@ in the `run()` method.
 
 [source, java]
 ----
-include::{programsdir}/DeadlockPhilosopher.java[lines=26..36]
+include::{programsdir}/DeadlockPhilosopher.java[lines=26..35]
 ----
 <.> First a philosopher tries to get her left chopstick.
 <.> Then she sleeps for 50 milliseconds.
@@ -581,7 +583,7 @@ above, we've already gotten ourselves into trouble.
 
 [source, java]
 ----
-include::{programsdir}/DeadlockPhilosopher.java[lines=38..61]
+include::{programsdir}/DeadlockPhilosopher.java[lines=37..56]
 ----
 
 ====
@@ -591,8 +593,8 @@ include::{programsdir}/DeadlockPhilosopher.java[lines=38..61]
 ====
 
 Here's another example of deadlock. We emphasize deadlock because it's
-one of the most common and problematic issues with using synchronization
-carelessly.
+one of the most common and problematic issues with carelessly using
+synchronization.
 
 Consider two threads which both need access to two separate resources.
 In our example, the two resources are random number generators. The goal
@@ -613,7 +615,7 @@ spawns two new threads, passing `true` to one and `false` to the other.
 
 [source, java]
 ----
-include::{programsdir}/DeadlockSum.java[lines=9..21]
+include::{programsdir}/DeadlockSum.java[lines=9..20]
 ----
 
 
@@ -622,7 +624,7 @@ Next, the mischief begins to unfold. One of the two threads stores
 
 [source, java]
 ----
-include::{programsdir}/DeadlockSum.java[lines=23..25]
+include::{programsdir}/DeadlockSum.java[lines=22..24]
 ----
 
 
@@ -635,12 +637,12 @@ between. The non-reversed thread tries to lock on `random1` and then
 
 [source, java]
 ----
-include::{programsdir}/DeadlockSum.java[lines=27..55]
+include::{programsdir}/DeadlockSum.java[lines=26..53]
 ----
 
 If you run this code, it should invariably deadlock with `thread1`
 locked on `random2` and `thread2` locked on `random1`. No sane
-programmer would intentionally code the threads like this. In fact, the
+programmer would intentionally code threads like this. In fact, the
 extra work we did to acquire the locks in opposite orders is exactly
 what causes the deadlock. For more complicated programs, there may be
 many different kinds of threads and many different resources. If two
@@ -738,7 +740,7 @@ objects representing each of the friends.
 
 [source, java]
 ----
-include::{programsdir}/Livelock.java[lines=10..25]
+include::{programsdir}/Livelock.java[lines=10..24]
 ----
 
 The rest of the `main()` method starts each of the threads representing
@@ -748,7 +750,7 @@ successful, it'll print `All ready!` to the screen.
 
 [source, java]
 ----
-include::{programsdir}/Livelock.java[lines=27..49]
+include::{programsdir}/Livelock.java[lines=26..48]
 ----
 <.> In the `run()` method, each friend goes through a loop until the `done`
 variable is `true`.
@@ -776,7 +778,7 @@ In reality, human beings would not put off going to a party
 indefinitely. Some people would decide that it was too late to go.
 Others would go alone. Others would go over to their friends' houses and
 demand to know what was taking so long. Computers are not nearly as
-sensible and must obey instructions, even if they cause useless
+sensible and must obey instructions, even if they cause useless,
 repetitive patterns. Realistic examples of livelock are hard to show in
 a short amount of code, but they do crop up in real systems and can be
 very difficult to predict.
@@ -799,11 +801,14 @@ and use the `synchronized` keyword to lock on the matrix itself.
 [source,java]
 ----
 public void run() {
-    synchronized(c) {
-        for(int i = lower; i < upper; i++)
-            for(int j = 0; j < c[i].length; j++)
-                for(int k = 0; k < b.length; k++)
+    synchronized (c) {
+        for (int i = lower; i < upper; ++i) {
+            for (int j = 0; j < c[i].length; ++j) {
+                for (int k = 0; k < b.length; ++k) {
                     c[i][j] += a[i][k] * b[k][j];
+                }
+            }
+        }
     }
 }
 ----
@@ -816,7 +821,7 @@ the case of the producer/consumer problem, synchronization is necessary,
 and the only way to manage the buffer properly is to enforce sequential
 execution. Sometimes sequential execution can't be avoided, but you
 should always know which pieces of code are truly executing in parallel
-and which aren't if you hope to get the maximum amount of speedup. The
+and which aren't if you hope to get the maximum speedup. The
 `synchronized` keyword should be used whenever it's needed, but no
 more.
 
@@ -875,7 +880,7 @@ philosopher.
 
 [source, java]
 ----
-include::{programsdir}/DiningPhilosopher.java[lines=28..44]
+include::{programsdir}/DiningPhilosopher.java[lines=28..43]
 ----
 <.> This `run()` method is different from the deadlocking version but not in
 a way that prevents deadlock.
@@ -889,7 +894,7 @@ deterministic.
 
 [source, java]
 ----
-include::{programsdir}/DiningPhilosopher.java[lines=46..63]
+include::{programsdir}/DiningPhilosopher.java[lines=45..61]
 ----
 <.> The real place where deadlock is prevented is in the `getChopsticks()`
 method. As in <<deadlockPhilosophersExample>>, we mod by `SEATS` so that the last philosopher
@@ -900,7 +905,7 @@ tries to get the first chopstick in the array.
 
 [source, java]
 ----
-include::{programsdir}/DiningPhilosopher.java[lines=65..76]
+include::{programsdir}/DiningPhilosopher.java[lines=63..71]
 ----
 <.> Finally, in the `eat()` method, the philosopher eats the rice. We would
 assume that some other computation would be done here in a realistic
@@ -978,8 +983,9 @@ method as follows.
 [source,java]
 ----
 public synchronized void run() {
-    for(int i = 0; i < COUNT/THREADS; i++)
-        counter++;
+    for (int i = 0; i < COUNT/THREADS; ++i) {
+        ++counter;
+    }
 }
 ----
 +

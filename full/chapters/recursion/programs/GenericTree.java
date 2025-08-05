@@ -13,16 +13,14 @@ public class GenericTree<T extends Comparable<T>> {
     }
     
     private Node add(T value, Node tree) {
-        if(tree == null) { // Base case
+        if (tree == null) { // Base case
             tree = new Node();
             tree.value = value;
-        }
-        // Left recursive case
-        else if(value.compareTo(tree.value) < 0)
+        } else if (value.compareTo(tree.value) < 0) { // Left recursive case
             tree.left = add(value, tree.left);
-        // Right recursive case
-        else if(value.compareTo(tree.value) > 0)
+        } else if (value.compareTo(tree.value) > 0) { // Right recursive case
             tree.right = add(value, tree.right);
+        }
         return tree;        
     }
     
@@ -32,7 +30,7 @@ public class GenericTree<T extends Comparable<T>> {
     }
         
     private void print(Node tree) {
-        if(tree != null) {
+        if (tree != null) {
             print(tree.left);
             System.out.println(tree.value);
             print(tree.right);

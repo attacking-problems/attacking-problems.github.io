@@ -11,8 +11,8 @@ public class MathTutor implements ActionListener, ItemListener {
     private JLabel label = new JLabel();
     private JTextField field = new JTextField(10);
     private JButton submitButton = new JButton("Submit");
-	private ProblemGenerator generator = new ProblemGenerator(); //<.>
-	private int correct = 0;	//<.>
+	private ProblemGenerator generator = new ProblemGenerator(); // <.>
+	private int correct = 0; // <.>
     private int incorrect = 0;
     private int answer = -1;
 
@@ -27,27 +27,25 @@ public class MathTutor implements ActionListener, ItemListener {
         subtract.addActionListener(this);
         multiply.addActionListener(this);
         divide.addActionListener(this);
-		advanced.addItemListener(this); //<.>
-		//Add anonymous ActionListener to submitButton <.>
-		submitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int response = Integer.parseInt(field.getText());
-				if(response == answer)
-					correct++;
-				else
-					incorrect++;                        
-				label.setText("");
-				score.setText("Score: " + correct + " Correct " +
-					incorrect + " Incorrect");
-				submitButton.setEnabled(false);
-			}			
-		});        
+		advanced.addItemListener(this); // <.>
+        // Add lambda expression ActionListener to submitButton <.>
+        submitButton.addActionListener(e -> {
+            int response = Integer.parseInt(field.getText());
+            if (response == answer) {
+                ++correct;
+            } else {
+                ++incorrect;
+            }
+            label.setText("");
+            score.setText("Score: " + correct + " Correct " + incorrect + " Incorrect");
+            submitButton.setEnabled(false);
+        });
         typeMenu.add(advanced); // <.>
         operationsMenu.add(add); // <.>
         operationsMenu.add(subtract);
         operationsMenu.add(multiply);
         operationsMenu.add(divide);  
-        multiply.setEnabled(false); //<.>
+        multiply.setEnabled(false); // <.>
         divide.setEnabled(false);
         menuBar.add(typeMenu); // <.>
         menuBar.add(operationsMenu);        
@@ -64,13 +62,12 @@ public class MathTutor implements ActionListener, ItemListener {
     }
     
     public void itemStateChanged(ItemEvent e) {
-        if(e.getStateChange() == ItemEvent.SELECTED) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
             add.setEnabled(false); 
             subtract.setEnabled(false);
             multiply.setEnabled(true); 
             divide.setEnabled(true);
-        }
-        else {
+        } else {
             add.setEnabled(true);
             subtract.setEnabled(true); 
             multiply.setEnabled(false); 
@@ -79,15 +76,16 @@ public class MathTutor implements ActionListener, ItemListener {
     }
     
     public void actionPerformed(ActionEvent e){
-        Object menuItem = e.getSource();	
-		if(menuItem == add)
-			answer = generator.addPractice(label);
-		else if(menuItem == subtract)
-			answer = generator.subtractPractice(label);
-		else if(menuItem == multiply)
-			answer = generator.multiplyPractice(label);
-		else if(menuItem == divide)
-			answer = generator.dividePractice(label);
+        Object menuItem = e.getSource();
+        if (menuItem == add) {
+            answer = generator.addPractice(label);
+        } else if (menuItem == subtract) {
+            answer = generator.subtractPractice(label);
+        } else if (menuItem == multiply) {
+            answer = generator.multiplyPractice(label);
+        } else if (menuItem == divide) {
+            answer = generator.dividePractice(label);
+        }
 		submitButton.setEnabled(true);	
 		field.setText("");		
     }

@@ -585,11 +585,10 @@ event that the data file contains a class that our program doesn't recognize.
 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("players.bin"))){
     int records = in.readInt();
     BaseballPlayer[] players = new BaseballPlayer[records];
-    for(int i = 0; i < players.length; ++i) {
+    for (int i = 0; i < players.length; ++i) {
         players[i] = (BaseballPlayer)in.readObject();
     }
-}
-catch (IOException | ClassNotFoundException e) {
+} catch (IOException | ClassNotFoundException e) {
     System.out.println("File reading failed.");
 }
 ----
@@ -634,8 +633,7 @@ shown below.
 ----
 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("players.bin"))){
     BaseballPlayer[] players = (BaseballPlayer[])in.readObject();
-}
-catch (IOException | ClassNotFoundException e) {
+} catch (IOException | ClassNotFoundException e) {
     System.out.println("File reading failed.");
 }
 ----
@@ -998,7 +996,7 @@ method.
 
 [source, java]
 ----
-include::{programsdir}/BitmapCompression.java[lines=1..19]
+include::{programsdir}/BitmapCompression.java[lines=1..18]
 ----
 <.> We first check that there are exactly two command-line arguments.
 Otherwise, our program would crash if we try to access invalid array
@@ -1012,7 +1010,7 @@ written.
 
 [source, java]
 ----
-include::{programsdir}/BitmapCompression.java[lines=21..49]
+include::{programsdir}/BitmapCompression.java[lines=20..46]
 ----
 <.> In the `compress()` method, we first open a new `DataOutputStream` for
 a file whose name is the input file name with `.compress` tacked on the end.
@@ -1031,7 +1029,7 @@ to finish.
 
 [source, java]
 ----
-include::{programsdir}/BitmapCompression.java[lines=51..68]
+include::{programsdir}/BitmapCompression.java[lines=48..64]
 ----
 <.> The `decompress()` method is simpler than `compress()`. It begins
 by finding the original name of the file by removing `.compress`.  Note that

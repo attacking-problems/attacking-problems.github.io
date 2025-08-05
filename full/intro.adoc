@@ -1046,7 +1046,7 @@ more complex output.
 
 ====
 
-===== `String` concatenation
+===== Concatenating `String` values
 
 Just as we can add numbers together, we can also "`add`" pieces of text
 together. In Java, text has the type `String`. If you use the `+`

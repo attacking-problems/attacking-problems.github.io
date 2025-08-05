@@ -525,8 +525,7 @@ try {
 	System.out.println("Waiting for thread 1...");
 	thread1.join();
 	System.out.println("Thread 1 finished!");
-}
-catch (InterruptedException e) {
+} catch (InterruptedException e) {
 	System.out.println("Thread 1 didn't finish!");
 }
 ----
@@ -679,16 +678,16 @@ Now, suppose we want to create 10 thread objects of type
 
 [source,java]
 ----
-NumberedThread[] threads = new NumberedThread[10]; //<.>
-for(int i = 0; i < threads.length; i++) {
-    threads[i] = new NumberedThread(i); //<.>
-    threads[i].start(); //<.>
+NumberedThread[] threads = new NumberedThread[10]; // <.>
+for (int i = 0; i < threads.length; ++i) {
+    threads[i] = new NumberedThread(i); // <.>
+    threads[i].start(); // <.>
 }
 try {
-    for(int i = 0; i < threads.length; i++)
-        threads[i].join(); //<.>
-}
-catch(InterruptedException e) {
+    for (int i = 0; i < threads.length; ++i) {
+        threads[i].join(); // <.>
+    }
+} catch (InterruptedException e) {
     System.out.println("A thread didn't finish!");
 }
 ----
@@ -857,7 +856,7 @@ is exclusive.
 
 [source, java]
 ----
-include::{programsdir}/SumThread.java[lines=17..22]
+include::{programsdir}/SumThread.java[lines=17..23]
 ----
 <.> In the `for` loop of the `run()` method, the `SumThread` finds the sine
 of each number in its array partition and adds that value to its running
@@ -867,7 +866,7 @@ be retrieved.
 
 [source, java]
 ----
-include::{programsdir}/SumThread.java[lines=24..40]
+include::{programsdir}/SumThread.java[lines=25..43]
 ----
 <.> The `main()` method begins by instantiating the array.
 <.> It fills it with random values.
@@ -882,7 +881,7 @@ threads, simple division isn't enough.
 
 [source, java]
 ----
-include::{programsdir}/SumThread.java[lines=42..54]
+include::{programsdir}/SumThread.java[lines=45..56]
 ----
 <.> Once the threads have started working, the main thread creates its own
 running total.
@@ -931,10 +930,13 @@ names with lowercase letters.
 
 [source,java]
 ----
-for(int i = 0; i < c.length; i++)
-    for(int j = 0; j < c[i].length; j++)
-        for(int k = 0; k < b.length; k++)
+for (int i = 0; i < c.length; ++i) {
+    for (int j = 0; j < c[i].length; ++j) {
+        for (int k = 0; k < b.length; ++k) {
             c[i][j] += a[i][k] * b[k][j];
+        }
+    }
+}
 ----
 
 The first step in making a concurrent solution to this problem is to
@@ -971,19 +973,20 @@ MatrixThread[] threads = new MatrixThread[THREADS];
 int quotient = c.length / THREADS;
 int remainder = c.length % THREADS;
 int start = 0;
-for(int i = 0; i < THREADS; i++) {
+for (int i = 0; i < THREADS; ++i) {
     int rows = quotient;
-    if(i < remainder)
-        rows++;
-    threads[i] = new MatrixThread(a, b, c, start, start + rows); //<.>
-    threads[i].start(); //<.>
+    if (i < remainder) {
+        ++rows;
+    }
+    threads[i] = new MatrixThread(a, b, c, start, start + rows); // <.>
+    threads[i].start(); // <.>
     start += rows;
 }
 try {
-    for(int i = 0; i < THREADS; i++) //<.>
+    for (int i = 0; i < THREADS; ++i) { // <.>
         threads[i].join();
-}
-catch(InterruptedException e) {
+    }
+} catch (InterruptedException e) {
     e.printStackTrace();
 }
 ----
@@ -1318,7 +1321,7 @@ from arbitrary threads.
 
 Another issue is that there's *no* parallel execution. Each thread must wait
 for the other to complete. Of course, this problem does not benefit from
-a parallelism, but applying this solution to problems which can
+parallelism, but applying this solution to problems which can
 benefit from parallelism might cause performance problems. Each thread
 wastes time busy waiting in a `while` loop for the other to be done,
 consuming CPU cycles while it does so. You'll notice that the code
@@ -1329,7 +1332,7 @@ go back to the top of the `for` loop before the other thread had reset
 its own `done` to `false`.
 
 In short, coordinating two or more threads together is a difficult
-problem. None of the solutions we give here are fully acceptable. We
+problem. None of the solutions we give here is fully acceptable. We
 introduce better tools for coordination and synchronization in
 <<synchronization#synchronization>>.
 
@@ -1519,14 +1522,17 @@ create array `out` which contains the sound with an echo.
 ----
 double[] out = new double[in.length + delay];
 // Sound before echo starts
-for(int i = 0; i < delay; i++)
+for (int i = 0; i < delay; ++i) {
     out[i] = in[i];
+}
 // Sound with echo
-for(int i = delay; i < in.length; i++)
+for (int i = delay; i < in.length; ++i) {
     out[i] = a*in[i] + b*in[i - delay];
+}
 // Echo after sound is over
-for(int i = in.length; i < out.length; i++)
+for (int i = in.length; i < out.length; ++i) {
     out[i] = b*in[i - delay];
+}
 ----
 +
 Parameters `a` and `b` are used to control the nature of the echo. When

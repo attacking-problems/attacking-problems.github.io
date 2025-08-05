@@ -644,7 +644,7 @@ that the child classes we want to create can access it directly.
 
 [source, java]
 ----
-include::{programsdir}/Polygon.java[lines=10..24]
+include::{programsdir}/Polygon.java[lines=10..26]
 ----
 <.> The `getPerimeter()` method can determine the length
 of the perimeter by adding the lengths of the segments connecting the
@@ -680,7 +680,7 @@ reason to let external code have access to it.
 
 [source, java]
 ----
-include::{programsdir}/Triangle.java[lines=13..23]
+include::{programsdir}/Triangle.java[lines=13..25]
 ----
 
 
@@ -888,7 +888,7 @@ operator to the gate or gates at those indexes.
 
 [source, java]
 ----
-include::{programsdir}/BooleanCircuit.java[lines=47..52]
+include::{programsdir}/BooleanCircuit.java[lines=47..54]
 ----
 
 

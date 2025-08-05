@@ -3,10 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SimpleMouseEvents implements MouseListener { // <.>
-    private JFrame frame = new JFrame("Mouse Events");
-    private JTextField status = new JTextField("Mouse status comes here.");
-    private JButton oneButton = new JButton("One");
-    private JButton twoButton = new JButton("Two");
+    private final JFrame frame = new JFrame("Mouse Events");
+    private final JTextField status = new JTextField("Mouse status comes here.");
+    private final JButton oneButton = new JButton("One");
+    private final JButton twoButton = new JButton("Two");
     private int oneClicks = 0, twoClicks = 0; // Number of clicks
     
     public SimpleMouseEvents() { // <.>
@@ -24,19 +24,19 @@ public class SimpleMouseEvents implements MouseListener { // <.>
 
     // Implement all abstract methods in MouseListener
     public void mouseEntered(MouseEvent e) { // <.>
-        if (e.getSource() == oneButton) 
+        if (e.getSource() == oneButton) {
             status.setText("Mouse enters One.");
-        else
-            status.setText("Mouse enters Two.");      
+        } else {
+            status.setText("Mouse enters Two.");
+        }
     }
     
     public void mouseClicked(MouseEvent e) { // <.>
         if (e.getSource() == oneButton) {
-            oneClicks++;
+            ++oneClicks;
             status.setText("One clicked "+ oneClicks + " times.");
-        }           
-        else {
-            twoClicks++;
+        } else {
+            ++twoClicks;
             status.setText("Two clicked "+ twoClicks  + " times.");
         }
     }

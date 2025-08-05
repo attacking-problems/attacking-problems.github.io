@@ -32,7 +32,6 @@ This website was created and updated during the summer of 2024 and is usable now
 * [ ] Unify discussion of annotations (Chapters 13 and 17).
 * [ ] Add an explanation of _varargs_ in Methods (Chapter 8).
 * [ ] Add Summary sections to chapters that don't have them.
-* [ ] Apply a unified style guide to all code in the book.
 * [ ] Explain the different versions of Java and their features.
 
 '''
@@ -45,6 +44,7 @@ This website was created and updated during the summer of 2024 and is usable now
 * [x] Include a chapter on lambdas, closures, and functional expressions.
 * [x] Include a chapter on streams (or add to an existing chapter). 
 * [x] Add a brief outline of useful JCF classes and interfaces.
+* [x] Apply a unified style guide to all code in the book.
 
 == Availability
 
@@ -72,7 +72,7 @@ make changes to the source code, and submit a pull request.
 == About
 
 Welcome to __Attacking Problems with Java__!
-This book is intended as an entry point into the realm of programming.
+This book is intended as an entry point into the realm of software development.
 It's designed to teach students the basics of programming but also aims for the secondary goal
 of introducing students to concurrent programming early in their college days. After mastering the concepts covered
 here, students should be prepared when they encounter more complex forms of

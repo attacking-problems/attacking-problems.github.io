@@ -1,5 +1,5 @@
 # Used with asciidoctor-pdf.
-extends: default-with-fallback-font
+extends: default-with-font-fallbacks
 font:
   catalog:
     merge: true
@@ -13,6 +13,19 @@ font:
       bold: NotoSerif-Bold.ttf
       italic: NotoSerif-Italic.ttf
       bold_italic: NotoSerif-BoldItalic.ttf
+    OpenSans:
+      normal: OpenSans-Regular.ttf
+      bold: OpenSans-Bold.ttf
+      italic: OpenSans-Italic.ttf
+      bold_italic: OpenSans-BoldItalic.ttf
+    NotoSansMono:
+      normal: NotoSansMono-Regular.ttf
+      bold: NotoSansMono-Bold.ttf
+  fallbacks:
+  - OpenSans
+  - M+ 1p Fallback
+  - Noto Emoji
+  - NotoSansMono
 base:
   font_family: NotoSerif
 caption:

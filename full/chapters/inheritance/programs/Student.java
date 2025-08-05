@@ -14,10 +14,11 @@ public class Student {
     public void setYear(int year) { this.year = year; }
 
     public void setGPA(double GPA) {
-        if(GPA >= 0 && GPA <= 4.0)
+        if (GPA >= 0 && GPA <= 4.0) {
             this.GPA = GPA;
-        else
+        } else {
             System.out.println("Invalid GPA: " + GPA);      
+        }
     }
 
     public String getName() { return name; };

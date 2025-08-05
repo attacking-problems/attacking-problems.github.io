@@ -10,7 +10,7 @@ ____
 
 === Introduction
 
-With one exception, all of the types we've talked about in this book
+With one exception, all the types we've talked about in this book
 have held a single value. For example, an `int` variable can only
 contain a single `int` value. If you try to put a second `int` value
 into a variable, it will overwrite the first.
@@ -114,8 +114,8 @@ of time is:
 
 [source,java]
 ----
-try { Thread.sleep(100); }
-catch(InterruptedException e) {}
+try { Thread.sleep(100);
+} catch (InterruptedException e) {}
 ----
 
 We'll explain this code in much greater detail in <<concurrency#concurrency>>.
@@ -427,8 +427,9 @@ indexes.
 [source,java]
 ----
 int[] values = new int[100];
-for(int i = 0; i < 100; i++)
+for (int i = 0; i < 100; ++i) {
     values[i] = i;
+}
 ----
 
 This sample of code shows how easy it is to iterate over every element
@@ -446,8 +447,9 @@ field of the `values` array for the bound of the `for` loop.
 [source,java]
 ----
 int[] values = new int[100];
-for(int i = 0; i < values.length; i++)
+for (int i = 0; i < values.length; ++i) {
     values[i] = i;
+}
 ----
 
 The `length` field gives the length of the array that `values` points
@@ -466,8 +468,9 @@ the same summation is discussed in <<Enhanced `for` loops>>.
 [source,java]
 ----
 double sum = 0.0;
-for(int i = 0; i < data.length; i++)
+for (int i = 0; i < data.length; ++i) {
     sum += data[i];
+}
 System.out.println("The sum of your data is: " + sum);
 ----
 
@@ -479,19 +482,20 @@ the array.
 
 [source,java]
 ----
-char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; //<1>
-int start = 0; //<2>
-int end = letters.length - 1; //<3>
+char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; // <1>
+int start = 0; // <2>
+int end = letters.length - 1; // <3>
 char temp;
-while(start < end) { //<4>
-    temp = letters[start]; //<5>
+while (start < end) { // <4>
+    temp = letters[start]; // <5>
     letters[start] = letters[end];
     letters[end] = temp;
-    start++; //<6>
-    end--;
+    ++start; // <6>
+    --end;
 }
-for(int i = 0; i < letters.length; i++) //<7>
+for (int i = 0; i < letters.length; ++i) { //<7>
     System.out.print(letters[i]);
+}
 ----
 
 <1> After initializing the `letters`
@@ -644,9 +648,11 @@ the largest value in an `int` array named `values` in exactly this way.
 [source,java]
 ----
 int largest = values[0];
-for(int i = 1; i < values.length; i++)
-    if(values[i] > largest)
+for (int i = 1; i < values.length; ++i) {
+    if (values[i] > largest) {
         largest = values[i];
+    }
+}
 System.out.println("The largest value is " + largest);
 ----
 
@@ -662,9 +668,11 @@ could find the smallest value instead.
 [source,java]
 ----
 int smallest = values[0];
-for(int i = 1; i < values.length; i++)
-    if(values[i] < smallest)
+for (int i = 1; i < values.length; ++i) {
+    if (values[i] < smallest) {
         smallest = values[i];
+    }
+}
 System.out.println("The smallest value is " + smallest);
 ----
 
@@ -701,7 +709,7 @@ follows. This program's not very long, but there's a lot going on.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=1..11]
+include::{programsdir}/SelectionSort.java[lines=1..12]
 ----
 <.> After
 instantiating a `Scanner`, we read in the total number of values the
@@ -715,7 +723,7 @@ first `for` loop.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=12..20]
+include::{programsdir}/SelectionSort.java[lines=13..23]
 ----
 <.> The next `for` loop is where the actual sort happens. We start at index
 `0` and then try to find the smallest value to be put in that spot.
@@ -737,7 +745,7 @@ simple swap to do exactly that.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=21..25]
+include::{programsdir}/SelectionSort.java[lines=24..29]
 ----
 <.> After all the sorting is done, the final `for` loop prints out the newly
 sorted list.
@@ -777,7 +785,7 @@ the text we want to search through.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=1..11]
+include::{programsdir}/WordCount.java[lines=1..12]
 ----
 <.> As in the last example, this program begins by reading in the length of
 the list of words.
@@ -791,7 +799,7 @@ the program reads in each word and stores it into the array `words`.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=12..20]
+include::{programsdir}/WordCount.java[lines=13..21]
 ----
 <.> The `while` loop reads in each word from the text following the list and
 stores it in a variable called `temp`.
@@ -802,7 +810,7 @@ same index and breaks out of the inner `for` loop.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=21..24]
+include::{programsdir}/WordCount.java[lines=22..27]
 ----
 <.> After all the words in the text have been processed, the final `for`
 loop prints out each word from the list, along with its counts.
@@ -916,7 +924,7 @@ solve after the previous examples.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=1..9]
+include::{programsdir}/Statistics.java[lines=1..10]
 ----
 <.> In our solution, the `main()` method begins by reading in the total
 number of scores.
@@ -927,7 +935,7 @@ number of scores.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=10..19]
+include::{programsdir}/Statistics.java[lines=11..22]
 ----
 <.> Here we declare variables `max`, `min`, and `sum` to hold, respectively,
 the maximum, minimum, and sum of the elements in the array. Then, we set
@@ -947,7 +955,7 @@ up to `scores.length - 1`, we must include the value at index `0` in
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=20..23]
+include::{programsdir}/Statistics.java[lines=23..26]
 ----
 
 In this short snippet of code, we compute the mean, being careful to
@@ -956,7 +964,7 @@ statistics we've computed.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=24..28]
+include::{programsdir}/Statistics.java[lines=27..32]
 ----
 <.> At this point, we use the mean we've already computed to find the
 sample standard deviation. Following the formula for sample standard
@@ -970,7 +978,7 @@ square root of the variance is the standard deviation.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=29..38]
+include::{programsdir}/Statistics.java[lines=33..44]
 ----
 <.> To find the median, we use our selection sort code.
 
@@ -984,7 +992,7 @@ your code, add a comment.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=39..46]
+include::{programsdir}/Statistics.java[lines=45..53]
 ----
 <.> After the array has been sorted, we need to do a quick check to see if
 its length is odd or even.
@@ -1202,11 +1210,12 @@ numbered increasing across each row.
 ----
 int[][] values = new int[3][4];
 int number = 1;
-for(int i = 0; i < values.length; i++)
-    for(int j = 0; j < values[i].length; j++) {
+for (int i = 0; i < values.length; ++i) {
+    for (int j = 0; j < values[i].length; ++j) {
         values[i][j] = number;
-        number++;
+        ++number;
     }
+}
 ----
 
 This code would result in an array filled up like the following table.
@@ -1244,8 +1253,9 @@ one-dimensional array aliasing.
 [source,java]
 ----
 int[] array1 = new int[10];
-for(int i = 0; i < array1.length; i++)
+for (int i = 0; i < array1.length; ++i) {
     array1[i] = i;
+}
 int[] array2 = array1;
 array2[3] = 17;
 System.out.println(array1[3]);
@@ -1309,11 +1319,11 @@ block.
 ----
 int[][] values = new int[3][];
 int number = 1;
-for(int i = 0; i < values.length; i++) {
+for (int i = 0; i < values.length; ++i) {
     values[i] = new int[4];
-    for(int j = 0; j < values[i].length; j++) {
+    for (int j = 0; j < values[i].length; ++j) {
         values[i][j] = number;
-            number++;
+        ++number;
     }
 }
 ----
@@ -1387,7 +1397,7 @@ user wants to use to find the distances between.
 
 [source,java]
 ----
-if(city1 > city2) {
+if (city1 > city2) {
     int temp = city1;
     city1 = city2;
     city2 = temp;
@@ -1420,8 +1430,9 @@ access an illegal element, it'll crash with an
 [source,java]
 ----
 int[] array = new int[100];
-for(int i = 0; i <= array.length; i++)
+for (int i = 0; i <= array.length; ++i) {
     array[i] = i;
+}
 ----
 
 Here's a classic example. By iterating through the loop one too many
@@ -1441,10 +1452,11 @@ in the file.
 Scanner in = new Scanner(System.in);
 int[] counts = new int[26];
 String word;
-while(in.hasNext()) {
+while (in.hasNext()) {
     word = in.next().toLowerCase();
-    for(int i = 0; i < word.length(); i++)
-        counts[word.charAt(i) - 'a']++;
+    for (int i = 0; i < word.length(); ++i) {
+        ++counts[word.charAt(i) - 'a'];
+    }
 }
 ----
 
@@ -1476,7 +1488,7 @@ it's an array of primitive values, the following code works fine.
 [source,java]
 ----
 int[] primitives = new int[100];
-primitives[67]++;
+++primitives[67];
 ----
 
 The following code, however, will cause a `NullPointerException`.
@@ -1493,8 +1505,9 @@ The `NullPointerException` could be avoided as follows.
 [source,java]
 ----
 String[] references = new String[100];
-for(int i = 0; i < references.length; i++)
+for (int i = 0; i < references.length; ++i) {
     references[i] = new String();
+}
 int x = references[67].length();
 ----
 
@@ -1507,8 +1520,9 @@ A similar error can happen with multidimensional arrays.
 [source,java]
 ----
 int[][] table = new int[10][];
-for(int i = 0; i < table.length; i++)
+for (int i = 0; i < table.length; ++i) {
     table[i][i] = i;
+}
 ----
 
 Because an array is itself a reference type, the `table` array contains
@@ -1652,7 +1666,7 @@ objects.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=1..13]
+include::{programsdir}/TicTacToe.java[lines=1..15]
 ----
 <.> First, we create a `Scanner` to read in data.
 <.> Then, we declare
@@ -1673,10 +1687,11 @@ really shorthand for the following.
 
 [source,java]
 ----
-if(turn)
+if (turn) {
     shape = 'X';
-else
+} else {
     shape = '0';
+}
 ----
 
 The ternary operator works with a condition followed by a question mark
@@ -1688,7 +1703,7 @@ ternary operator is a useful trick, but it shouldn't be overused.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=15..35]
+include::{programsdir}/TicTacToe.java[lines=17..37]
 ----
 <.> After assigning the appropriate value to `shape`, our code reads in the
 row and column values for the current player's next move.
@@ -1710,7 +1725,7 @@ win.
 
 [source, java]
 ----
-include::{programsdir}/TicTacToe.java[lines=36..62]
+include::{programsdir}/TicTacToe.java[lines=38..70]
 ----
 <.> First we check each row to see if it contains three in a row.
 <.> Then, we check each column.
@@ -1761,8 +1776,9 @@ the loop.
 [source,java]
 ----
 int sum = 0;
-for(int value : array)
+for (int value : array) {
     sum += value;
+}
 ----
 
 This code functions in exactly the same way as the traditional `for`
@@ -1771,8 +1787,9 @@ loop we would use to solve the same problem.
 [source,java]
 ----
 int sum = 0;
-for(int i = 0; i < array.length; i++)
+for (int i = 0; i < array.length; ++i) {
     sum += array[i];
+}
 ----
 
 The advantage of the enhanced `for` loop is that it's shorter and clearer.
@@ -1788,9 +1805,11 @@ pieces, in both black and white colors.
 ----
 String[] colors = {"Black", "White"};
 String[] pieces = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
-for(String color : colors)
-    for(String piece : pieces)
+for (String color : colors) {
+    for (String piece : pieces) {
         System.out.println(color + " " + piece);
+    }
+}
 ----
 
 Enhanced `for` loops do have a few drawbacks. For one, they're designed for iterating
@@ -1804,8 +1823,9 @@ in `array`.
 
 [source,java]
 ----
-for(int i = 0; i < array.length; i++)
+for (int i = 0; i < array.length; ++i) {
     array[i] = 5;
+}
 ----
 
 This kind of assignment is impossible in an enhanced `for` loop. The
@@ -1814,8 +1834,9 @@ variable `value` but never changes the contents of `array`.
 
 [source,java]
 ----
-for(int value : array)
+for (int value : array) {
     value = 5;
+}
 ----
 
 While enhanced `for` loops are great for arrays, they can also be used for
@@ -1883,7 +1904,7 @@ columns, although it would be easy to change those dimensions.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=1..11]
+include::{programsdir}/Life.java[lines=1..13]
 ----
 <.> The `main()` method of our program starts by defining `ROWS`, `COLUMNS`,
 and `GENERATIONS` as named constants using the `final` keyword.
@@ -1899,7 +1920,7 @@ see how the patterns in the simulation are affected.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=12..29]
+include::{programsdir}/Life.java[lines=14..36]
 ----
 <.> The `for` loop at the beginning of this segment of code runs once for
 each generation we simulate.
@@ -1930,7 +1951,7 @@ is less efficient.
 
 [source, java]
 ----
-include::{programsdir}/Life.java[lines=30..44]
+include::{programsdir}/Life.java[lines=37..54]
 ----
 <.> The first `for` loop in this segment prints 100 blank lines to clear the
 screen, as we explained earlier.
@@ -2065,13 +2086,14 @@ linked list and vice versa.
 ----
 double[] array1 = new double[50];
 double[] array2 = new double[50];
-for(int i = 0; i < array1.length; i++) {
+for (int i = 0; i < array1.length; ++i) {
     array1[i] = i + 1;
     array2[i] = array2.length - i;
 }
 array2 = array1;
-for(int i = 1; i < array1.length; i++)
+for (int i = 1; i < array1.length; ++i) {
     array1[i] = array1[i - 1] + array1[i];
+}
 ----
 +
 What is the value in `array2[array2.length - 1]` after this code is

@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class FrameWithPanelAndActions {
+public class FrameWithPanelAndActionsClasses {
     public static void main(String[] args){
         JFrame frame = new JFrame("Button Example"); 
         JPanel panel = new JPanel();
@@ -17,22 +17,23 @@ public class FrameWithPanelAndActions {
         panel.add(exitButton);
 		
         // Add action listeners to various buttons
-        thisButton.addActionListener(new ActionListener() { 
+        thisButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 field.setText("You can get with this.");
             }
         });
-        thatButton.addActionListener(new ActionListener(){
+        thatButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 field.setText("Or you can get with that.");
             }
         });
-        exitButton.addActionListener(new ActionListener(){
+        exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.out.println("Exit");
                 frame.dispose();
             }
         });
+
         frame.add(panel);
         frame.setSize(350,200);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

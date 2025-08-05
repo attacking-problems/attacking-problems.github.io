@@ -764,10 +764,11 @@ we can generate a method that computes the factorial function.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">factorial</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>     <span class="c1">// Base case</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
 		<span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-	<span class="k">else</span>            <span class="c1">// Recursive case</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>      <span class="c1">// Recursive case</span>
 		<span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -797,10 +798,11 @@ method in Java.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">fibonacci</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>  <span class="c1">// Base cases</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base cases</span>
         <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">else</span>                  <span class="c1">// Recursive case</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>                <span class="c1">// Recursive case</span>
         <span class="k">return</span> <span class="nf">fibonacci</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -831,11 +833,12 @@ the recursion and store the result in the array.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">fibonacci</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">results</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">results</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">results</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">results</span><span class="o">[</span><span class="n">n</span><span class="o">]</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="o">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">);</span>
+        <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">results</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
 <span class="o">}</span></code></pre>
@@ -918,10 +921,10 @@ destination pole.</p>
     <span class="o">}</span>
     
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">move</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">char</span> <span class="n">fromPole</span><span class="o">,</span> <span class="kt">char</span> <span class="n">toPole</span><span class="o">,</span> <span class="kt">char</span> <span class="n">viaPole</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Move disk from pole %c to pole %c.\n"</span><span class="o">,</span>
                 <span class="n">fromPole</span><span class="o">,</span> <span class="n">toPole</span><span class="o">);</span>
-        <span class="k">else</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">move</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">fromPole</span><span class="o">,</span> <span class="n">viaPole</span><span class="o">,</span> <span class="n">toPole</span><span class="o">);</span>
             <span class="n">move</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">fromPole</span><span class="o">,</span> <span class="n">toPole</span><span class="o">,</span> <span class="n">viaPole</span><span class="o">);</span>
             <span class="n">move</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">viaPole</span><span class="o">,</span> <span class="n">toPole</span><span class="o">,</span> <span class="n">fromPole</span><span class="o">);</span>
@@ -973,10 +976,11 @@ value.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">power</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>    <span class="c1">// Base case</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
         <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
-    <span class="k">else</span>          <span class="c1">// Recursive case</span>
+    <span class="o">}</span> <span class="k">else</span>        <span class="c1">// Recursive case</span>
         <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">power</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1008,9 +1012,9 @@ size of <em>n</em> in half at each recursive step instead of only reducing <em>n
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">power</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>    <span class="c1">// Base case</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
         <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
-    <span class="k">else</span> <span class="o">{</span>          <span class="c1">// Recursive case</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>      <span class="c1">// Recursive case</span>
         <span class="kt">double</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">power</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
         <span class="k">return</span> <span class="n">temp</span><span class="o">*</span><span class="n">temp</span><span class="o">;</span>
     <span class="o">}</span>
@@ -1082,7 +1086,7 @@ keeps track of the position it’s swapping in the array with the
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reverse</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
 		<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">];</span>
 		<span class="n">array</span><span class="o">[</span><span class="n">position</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
 		<span class="n">array</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
@@ -1131,13 +1135,15 @@ sort algorithm.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">if</span><span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
 		<span class="kt">int</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="mi">2</span><span class="o">];</span>
 		<span class="kt">int</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
 			<span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+        <span class="o">}</span>
+		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
 			<span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">a</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
 		<span class="n">mergeSort</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
 		<span class="n">mergeSort</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
 		<span class="n">merge</span><span class="o">(</span><span class="n">array</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
@@ -1165,15 +1171,16 @@ much of the real work in the algorithm.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">aIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">bIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">bIndex</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">bIndex</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">aIndex</span><span class="o">++];</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">aIndex</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">aIndex</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">[</span><span class="n">bIndex</span><span class="o">++];</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">aIndex</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="o">[</span><span class="n">bIndex</span><span class="o">])</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">aIndex</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="o">[</span><span class="n">bIndex</span><span class="o">])</span> <span class="o">{</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">aIndex</span><span class="o">++];</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">[</span><span class="n">bIndex</span><span class="o">++];</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1279,9 +1286,9 @@ counter and set the reference to the next element on the list.
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span>
         <span class="nc">Node</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
         <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="n">counter</span><span class="o">++;</span>
+            <span class="o">++</span><span class="n">counter</span><span class="o">;</span>
         <span class="o">}</span>           
         <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
     <span class="o">}</span>
@@ -1329,10 +1336,11 @@ internals.</p>
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">(</span><span class="nc">Node</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">list</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> 				<span class="c1">// Base case</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">list</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>				<span class="c1">// Base case</span>
             <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>   
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 			<span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">size</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>	<span class="c1">// Recursive case</span>
+        <span class="o">}</span>
     <span class="o">}</span>    
 <span class="o">}</span></code></pre>
 </div>
@@ -1386,11 +1394,11 @@ always drawn at the top.</p>
 <div class="content">
 <img src="chapters/recursion/images/treevisualization.svg" alt="treevisualization" width="100%">
 </div>
-<div class="title">Figure 20.6 Visualization of a tree. The root is shown in light red. The leaves are shown in blue. The interior nodes are show in light purple.</div>
+<div class="title">Figure 20.6 Visualization of a tree. The root (containing <code>"on"</code>) is shown in light red. The leaves (containing <code>"and"</code>, <code>"fortune"</code>, <code>"life"</code>, <code>"slender"</code>, and <code>"what"</code>) are shown in blue. The interior nodes (containing <code>"do"</code>, <code>"hang"</code>, and <code>"threads"</code>) are show in light purple.</div>
 </div>
 <div class="paragraph">
 <p>Abstractly, a tree is either empty (the base case) or contains
-references to 0 or more other trees (the recursive case). Trees are
+references to zero or more other trees (the recursive case). Trees are
 useful for storing and retrieving sorted data efficiently. Some
 applications include dictionaries, catalogs, ordered lists, and any
 other sorted set of objects. For these purposes, we can define an
@@ -1477,17 +1485,15 @@ object. The <code>Node</code> static nested class contains three fields.</p>
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Node</span> <span class="nf">add</span><span class="o">(</span><span class="nc">String</span> <span class="n">value</span><span class="o">,</span> <span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case </span><i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case </span><i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">();</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// Left recursive case    </span><i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Left recursive case </span><i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">tree</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-        <span class="c1">// Right recursive case   </span><i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Right recursive case </span><i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">tree</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">tree</span><span class="o">;</span> 			  <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">tree</span><span class="o">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="o">}</span>
     
     <span class="c1">// Proxy print</span>
@@ -1496,7 +1502,7 @@ object. The <code>Node</code> static nested class contains three fields.</p>
     <span class="o">}</span>
         
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span> 				<i class="conum" data-value="5"></i><b>(5)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>	<i class="conum" data-value="6"></i><b>(6)</b>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>				<i class="conum" data-value="7"></i><b>(7)</b>
@@ -1591,8 +1597,9 @@ process using a <code>Tree</code> object for storage.</p>
 		<span class="nc">Tree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tree</span><span class="o">();</span>
 		<span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
 		
-		<span class="k">while</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span>           
+		<span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>           
 			<span class="n">tree</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>        
+		<span class="o">}</span>
 		<span class="n">tree</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>
 	<span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1642,16 +1649,14 @@ eventual transition into a parameterized generic type.</p>
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Node</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">value</span><span class="o">,</span> <span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
             <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">();</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// Left recursive case</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
-            <span class="n">tree</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-        <span class="c1">// Right recursive case</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Left recursive case</span>
+            <span class="n">tree</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span> 
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Right recursive case</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">tree</span><span class="o">;</span>        
     <span class="o">}</span>
     
@@ -1661,7 +1666,7 @@ eventual transition into a parameterized generic type.</p>
     <span class="o">}</span>
         
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
@@ -1712,16 +1717,14 @@ compile-time.</p>
     <span class="o">}</span>
     
     <span class="kd">private</span> <span class="nc">Node</span> <span class="nf">add</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">,</span> <span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Base case</span>
             <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">();</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="c1">// Left recursive case</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Left recursive case</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-        <span class="c1">// Right recursive case</span>
-        <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Right recursive case</span>
             <span class="n">tree</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">tree</span><span class="o">;</span>        
     <span class="o">}</span>
     
@@ -1731,7 +1734,7 @@ compile-time.</p>
     <span class="o">}</span>
         
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="nc">Node</span> <span class="n">tree</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tree</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
             <span class="n">print</span><span class="o">(</span><span class="n">tree</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
@@ -1785,13 +1788,15 @@ are available as the <code>TreeSet</code> and <code>TreeMap</code> classes.</p>
         <span class="nc">GenericTree</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringTree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GenericTree</span><span class="o">&lt;&gt;();</span>
         <span class="nc">GenericTree</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">integerTree</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GenericTree</span><span class="o">&lt;&gt;();</span>
         
-        <span class="k">while</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
             <span class="n">stringTree</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>      
+        <span class="o">}</span>
         <span class="n">stringTree</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>
         
         <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">integerTree</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">());</span>      
+        <span class="o">}</span>
         <span class="n">integerTree</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1849,12 +1854,13 @@ squares in the four directions, we call our own method recursively.</p>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">MazeSolver</span> <span class="n">solver</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MazeSolver</span><span class="o">();</span>	<i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="k">if</span><span class="o">(</span><span class="n">solver</span><span class="o">.</span><span class="na">solve</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">))</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">solver</span><span class="o">.</span><span class="na">solve</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nSolved!"</span><span class="o">);</span>
-        <span class="k">else</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nNot solvable!"</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="n">solver</span><span class="o">.</span><span class="na">print</span><span class="o">();</span>							<i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="o">}</span>   </code></pre>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1889,11 +1895,12 @@ symbols if the maze is solvable.</td>
         <span class="no">COLUMNS</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
         <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
         <span class="n">maze</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="no">ROWS</span><span class="o">][</span><span class="no">COLUMNS</span><span class="o">];</span>			<i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="no">ROWS</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>	<i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="no">ROWS</span><span class="o">;</span> <span class="o">++</span><span class="n">row</span><span class="o">)</span> <span class="o">{</span>	<i class="conum" data-value="4"></i><b>(4)</b>
             <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="no">COLUMNS</span><span class="o">;</span> <span class="n">column</span><span class="o">++)</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="no">COLUMNS</span><span class="o">;</span> <span class="o">++</span><span class="n">column</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">column</span><span class="o">);</span>
+            <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span></code></pre>
 </div>
@@ -1929,9 +1936,10 @@ it reads, it prints out each line to the screen, showing the initial
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="no">ROWS</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="no">COLUMNS</span><span class="o">;</span> <span class="n">column</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="no">ROWS</span><span class="o">;</span> <span class="o">++</span><span class="n">row</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="no">COLUMNS</span><span class="o">;</span> <span class="o">++</span><span class="n">column</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]);</span>
+            <span class="o">}</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
         <span class="o">}</span>
     <span class="o">}</span></code></pre>
@@ -1945,18 +1953,18 @@ that row.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">column</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">if</span><span class="o">(</span><span class="n">row</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">row</span> <span class="o">&gt;=</span> <span class="no">ROWS</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="no">COLUMNS</span><span class="o">)</span>
+		<span class="k">if</span> <span class="o">(</span><span class="n">row</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">row</span> <span class="o">&gt;=</span> <span class="no">ROWS</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="no">COLUMNS</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">==</span> <span class="sc">'E'</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">==</span> <span class="sc">'E'</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">' '</span><span class="o">)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">!=</span> <span class="sc">' '</span><span class="o">)</span> <span class="o">{</span>
 			<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-		<span class="k">else</span> <span class="o">{</span>
+		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 			<span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="sc">'*'</span><span class="o">;</span>
-			<span class="k">if</span><span class="o">(</span><span class="n">solve</span><span class="o">(</span><span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">column</span><span class="o">)</span> <span class="o">||</span> <span class="n">solve</span><span class="o">(</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">column</span><span class="o">)</span> <span class="o">||</span>
-				<span class="n">solve</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">||</span> <span class="n">solve</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">solve</span><span class="o">(</span><span class="n">row</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">column</span><span class="o">)</span> <span class="o">||</span> <span class="n">solve</span><span class="o">(</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">column</span><span class="o">)</span> <span class="o">||</span>
+				<span class="n">solve</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">||</span> <span class="n">solve</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
 				<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-			<span class="k">else</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 				<span class="n">maze</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="sc">' '</span><span class="o">;</span>
 				<span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
 			<span class="o">}</span>
@@ -2127,8 +2135,9 @@ parameters, requiring us to use wrapper classes in those cases.</p>
     
     <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span> 					<i class="conum" data-value="3"></i><b>(3)</b>
         <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">min</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">min</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">max</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
         <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -2168,7 +2177,7 @@ the futures running, and collect the results.</p>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FUTURES</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;&gt;</span> <span class="n">futures</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="no">FUTURES</span><span class="o">);</span>     <i class="conum" data-value="3"></i><b>(3)</b>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;&gt;</span> <span class="n">futures</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;(</span><span class="no">FUTURES</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="nc">ExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="no">THREADS</span><span class="o">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="kt">int</span> <span class="n">work</span> <span class="o">=</span> <span class="no">N</span><span class="o">/</span><span class="no">FUTURES</span><span class="o">;</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
@@ -2210,7 +2219,7 @@ complicated load-balancing approach because 100,000,000 is divisible by 10.</td>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating futures..."</span><span class="o">);</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">FUTURES</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">FUTURES</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">Callable</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">summer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RootSummer</span><span class="o">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">work</span><span class="o">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)*</span><span class="n">work</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">summer</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">futures</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">future</span><span class="o">);</span>
@@ -2237,11 +2246,10 @@ directly into the list <code>futures</code>.</td>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting results from futures..."</span><span class="o">);</span>
         <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="nl">future:</span> <span class="n">futures</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Future</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="nl">future:</span> <span class="n">futures</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="k">try</span> <span class="o">{</span>
                 <span class="n">sum</span> <span class="o">+=</span> <span class="n">future</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="o">}</span>
-            <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="o">|</span> <span class="nc">ExecutionException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="o">|</span> <span class="nc">ExecutionException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
             <span class="o">}</span>
         <span class="o">}</span>
@@ -2545,7 +2553,7 @@ time each process. Was the iterative or recursive approach faster? By how much?<
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

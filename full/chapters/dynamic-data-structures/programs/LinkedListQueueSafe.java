@@ -26,8 +26,9 @@ public class LinkedListQueueSafe implements Queue {
         } else {
             value = head.value;
             head = head.next;
-            if(head == null)
+            if (head == null) {
                 tail = null;
+            }
         }
         return value;
     }

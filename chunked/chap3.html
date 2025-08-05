@@ -1428,12 +1428,12 @@ their own special operators, <code>++</code> and <code>--</code>.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>++</pre></div></td>
-<td class="tableblock halign-center valign-middle"><div class="literal"><pre>a++;</pre></div></td>
+<td class="tableblock halign-center valign-middle"><div class="literal"><pre>++a;</pre></div></td>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>a = a + 1;</pre></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>--</pre></div></td>
-<td class="tableblock halign-center valign-middle"><div class="literal"><pre>a--;</pre></div></td>
+<td class="tableblock halign-center valign-middle"><div class="literal"><pre>--a;</pre></div></td>
 <td class="tableblock halign-center valign-middle"><div class="literal"><pre>a = a - 1;</pre></div></td>
 </tr>
 </tbody>
@@ -1536,7 +1536,10 @@ version when executed.</p>
 <p>Nevertheless, many programmers enjoy squeezing their code down to the
 smallest number of lines of code possible. You may have to read code
 that uses increments and decrements in clever (if obscure) ways, but you
-should always strive to make your own code as readable as possible.</p>
+should always strive to make your own code as readable as possible. Throughout
+this book we will prefer the prefix style for increments and decrements,
+because it’s guaranteed to be as fast or faster than postfix and because it
+matches what most people intuitively expect, that the update happens first.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3070,7 +3073,7 @@ value of the corresponding type.</p>
 <span class="kt">int</span> <span class="n">humanAge</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">130</span><span class="o">);</span>
 
 <span class="c1">// Random boolean value</span>
- <span class="kt">boolean</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">();</span>
+<span class="kt">boolean</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextBoolean</span><span class="o">();</span>
 
 <span class="c1">// Random floating-point value between 0.0 (inclusive) and 1.0 (exclusive)</span>
 <span class="kt">double</span> <span class="n">percent</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span></code></pre>
@@ -3299,6 +3302,51 @@ formatted as the appropriate kind of number, Java throws a
 <code>NumberFormatException</code>, probably crashing the program. An <em>exception</em>
 is an error or other unexpected situation that happens in the middle of
 running a program. We discuss how to work with exceptions in <a href="chap12.html">Chapter 12</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_numerical_to_string_conversions">Numerical to <code>String</code> conversions</h5>
+<div class="paragraph">
+<p>In some cases, the opposite conversion must be done: turning a number into an
+equivalent <code>String</code>. A wrapper class can be used for this task as well.
+Unsurprisingly, the method to convert a number to a <code>String</code> is the <code>toString()</code>
+method, which can be called from a <code>Byte</code>, <code>Short</code>, <code>Integer</code>, <code>Long</code>, <code>Float</code>,
+or <code>Double</code> wrapper class, depending on the type of the number.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">value</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="mi">68</span><span class="o">);</span> <span class="c1">// Contains "68"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each integer wrapper class (<code>Byte</code>, <code>Short</code>, <code>Integer</code>, and <code>Long</code>) even has a
+version of the <code>toString()</code> method that converts a number to a <code>String</code>
+representation in a particular base. For example, the following method converts
+<code>604</code> to its <code>String</code> representation in hexadecimal, <code>"25c"</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">hex</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="mi">604</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span> <span class="c1">// Contains "25c"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Except for this kind of base conversion, many programmers rarely use
+<code>toString()</code> methods because there’s an easier way to convert a number (or any
+type) to a <code>String</code>. The concatenation operator (<code>+</code>) discussed in
+<a href="chap2.html#_concatenating_string_values">Section 2.3.4.3</a> can be used to concatenate a number to the
+empty string (<code>""</code>), “adding” a <code>String</code> version of the number to, well,
+nothing. Using this style, you might see code like the following.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">68</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">""</span> <span class="o">+</span> <span class="n">number</span><span class="o">;</span> <span class="c1">// Contains "68"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While an argument can be made that using the <code>toString()</code> method is more
+readable, the concatenation approach is certainly shorter to type and very
+popular.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3826,7 +3874,7 @@ illustrates this concurrent approach.</p>
         <span class="n">fThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="n">gThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="k">try</span> <span class="o">{</span>
-            <span class="n">fThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>  <i class="conum" data-value="5"></i><b>(5)</b>
+            <span class="n">fThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="n">gThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span> <i class="conum" data-value="6"></i><b>(6)</b>
             <span class="kt">double</span> <span class="n">fResult</span> <span class="o">=</span> <span class="n">fThread</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span> <i class="conum" data-value="7"></i><b>(7)</b>
             <span class="kt">double</span> <span class="n">gResult</span> <span class="o">=</span> <span class="n">gThread</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span> <i class="conum" data-value="8"></i><b>(8)</b>
@@ -3834,8 +3882,7 @@ illustrates this concurrent approach.</p>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result of f: "</span> <span class="o">+</span> <span class="n">fResult</span> <span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Result of g: "</span> <span class="o">+</span> <span class="n">gResult</span> <span class="o">);</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final answer: "</span> <span class="o">+</span> <span class="n">answer</span><span class="o">);</span>        
-        <span class="o">}</span>
-        <span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Computation interrupted!"</span><span class="o">);</span>
         <span class="o">}</span>             
     <span class="o">}</span>   
@@ -4366,7 +4413,7 @@ display properly.</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>
