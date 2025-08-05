@@ -2311,6 +2311,46 @@ formatted as the appropriate kind of number, Java throws a
 is an error or other unexpected situation that happens in the middle of
 running a program. We discuss how to work with exceptions in <<exceptions#exceptions>>.
 
+===== Numerical to `String` conversions
+
+In some cases, the opposite conversion must be done: turning a number into an
+equivalent `String`. A wrapper class can be used for this task as well.
+Unsurprisingly, the method to convert a number to a `String` is the `toString()`
+method, which can be called from a `Byte`, `Short`, `Integer`, `Long`, `Float`,
+or `Double` wrapper class, depending on the type of the number.
+
+[source, java]
+----
+String value = Integer.toString(68); // Contains "68"
+----
+
+Each integer wrapper class (`Byte`, `Short`, `Integer`, and `Long`) even has a
+version of the `toString()` method that converts a number to a `String`
+representation in a particular base. For example, the following method converts
+`604` to its `String` representation in hexadecimal, `"25c"`.
+
+[source, java]
+----
+String hex = Integer.toString(604, 16); // Contains "25c"
+----
+
+Except for this kind of base conversion, many programmers rarely use
+`toString()` methods because there's an easier way to convert a number (or any
+type) to a `String`. The concatenation operator (`+`) discussed in
+<<Concatenating `String` values>> can be used to concatenate a number to the
+empty string (`""`), “adding” a `String` version of the number to, well,
+nothing. Using this style, you might see code like the following.
+
+[source, java]
+----
+int number = 68;
+String text = "" + number; // Contains "68"
+----
+
+While an argument can be made that using the `toString()` method is more
+readable, the concatenation approach is certainly shorter to type and very
+popular.
+
 ===== `Character` methods
 
 When working with `char` values, it can be useful to know whether a
