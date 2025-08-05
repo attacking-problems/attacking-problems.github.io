@@ -378,7 +378,7 @@ computer can understand.
 +
 To compile the programs in this book, you use the Java compiler
 `javac`, either directly by typing its name as a command or indirectly
-as Eclipse, IntelliJ IDEA, or some other tool that runs the compiler for you.
+as IntelliJ IDEA, Eclipse, or some other tool that runs the compiler for you.
 Business Applications:::
 Many different kinds of programs fall under the umbrella of business
 or productivity software. Perhaps the best known is the Microsoft
@@ -403,8 +403,9 @@ The intense 3D graphics required by modern video games have pushed
 hardware manufacturers such as Nvidia, AMD, and Intel to develop
 high-performance graphics cards for desktop and laptop computers. At
 the same time, companies like Nintendo, Sony, and Microsoft have
-developed computers such as the Switch, PlayStation 4, and Xbox One that specialize
-in video games but are not designed for general computing tasks.
+developed computers such as the Switch 2, PlayStation 5, and Xbox Series
+X that specialize in video games but are not designed for general
+computing tasks.
 Web Browsers:::
 Web browsers are programs that can connect to the Internet and
 download and display web pages and other files. Early web browsers
@@ -416,9 +417,7 @@ display video, and allow for sophisticated real-time communication.
 Popular web browsers include Microsoft Edge, Mozilla
 Firefox, Apple Safari, and Google Chrome. Each has advantages and
 disadvantages in terms of compatibility, standards compliance,
-security, speed, and customer support. The Opera web browser is not
-well known on desktop computers, but it is used on many mobile
-telephones.
+security, speed, and customer support.
 
 === Syntax: Data representation
 
