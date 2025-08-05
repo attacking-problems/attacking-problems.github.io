@@ -19,6 +19,7 @@ def convert()
     $VERBOSE = old_verbose
 end
 
+Asciidoctor::LoggerManager.logger.level = :info
 pdf_dir = "pdf"
 Dir.mkdir(pdf_dir) unless File.exist?(pdf_dir)
 Dir.chdir('full') do

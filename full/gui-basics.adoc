@@ -126,7 +126,7 @@ Input:::
   An input dialog is useful for obtaining data provided by the user.
   Static method `showInputDialog()` creates such a dialog. The user can
   input a `String` that might represent a number, a name, or any
-  arbitrary text. See <<inputDialogFigure>> for an
+  arbitrary text. See <<inputDialogTextFigure>> for an
   example.
 
 The `JOptionPane` class can be used to create both _modal_ and
