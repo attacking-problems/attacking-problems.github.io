@@ -952,7 +952,7 @@ root is the starting point for a tree data structure, it's almost
 always drawn at the top.
 
 [[figure-tree_visualization]]
-.Visualization of a tree. The root is shown in light red. The leaves are shown in blue. The interior nodes are show in light purple.
+.Visualization of a tree. The root (containing `"on"`) is shown in light red. The leaves (containing `"and"`, `"fortune"`, `"life"`, `"slender"`, and `"what"`) are shown in blue. The interior nodes (containing `"do"`, `"hang"`, and `"threads"`) are show in light purple.
 image::treevisualization.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
 
