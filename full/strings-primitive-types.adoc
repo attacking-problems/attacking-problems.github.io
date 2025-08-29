@@ -183,7 +183,7 @@ Another difference is that reference variables (or simply _references_)
 do not have a large set of operators that work on them. Every variable
 can be used with the assignment (`=`) and the comparison (`==`)
 operators. Every variable can also be concatenated with a `String` by
-using the `+` operator, but even if two objects represent numerical
+using the `+++` operator, but even if two objects represent numerical
 values, they can't be added together with the `+` operator.
 
 References should still be thought of as types defining a set of objects
@@ -1658,7 +1658,7 @@ phrase = phrase.concat(exclamation);
 ----
 
 This sequence of statements gives the same result as the one above 
-using the `+` operator. In practice, the `concat()` method is rarely
+using the `+++` operator. In practice, the `concat()` method is rarely
 used because the `+` operator is so convenient. Note that `String`
 objects in Java are _immutable_, meaning that calling a method on a
 `String` object will *never* change it. In the code above, calling
