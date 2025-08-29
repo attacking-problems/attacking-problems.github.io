@@ -2144,7 +2144,7 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">greater than</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y+1</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y + 1</pre></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;=</pre></div></td>
@@ -2165,18 +2165,33 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
-<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span>
-<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span></code></pre>
+<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In the first use of <code>==</code>, the value of <code>same</code> is <code>true</code> because
+the value of <code>x</code> is <code>3</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In the second, the value of <code>same</code> is <code>false</code> because the values of <code>x</code> and
+<code>y</code> are different.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The value of <code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
+the value of <code>y</code>.</td>
+</tr>
+</tbody></table>
 </div>
 <div class="paragraph">
-<p>In the first use of <code>==</code> above, the value of <code>same</code> is <code>true</code> because
-the value of <code>x</code> is <code>3</code>. In the second comparison, the value of <code>same</code>
-is <code>false</code> because the values of <code>x</code> and <code>y</code> are different. The value of
-<code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
-the value of <code>y</code>.  All of the parentheses in this example are unnecessary
-and are used only for clarity.</p>
+<p>All the parentheses in this example are unnecessary and are used only for
+clarity.</p>
 </div>
 </div>
 </div>
@@ -2848,9 +2863,9 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_var_declarations">3.3.6. Var Declarations</h4>
+<h4 id="_var_declarations">3.3.6. <code>var</code> Declarations</h4>
 <div class="paragraph">
-<p>This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:</p>
+<p>This section describes a change to the Java language introduced in Java 10.  Consider the following variable declarations that include an initial value assignment.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2863,7 +2878,7 @@ of a literal, you only have to change its value once.</p>
 <p>Each of the type names in the declaration (<code>int</code>, <code>String</code>, and <code>Wombat</code>) is obvious based on the type of the initial value.  Variable <code>x</code> is obviously an <code>int</code>, variable <code>message</code> is obviously a <code>String</code>, and variable <code>w</code> is obviously a <code>Wombat</code>.</p>
 </div>
 <div class="paragraph">
-<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the "reserved type name" <code>var</code> and the compiler will do the inferencing:</p>
+<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the “reserved type name” <code>var</code> and the compiler will do the inferencing.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2873,19 +2888,21 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of these:</p>
+<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of the following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value...</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value</span>
 <span class="kt">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
 
-<span class="c1">// Or, explicitly declare the type...</span>
+<span class="c1">// Or explicitly declare the type</span>
 <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that this feature is called <em>local variable type inference</em>.  The compiler only does type inferencing on <em>local variables</em>, not on fields, method parameters, or return types.</p>
+<p>Note that this feature is called <em>local variable type inference</em>.  The compiler
+only does type inference on <em>local variables</em>, not on fields, method parameters,
+or return types.</p>
 </div>
 </div>
 </div>
@@ -3034,7 +3051,7 @@ formula 2<em>πr</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">*</span><span class="n">radius</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">radius</span><span class="o">;</span></code></pre>
 </div>
 </div>
 </div>

@@ -683,9 +683,10 @@ pre.rouge .err {
 <li><a href="#_concepts_object_oriented_programming">9.2. Concepts: Object-oriented programming</a></li>
 <li><a href="#_syntax_classes_in_java">9.3. Syntax: Classes in Java</a></li>
 <li><a href="#_advanced_nested_classes">9.4. Advanced: Nested classes</a></li>
-<li><a href="#_solution_nested_expressions">9.5. Solution: Nested expressions</a></li>
-<li><a href="#_concurrency_objects">9.6. Concurrency: Objects</a></li>
-<li><a href="#_exercises_9">9.7. Exercises</a></li>
+<li><a href="#_advanced_enumeration_types">9.5. Advanced: Enumeration types</a></li>
+<li><a href="#_solution_nested_expressions">9.6. Solution: Nested expressions</a></li>
+<li><a href="#_concurrency_objects">9.7. Concurrency: Objects</a></li>
+<li><a href="#_exercises_9">9.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="#interfaces">10. Interfaces</a>
@@ -1558,9 +1559,9 @@ from one base to another, and arithmetic in arbitrary number systems.</p>
 <div class="paragraph">
 <p>A number system is a way to represent numbers. It&#8217;s easy to confuse the
 <em>numeral</em> that represents the <em>number</em> with the number itself. You might
-think of the number ten as &#8220;10&#8221;, a numeral made of two symbols, but
+think of the number ten as &#8220;10,&#8221; a numeral made of two symbols, but
 the number itself is the concept of <strong>ten-ness</strong>. You could express that
-quantity by holding up all your fingers, with the symbol &#8220;X&#8221;, or by
+quantity by holding up all your fingers, with the symbol &#8220;X,&#8221; or by
 knocking ten times.</p>
 </div>
 <div class="paragraph">
@@ -3363,7 +3364,7 @@ Apple macOS, and Linux.</p>
 </div>
 <div class="paragraph">
 <p>Windows is heavily marketed for business use.
-Windows suffered from many stability and security issues,
+Windows used to suffer from many stability and security issues,
 but Microsoft has worked hard to address these. Apple macOS and the
 computers it&#8217;s installed on are marketed to an artistic and
 counter-culture population. Linux is popular among tech savvy users.
@@ -3395,9 +3396,6 @@ and cons for each OS.</p>
 </li>
 <li>
 <p>Can be purchased separately from hardware</p>
-</li>
-<li>
-<p>Can run on Apple hardware</p>
 </li>
 </ul>
 </div></div></td>
@@ -3455,7 +3453,7 @@ and cons for each OS.</p>
 <p>Highly customizable</p>
 </li>
 <li>
-<p>Serviced by a community that develops many free applications for it</p>
+<p>Served by a community that develops many free applications for it</p>
 </li>
 </ul>
 </div></div></td>
@@ -3499,42 +3497,34 @@ cache, the less often the CPU has to read data from slower
 memory. Since most new CPUs available today are 64-bit, the question
 of word size is no longer significant.</p>
 </div>
-<div class="paragraph">
-<p>Although some specialists may prefer one or the other, both Intel and
-AMD make powerful, competitive consumer CPUs.</p>
-</div>
 </dd>
 <dt class="hdlist1">Memory</dt>
 <dd>
 <p>Memory includes RAM, hard drives, optical drives, and any other
 storage. RAM is usually easy to upgrade for desktop machines and less
-easy (though often possible) for laptops. The price of RAM per
-gigabyte goes down over time. It may be reasonable to start with a
-modest amount of RAM and then upgrade after a year or two when it
-becomes cheaper to do so. It takes a little bit of research to get
-exactly the right kind of RAM for your CPU and motherboard. The amount
+easy (though often possible) for laptops. It takes a little bit of research to
+get exactly the right kind of RAM for your CPU and motherboard, and the amount
 of RAM is dependent on what you want to do with your system. The
-minimum amount of RAM to run Microsoft Windows 10 is 1 GB for 32-bit
-versions and 2 GB for 64-bit versions. The minimum amount of RAM to
-run Apple macOS Mojave is 2 GB. One rule of thumb is to have
+minimum amount of RAM to run Microsoft Windows 11 is 4 GB.
+The recommended amount of RAM to
+run Apple macOS Sequoia is at least 8 GB. A good guideline is to have
 at least twice the minimum required RAM.</p>
 <div class="paragraph">
 <p>Hard drive space is dependent on how you expect to use your
 computer. 1 TB and 2 TB drives are not very expensive, and either
 represents a huge amount of storage. Only if you plan to have enormous
 libraries of video or uncompressed audio data will you likely need
-more. Corporate level databases and web servers and some other
+more. Corporate-level databases and web servers and some other
 business systems can also require vast amounts of space. Hard drive
 speed is greatly affected by the hard drive&#8217;s cache size. As always, a
 bigger cache means better performance. Using a solid state drive (SSD)
-instead of a traditional hard drive has much better performance but
-higher cost per megabyte. If you can afford an SSD, this single upgrade
-is likely to <em>feel</em> like the greatest increase in overall computer speed.</p>
+instead of a traditional hard drive has much better performance and has become
+standard on most new desktops and laptops.</p>
 </div>
 <div class="paragraph">
 <p>Installing optical drives and other storage devices depends on
 individual needs. With the rise of streaming services and cloud backup,
-optical drives have become less popular.</p>
+optical drives have almost disappeared.</p>
 </div>
 </dd>
 <dt class="hdlist1">I/O Devices</dt>
@@ -3543,14 +3533,13 @@ optical drives have become less popular.</p>
 what anyone should buy without considering his or her specific needs.
 A monitor is the essential visual output device while a keyboard and
 mouse are the essential input devices. Speakers are important as
-well. Most laptops have all of these elements integrated in some form or
+well. Most laptops have all these elements integrated in one form or
 another. Laptops often have inexpensive web cameras installed as well.</p>
 <div class="paragraph">
 <p>Someone interested in video games might want to invest in a powerful
 graphics card. Newer cards with more video RAM are generally better
 than older cards with less, but which card is best at a given price
 point is the subject of continual discussion at sites like
-<a href="https://www.anandtech.com" target="_blank" rel="noopener">AnandTech</a> and
 <a href="https://www.tomshardware.com" target="_blank" rel="noopener">Tom&#8217;s Hardware</a>.</p>
 </div>
 <div class="paragraph">
@@ -3570,7 +3559,7 @@ course, there&#8217;s always more to know, and technology changes quickly.</p>
 <div class="sect3">
 <h4 id="_concurrency_multicore_processors">1.4.1. Concurrency: Multicore processors</h4>
 <div class="paragraph">
-<p>In the last decade, the word &#8220;core&#8221; has been splattered all over CPU
+<p>Over the last two decades, the word &#8220;core&#8221; has been splattered all over CPU
 packaging. Intel in particular has marketed the idea heavily with its
 older Core and Core 2 models and its modern Core i3, Core i5, Core i7,
 and Core i9 chips. What are all these cores?</p>
@@ -3583,8 +3572,8 @@ than one instruction in the process of being executed, but overall
 execution proceeded sequentially.</p>
 </div>
 <div class="paragraph">
-<p>The advent of multicore processors has changed this design
-significantly. Each processor has several independent cores, each of
+<p>The advent of multicore processors changed this design
+significantly. Each processor now has several independent cores, each of
 which can execute different instructions at the same time. Before the
 arrival of multicore processors, a few desktop computers and many
 supercomputers had multiple separate processors that could achieve a
@@ -3613,11 +3602,22 @@ A screen whose resolution is 1080p has
 2,073,600 dots. To maintain the illusion of smooth movement, these dots
 should be updated around 30 times per second. Computing the color for
 more than 2 million dots based on 3D geometry, lighting, and physics
-effects 30 times a second is no easy feat. Some of the cards used to
+effects 30 times a second is no easy feat, and many video game enthusiasts
+demand a frame rate of 60 times a second or higher. Some of the cards used to
 render computer games have hundreds or thousands of cores. These cores
 are not general purpose or completely independent. Instead, they&#8217;re
 specialized to do certain kinds of matrix transformations and
 floating-point computations.</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless, the power of these graphics cards has fueled recent improvements
+in AI. Even though the cores are not general purpose, skilled hardware and
+software engineers have found ways to harness their incredible parallel
+computation to solve difficult problems. Writing code that takes advantage of
+these architectures is challenging, but servers filled with the fastest graphics
+cards are used for everything from mining cryptocurrencies to training large
+language models. The company Nvidia alone sells tens of billions of dollars
+worth of graphics cards every year.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3632,15 +3632,15 @@ floating-point computations.</p>
 <div class="paragraph">
 <p>Although chip-makers have spent a lot of money marketing multicore
 technology, they haven&#8217;t spent much money explaining that one of the
-driving forces behind the &#8220;multicore revolution&#8221; is a simple failure
+driving forces behind the &#8220;multicore revolution&#8221; was a simple failure
 to make processors faster in other ways. In 1965, Gordon Moore, one of
 the founders of Intel, remarked that the density of silicon
 microprocessors had been doubling every year (though he later revised
 this to every two years), meaning that twice as many transistors
 (computational building blocks) could fit in the same physical space.
-This trend, often called Moore&#8217;s Law, has held up reasonably well. For
-years, clever designs relying on shorter communication times,
-pipelining, and other schemes succeeded in doubling the effective
+This trend, often called Moore&#8217;s Law, held up reasonably well through the
+twentieth century. For years, clever designs relying on shorter communication
+times, pipelining, and other schemes succeeded in doubling the effective
 performance of processors every two years.</p>
 </div>
 <div class="paragraph">
@@ -3650,7 +3650,7 @@ increases, the signal becomes more chaotic, and it becomes more
 difficult to tell the difference between the voltages that represent 0s
 and 1s. Another problem is heat. The energy that a processor uses is
 related to the <strong>square</strong> of the clock rate. This relationship means that
-increasing the clock rate of a processor by a factor of 4 will increase
+increasing the clock rate of a processor by a factor of four will increase
 its energy consumption (and heat generation) by a factor of 16.</p>
 </div>
 <div class="paragraph">
@@ -3665,7 +3665,7 @@ or so, increases in clock rate have stagnated.</p>
 <h5 id="_the_ugly">The Ugly</h5>
 <div class="paragraph">
 <p>Does a processor with eight cores solve problems eight times as fast as
-its single core equivalent? Unfortunately, the answer is, &#8220;Almost
+its single core equivalent? Unfortunately, the answer is &#8220;Almost
 never.&#8221; Most problems are not easy to break into eight independent
 pieces.</p>
 </div>
@@ -3696,14 +3696,14 @@ he or she can give instructions to the cores that will make them fight
 with each other, overwriting memory that other cores are using and
 crashing the program or giving an incorrect answer. Imagine
 if different parts of your brain were completely independent and fought
-with one another. The words that came out of your mouth might be gibberish.</p>
+with one another. The words coming out of your mouth might be gibberish.</p>
 </div>
 <div class="paragraph">
 <p>To recap, the first problem with concurrent programming is finding ways
 to break down problems so that they can be solved faster with multiple
 cores. The second problem is making sure that the different cores
 cooperate so that the answer is correct and makes sense. These are not
-easy problems, and many researchers are still working on finding better
+easy problems, and researchers are still working on finding better
 ways to do both.</p>
 </div>
 <div class="paragraph">
@@ -5714,7 +5714,7 @@ discuss documentation comments deeply in this book.</p>
      * The main() method was last updated by Barry Wittman.
      */</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">42</span><span class="o">);</span>  <span class="c1">// answer to everything</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">42</span><span class="o">);</span>  <span class="c1">// Answer to everything</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -6559,8 +6559,8 @@ pointing at the same object.</p>
 do not have a large set of operators that work on them. Every variable
 can be used with the assignment (<code>=</code>) and the comparison (<code>==</code>)
 operators. Every variable can also be concatenated with a <code>String</code> by
-using the <code>` operator, but even if two objects represent numerical
-values, they can't be added together with the `</code> operator.</p>
+using the <code>+</code> operator, but even if two objects represent numerical
+values, they can&#8217;t be added together with the <code>+</code> operator.</p>
 </div>
 <div class="paragraph">
 <p>References should still be thought of as types defining a set of objects
@@ -8198,7 +8198,7 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">greater than</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y+1</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y + 1</pre></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;=</pre></div></td>
@@ -8219,18 +8219,33 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
-<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span>
-<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span></code></pre>
+<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In the first use of <code>==</code>, the value of <code>same</code> is <code>true</code> because
+the value of <code>x</code> is <code>3</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In the second, the value of <code>same</code> is <code>false</code> because the values of <code>x</code> and
+<code>y</code> are different.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The value of <code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
+the value of <code>y</code>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>In the first use of <code>==</code> above, the value of <code>same</code> is <code>true</code> because
-the value of <code>x</code> is <code>3</code>. In the second comparison, the value of <code>same</code>
-is <code>false</code> because the values of <code>x</code> and <code>y</code> are different. The value of
-<code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
-the value of <code>y</code>.  All of the parentheses in this example are unnecessary
-and are used only for clarity.</p>
+<p>All the parentheses in this example are unnecessary and are used only for
+clarity.</p>
 </div>
 </div>
 </div>
@@ -8508,8 +8523,8 @@ been initialized to <code>"a pie in the face"</code>, then <code>phrase</code> w
 </div>
 <div class="paragraph">
 <p>This sequence of statements gives the same result as the one above
-using the <code>` operator. In practice, the `concat()` method is rarely
-used because the `</code> operator is so convenient. Note that <code>String</code>
+using the <code>+</code> operator. In practice, the <code>concat()</code> method is rarely
+used because the <code>+</code> operator is so convenient. Note that <code>String</code>
 objects in Java are <em>immutable</em>, meaning that calling a method on a
 <code>String</code> object will <strong>never</strong> change it. In the code above, calling
 <code>concat()</code> creates new <code>String</code> objects. The <code>phrase</code> reference points
@@ -8902,9 +8917,9 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_var_declarations">3.3.6. Var Declarations</h4>
+<h4 id="_var_declarations">3.3.6. <code>var</code> Declarations</h4>
 <div class="paragraph">
-<p>This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:</p>
+<p>This section describes a change to the Java language introduced in Java 10.  Consider the following variable declarations that include an initial value assignment.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8917,7 +8932,7 @@ of a literal, you only have to change its value once.</p>
 <p>Each of the type names in the declaration (<code>int</code>, <code>String</code>, and <code>Wombat</code>) is obvious based on the type of the initial value.  Variable <code>x</code> is obviously an <code>int</code>, variable <code>message</code> is obviously a <code>String</code>, and variable <code>w</code> is obviously a <code>Wombat</code>.</p>
 </div>
 <div class="paragraph">
-<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the "reserved type name" <code>var</code> and the compiler will do the inferencing:</p>
+<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the &#8220;reserved type name&#8221; <code>var</code> and the compiler will do the inferencing.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8927,19 +8942,21 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of these:</p>
+<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of the following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value...</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value</span>
 <span class="kt">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
 
-<span class="c1">// Or, explicitly declare the type...</span>
+<span class="c1">// Or explicitly declare the type</span>
 <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that this feature is called <em>local variable type inference</em>.  The compiler only does type inferencing on <em>local variables</em>, not on fields, method parameters, or return types.</p>
+<p>Note that this feature is called <em>local variable type inference</em>.  The compiler
+only does type inference on <em>local variables</em>, not on fields, method parameters,
+or return types.</p>
 </div>
 </div>
 </div>
@@ -9088,7 +9105,7 @@ formula 2<em>πr</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">*</span><span class="n">radius</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">radius</span><span class="o">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -20698,8 +20715,8 @@ scientific notation.</p>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>After declaring a few variables, this method first checks index <code>0</code> in
-the input <code>String</code> <code>value</code> to see if it is a <code>'-'</code> or a <code>''`. If it is
-a `'-'`, it sets `negative` to `true` and moves on. If it is a `''</code>, it
+the input <code>String</code> <code>value</code> to see if it is a <code>'-'</code> or a <code>'+'</code>. If it is
+a <code>'-'</code>, it sets <code>negative</code> to <code>true</code> and moves on. If it is a <code>'+'</code>, it
 simply moves on.</td>
 </tr>
 <tr>
@@ -22689,7 +22706,252 @@ of the values in a <code>SafeArray</code> object.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_solution_nested_expressions">9.5. Solution: Nested expressions</h3>
+<h3 id="_advanced_enumeration_types">9.5. Advanced: Enumeration types</h3>
+<div class="paragraph">
+<p>We discussed constants in <a href="#_constants">Section 3.3.5</a>, but using the <code>final</code> keyword only
+forces individual variables, whether local or member variables, to be constant.
+What if you wanted a whole object to be constant? What would that even mean?</p>
+</div>
+<div class="paragraph">
+<p>The C programming language introduced enumerations, fixed lists of
+named constants starting at 0 and increasing by one for each value.
+This approach provided an easy way to make distinct, named constants for better
+readability. In C, these values were essentially integers, but a
+conceptually similar feature was added in Java 5 to create Java enumerations,
+fixed lists of named objects.</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_enumeration_types">9.5.1. Basic enumeration types</h4>
+<div class="paragraph">
+<p>Enumerations allow us make fixed lists of objects. These <code>enum</code> types can be
+stored in their own files or nested inside of other classes. As an example, we
+can create an enumeration of the four cardinal directions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Direction</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">,</span> <span class="no">SOUTH</span><span class="o">,</span> <span class="no">EAST</span><span class="o">,</span> <span class="no">WEST</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, there are four objects accessible by the name <code>Direction</code> followed by a dot
+and the name of the direction: <code>Direction.NORTH</code>, <code>Direction.SOUTH</code>,
+<code>Direction.EAST</code>, and <code>Direction.WEST</code>. Each name provides a readable
+representation of a direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Direction</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">whichWay</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">EAST</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"When the East is in the house"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a natural connection between <code>switch</code> statements and <code>enum</code> types:
+<code>switch</code> statements are designed for a fixed set of values, and that&#8217;s exactly what
+<code>enum</code> types provide. Note that, when used in a <code>switch</code>, only the name
+of each <code>enum</code> value is used, not its type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nl">NORTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">SOUTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">WEST:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Making decisions based on <code>enum</code> values is the most common use case, but Java
+enumerations also have other, built-in functionality. Each <code>enum</code> value has
+an <code>ordinal()</code> method that returns its index, starting with 0 for the first.
+Likewise, an array containing all the values in an <code>enum</code> type can be accessed
+by calling the static <code>values()</code> method from the type name.</p>
+</div>
+<div class="paragraph">
+<p>The following code uses these features to print out the number and name
+associated with each value in <code>Direction</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="nc">Direction</span> <span class="n">cardinal</span> <span class="o">:</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cardinal</span><span class="o">.</span><span class="na">ordinal</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">cardinal</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It gives the output below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>0: NORTH
+1: SOUTH
+2: EAST
+3: WEST</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also possible to retrieve an <code>enum</code> value by name, using the static
+<code>valueOf()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"> <span class="nc">Direction</span> <span class="n">westSide</span> <span class="o">=</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">"WEST"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Doing so is risky, since the name must match exactly, including case.
+Supplying an incorrect name will cause an error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_customized_enumeration_types">9.5.2. Customized enumeration types</h4>
+<div class="paragraph">
+<p>Usually, you won&#8217;t need to create enumerations more complicated than simple
+lists of values. However, <code>enum</code> values in Java are full objects: They can
+contain both member variables and methods. So that <code>enum</code> values can be treated
+purely as constants, it&#8217;s safest to store only <code>final</code> variables inside <code>enum</code>
+types, but Java nevertheless allows non-constant data inside them.</p>
+</div>
+<div class="paragraph">
+<p>We can expand the idea of a <code>Direction</code> enumeration to a <code>Movement</code> one that
+contains additional directions along with a geometric interpretation of how
+movement in a direction would change a position.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Movement</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="no">NORTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="no">EAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">SOUTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">WEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">NORTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_X</span><span class="o">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+
+    <span class="nc">Movement</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">DELTA_X</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="no">DELTA_Y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeX</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="no">DELTA_X</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeY</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To use an <code>enum</code> type in this way, each value must be followed by
+parentheses giving the values passed into the constructor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Then, the list of values must be terminated with a semicolon.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The rest of the <code>enum</code> type looks like any other class, containing members,
+constructors, and methods. Constructors are implicitly <code>private</code>, and it&#8217;s
+illegal to mark them as anything else.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can use the <code>enum</code> values defined above to move a Cartesian point in the
+appropriate direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="nc">Movement</span> <span class="n">movement</span> <span class="o">=</span> <span class="nc">Movement</span><span class="o">.</span><span class="na">SOUTHEAST</span><span class="o">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeX</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeY</span><span class="o">(</span><span class="n">y</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the code executes, the value of <code>x</code> will be <code>1</code>, and the value of <code>y</code>
+will be <code>-1</code>.</p>
+</div>
+<div id="nobleGasesExample" class="exampleblock">
+<div class="title">Example 9.4 Noble gases</div>
+<div class="content">
+<div class="paragraph">
+<p>There are situations when it&#8217;s helpful to group constant data together inside
+each <code>enum</code> value. In the example below, we store the atomic number and atomic
+weight for each noble gas inside its corresponding value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">NobleGas</span> <span class="o">{</span>
+    <span class="no">HELIUM</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mf">4.003</span><span class="o">),</span>
+    <span class="no">NEON</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mf">20.178</span><span class="o">),</span>
+    <span class="no">ARGON</span><span class="o">(</span><span class="mi">18</span><span class="o">,</span> <span class="mf">39.948</span><span class="o">),</span>
+    <span class="no">KRYPTON</span><span class="o">(</span><span class="mi">36</span><span class="o">,</span> <span class="mf">83.798</span><span class="o">),</span>
+    <span class="no">XENON</span><span class="o">(</span><span class="mi">54</span><span class="o">,</span> <span class="mf">131.293</span><span class="o">),</span>
+    <span class="no">RADON</span><span class="o">(</span><span class="mi">86</span><span class="o">,</span> <span class="mf">222.018</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">ATOMIC_NUMBER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">double</span> <span class="no">ATOMIC_WEIGHT</span><span class="o">;</span>
+
+    <span class="nc">NobleGas</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">ATOMIC_NUMBER</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
+        <span class="no">ATOMIC_WEIGHT</span> <span class="o">=</span> <span class="n">weight</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because both member variables are public, they can be accessed
+directly, without needing a method. Mutable public member variables are generally
+considered unwise, but public constants are both safe and useful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">neonWeight</span> <span class="o">=</span> <span class="nc">NobleGas</span><span class="o">.</span><span class="na">NEON</span><span class="o">.</span><span class="na">ATOMIC_WEIGHT</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>enum</code> type could be generalized to include all the elements in the
+periodic table, though that would make for a lengthy list of values.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Creating <code>enum</code> types is valuable for situations where there will only ever be
+a fixed number of instances of a class: suits of cards, days of the week,
+seasons of the year, states that a system can be in, and so on. They can also
+be used for the singleton design pattern, a paradigm used in software
+engineering.</p>
+</div>
+<div class="paragraph">
+<p>Using <code>enum</code> types doesn&#8217;t make programming more powerful, in the sense that
+new kinds of problems can be solved. However, careful use of <code>enum</code> types can
+certainly make code more readable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_nested_expressions">9.6. Solution: Nested expressions</h3>
 <div class="paragraph">
 <p>We now have enough knowledge to solve the nested expressions problem
 from the beginning of the chapter. Classes help us divide up the work of
@@ -22709,7 +22971,7 @@ stack operations with methods of the same names.</p>
         <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="o">}</span>
     
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span> <span class="kt">char</span> <span class="n">symbol</span> <span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span> <span class="o">--</span><span class="n">size</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">top</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="o">}</span> <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
@@ -22876,7 +23138,7 @@ nested based on the value of <code>correct</code>.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_objects">9.6. Concurrency: Objects</h3>
+<h3 id="_concurrency_objects">9.7. Concurrency: Objects</h3>
 <div class="paragraph">
 <p>Nearly everything in Java is an object: arrays, lists, <code>String</code> values,
 colors, and even exceptions, which form Java&#8217;s error-handling system and
@@ -22899,7 +23161,7 @@ the cat. Consider the class below that keeps track of the lives a cat
 has, losing one every time it becomes curious.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 9.4 Thread safety</div>
+<div class="title">Example 9.5 Thread safety</div>
 <div class="content">
 <div class="paragraph">
 <p>If the relationship between curiosity and mortality is the only feature
@@ -22987,7 +23249,7 @@ Learn the libraries well, and use the right tools for the right job.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_9">9.7. Exercises</h3>
+<h3 id="_exercises_9">9.8. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -23054,7 +23316,7 @@ uses cause a compiler error and why?</p>
 </div>
 </li>
 <li>
-<p><a id="publicMembersExercise"></a> In <a href="#_solution_nested_expressions">Section 9.5</a>, we gave a definition of
+<p><a id="publicMembersExercise"></a> In <a href="#_solution_nested_expressions">Section 9.6</a>, we gave a definition of
 <code>SymbolStack</code> that implements a simple stack using two fields, as follows.</p>
 <div class="listingblock">
 <div class="content">
@@ -23164,7 +23426,7 @@ if the <code>distance()</code> method gives the right answer.</p>
 </div>
 </li>
 <li>
-<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="#_solution_nested_expressions">Section 9.5</a> so that it performs its input and output with GUIs created
+<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="#_solution_nested_expressions">Section 9.6</a> so that it performs its input and output with GUIs created
 using <code>JOptionPane</code>.</p>
 </li>
 </ol>
@@ -41588,8 +41850,8 @@ left parenthesis on the stack. Then pop the left parenthesis.</p>
 </div>
 <div class="paragraph">
 <p>Precedence comes from order of operations: <code>*</code> and <code>/</code> have high
-precedence and <code>` and `-` have low precedence. When you encounter it on
-the stack, treat `(` as if it has even lower precedence than `</code> and
+precedence and <code>+</code> and <code>-</code> have low precedence. When you encounter it on
+the stack, treat <code>(</code> as if it has even lower precedence than <code>+</code> and
 <code>-</code>. A right parenthesis should never appear on the stack.</p>
 </div>
 <div class="paragraph">
@@ -42602,7 +42864,7 @@ setting its <code>value</code> field to the incoming <code>value</code>, and poi
 remove that node from the linked list. It does this by replacing the
 <code>head</code> node with the node pointed at by the <code>next</code> link in <code>head</code>. The
 <code>pop()</code> method from the simpler stack used in the solution to the nested
-expressions problem in <a href="#_solution_nested_expressions">Section 9.5</a> merely
+expressions problem in <a href="#_solution_nested_expressions">Section 9.6</a> merely
 removed the top and didn&#8217;t return the value. Most real-world stack
 implementations of <code>pop()</code> <strong>do</strong> return this value, giving programmers
 more flexibility.</td>
@@ -44100,7 +44362,7 @@ Thread ID removed from queue: 11</pre>
 <div class="sect2">
 <h3 id="_concurrency_thread_safe_libraries">19.8. Concurrency: Thread-safe libraries</h3>
 <div class="paragraph">
-<p>As we mentioned in <a href="#_concurrency_objects">Section 9.6</a>, some libraries are
+<p>As we mentioned in <a href="#_concurrency_objects">Section 9.7</a>, some libraries are
 thread-safe and some are not. The JCF is a useful library, but it&#8217;s also a
 library that requires you to manage your own thread safety if it matters for
 your program.</p>
@@ -46951,7 +47213,7 @@ file would contain the following.</p>
 </div>
 <div class="paragraph">
 <p>If you recall, an <code>int</code> in Java uses four bytes of storage. There&#8217;s a
-system of encoding called the ASCII table which maps each of the 256
+system of encoding called ASCII that maps each of the 256
 (0–255) numerical bytes to a character. The four characters given above
 are the extended ASCII representation of the four bytes of the number
 2,127,480,645.</p>
@@ -49842,7 +50104,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-14 11:38:32 -0400
+Last updated 2024-08-30 12:19:53 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

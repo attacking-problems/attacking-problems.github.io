@@ -122,9 +122,10 @@
 <li class="current"><a href="chap9.html#_concepts_object_oriented_programming">9.2. Concepts: Object-oriented programming</a></li>
 <li class="current"><a href="chap9.html#_syntax_classes_in_java">9.3. Syntax: Classes in Java</a></li>
 <li class="current"><a href="chap9.html#_advanced_nested_classes">9.4. Advanced: Nested classes</a></li>
-<li class="current"><a href="chap9.html#_solution_nested_expressions">9.5. Solution: Nested expressions</a></li>
-<li class="current"><a href="chap9.html#_concurrency_objects">9.6. Concurrency: Objects</a></li>
-<li class="current"><a href="chap9.html#_exercises_9">9.7. Exercises</a></li>
+<li class="current"><a href="chap9.html#_advanced_enumeration_types">9.5. Advanced: Enumeration types</a></li>
+<li class="current"><a href="chap9.html#_solution_nested_expressions">9.6. Solution: Nested expressions</a></li>
+<li class="current"><a href="chap9.html#_concurrency_objects">9.7. Concurrency: Objects</a></li>
+<li class="current"><a href="chap9.html#_exercises_9">9.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap10.html">10. Interfaces</a>
@@ -1503,7 +1504,252 @@ of the values in a <code>SafeArray</code> object.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_solution_nested_expressions">9.5. Solution: Nested expressions</h3>
+<h3 id="_advanced_enumeration_types">9.5. Advanced: Enumeration types</h3>
+<div class="paragraph">
+<p>We discussed constants in <a href="chap3.html#_constants">Section 3.3.5</a>, but using the <code>final</code> keyword only
+forces individual variables, whether local or member variables, to be constant.
+What if you wanted a whole object to be constant? What would that even mean?</p>
+</div>
+<div class="paragraph">
+<p>The C programming language introduced enumerations, fixed lists of
+named constants starting at 0 and increasing by one for each value.
+This approach provided an easy way to make distinct, named constants for better
+readability. In C, these values were essentially integers, but a
+conceptually similar feature was added in Java 5 to create Java enumerations,
+fixed lists of named objects.</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_enumeration_types">9.5.1. Basic enumeration types</h4>
+<div class="paragraph">
+<p>Enumerations allow us make fixed lists of objects. These <code>enum</code> types can be
+stored in their own files or nested inside of other classes. As an example, we
+can create an enumeration of the four cardinal directions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Direction</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">,</span> <span class="no">SOUTH</span><span class="o">,</span> <span class="no">EAST</span><span class="o">,</span> <span class="no">WEST</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, there are four objects accessible by the name <code>Direction</code> followed by a dot
+and the name of the direction: <code>Direction.NORTH</code>, <code>Direction.SOUTH</code>,
+<code>Direction.EAST</code>, and <code>Direction.WEST</code>. Each name provides a readable
+representation of a direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Direction</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">whichWay</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">EAST</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"When the East is in the house"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There’s a natural connection between <code>switch</code> statements and <code>enum</code> types:
+<code>switch</code> statements are designed for a fixed set of values, and that’s exactly what
+<code>enum</code> types provide. Note that, when used in a <code>switch</code>, only the name
+of each <code>enum</code> value is used, not its type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nl">NORTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">SOUTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">WEST:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Making decisions based on <code>enum</code> values is the most common use case, but Java
+enumerations also have other, built-in functionality. Each <code>enum</code> value has
+an <code>ordinal()</code> method that returns its index, starting with 0 for the first.
+Likewise, an array containing all the values in an <code>enum</code> type can be accessed
+by calling the static <code>values()</code> method from the type name.</p>
+</div>
+<div class="paragraph">
+<p>The following code uses these features to print out the number and name
+associated with each value in <code>Direction</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="nc">Direction</span> <span class="n">cardinal</span> <span class="o">:</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cardinal</span><span class="o">.</span><span class="na">ordinal</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">cardinal</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It gives the output below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>0: NORTH
+1: SOUTH
+2: EAST
+3: WEST</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It’s also possible to retrieve an <code>enum</code> value by name, using the static
+<code>valueOf()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"> <span class="nc">Direction</span> <span class="n">westSide</span> <span class="o">=</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">"WEST"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Doing so is risky, since the name must match exactly, including case.
+Supplying an incorrect name will cause an error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_customized_enumeration_types">9.5.2. Customized enumeration types</h4>
+<div class="paragraph">
+<p>Usually, you won’t need to create enumerations more complicated than simple
+lists of values. However, <code>enum</code> values in Java are full objects: They can
+contain both member variables and methods. So that <code>enum</code> values can be treated
+purely as constants, it’s safest to store only <code>final</code> variables inside <code>enum</code>
+types, but Java nevertheless allows non-constant data inside them.</p>
+</div>
+<div class="paragraph">
+<p>We can expand the idea of a <code>Direction</code> enumeration to a <code>Movement</code> one that
+contains additional directions along with a geometric interpretation of how
+movement in a direction would change a position.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Movement</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="no">NORTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="no">EAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">SOUTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">WEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">NORTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_X</span><span class="o">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+
+    <span class="nc">Movement</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">DELTA_X</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="no">DELTA_Y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeX</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="no">DELTA_X</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeY</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To use an <code>enum</code> type in this way, each value must be followed by
+parentheses giving the values passed into the constructor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Then, the list of values must be terminated with a semicolon.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The rest of the <code>enum</code> type looks like any other class, containing members,
+constructors, and methods. Constructors are implicitly <code>private</code>, and it’s
+illegal to mark them as anything else.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>We can use the <code>enum</code> values defined above to move a Cartesian point in the
+appropriate direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="nc">Movement</span> <span class="n">movement</span> <span class="o">=</span> <span class="nc">Movement</span><span class="o">.</span><span class="na">SOUTHEAST</span><span class="o">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeX</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeY</span><span class="o">(</span><span class="n">y</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the code executes, the value of <code>x</code> will be <code>1</code>, and the value of <code>y</code>
+will be <code>-1</code>.</p>
+</div>
+<div id="nobleGasesExample" class="exampleblock">
+<div class="title">Example 9.4 Noble gases</div>
+<div class="content">
+<div class="paragraph">
+<p>There are situations when it’s helpful to group constant data together inside
+each <code>enum</code> value. In the example below, we store the atomic number and atomic
+weight for each noble gas inside its corresponding value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">NobleGas</span> <span class="o">{</span>
+    <span class="no">HELIUM</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mf">4.003</span><span class="o">),</span>
+    <span class="no">NEON</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mf">20.178</span><span class="o">),</span>
+    <span class="no">ARGON</span><span class="o">(</span><span class="mi">18</span><span class="o">,</span> <span class="mf">39.948</span><span class="o">),</span>
+    <span class="no">KRYPTON</span><span class="o">(</span><span class="mi">36</span><span class="o">,</span> <span class="mf">83.798</span><span class="o">),</span>
+    <span class="no">XENON</span><span class="o">(</span><span class="mi">54</span><span class="o">,</span> <span class="mf">131.293</span><span class="o">),</span>
+    <span class="no">RADON</span><span class="o">(</span><span class="mi">86</span><span class="o">,</span> <span class="mf">222.018</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">ATOMIC_NUMBER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">double</span> <span class="no">ATOMIC_WEIGHT</span><span class="o">;</span>
+
+    <span class="nc">NobleGas</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">ATOMIC_NUMBER</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
+        <span class="no">ATOMIC_WEIGHT</span> <span class="o">=</span> <span class="n">weight</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because both member variables are public, they can be accessed
+directly, without needing a method. Mutable public member variables are generally
+considered unwise, but public constants are both safe and useful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">neonWeight</span> <span class="o">=</span> <span class="nc">NobleGas</span><span class="o">.</span><span class="na">NEON</span><span class="o">.</span><span class="na">ATOMIC_WEIGHT</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>enum</code> type could be generalized to include all the elements in the
+periodic table, though that would make for a lengthy list of values.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Creating <code>enum</code> types is valuable for situations where there will only ever be
+a fixed number of instances of a class: suits of cards, days of the week,
+seasons of the year, states that a system can be in, and so on. They can also
+be used for the singleton design pattern, a paradigm used in software
+engineering.</p>
+</div>
+<div class="paragraph">
+<p>Using <code>enum</code> types doesn’t make programming more powerful, in the sense that
+new kinds of problems can be solved. However, careful use of <code>enum</code> types can
+certainly make code more readable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_nested_expressions">9.6. Solution: Nested expressions</h3>
 <div class="paragraph">
 <p>We now have enough knowledge to solve the nested expressions problem
 from the beginning of the chapter. Classes help us divide up the work of
@@ -1523,7 +1769,7 @@ stack operations with methods of the same names.</p>
         <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="o">}</span>
     
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span> <span class="kt">char</span> <span class="n">symbol</span> <span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span> <span class="o">--</span><span class="n">size</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">top</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="o">}</span> <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
@@ -1690,7 +1936,7 @@ nested based on the value of <code>correct</code>.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_objects">9.6. Concurrency: Objects</h3>
+<h3 id="_concurrency_objects">9.7. Concurrency: Objects</h3>
 <div class="paragraph">
 <p>Nearly everything in Java is an object: arrays, lists, <code>String</code> values,
 colors, and even exceptions, which form Java’s error-handling system and
@@ -1713,7 +1959,7 @@ the cat. Consider the class below that keeps track of the lives a cat
 has, losing one every time it becomes curious.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 9.4 Thread safety</div>
+<div class="title">Example 9.5 Thread safety</div>
 <div class="content">
 <div class="paragraph">
 <p>If the relationship between curiosity and mortality is the only feature
@@ -1801,7 +2047,7 @@ Learn the libraries well, and use the right tools for the right job.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_9">9.7. Exercises</h3>
+<h3 id="_exercises_9">9.8. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -1868,7 +2114,7 @@ uses cause a compiler error and why?</p>
 </div>
 </li>
 <li>
-<p><a id="publicMembersExercise"></a> In <a href="chap9.html#_solution_nested_expressions">Section 9.5</a>, we gave a definition of
+<p><a id="publicMembersExercise"></a> In <a href="chap9.html#_solution_nested_expressions">Section 9.6</a>, we gave a definition of
 <code>SymbolStack</code> that implements a simple stack using two fields, as follows.</p>
 <div class="listingblock">
 <div class="content">
@@ -1978,7 +2224,7 @@ if the <code>distance()</code> method gives the right answer.</p>
 </div>
 </li>
 <li>
-<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="chap9.html#_solution_nested_expressions">Section 9.5</a> so that it performs its input and output with GUIs created
+<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="chap9.html#_solution_nested_expressions">Section 9.6</a> so that it performs its input and output with GUIs created
 using <code>JOptionPane</code>.</p>
 </li>
 </ol>
@@ -2023,7 +2269,7 @@ it takes to call a constructor and allocate a new object?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-14 11:38:32 -0400
+Last updated 2024-08-30 12:19:53 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

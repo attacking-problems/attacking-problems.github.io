@@ -523,9 +523,9 @@ from one base to another, and arithmetic in arbitrary number systems.
 
 A number system is a way to represent numbers. It's easy to confuse the
 _numeral_ that represents the _number_ with the number itself. You might
-think of the number ten as "`10`", a numeral made of two symbols, but
+think of the number ten as "`10,`" a numeral made of two symbols, but
 the number itself is the concept of *ten-ness*. You could express that
-quantity by holding up all your fingers, with the symbol "`X`", or by
+quantity by holding up all your fingers, with the symbol "`X,`" or by
 knocking ten times.
 
 Representing ten with "`10`" is an example of a _positional number
@@ -1578,7 +1578,7 @@ three major choices for a desktop or laptop OS are Microsoft Windows,
 Apple macOS, and Linux.
 
 Windows is heavily marketed for business use.
-Windows suffered from many stability and security issues,
+Windows used to suffer from many stability and security issues,
 but Microsoft has worked hard to address these. Apple macOS and the
 computers it's installed on are marketed to an artistic and
 counter-culture population. Linux is popular among tech savvy users.
@@ -1596,7 +1596,6 @@ a|
 [.text-left]
 * Compatible with the largest number of programs
 * Can be purchased separately from hardware
-* Can run on Apple hardware
 
 a|
 [.text-left]
@@ -1622,7 +1621,7 @@ a|
 * Free
 * Runs on almost any hardware
 * Highly customizable
-* Serviced by a community that develops many free applications for it
+* Served by a community that develops many free applications for it
 
 a|
 [.text-left]
@@ -1651,51 +1650,44 @@ Cache size also has a huge effect on performance. The larger the
 cache, the less often the CPU has to read data from slower
 memory. Since most new CPUs available today are 64-bit, the question
 of word size is no longer significant.
-+
-Although some specialists may prefer one or the other, both Intel and
-AMD make powerful, competitive consumer CPUs.
+
 Memory::
 Memory includes RAM, hard drives, optical drives, and any other
 storage. RAM is usually easy to upgrade for desktop machines and less
-easy (though often possible) for laptops. The price of RAM per
-gigabyte goes down over time. It may be reasonable to start with a
-modest amount of RAM and then upgrade after a year or two when it
-becomes cheaper to do so. It takes a little bit of research to get
-exactly the right kind of RAM for your CPU and motherboard. The amount
+easy (though often possible) for laptops. It takes a little bit of research to
+get exactly the right kind of RAM for your CPU and motherboard, and the amount
 of RAM is dependent on what you want to do with your system. The
-minimum amount of RAM to run Microsoft Windows 10 is 1 GB for 32-bit
-versions and 2 GB for 64-bit versions. The minimum amount of RAM to
-run Apple macOS Mojave is 2 GB. One rule of thumb is to have
+minimum amount of RAM to run Microsoft Windows 11 is 4 GB.
+The recommended amount of RAM to
+run Apple macOS Sequoia is at least 8 GB. A good guideline is to have
 at least twice the minimum required RAM.
 +
 Hard drive space is dependent on how you expect to use your
 computer. 1 TB and 2 TB drives are not very expensive, and either
 represents a huge amount of storage. Only if you plan to have enormous
 libraries of video or uncompressed audio data will you likely need
-more. Corporate level databases and web servers and some other
+more. Corporate-level databases and web servers and some other
 business systems can also require vast amounts of space. Hard drive
 speed is greatly affected by the hard drive's cache size. As always, a
 bigger cache means better performance. Using a solid state drive (SSD)
-instead of a traditional hard drive has much better performance but
-higher cost per megabyte. If you can afford an SSD, this single upgrade
-is likely to _feel_ like the greatest increase in overall computer speed.
+instead of a traditional hard drive has much better performance and has become
+standard on most new desktops and laptops.
 +
 Installing optical drives and other storage devices depends on
 individual needs. With the rise of streaming services and cloud backup,
-optical drives have become less popular.
+optical drives have almost disappeared.
 I/O Devices::
 The subject of I/O devices is personal. It's difficult to say
 what anyone should buy without considering his or her specific needs.
 A monitor is the essential visual output device while a keyboard and
 mouse are the essential input devices. Speakers are important as
-well. Most laptops have all of these elements integrated in some form or
+well. Most laptops have all these elements integrated in one form or
 another. Laptops often have inexpensive web cameras installed as well.
 +
 Someone interested in video games might want to invest in a powerful
 graphics card. Newer cards with more video RAM are generally better
 than older cards with less, but which card is best at a given price
 point is the subject of continual discussion at sites like
-https://www.anandtech.com[AnandTech^] and
 https://www.tomshardware.com[Tom's Hardware^].
 +
 Printers are still useful output devices. Graphics tablets can make it
@@ -1709,7 +1701,7 @@ course, there's always more to know, and technology changes quickly.
 
 ==== Concurrency: Multicore processors
 
-In the last decade, the word "`core`" has been splattered all over CPU
+Over the last two decades, the word "`core`" has been splattered all over CPU
 packaging. Intel in particular has marketed the idea heavily with its
 older Core and Core 2 models and its modern Core i3, Core i5, Core i7,
 and Core i9 chips. What are all these cores?
@@ -1720,8 +1712,8 @@ Even this definition is hazy, because pipelining kept more
 than one instruction in the process of being executed, but overall
 execution proceeded sequentially.
 
-The advent of multicore processors has changed this design
-significantly. Each processor has several independent cores, each of
+The advent of multicore processors changed this design
+significantly. Each processor now has several independent cores, each of
 which can execute different instructions at the same time. Before the
 arrival of multicore processors, a few desktop computers and many
 supercomputers had multiple separate processors that could achieve a
@@ -1748,11 +1740,21 @@ A screen whose resolution is 1080p has
 2,073,600 dots. To maintain the illusion of smooth movement, these dots
 should be updated around 30 times per second. Computing the color for
 more than 2 million dots based on 3D geometry, lighting, and physics
-effects 30 times a second is no easy feat. Some of the cards used to
+effects 30 times a second is no easy feat, and many video game enthusiasts
+demand a frame rate of 60 times a second or higher. Some of the cards used to
 render computer games have hundreds or thousands of cores. These cores
 are not general purpose or completely independent. Instead, they're
 specialized to do certain kinds of matrix transformations and
 floating-point computations.
+
+Nevertheless, the power of these graphics cards has fueled recent improvements
+in AI. Even though the cores are not general purpose, skilled hardware and
+software engineers have found ways to harness their incredible parallel
+computation to solve difficult problems. Writing code that takes advantage of
+these architectures is challenging, but servers filled with the fastest graphics
+cards are used for everything from mining cryptocurrencies to training large
+language models. The company Nvidia alone sells tens of billions of dollars
+worth of graphics cards every year.
 
 ****
 <<multicoreChipExercise>>
@@ -1762,15 +1764,15 @@ floating-point computations.
 
 Although chip-makers have spent a lot of money marketing multicore
 technology, they haven't spent much money explaining that one of the
-driving forces behind the "`multicore revolution`" is a simple failure
+driving forces behind the "`multicore revolution`" was a simple failure
 to make processors faster in other ways. In 1965, Gordon Moore, one of
 the founders of Intel, remarked that the density of silicon
 microprocessors had been doubling every year (though he later revised
 this to every two years), meaning that twice as many transistors
 (computational building blocks) could fit in the same physical space.
-This trend, often called Moore's Law, has held up reasonably well. For
-years, clever designs relying on shorter communication times,
-pipelining, and other schemes succeeded in doubling the effective
+This trend, often called Moore's Law, held up reasonably well through the
+twentieth century. For years, clever designs relying on shorter communication
+times, pipelining, and other schemes succeeded in doubling the effective
 performance of processors every two years.
 
 At some point, the tricks became less effective and exponential gains in
@@ -1779,7 +1781,7 @@ increases, the signal becomes more chaotic, and it becomes more
 difficult to tell the difference between the voltages that represent 0s
 and 1s. Another problem is heat. The energy that a processor uses is
 related to the *square* of the clock rate. This relationship means that
-increasing the clock rate of a processor by a factor of 4 will increase
+increasing the clock rate of a processor by a factor of four will increase
 its energy consumption (and heat generation) by a factor of 16.
 
 The legacy of Moore's Law lives on. We're still able to fit more and
@@ -1791,7 +1793,7 @@ or so, increases in clock rate have stagnated.
 ===== The Ugly
 
 Does a processor with eight cores solve problems eight times as fast as
-its single core equivalent? Unfortunately, the answer is, "`Almost
+its single core equivalent? Unfortunately, the answer is "`Almost
 never.`" Most problems are not easy to break into eight independent
 pieces.
 
@@ -1819,13 +1821,13 @@ he or she can give instructions to the cores that will make them fight
 with each other, overwriting memory that other cores are using and
 crashing the program or giving an incorrect answer. Imagine
 if different parts of your brain were completely independent and fought
-with one another. The words that came out of your mouth might be gibberish.
+with one another. The words coming out of your mouth might be gibberish.
 
 To recap, the first problem with concurrent programming is finding ways
 to break down problems so that they can be solved faster with multiple
 cores. The second problem is making sure that the different cores
 cooperate so that the answer is correct and makes sense. These are not
-easy problems, and many researchers are still working on finding better
+easy problems, and researchers are still working on finding better
 ways to do both.
 
 Some educators believe that beginners will be confused by concurrency
