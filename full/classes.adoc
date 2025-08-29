@@ -949,6 +949,216 @@ public static findSum(SafeArray array) {
 
 ====
 
+=== Advanced: Enumeration types
+
+We discussed constants in <<Constants>>, but using the `final` keyword only
+forces individual variables, whether local or member variables, to be constant.
+What if you wanted a whole object to be constant? What would that even mean?
+
+The C programming language introduced enumerations, fixed lists of
+named constants starting at 0 and increasing by one for each value.
+This approach provided an easy way to make distinct, named constants for better
+readability. In C, these values were essentially integers, but a
+conceptually similar feature was added in Java 5 to create Java enumerations,
+fixed lists of named objects.
+
+==== Basic enumeration types
+
+Enumerations allow us make fixed lists of objects. These `enum` types can be
+stored in their own files or nested inside of other classes. As an example, we
+can create an enumeration of the four cardinal directions.
+
+[source,java]
+----
+public enum Direction {
+    NORTH, SOUTH, EAST, WEST
+}
+----
+
+Now, there are four objects accessible by the name `Direction` followed by a dot
+and the name of the direction: `Direction.NORTH`, `Direction.SOUTH`,
+`Direction.EAST`, and `Direction.WEST`. Each name provides a readable
+representation of a direction.
+
+[source,java]
+----
+Direction direction = whichWay();
+if (direction == Direction.EAST) {
+    System.out.println("When the East is in the house");
+}
+----
+
+There's a natural connection between `switch` statements and `enum` types:
+`switch` statements are designed for a fixed set of values, and that's exactly what
+`enum` types provide. Note that, when used in a `switch`, only the name
+of each `enum` value is used, not its type.
+
+[source,java]
+----
+switch (direction) {
+    case NORTH:
+        System.out.println("From the Gate of the Kings the North Wind rides");
+        break;
+    case SOUTH:
+        System.out.println("From the mouths of the Sea the South Wind flies");
+        break;
+    case WEST:
+        System.out.println("The West Wind comes walking, and about the walls it goes");
+        break;
+}
+----
+
+Making decisions based on `enum` values is the most common use case, but Java
+enumerations also have other, built-in functionality. Each `enum` value has
+an `ordinal()` method that returns its index, starting with 0 for the first.
+Likewise, an array containing all the values in an `enum` type can be accessed
+by calling the static `values()` method from the type name.
+
+The following code uses these features to print out the number and name
+associated with each value in `Direction`.
+
+
+[source,java]
+----
+for (Direction cardinal : Direction.values()) {
+    System.out.println(cardinal.ordinal() + ": " + cardinal);
+}
+----
+
+It gives the output below.
+
+....
+0: NORTH
+1: SOUTH
+2: EAST
+3: WEST
+....
+
+It's also possible to retrieve an `enum` value by name, using the static
+`valueOf()` method.
+
+[source,java]
+----
+ Direction westSide = Direction.valueOf("WEST");
+----
+
+Doing so is risky, since the name must match exactly, including case.
+Supplying an incorrect name will cause an error.
+
+==== Customized enumeration types
+
+Usually, you won't need to create enumerations more complicated than simple
+lists of values. However, `enum` values in Java are full objects: They can
+contain both member variables and methods. So that `enum` values can be treated
+purely as constants, it's safest to store only `final` variables inside `enum`
+types, but Java nevertheless allows non-constant data inside them.
+
+We can expand the idea of a `Direction` enumeration to a `Movement` one that
+contains additional directions along with a geometric interpretation of how 
+movement in a direction would change a position.
+
+[source,java]
+----
+public enum Movement {
+    NORTH(0, 1), // <.>
+    NORTHEAST(1, 1),
+    EAST(1, 0),
+    SOUTHEAST(1, -1),
+    SOUTH(0, -1),
+    SOUTHWEST(-1, -1),
+    WEST(-1, 0),
+    NORTHWEST(-1, 1); // <.>
+
+    private final int DELTA_X; // <.>
+    private final int DELTA_Y;
+
+    Movement(int x, int y) {
+        DELTA_X = x;
+        DELTA_Y = y;
+    }
+
+    public int changeX(int x) {
+        return x + DELTA_X;
+    }
+
+    public int changeY(int y) {
+        return y + DELTA_Y;
+    }
+}
+----
+<.> To use an `enum` type in this way, each value must be followed by
+parentheses giving the values passed into the constructor.
+<.> Then, the list of values must be terminated with a semicolon.
+<.> The rest of the `enum` type looks like any other class, containing members,
+constructors, and methods. Constructors are implicitly `private`, and it's
+illegal to mark them as anything else.
+
+We can use the `enum` values defined above to move a Cartesian point in the
+appropriate direction.
+
+[source,java]
+----
+int x = 0;
+int y = 0;
+Movement movement = Movement.SOUTHEAST;
+x = movement.changeX(x);
+y = movement.changeY(y);
+----
+
+After the code executes, the value of `x` will be `1`, and the value of `y`
+will be `-1`.
+
+[[nobleGasesExample]]
+.Noble gases
+====
+
+There are situations when it's helpful to group constant data together inside
+each `enum` value. In the example below, we store the atomic number and atomic
+weight for each noble gas inside its corresponding value.
+
+[source,java]
+----
+public enum NobleGas {
+    HELIUM(2,4.003),
+    NEON(10, 20.178),
+    ARGON(18, 39.948),
+    KRYPTON(36, 83.798),
+    XENON(54, 131.293),
+    RADON(86, 222.018);
+
+    public final int ATOMIC_NUMBER;
+    public final double ATOMIC_WEIGHT;
+
+    NobleGas(int number, double weight) {
+        ATOMIC_NUMBER = number;
+        ATOMIC_WEIGHT = weight;
+    }
+}
+----
+
+Because both member variables are public, they can be accessed
+directly, without needing a method. Mutable public member variables are generally
+considered unwise, but public constants are both safe and useful.
+
+[source,java]
+----
+double neonWeight = NobleGas.NEON.ATOMIC_WEIGHT;
+----
+
+This `enum` type could be generalized to include all the elements in the
+periodic table, though that would make for a lengthy list of values.
+====
+
+Creating `enum` types is valuable for situations where there will only ever be
+a fixed number of instances of a class: suits of cards, days of the week, 
+seasons of the year, states that a system can be in, and so on. They can also
+be used for the singleton design pattern, a paradigm used in software
+engineering.
+
+Using `enum` types doesn't make programming more powerful, in the sense that
+new kinds of problems can be solved. However, careful use of `enum` types can
+certainly make code more readable.
+
 === Solution: Nested expressions
 
 We now have enough knowledge to solve the nested expressions problem
