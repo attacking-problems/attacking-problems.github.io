@@ -1522,7 +1522,7 @@ fixed lists of named objects.</p>
 <h4 id="_basic_enumeration_types">9.5.1. Basic enumeration types</h4>
 <div class="paragraph">
 <p>Enumerations allow us make fixed lists of objects. These <code>enum</code> types can be
-stored in their own files or nested inside of other classes. As an example, we
+stored in their own files or nested inside other classes. As an example, we
 can create an enumeration of the four cardinal directions.</p>
 </div>
 <div class="listingblock">
@@ -1617,7 +1617,7 @@ Supplying an incorrect name will cause an error.</p>
 lists of values. However, <code>enum</code> values in Java are full objects: They can
 contain both member variables and methods. So that <code>enum</code> values can be treated
 purely as constants, it’s safest to store only <code>final</code> variables inside <code>enum</code>
-types, but Java nevertheless allows non-constant data inside them.</p>
+types, but Java nevertheless allows them to contain non-constant data.</p>
 </div>
 <div class="paragraph">
 <p>We can expand the idea of a <code>Direction</code> enumeration to a <code>Movement</code> one that

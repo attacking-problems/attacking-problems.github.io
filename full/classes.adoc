@@ -965,7 +965,7 @@ fixed lists of named objects.
 ==== Basic enumeration types
 
 Enumerations allow us make fixed lists of objects. These `enum` types can be
-stored in their own files or nested inside of other classes. As an example, we
+stored in their own files or nested inside other classes. As an example, we
 can create an enumeration of the four cardinal directions.
 
 [source,java]
@@ -1051,7 +1051,7 @@ Usually, you won't need to create enumerations more complicated than simple
 lists of values. However, `enum` values in Java are full objects: They can
 contain both member variables and methods. So that `enum` values can be treated
 purely as constants, it's safest to store only `final` variables inside `enum`
-types, but Java nevertheless allows non-constant data inside them.
+types, but Java nevertheless allows them to contain non-constant data.
 
 We can expand the idea of a `Direction` enumeration to a `Movement` one that
 contains additional directions along with a geometric interpretation of how 
