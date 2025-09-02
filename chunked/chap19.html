@@ -122,9 +122,10 @@
 <li><a href="chap9.html#_concepts_object_oriented_programming">9.2. Concepts: Object-oriented programming</a></li>
 <li><a href="chap9.html#_syntax_classes_in_java">9.3. Syntax: Classes in Java</a></li>
 <li><a href="chap9.html#_advanced_nested_classes">9.4. Advanced: Nested classes</a></li>
-<li><a href="chap9.html#_solution_nested_expressions">9.5. Solution: Nested expressions</a></li>
-<li><a href="chap9.html#_concurrency_objects">9.6. Concurrency: Objects</a></li>
-<li><a href="chap9.html#_exercises_9">9.7. Exercises</a></li>
+<li><a href="chap9.html#_advanced_enumeration_types">9.5. Advanced: Enumeration types</a></li>
+<li><a href="chap9.html#_solution_nested_expressions">9.6. Solution: Nested expressions</a></li>
+<li><a href="chap9.html#_concurrency_objects">9.7. Concurrency: Objects</a></li>
+<li><a href="chap9.html#_exercises_9">9.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap10.html">10. Interfaces</a>
@@ -435,8 +436,8 @@ left parenthesis on the stack. Then pop the left parenthesis.</p>
 </div>
 <div class="paragraph">
 <p>Precedence comes from order of operations: <code>*</code> and <code>/</code> have high
-precedence and <code>` and `-` have low precedence. When you encounter it on
-the stack, treat `(` as if it has even lower precedence than `</code> and
+precedence and <code>+</code> and <code>-</code> have low precedence. When you encounter it on
+the stack, treat <code>(</code> as if it has even lower precedence than <code>+</code> and
 <code>-</code>. A right parenthesis should never appear on the stack.</p>
 </div>
 <div class="paragraph">
@@ -1449,7 +1450,7 @@ setting its <code>value</code> field to the incoming <code>value</code>, and poi
 remove that node from the linked list. It does this by replacing the
 <code>head</code> node with the node pointed at by the <code>next</code> link in <code>head</code>. The
 <code>pop()</code> method from the simpler stack used in the solution to the nested
-expressions problem in <a href="chap9.html#_solution_nested_expressions">Section 9.5</a> merely
+expressions problem in <a href="chap9.html#_solution_nested_expressions">Section 9.6</a> merely
 removed the top and didn’t return the value. Most real-world stack
 implementations of <code>pop()</code> <strong>do</strong> return this value, giving programmers
 more flexibility.</td>
@@ -2947,7 +2948,7 @@ Thread ID removed from queue: 11</pre>
 <div class="sect2">
 <h3 id="_concurrency_thread_safe_libraries">19.8. Concurrency: Thread-safe libraries</h3>
 <div class="paragraph">
-<p>As we mentioned in <a href="chap9.html#_concurrency_objects">Section 9.6</a>, some libraries are
+<p>As we mentioned in <a href="chap9.html#_concurrency_objects">Section 9.7</a>, some libraries are
 thread-safe and some are not. The JCF is a useful library, but it’s also a
 library that requires you to manage your own thread safety if it matters for
 your program.</p>
@@ -3345,7 +3346,7 @@ How much slower are the adds to the <code>Vector&lt;Integer&gt;</code> container
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-14 11:38:32 -0400
+Last updated 2024-08-30 12:19:53 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

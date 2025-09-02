@@ -1316,7 +1316,7 @@ public class Example {
      * The main() method was last updated by Barry Wittman.
      */
     public static void main(String[] args) {
-        System.out.print(42);  // answer to everything
+        System.out.print(42);  // Answer to everything
     }
 }
 ----

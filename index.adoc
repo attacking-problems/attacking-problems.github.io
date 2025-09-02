@@ -28,7 +28,6 @@ This website was created and updated during the summer of 2024 and is usable now
 * [ ] Improve `switch` examples in Selection (Chapter 4).  Add `yield` example(s).
 * [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
 * [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Inheritance (Chapter 11).  Add binding variable and `switch` examples.
-* [ ] Include an explanation of the `enum` type to Classes (Chapter 9).
 * [ ] Unify discussion of annotations (Chapters 13 and 17).
 * [ ] Add an explanation of _varargs_ in Methods (Chapter 8).
 * [ ] Add Summary sections to chapters that don't have them.
@@ -45,6 +44,7 @@ This website was created and updated during the summer of 2024 and is usable now
 * [x] Include a chapter on streams (or add to an existing chapter). 
 * [x] Add a brief outline of useful JCF classes and interfaces.
 * [x] Apply a unified style guide to all code in the book.
+* [x] Include an explanation of the `enum` type to Classes (Chapter 9).
 
 == Availability
 

@@ -183,7 +183,7 @@ Another difference is that reference variables (or simply _references_)
 do not have a large set of operators that work on them. Every variable
 can be used with the assignment (`=`) and the comparison (`==`)
 operators. Every variable can also be concatenated with a `String` by
-using the `+` operator, but even if two objects represent numerical
+using the `+++` operator, but even if two objects represent numerical
 values, they can't be added together with the `+` operator.
 
 References should still be thought of as types defining a set of objects
@@ -1410,7 +1410,7 @@ all variables used in the *Example* column have a numeric type.
 |!=|not equal to |x !=  y / 4
 |<|less than |x < 3.5
 |<=|less than or equal to |x <= y
-|>|greater than |x > y+1
+|>|greater than |x > y + 1
 |>=|greater than or equal to |x + y >= z
 |============================================
 
@@ -1425,18 +1425,19 @@ The following declarations and assignments illustrate some uses of
 ----
 int x = 3;
 int y = 4;
-boolean same = (x == 3);
-same = (x == y);
-boolean xIsGreater = (x > y);
+boolean same = (x == 3); // <.>
+same = (x == y); // <.>
+boolean xIsGreater = (x > y); // <.>
 ----
+<.> In the first use of `==`, the value of `same` is `true` because
+the value of `x` is `3`.
+<.> In the second, the value of `same` is `false` because the values of `x` and
+`y` are different.
+<.> The value of `xIsGreater` is also `false` since the value of `x` is not greater than
+the value of `y`.
 
-In the first use of `==` above, the value of `same` is `true` because
-the value of `x` is `3`. In the second comparison, the value of `same`
-is `false` because the values of `x` and `y` are different. The value of
-`xIsGreater` is also `false` since the value of `x` is not greater than
-the value of `y`.  All of the parentheses in this example are unnecessary
-and are used only for clarity.
-
+All the parentheses in this example are unnecessary and are used only for
+clarity.
 ====
 
 In addition to the relational operators, Java also provides _logical_
@@ -1658,7 +1659,7 @@ phrase = phrase.concat(exclamation);
 ----
 
 This sequence of statements gives the same result as the one above 
-using the `+` operator. In practice, the `concat()` method is rarely
+using the `+++` operator. In practice, the `concat()` method is rarely
 used because the `+` operator is so convenient. Note that `String`
 objects in Java are _immutable_, meaning that calling a method on a
 `String` object will *never* change it. In the code above, calling
@@ -2000,9 +2001,9 @@ different places in your program, changing it to `30000` requires five
 changes. If you have used `POPULATION` throughout your program instead
 of a literal, you only have to change its value once.
 
-==== Var Declarations
+==== `var` Declarations
 
-This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:
+This section describes a change to the Java language introduced in Java 10.  Consider the following variable declarations that include an initial value assignment.
 
 [source, java]
 ----
@@ -2013,7 +2014,7 @@ Wombat w = new Wombat();
 
 Each of the type names in the declaration (`int`, `String`, and `Wombat`) is obvious based on the type of the initial value.  Variable `x` is obviously an `int`, variable `message` is obviously a `String`, and variable `w` is obviously a `Wombat`.
 
-Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called _local variable type inference_.  The type declaration can be replaced by the "reserved type name" `var` and the compiler will do the inferencing:
+Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called _local variable type inference_.  The type declaration can be replaced by the "`reserved type name`" `var` and the compiler will do the inferencing.
 
 [source, java]
 ----
@@ -2022,18 +2023,20 @@ var message = "Hello there."
 var w = new Wombat();
 ----
 
-Use of `var` can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended `x` to be a `double`, you would need to use a declaration like one of these:
+Use of `var` can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended `x` to be a `double`, you would need to use a declaration like one of the following.
 
 [source, java]
 ----
-// Use a literal double as the initial value...
+// Use a literal double as the initial value
 var x = 10.0;
 
-// Or, explicitly declare the type...
+// Or explicitly declare the type
 double x = 10;  
 ----
 
-Note that this feature is called _local variable type inference_.  The compiler only does type inferencing on _local variables_, not on fields, method parameters, or return types.
+Note that this feature is called _local variable type inference_.  The compiler
+only does type inference on _local variables_, not on fields, method parameters,
+or return types.
 
 === Syntax: Useful libraries
 
@@ -2105,7 +2108,7 @@ formula 2__πr__.
 
 [source, java]
 ----
-double circumference = 2*Math.PI*radius;
+double circumference = 2 * Math.PI * radius;
 ----
 
 ==== Random numbers

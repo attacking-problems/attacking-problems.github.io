@@ -784,7 +784,7 @@ public static double parseDouble(String value) {
 }
 ----
 <.> After declaring a few variables, this method first checks index `0` in
-the input `String` `value` to see if it is a `'-'` or a `'+'`. If it is
+the input `String` `value` to see if it is a `'-'` or a `'+++'`. If it is
 a `'-'`, it sets `negative` to `true` and moves on. If it is a `'+'`, it
 simply moves on.
 <.> Then, the method loops through `value` until it reaches
