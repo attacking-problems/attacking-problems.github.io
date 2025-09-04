@@ -518,11 +518,126 @@ being set and the other capable only of being retrieved.
 <<fieldHidingExercise>>
 ****
 
+==== Annotations
+
+Java 5 introduced a feature called *annotations* that often comes up in the
+context of inheritance. Like many features in Java, annotations are deep and
+complex, yet most programmers only need to interact with a small subset of the
+annotation toolbox.
+
+Annotations provide extra information, typically used by the compiler, to
+make the relationships between types, methods, and variables a little clearer
+than would be possible without them. Annotations can also be used to modify how
+a program behaves when running, but doing so is an advanced technique used only
+in very specific cases.
+
+It's easy to recognize annotations because they're marked with an at sign
+(`@`).
+
+===== The `@Override` annotation
+
+One of the most common annotations is the `@Override` annotation used
+to mark that a method overrides a parent method.
+
+[source, java]
+----
+include::{programsdir}/HungryFish.java[]
+----
+
+The `HungryFish` class extends the parent `Fish` class and overrides the
+`feed()` method. Unlike previous children of the `Fish` class we've shown, this
+one has explicitly marked the method it overrides with the `@Override` 
+annotation. We didn't mark overridden methods this way before, so is it
+necessary? No, but it's still a good idea.
+
+Using the `@Override` annotation will cause a compiler error if you're trying
+to override a parent method that doesn't exist. It's a safety tool that prevents
+a programmer from thinking they're overriding something when they really aren't.
+For example, if we'd misspelled the method inside of `HungryFish` as `feet()`
+instead of `feed()`, the compiler would complain since there's no `feet()`
+method in the `Fish` class to override.
+
+
+===== The `@Deprecated` annotation
+
+An annotation you will regularly see but might never use yourself is
+`@Deprecated`. This annotation usually marks a method (but can also mark classes
+or member variables) as deprecated, indicating that it should no longer
+be used. Couldn't the author of the class simply remove the method? They could,
+but then existing code that depends on the missing method would break.
+
+Marking a method deprecated means that new code shouldn't use it going
+forward. Often, such methods carry some risk if they aren't used carefully. For
+example, the `stop()`, `suspend()`, and `resume()` methods in the `Thread` class
+are all deprecated because they can cause deadlock, a topic we'll discuss in
+<<Deadlock>>.
+
+===== The `@SuppressWarnings` annotation
+
+Another common annotation is `@SuppressWarnings`. This annotation stops specific
+warnings from being reported by the compiler, at the scope of a class, method,
+or variable declaration. Warnings are just that, warnings. They aren't compiler
+errors, which would make it impossible for the code to compile. Instead,
+they warn that something about the code looks fishy.
+
+Sometimes, a specific warning can be annoying to see over and over again when
+you know it's not really a problem. At other times, the compiler is set up
+so that warnings are treated as errors and must be resolved in order for the
+program to compile. For both situations, you can use `@SuppressWarnings` to
+hide unnecessary warnings, as in the following example.
+
+[source,java]
+----
+@SuppressWarnings("deprecation")
+public static void doDeprecatedThings() {
+    Date today = new Date();
+    System.out.println(today.getYear() + 1900);
+}
+----
+
+This code prints out the current year, but it uses the deprecated `getYear()`
+method from the `Date` class. Instead of using this method, it's now preferred
+to use a method from the `Calendar` class, but it's possible to imagine a
+situation where the `getYear()` method is still used, perhaps as part of
+a large library. By marking a method with `@SuppressWarnings("deprecation")`,
+uses of deprecated methods don't cause compiler warnings for the scope of the
+method.
+
+The `@SuppressWarnings` annotation is a useful example because it requires one
+or more `String` arguments. Just like a constructor for a normal class,
+annotations can take arbitrarily complicated arguments. Another useful case
+is `@SuppressWarnings("unused")`, which turns off the warning for a variable
+that's never used, a common situation while code is still under development.
+
+===== Other annotations
+
+We've only touched on a handful of annotations here. Many frameworks use 
+annotations to establish relationships between different classes and methods.
+For example, both the Spring Framework and Jakarta Enterprise Beans heavily use
+annotations.
+
+There are `@NotNull`, `@NonNull`, and `@Nonnull` annotations (as well
+as the opposite, `@Nullable`) in several popular libraries. In each case, the
+goal is to require that an argument isn't `null` or that a method won't return
+`null`. These are useful annotations that make code safer or document the kinds
+of values that can be used with a method. Unfortunately, the different
+annotations work in different ways and typically require the use of an
+outside library. Professional programmers should be aware if one of these
+libraries is in use on their project and take advantage of the annotations.
+
+The `@FunctionalInterface` annotation is used to document interfaces with a
+single method that can be used to store lambda expressions, which we'll discuss
+in <<lambdas-and-streams#lambdas-and-streams>>.
+
+The `@Test`, `@BeforeEach`, and `@AfterEach` annotations are just a few
+annotations used with JUnit 5, a testing framework we'll discuss in
+<<testing-and-debugging#testing-and-debugging>>.
+
 ==== The `Object` class
 
 You may not have realized it, but *every* class you've created in Java uses
 inheritance. To provide uniformity, the designers of Java made every
-class the child (or grandchild or great-grandchild...) of a class
+class the child (or grandchild or great-grandchild ...) of a class
 called `Object`. When you omit the `extends` clause in a class
 definition, you're making that class a direct child of `Object`.
 
