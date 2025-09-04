@@ -25397,7 +25397,7 @@ being set and the other capable only of being retrieved.</p>
 <div class="sect3">
 <h4 id="_annotations">11.3.5. Annotations</h4>
 <div class="paragraph">
-<p>Java 5 introduced a feature called <strong>annotations</strong> that often comes up in the
+<p>Java 5 introduced the <em>annotation</em> feature that often comes up in the
 context of inheritance. Like many features in Java, annotations are deep and
 complex, yet most programmers only need to interact with a small subset of the
 annotation toolbox.</p>
@@ -28564,14 +28564,13 @@ single method <code>evaluate()</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note the text <code>@FunctionalInterface</code> that appears before the declaration of
-<code>Operator</code>. The use of the <code>@</code> sign signals that
-<code>@FunctionalInterface</code> is an <em>annotation</em>. While we will not discuss annotations
-deeply in this book, the key idea behind them is that they provide extra
-information that&#8217;s usually not essential to the running of the program. In this
-case, the <code>@FunctionalInterface</code> annotation gives the extra information to
-someone reading the code that this interface is a functional interface, intended
-to be used in situations where we want to pass around an object as if it were
-only a single <code>evaluate()</code> method that takes two <code>int</code> values and returns a
+<code>Operator</code>. The use of the <code>@</code> signals that
+<code>@FunctionalInterface</code> is an annotation, a tool for providing extra information,
+first mentioned in <a href="#_annotations">Section 11.3.5</a>. In this case, the
+<code>@FunctionalInterface</code> annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+<code>evaluate()</code> method that takes two <code>int</code> values and returns a
 third. The <code>@FunctionalInterface</code> annotation has no effect on the compilation or
 running of the program except that an interface with this annotation will cause
 a compiler error if it doesn&#8217;t have exactly one abstract method.</p>

@@ -520,7 +520,7 @@ being set and the other capable only of being retrieved.
 
 ==== Annotations
 
-Java 5 introduced a feature called *annotations* that often comes up in the
+Java 5 introduced the _annotation_ feature that often comes up in the
 context of inheritance. Like many features in Java, annotations are deep and
 complex, yet most programmers only need to interact with a small subset of the
 annotation toolbox.
