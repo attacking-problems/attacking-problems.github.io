@@ -572,6 +572,9 @@ example, the `stop()`, `suspend()`, and `resume()` methods in the `Thread` class
 are all deprecated because they can cause deadlock, a topic we'll discuss in
 <<Deadlock>>.
 
+Before the introduction of this annotation, the only way to know a method
+was deprecated was by reading the documentation.
+
 ===== The `@SuppressWarnings` annotation
 
 Another common annotation is `@SuppressWarnings`. This annotation stops specific

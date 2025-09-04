@@ -2172,12 +2172,12 @@ memory usage, running time, responsiveness, and other non-functional issues.</p>
 There are other testing tools for Java, and there’s a wide array of
 tools for testing software in virtually any language. We cover JUnit
 here because it’s widely accepted as a standard Java testing tool and
-because it’s open source.</p>
+because it’s free to use.</p>
 </div>
 <div class="sect3">
 <h4 id="_junit_testing">17.7.1. JUnit testing</h4>
 <div class="paragraph">
-<p>JUnit testing is used for unit testing Java. Unit testing is the process
+<p>JUnit is used for <em>unit testing</em> in Java. Unit testing is the process
 of testing separate software components that will eventually work
 together. By testing them individually, debugging can be done before
 interactions between different components make it more difficult to find
@@ -2185,43 +2185,14 @@ the underlying bugs. After unit testing comes integration testing to test
 how the components work together. Finally, system testing is the testing
 of the complete, integrated system against its specifications.</p>
 </div>
-<div class="sect4">
-<h5 id="_annotations_2">Annotations</h5>
 <div class="paragraph">
 <p>Our coverage of JUnit testing is based on JUnit 5. This version of JUnit
-has simple syntax for creating JUnit tests compared to JUnit 3 and earlier,
-but it also relies on <em>annotations</em>. An annotation is additional information
+has simple syntax for creating JUnit tests that relies on annotations, first
+mentioned in <a href="chap11.html#_annotations">Section 11.3.5</a>. Annotations are additional information
 written into Java code that affects how the compiler or run-time system treats
-the code. They are like comments, but they can affect code execution or
-compilation, usually indirectly. Applying an annotation to a
-method is called <em>decorating</em>. A class, a method, a variable, a package,
-or even an individual method parameter can be decorated.</p>
-</div>
-<div class="paragraph">
-<p>There are several annotations built into Java.  Here, we consider three: <code>@Deprecated</code>,
-<code>@Override</code>, and <code>@SuppressWarnings</code>. If a method is decorated with
-<code>@Deprecated</code>, it’s deprecated and included only for backward compatibility.
-The compiler will give a warning if you call deprecated code such as the following.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Deprecated</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">oldMethod</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">...</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Many methods in the extensive Java API are deprecated, like
-<code>Thread.suspend()</code>, due to its inherent deadlock risk. As of Java 5 when
-annotations were introduced, existing deprecated methods were decorated with
-<code>@Deprecated</code>.  Before that, the only way to know that a method was deprecated
-was by reading the documentation. The <code>@Override</code> annotation marks a method that’s
-overriding a parent class method, causing a compiler error if the method
-isn’t correctly overriding some parent class method. The <code>@SuppressWarnings</code>
-annotation allows certain warning messages to be suppressed, like using
-deprecated code if you really have to.</p>
-</div>
+the code. In JUnit, annotations are used to mark the code that makes up tests,
+test suites, and other activities that should be done before or after running
+tests.</p>
 </div>
 <div class="sect4">
 <h5 id="_basic_junit_syntax">Basic JUnit syntax</h5>
@@ -2259,7 +2230,7 @@ that, respectively, have matching names. Although ending with “Test” is
 a convention, there’s no requirement to name these methods any particular
 way. Tests in JUnit don’t have to test single method calls. They could
 test any functional aspect of an object or class. Nevertheless, for
-documentation reasons it’s wise to give the test methods names that
+documentation reasons it’s smart to give the test methods names that
 reflect what’s being tested.</p>
 </div>
 <div class="paragraph">
@@ -2273,26 +2244,25 @@ should be as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The only thing necessary to use a method for a JUnit test is to annotate
-it with <code>@Test</code>. It’s also necessary to make any function used for
-testing <code>public</code> with a <code>void</code> return type and no parameters. Otherwise,
-the JUnit framework will crash when you try to run the tests. Each
-method with a <code>@Test</code> annotation is run once by JUnit, but JUnit can’t
-supply any arguments to them. They should be self-contained tests
+<p>To use a method for a JUnit test, it must be marked with <code>@Test</code>. It’s also
+necessary to make any method used for testing <code>public</code> with a <code>void</code> return type
+and no parameters. Otherwise, the JUnit framework will crash when you try to run
+the tests. Each method with a <code>@Test</code> annotation is run once by JUnit, but JUnit
+can’t supply any arguments to them. They should be self-contained tests
 without any outside input.</p>
 </div>
 <div class="paragraph">
-<p>The exception to this rule is that you can perform some set up for the
-tests and then some clean up afterward. Any method decorated with
-<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method decorated with
+<p>To get around this limitation, you can set up data for tests and then do some
+clean up afterward. Any method marked with
+<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method marked with
 <code>@AfterEach</code> will be run after <strong>every</strong> test. If you have some set up or
 clean up that’s expensive to run, you can use the annotations
-<code>@BeforeAll</code> or <code>@AfterAll</code> to decorate a static method that’s run
-once before or after all the tests.</p>
+<code>@BeforeAll</code> or <code>@AfterAll</code> to mark a static method that’s run
+a single time before or after all tests, respectively.</p>
 </div>
 <div class="paragraph">
-<p>So far we have talked about the major aspects of writing a JUnit test
-class except for the test itself. How does the JUnit test report a
+<p>So far we’ve talked about every aspect of writing a JUnit test
+except for the contents of the test itself. How does the JUnit test report a
 success or a failure to the tester? As you would expect in Java, we use
 the exception handling mechanism to indicate failures. If the test
 method returns normally, the test is considered a success. If an
@@ -2405,13 +2375,13 @@ allow you to run tests or disable them for particular platforms.</p>
 <h5 id="_running_junit">Running JUnit</h5>
 <div class="paragraph">
 <p>Once you’ve created your JUnit test classes, you’ll want to run
-them. There are tools built into IDEs like Eclipse to make running easier,
-but the command line is always an option. As we said before, you need to
+them. There are tools built into IDEs like IntelliJ to make running tests
+easier, but the command line is always an option. As we said before, you need to
 include the JUnit jar file in your classpath. You can either do this
 permanently, by adding it to a <code>CLASSPATH</code> environment variable in a way
 dependent on your OS, or for a particular run of a Java tool. Assuming
 that you haven’t added the jar file to your classpath permanently, let’s
-say that you’re using the JUnit Platform 1.5.1 that’s included with JUnit
+say  you’re using the JUnit Platform 1.5.1 that’s included with JUnit
 5.5.1 from a jar file called <code>junit-platform-console-standalone-1.5.1.jar</code>
 that can be found in <code>C:\Java\JUnit\</code>. If <code>MathTest.java</code> is in the current
 directory, you would type the following.</p>
