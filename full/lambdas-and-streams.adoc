@@ -317,14 +317,13 @@ include::{programsdir}/Operator.java[]
 ----
 
 Note the text `@FunctionalInterface` that appears before the declaration of
-`Operator`. The use of the `@` sign signals that
-`@FunctionalInterface` is an _annotation_. While we will not discuss annotations
-deeply in this book, the key idea behind them is that they provide extra
-information that's usually not essential to the running of the program. In this
-case, the `@FunctionalInterface` annotation gives the extra information to
-someone reading the code that this interface is a functional interface, intended
-to be used in situations where we want to pass around an object as if it were
-only a single `evaluate()` method that takes two `int` values and returns a
+`Operator`. The use of the `@` signals that
+`@FunctionalInterface` is an annotation, a tool for providing extra information, 
+first mentioned in <<Annotations>>. In this case, the
+`@FunctionalInterface` annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+`evaluate()` method that takes two `int` values and returns a
 third. The `@FunctionalInterface` annotation has no effect on the compilation or
 running of the program except that an interface with this annotation will cause
 a compiler error if it doesn't have exactly one abstract method.

@@ -24999,8 +24999,8 @@ energy, it dies.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fish</span> <span class="o">{</span>
     <span class="kd">protected</span> <span class="nc">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="nc">Color</span><span class="o">.</span><span class="na">GRAY</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">double</span> <span class="n">location</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">double</span> <span class="n">energy</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">location</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">alive</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="nc">Color</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">color</span><span class="o">;</span> <span class="o">}</span>
@@ -25017,7 +25017,7 @@ energy, it dies.</p>
         <span class="o">}</span>
     <span class="o">}</span>
     
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span> <span class="n">energy</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span> <span class="n">energy</span> <span class="o">+=</span> <span class="mf">100.0</span><span class="o">;</span> <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">die</span><span class="o">()</span> <span class="o">{</span> <span class="n">alive</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -25395,11 +25395,156 @@ being set and the other capable only of being retrieved.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_object_class">11.3.5. The <code>Object</code> class</h4>
+<h4 id="_annotations">11.3.5. Annotations</h4>
+<div class="paragraph">
+<p>Java 5 introduced the <em>annotation</em> feature that often comes up in the
+context of inheritance. Like many features in Java, annotations are deep and
+complex, yet most programmers only need to interact with a small subset of the
+annotation toolbox.</p>
+</div>
+<div class="paragraph">
+<p>Annotations provide extra information, typically used by the compiler, to
+make the relationships between types, methods, and variables a little clearer
+than would be possible without them. Annotations can also be used to modify how
+a program behaves when running, but doing so is an advanced technique used only
+in very specific cases.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s easy to recognize annotations because they&#8217;re marked with an at sign
+(<code>@</code>).</p>
+</div>
+<div class="sect4">
+<h5 id="_the_override_annotation">The <code>@Override</code> annotation</h5>
+<div class="paragraph">
+<p>One of the most common annotations is the <code>@Override</code> annotation used
+to mark that a method overrides a parent method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HungryFish</span> <span class="kd">extends</span> <span class="nc">Fish</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">feed</span><span class="o">();</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">feed</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>HungryFish</code> class extends the parent <code>Fish</code> class and overrides the
+<code>feed()</code> method. Unlike previous children of the <code>Fish</code> class we&#8217;ve shown, this
+one has explicitly marked the method it overrides with the <code>@Override</code>
+annotation. We didn&#8217;t mark overridden methods this way before, so is it
+necessary? No, but it&#8217;s still a good idea.</p>
+</div>
+<div class="paragraph">
+<p>Using the <code>@Override</code> annotation will cause a compiler error if you&#8217;re trying
+to override a parent method that doesn&#8217;t exist. It&#8217;s a safety tool that prevents
+a programmer from thinking they&#8217;re overriding something when they really aren&#8217;t.
+For example, if we&#8217;d misspelled the method inside of <code>HungryFish</code> as <code>feet()</code>
+instead of <code>feed()</code>, the compiler would complain since there&#8217;s no <code>feet()</code>
+method in the <code>Fish</code> class to override.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_deprecated_annotation">The <code>@Deprecated</code> annotation</h5>
+<div class="paragraph">
+<p>An annotation you will regularly see but might never use yourself is
+<code>@Deprecated</code>. This annotation usually marks a method (but can also mark classes
+or member variables) as deprecated, indicating that it should no longer
+be used. Couldn&#8217;t the author of the class simply remove the method? They could,
+but then existing code that depends on the missing method would break.</p>
+</div>
+<div class="paragraph">
+<p>Marking a method deprecated means that new code shouldn&#8217;t use it going
+forward. Often, such methods carry some risk if they aren&#8217;t used carefully. For
+example, the <code>stop()</code>, <code>suspend()</code>, and <code>resume()</code> methods in the <code>Thread</code> class
+are all deprecated because they can cause deadlock, a topic we&#8217;ll discuss in
+<a href="#_deadlock">Section 15.5.1</a>.</p>
+</div>
+<div class="paragraph">
+<p>Before the introduction of this annotation, the only way to know a method
+was deprecated was by reading the documentation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_suppresswarnings_annotation">The <code>@SuppressWarnings</code> annotation</h5>
+<div class="paragraph">
+<p>Another common annotation is <code>@SuppressWarnings</code>. This annotation stops specific
+warnings from being reported by the compiler, at the scope of a class, method,
+or variable declaration. Warnings are just that, warnings. They aren&#8217;t compiler
+errors, which would make it impossible for the code to compile. Instead,
+they warn that something about the code looks fishy.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes, a specific warning can be annoying to see over and over again when
+you know it&#8217;s not really a problem. At other times, the compiler is set up
+so that warnings are treated as errors and must be resolved in order for the
+program to compile. For both situations, you can use <code>@SuppressWarnings</code> to
+hide unnecessary warnings, as in the following example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"deprecation"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doDeprecatedThings</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Date</span> <span class="n">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">today</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1900</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code prints out the current year, but it uses the deprecated <code>getYear()</code>
+method from the <code>Date</code> class. Instead of using this method, it&#8217;s now preferred
+to use a method from the <code>Calendar</code> class, but it&#8217;s possible to imagine a
+situation where the <code>getYear()</code> method is still used, perhaps as part of
+a large library. By marking a method with <code>@SuppressWarnings("deprecation")</code>,
+uses of deprecated methods don&#8217;t cause compiler warnings for the scope of the
+method.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@SuppressWarnings</code> annotation is a useful example because it requires one
+or more <code>String</code> arguments. Just like a constructor for a normal class,
+annotations can take arbitrarily complicated arguments. Another useful case
+is <code>@SuppressWarnings("unused")</code>, which turns off the warning for a variable
+that&#8217;s never used, a common situation while code is still under development.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_other_annotations">Other annotations</h5>
+<div class="paragraph">
+<p>We&#8217;ve only touched on a handful of annotations here. Many frameworks use
+annotations to establish relationships between different classes and methods.
+For example, both the Spring Framework and Jakarta Enterprise Beans heavily use
+annotations.</p>
+</div>
+<div class="paragraph">
+<p>There are <code>@NotNull</code>, <code>@NonNull</code>, and <code>@Nonnull</code> annotations (as well
+as the opposite, <code>@Nullable</code>) in several popular libraries. In each case, the
+goal is to require that an argument isn&#8217;t <code>null</code> or that a method won&#8217;t return
+<code>null</code>. These are useful annotations that make code safer or document the kinds
+of values that can be used with a method. Unfortunately, the different
+annotations work in different ways and typically require the use of an
+outside library. Professional programmers should be aware if one of these
+libraries is in use on their project and take advantage of the annotations.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@FunctionalInterface</code> annotation is used to document interfaces with a
+single method that can be used to store lambda expressions, which we&#8217;ll discuss
+in <a href="#lambdas-and-streams">Chapter 13</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Test</code>, <code>@BeforeEach</code>, and <code>@AfterEach</code> annotations are just a few
+annotations used with JUnit 5, a testing framework we&#8217;ll discuss in
+<a href="#testing-and-debugging">Chapter 17</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_object_class">11.3.6. The <code>Object</code> class</h4>
 <div class="paragraph">
 <p>You may not have realized it, but <strong>every</strong> class you&#8217;ve created in Java uses
 inheritance. To provide uniformity, the designers of Java made every
-class the child (or grandchild or great-grandchild&#8230;&#8203;) of a class
+class the child (or grandchild or great-grandchild &#8230;&#8203;) of a class
 called <code>Object</code>. When you omit the <code>extends</code> clause in a class
 definition, you&#8217;re making that class a direct child of <code>Object</code>.</p>
 </div>
@@ -28423,14 +28568,13 @@ single method <code>evaluate()</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note the text <code>@FunctionalInterface</code> that appears before the declaration of
-<code>Operator</code>. The use of the <code>@</code> sign signals that
-<code>@FunctionalInterface</code> is an <em>annotation</em>. While we will not discuss annotations
-deeply in this book, the key idea behind them is that they provide extra
-information that&#8217;s usually not essential to the running of the program. In this
-case, the <code>@FunctionalInterface</code> annotation gives the extra information to
-someone reading the code that this interface is a functional interface, intended
-to be used in situations where we want to pass around an object as if it were
-only a single <code>evaluate()</code> method that takes two <code>int</code> values and returns a
+<code>Operator</code>. The use of the <code>@</code> signals that
+<code>@FunctionalInterface</code> is an annotation, a tool for providing extra information,
+first mentioned in <a href="#_annotations">Section 11.3.5</a>. In this case, the
+<code>@FunctionalInterface</code> annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+<code>evaluate()</code> method that takes two <code>int</code> values and returns a
 third. The <code>@FunctionalInterface</code> annotation has no effect on the compilation or
 running of the program except that an interface with this annotation will cause
 a compiler error if it doesn&#8217;t have exactly one abstract method.</p>
@@ -39370,12 +39514,12 @@ memory usage, running time, responsiveness, and other non-functional issues.</p>
 There are other testing tools for Java, and there&#8217;s a wide array of
 tools for testing software in virtually any language. We cover JUnit
 here because it&#8217;s widely accepted as a standard Java testing tool and
-because it&#8217;s open source.</p>
+because it&#8217;s free to use.</p>
 </div>
 <div class="sect3">
 <h4 id="_junit_testing">17.7.1. JUnit testing</h4>
 <div class="paragraph">
-<p>JUnit testing is used for unit testing Java. Unit testing is the process
+<p>JUnit is used for <em>unit testing</em> in Java. Unit testing is the process
 of testing separate software components that will eventually work
 together. By testing them individually, debugging can be done before
 interactions between different components make it more difficult to find
@@ -39383,43 +39527,14 @@ the underlying bugs. After unit testing comes integration testing to test
 how the components work together. Finally, system testing is the testing
 of the complete, integrated system against its specifications.</p>
 </div>
-<div class="sect4">
-<h5 id="_annotations">Annotations</h5>
 <div class="paragraph">
 <p>Our coverage of JUnit testing is based on JUnit 5. This version of JUnit
-has simple syntax for creating JUnit tests compared to JUnit 3 and earlier,
-but it also relies on <em>annotations</em>. An annotation is additional information
+has simple syntax for creating JUnit tests that relies on annotations, first
+mentioned in <a href="#_annotations">Section 11.3.5</a>. Annotations are additional information
 written into Java code that affects how the compiler or run-time system treats
-the code. They are like comments, but they can affect code execution or
-compilation, usually indirectly. Applying an annotation to a
-method is called <em>decorating</em>. A class, a method, a variable, a package,
-or even an individual method parameter can be decorated.</p>
-</div>
-<div class="paragraph">
-<p>There are several annotations built into Java.  Here, we consider three: <code>@Deprecated</code>,
-<code>@Override</code>, and <code>@SuppressWarnings</code>. If a method is decorated with
-<code>@Deprecated</code>, it&#8217;s deprecated and included only for backward compatibility.
-The compiler will give a warning if you call deprecated code such as the following.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Deprecated</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">oldMethod</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">...</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Many methods in the extensive Java API are deprecated, like
-<code>Thread.suspend()</code>, due to its inherent deadlock risk. As of Java 5 when
-annotations were introduced, existing deprecated methods were decorated with
-<code>@Deprecated</code>.  Before that, the only way to know that a method was deprecated
-was by reading the documentation. The <code>@Override</code> annotation marks a method that&#8217;s
-overriding a parent class method, causing a compiler error if the method
-isn&#8217;t correctly overriding some parent class method. The <code>@SuppressWarnings</code>
-annotation allows certain warning messages to be suppressed, like using
-deprecated code if you really have to.</p>
-</div>
+the code. In JUnit, annotations are used to mark the code that makes up tests,
+test suites, and other activities that should be done before or after running
+tests.</p>
 </div>
 <div class="sect4">
 <h5 id="_basic_junit_syntax">Basic JUnit syntax</h5>
@@ -39457,7 +39572,7 @@ that, respectively, have matching names. Although ending with &#8220;Test&#8221;
 a convention, there&#8217;s no requirement to name these methods any particular
 way. Tests in JUnit don&#8217;t have to test single method calls. They could
 test any functional aspect of an object or class. Nevertheless, for
-documentation reasons it&#8217;s wise to give the test methods names that
+documentation reasons it&#8217;s smart to give the test methods names that
 reflect what&#8217;s being tested.</p>
 </div>
 <div class="paragraph">
@@ -39471,26 +39586,25 @@ should be as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The only thing necessary to use a method for a JUnit test is to annotate
-it with <code>@Test</code>. It&#8217;s also necessary to make any function used for
-testing <code>public</code> with a <code>void</code> return type and no parameters. Otherwise,
-the JUnit framework will crash when you try to run the tests. Each
-method with a <code>@Test</code> annotation is run once by JUnit, but JUnit can&#8217;t
-supply any arguments to them. They should be self-contained tests
+<p>To use a method for a JUnit test, it must be marked with <code>@Test</code>. It&#8217;s also
+necessary to make any method used for testing <code>public</code> with a <code>void</code> return type
+and no parameters. Otherwise, the JUnit framework will crash when you try to run
+the tests. Each method with a <code>@Test</code> annotation is run once by JUnit, but JUnit
+can&#8217;t supply any arguments to them. They should be self-contained tests
 without any outside input.</p>
 </div>
 <div class="paragraph">
-<p>The exception to this rule is that you can perform some set up for the
-tests and then some clean up afterward. Any method decorated with
-<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method decorated with
+<p>To get around this limitation, you can set up data for tests and then do some
+clean up afterward. Any method marked with
+<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method marked with
 <code>@AfterEach</code> will be run after <strong>every</strong> test. If you have some set up or
 clean up that&#8217;s expensive to run, you can use the annotations
-<code>@BeforeAll</code> or <code>@AfterAll</code> to decorate a static method that&#8217;s run
-once before or after all the tests.</p>
+<code>@BeforeAll</code> or <code>@AfterAll</code> to mark a static method that&#8217;s run
+a single time before or after all tests, respectively.</p>
 </div>
 <div class="paragraph">
-<p>So far we have talked about the major aspects of writing a JUnit test
-class except for the test itself. How does the JUnit test report a
+<p>So far we&#8217;ve talked about every aspect of writing a JUnit test
+except for the contents of the test itself. How does the JUnit test report a
 success or a failure to the tester? As you would expect in Java, we use
 the exception handling mechanism to indicate failures. If the test
 method returns normally, the test is considered a success. If an
@@ -39603,13 +39717,13 @@ allow you to run tests or disable them for particular platforms.</p>
 <h5 id="_running_junit">Running JUnit</h5>
 <div class="paragraph">
 <p>Once you&#8217;ve created your JUnit test classes, you&#8217;ll want to run
-them. There are tools built into IDEs like Eclipse to make running easier,
-but the command line is always an option. As we said before, you need to
+them. There are tools built into IDEs like IntelliJ to make running tests
+easier, but the command line is always an option. As we said before, you need to
 include the JUnit jar file in your classpath. You can either do this
 permanently, by adding it to a <code>CLASSPATH</code> environment variable in a way
 dependent on your OS, or for a particular run of a Java tool. Assuming
 that you haven&#8217;t added the jar file to your classpath permanently, let&#8217;s
-say that you&#8217;re using the JUnit Platform 1.5.1 that&#8217;s included with JUnit
+say  you&#8217;re using the JUnit Platform 1.5.1 that&#8217;s included with JUnit
 5.5.1 from a jar file called <code>junit-platform-console-standalone-1.5.1.jar</code>
 that can be found in <code>C:\Java\JUnit\</code>. If <code>MathTest.java</code> is in the current
 directory, you would type the following.</p>
