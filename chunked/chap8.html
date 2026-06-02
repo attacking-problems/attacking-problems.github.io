@@ -111,9 +111,10 @@
 <li class="current"><a href="chap8.html#_concepts_dividing_work_into_segments">8.2. Concepts: Dividing work into segments</a></li>
 <li class="current"><a href="chap8.html#_syntax_methods">8.3. Syntax: Methods</a></li>
 <li class="current"><a href="chap8.html#_examples_defining_methods">8.4. Examples: Defining methods</a></li>
-<li class="current"><a href="chap8.html#_solution_three_card_poker">8.5. Solution: Three card poker</a></li>
-<li class="current"><a href="chap8.html#_concurrency_methods">8.6. Concurrency: Methods</a></li>
-<li class="current"><a href="chap8.html#_exercises_8">8.7. Exercises</a></li>
+<li class="current"><a href="chap8.html#_advanced_variable_numbers_of_arguments">8.5. Advanced: Variable numbers of arguments</a></li>
+<li class="current"><a href="chap8.html#_solution_three_card_poker">8.6. Solution: Three card poker</a></li>
+<li class="current"><a href="chap8.html#_concurrency_methods">8.7. Concurrency: Methods</a></li>
+<li class="current"><a href="chap8.html#_exercises_8">8.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap9.html">9. Classes</a>
@@ -1304,7 +1305,104 @@ precision errors.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_solution_three_card_poker">8.5. Solution: Three card poker</h3>
+<h3 id="_advanced_variable_numbers_of_arguments">8.5. Advanced: Variable numbers of arguments</h3>
+<div class="paragraph">
+<p>In <a href="chap8.html#_overloaded_methods">Section 8.3.1.2</a>, we discussed a way to create multiple methods with
+the same name, for the convenience of the programmer. In our example, we created
+a <code>max()</code> method that takes three arguments and returns the maximum of the
+three, a method that coexists with (and even calls) the original <code>max()</code> method
+that only takes two.</p>
+</div>
+<div class="paragraph">
+<p>But what if we wanted to overload the <code>max()</code> method to take four, five, six, or
+even a hundred arguments? It would be truly tedious to write hundreds of
+versions of an overloaded method that fundamentally do the same thing. In Java 5
+and higher, special syntax can allow a single method to take <em>any</em>
+number of arguments. This syntax is usually referred to as <em>varargs</em>. Below is a
+<code>max()</code> method that will work for any number of arguments greater than zero.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span><span class="o">...</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="kt">int</span> <span class="n">largest</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">largest</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">largest</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">largest</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The parameter <code>numbers</code> is marked as an array that contains a variable
+number of arguments by putting three periods (<code>...</code>) after the <code>int</code> type.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Once declared in this way, <code>numbers</code> will behave exactly like any other
+array, and all the <code>int</code> arguments provided in the call will be stored into it.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>The following are all legal ways to call this special varargs version of the
+<code>max()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">largest1</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span> <span class="c1">// 7</span>
+<span class="kt">int</span> <span class="n">largest2</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span> <span class="c1">// 8</span>
+<span class="kt">int</span> <span class="n">largest4</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="mi">16</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">)</span> <span class="c1">// 16</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">};</span>
+<span class="kt">int</span> <span class="n">largestArray</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="n">array</span><span class="o">);</span> <span class="c1">// 5</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The arguments can be provided by passing them in, as usual, separated by commas,
+or you can also pass in a whole array at once. The varargs syntax is flexible
+enough to accept either style.</p>
+</div>
+<div class="paragraph">
+<p>However, the varargs syntax has several limitations as well. First, a method
+can only have a single varargs parameter. Second, that parameter must be the
+rightmost (last one listed). These restrictions are intended to avoid situations
+where it might be unclear whether a given argument is part of a variable-length
+list of arguments or not.</p>
+</div>
+<div class="paragraph">
+<p>There are other dangers associated with varargs that are beyond what we can
+cover here. Varargs can interact in potentially unsafe ways with generics, which
+are discussed in <a href="chap19.html">Chapter 19</a>. For other
+reasons, it’s unwise to store data into the varargs array within the method or
+to return it. Finally, note that as few as zero arguments can be passed into a
+varargs parameter. The following is a legal method call, based on the definition
+of <code>max()</code> given above.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">largest0</span> <span class="o">=</span> <span class="n">max</span><span class="o">();</span> <span class="c1">// Causes ArrayIndexOutOfBoundsException</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code compiles, but it will cause an error when it runs since it will try to
+access the first element (at location 0) in an array that contains no elements.
+There’s no easy fix here. The programmer using this code should not try to find
+the maximum of zero things, but programmers will often do unexpected things.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="chap8.html#varargsExercise">Exercise 8.13</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_three_card_poker">8.6. Solution: Three card poker</h3>
 <div class="paragraph">
 <p>Here we present our solution to the three card poker problem. We explain
 each method individually.</p>
@@ -1576,7 +1674,7 @@ seven-card poker hands.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_methods">8.6. Concurrency: Methods</h3>
+<h3 id="_concurrency_methods">8.7. Concurrency: Methods</h3>
 <div class="paragraph">
 <p>In Java, it’s impossible to have concurrency without methods. Methods
 are the way we break a large program into manageable pieces but are also
@@ -1717,7 +1815,7 @@ be changed by one right before the other executes the <code>if</code> statements
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_8">8.7. Exercises</h3>
+<h3 id="_exercises_8">8.8. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -1918,7 +2016,15 @@ or lowercase, and the exponent can begin with a minus sign (<code>-</code>), a p
 or neither.</p>
 </li>
 <li>
-<p>Re-implement the solution from <a href="chap8.html#_solution_three_card_poker">Section 8.5</a>
+<p><a id="varargsExercise"></a> Use varargs syntax to write a method that takes an
+arbitrary number of <code>String</code> arguments and returns the one with the most vowel
+characters in it. For the purposes of this exercise, a, e, i, o, and u (and
+their uppercase versions) are considered vowels. If two <code>String</code> values have the
+same number of vowels, return the one that comes earlier. Don’t worry about the
+case in which a user passes in no <code>String</code> arguments.</p>
+</li>
+<li>
+<p>Re-implement the solution from <a href="chap8.html#_solution_three_card_poker">Section 8.6</a>
 so that it uses a GUI constructed with <code>JOptionPane</code> to display the hand
 and the winnings.</p>
 </li>
@@ -1998,7 +2104,7 @@ cards in each hand are used as tiebreakers, in descending rank order.</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="15">
+<ol class="arabic" start="16">
 <li>
 <p>In terms of time, there’s a small overhead associated with calling
 a method and returning a value, but it’s very hard to measure. Write a
