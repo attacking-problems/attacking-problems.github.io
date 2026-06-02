@@ -123,9 +123,10 @@
 <li><a href="chap9.html#_concepts_object_oriented_programming">9.2. Concepts: Object-oriented programming</a></li>
 <li><a href="chap9.html#_syntax_classes_in_java">9.3. Syntax: Classes in Java</a></li>
 <li><a href="chap9.html#_advanced_nested_classes">9.4. Advanced: Nested classes</a></li>
-<li><a href="chap9.html#_solution_nested_expressions">9.5. Solution: Nested expressions</a></li>
-<li><a href="chap9.html#_concurrency_objects">9.6. Concurrency: Objects</a></li>
-<li><a href="chap9.html#_exercises_9">9.7. Exercises</a></li>
+<li><a href="chap9.html#_advanced_enumeration_types">9.5. Advanced: Enumeration types</a></li>
+<li><a href="chap9.html#_solution_nested_expressions">9.6. Solution: Nested expressions</a></li>
+<li><a href="chap9.html#_concurrency_objects">9.7. Concurrency: Objects</a></li>
+<li><a href="chap9.html#_exercises_9">9.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap10.html">10. Interfaces</a>
@@ -216,9 +217,8 @@
 <li><a href="chap17.html#_finding_and_avoiding_bugs">17.5. Finding and avoiding bugs</a></li>
 <li><a href="chap17.html#_concepts_design_implementation_and_testing">17.6. Concepts: Design, implementation, and testing</a></li>
 <li><a href="chap17.html#_syntax_java_testing_tools">17.7. Syntax: Java testing tools</a></li>
-<li><a href="chap17.html#_concurrency_testing_tools">17.8. Concurrency: Testing tools</a></li>
-<li><a href="chap17.html#_examples_testing_a_class">17.9. Examples: Testing a class</a></li>
-<li><a href="chap17.html#_exercises_17">17.10. Exercises</a></li>
+<li><a href="chap17.html#_examples_testing_a_class">17.8. Examples: Testing a class</a></li>
+<li><a href="chap17.html#_exercises_17">17.9. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap18.html">18. Polymorphism</a>
@@ -955,14 +955,13 @@ single method <code>evaluate()</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note the text <code>@FunctionalInterface</code> that appears before the declaration of
-<code>Operator</code>. The use of the <code>@</code> sign signals that
-<code>@FunctionalInterface</code> is an <em>annotation</em>. While we will not discuss annotations
-deeply in this book, the key idea behind them is that they provide extra
-information that’s usually not essential to the running of the program. In this
-case, the <code>@FunctionalInterface</code> annotation gives the extra information to
-someone reading the code that this interface is a functional interface, intended
-to be used in situations where we want to pass around an object as if it were
-only a single <code>evaluate()</code> method that takes two <code>int</code> values and returns a
+<code>Operator</code>. The use of the <code>@</code> signals that
+<code>@FunctionalInterface</code> is an annotation, a tool for providing extra information,
+first mentioned in <a href="chap11.html#_annotations">Section 11.3.5</a>. In this case, the
+<code>@FunctionalInterface</code> annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+<code>evaluate()</code> method that takes two <code>int</code> values and returns a
 third. The <code>@FunctionalInterface</code> annotation has no effect on the compilation or
 running of the program except that an interface with this annotation will cause
 a compiler error if it doesn’t have exactly one abstract method.</p>
@@ -2860,7 +2859,7 @@ performs the same task?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-14 11:38:32 -0400
+Last updated 2024-08-30 12:19:53 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

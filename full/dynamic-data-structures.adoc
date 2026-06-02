@@ -90,7 +90,7 @@ Right Parenthesis:::
   left parenthesis on the stack. Then pop the left parenthesis.
 
 Precedence comes from order of operations: `*` and `/` have high
-precedence and `+` and `-` have low precedence. When you encounter it on
+precedence and `+++` and `-` have low precedence. When you encounter it on
 the stack, treat `(` as if it has even lower precedence than `+` and
 `-`. A right parenthesis should never appear on the stack.
 

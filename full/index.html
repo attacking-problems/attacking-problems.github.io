@@ -684,9 +684,10 @@ pre.rouge .err {
 <li><a href="#_concepts_object_oriented_programming">9.2. Concepts: Object-oriented programming</a></li>
 <li><a href="#_syntax_classes_in_java">9.3. Syntax: Classes in Java</a></li>
 <li><a href="#_advanced_nested_classes">9.4. Advanced: Nested classes</a></li>
-<li><a href="#_solution_nested_expressions">9.5. Solution: Nested expressions</a></li>
-<li><a href="#_concurrency_objects">9.6. Concurrency: Objects</a></li>
-<li><a href="#_exercises_9">9.7. Exercises</a></li>
+<li><a href="#_advanced_enumeration_types">9.5. Advanced: Enumeration types</a></li>
+<li><a href="#_solution_nested_expressions">9.6. Solution: Nested expressions</a></li>
+<li><a href="#_concurrency_objects">9.7. Concurrency: Objects</a></li>
+<li><a href="#_exercises_9">9.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="#interfaces">10. Interfaces</a>
@@ -777,9 +778,8 @@ pre.rouge .err {
 <li><a href="#_finding_and_avoiding_bugs">17.5. Finding and avoiding bugs</a></li>
 <li><a href="#_concepts_design_implementation_and_testing">17.6. Concepts: Design, implementation, and testing</a></li>
 <li><a href="#_syntax_java_testing_tools">17.7. Syntax: Java testing tools</a></li>
-<li><a href="#_concurrency_testing_tools">17.8. Concurrency: Testing tools</a></li>
-<li><a href="#_examples_testing_a_class">17.9. Examples: Testing a class</a></li>
-<li><a href="#_exercises_17">17.10. Exercises</a></li>
+<li><a href="#_examples_testing_a_class">17.8. Examples: Testing a class</a></li>
+<li><a href="#_exercises_17">17.9. Exercises</a></li>
 </ul>
 </li>
 <li><a href="#polymorphism">18. Polymorphism</a>
@@ -1559,9 +1559,9 @@ from one base to another, and arithmetic in arbitrary number systems.</p>
 <div class="paragraph">
 <p>A number system is a way to represent numbers. It&#8217;s easy to confuse the
 <em>numeral</em> that represents the <em>number</em> with the number itself. You might
-think of the number ten as &#8220;10&#8221;, a numeral made of two symbols, but
+think of the number ten as &#8220;10,&#8221; a numeral made of two symbols, but
 the number itself is the concept of <strong>ten-ness</strong>. You could express that
-quantity by holding up all your fingers, with the symbol &#8220;X&#8221;, or by
+quantity by holding up all your fingers, with the symbol &#8220;X,&#8221; or by
 knocking ten times.</p>
 </div>
 <div class="paragraph">
@@ -3364,7 +3364,7 @@ Apple macOS, and Linux.</p>
 </div>
 <div class="paragraph">
 <p>Windows is heavily marketed for business use.
-Windows suffered from many stability and security issues,
+Windows used to suffer from many stability and security issues,
 but Microsoft has worked hard to address these. Apple macOS and the
 computers it&#8217;s installed on are marketed to an artistic and
 counter-culture population. Linux is popular among tech savvy users.
@@ -3396,9 +3396,6 @@ and cons for each OS.</p>
 </li>
 <li>
 <p>Can be purchased separately from hardware</p>
-</li>
-<li>
-<p>Can run on Apple hardware</p>
 </li>
 </ul>
 </div></div></td>
@@ -3456,7 +3453,7 @@ and cons for each OS.</p>
 <p>Highly customizable</p>
 </li>
 <li>
-<p>Serviced by a community that develops many free applications for it</p>
+<p>Served by a community that develops many free applications for it</p>
 </li>
 </ul>
 </div></div></td>
@@ -3500,42 +3497,34 @@ cache, the less often the CPU has to read data from slower
 memory. Since most new CPUs available today are 64-bit, the question
 of word size is no longer significant.</p>
 </div>
-<div class="paragraph">
-<p>Although some specialists may prefer one or the other, both Intel and
-AMD make powerful, competitive consumer CPUs.</p>
-</div>
 </dd>
 <dt class="hdlist1">Memory</dt>
 <dd>
 <p>Memory includes RAM, hard drives, optical drives, and any other
 storage. RAM is usually easy to upgrade for desktop machines and less
-easy (though often possible) for laptops. The price of RAM per
-gigabyte goes down over time. It may be reasonable to start with a
-modest amount of RAM and then upgrade after a year or two when it
-becomes cheaper to do so. It takes a little bit of research to get
-exactly the right kind of RAM for your CPU and motherboard. The amount
+easy (though often possible) for laptops. It takes a little bit of research to
+get exactly the right kind of RAM for your CPU and motherboard, and the amount
 of RAM is dependent on what you want to do with your system. The
-minimum amount of RAM to run Microsoft Windows 10 is 1 GB for 32-bit
-versions and 2 GB for 64-bit versions. The minimum amount of RAM to
-run Apple macOS Mojave is 2 GB. One rule of thumb is to have
+minimum amount of RAM to run Microsoft Windows 11 is 4 GB.
+The recommended amount of RAM to
+run Apple macOS Sequoia is at least 8 GB. A good guideline is to have
 at least twice the minimum required RAM.</p>
 <div class="paragraph">
 <p>Hard drive space is dependent on how you expect to use your
 computer. 1 TB and 2 TB drives are not very expensive, and either
 represents a huge amount of storage. Only if you plan to have enormous
 libraries of video or uncompressed audio data will you likely need
-more. Corporate level databases and web servers and some other
+more. Corporate-level databases and web servers and some other
 business systems can also require vast amounts of space. Hard drive
 speed is greatly affected by the hard drive&#8217;s cache size. As always, a
 bigger cache means better performance. Using a solid state drive (SSD)
-instead of a traditional hard drive has much better performance but
-higher cost per megabyte. If you can afford an SSD, this single upgrade
-is likely to <em>feel</em> like the greatest increase in overall computer speed.</p>
+instead of a traditional hard drive has much better performance and has become
+standard on most new desktops and laptops.</p>
 </div>
 <div class="paragraph">
 <p>Installing optical drives and other storage devices depends on
 individual needs. With the rise of streaming services and cloud backup,
-optical drives have become less popular.</p>
+optical drives have almost disappeared.</p>
 </div>
 </dd>
 <dt class="hdlist1">I/O Devices</dt>
@@ -3544,14 +3533,13 @@ optical drives have become less popular.</p>
 what anyone should buy without considering his or her specific needs.
 A monitor is the essential visual output device while a keyboard and
 mouse are the essential input devices. Speakers are important as
-well. Most laptops have all of these elements integrated in some form or
+well. Most laptops have all these elements integrated in one form or
 another. Laptops often have inexpensive web cameras installed as well.</p>
 <div class="paragraph">
 <p>Someone interested in video games might want to invest in a powerful
 graphics card. Newer cards with more video RAM are generally better
 than older cards with less, but which card is best at a given price
 point is the subject of continual discussion at sites like
-<a href="https://www.anandtech.com" target="_blank" rel="noopener">AnandTech</a> and
 <a href="https://www.tomshardware.com" target="_blank" rel="noopener">Tom&#8217;s Hardware</a>.</p>
 </div>
 <div class="paragraph">
@@ -3571,7 +3559,7 @@ course, there&#8217;s always more to know, and technology changes quickly.</p>
 <div class="sect3">
 <h4 id="_concurrency_multicore_processors">1.4.1. Concurrency: Multicore processors</h4>
 <div class="paragraph">
-<p>In the last decade, the word &#8220;core&#8221; has been splattered all over CPU
+<p>Over the last two decades, the word &#8220;core&#8221; has been splattered all over CPU
 packaging. Intel in particular has marketed the idea heavily with its
 older Core and Core 2 models and its modern Core i3, Core i5, Core i7,
 and Core i9 chips. What are all these cores?</p>
@@ -3584,8 +3572,8 @@ than one instruction in the process of being executed, but overall
 execution proceeded sequentially.</p>
 </div>
 <div class="paragraph">
-<p>The advent of multicore processors has changed this design
-significantly. Each processor has several independent cores, each of
+<p>The advent of multicore processors changed this design
+significantly. Each processor now has several independent cores, each of
 which can execute different instructions at the same time. Before the
 arrival of multicore processors, a few desktop computers and many
 supercomputers had multiple separate processors that could achieve a
@@ -3614,11 +3602,22 @@ A screen whose resolution is 1080p has
 2,073,600 dots. To maintain the illusion of smooth movement, these dots
 should be updated around 30 times per second. Computing the color for
 more than 2 million dots based on 3D geometry, lighting, and physics
-effects 30 times a second is no easy feat. Some of the cards used to
+effects 30 times a second is no easy feat, and many video game enthusiasts
+demand a frame rate of 60 times a second or higher. Some of the cards used to
 render computer games have hundreds or thousands of cores. These cores
 are not general purpose or completely independent. Instead, they&#8217;re
 specialized to do certain kinds of matrix transformations and
 floating-point computations.</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless, the power of these graphics cards has fueled recent improvements
+in AI. Even though the cores are not general purpose, skilled hardware and
+software engineers have found ways to harness their incredible parallel
+computation to solve difficult problems. Writing code that takes advantage of
+these architectures is challenging, but servers filled with the fastest graphics
+cards are used for everything from mining cryptocurrencies to training large
+language models. The company Nvidia alone sells tens of billions of dollars
+worth of graphics cards every year.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3633,15 +3632,15 @@ floating-point computations.</p>
 <div class="paragraph">
 <p>Although chip-makers have spent a lot of money marketing multicore
 technology, they haven&#8217;t spent much money explaining that one of the
-driving forces behind the &#8220;multicore revolution&#8221; is a simple failure
+driving forces behind the &#8220;multicore revolution&#8221; was a simple failure
 to make processors faster in other ways. In 1965, Gordon Moore, one of
 the founders of Intel, remarked that the density of silicon
 microprocessors had been doubling every year (though he later revised
 this to every two years), meaning that twice as many transistors
 (computational building blocks) could fit in the same physical space.
-This trend, often called Moore&#8217;s Law, has held up reasonably well. For
-years, clever designs relying on shorter communication times,
-pipelining, and other schemes succeeded in doubling the effective
+This trend, often called Moore&#8217;s Law, held up reasonably well through the
+twentieth century. For years, clever designs relying on shorter communication
+times, pipelining, and other schemes succeeded in doubling the effective
 performance of processors every two years.</p>
 </div>
 <div class="paragraph">
@@ -3651,7 +3650,7 @@ increases, the signal becomes more chaotic, and it becomes more
 difficult to tell the difference between the voltages that represent 0s
 and 1s. Another problem is heat. The energy that a processor uses is
 related to the <strong>square</strong> of the clock rate. This relationship means that
-increasing the clock rate of a processor by a factor of 4 will increase
+increasing the clock rate of a processor by a factor of four will increase
 its energy consumption (and heat generation) by a factor of 16.</p>
 </div>
 <div class="paragraph">
@@ -3666,7 +3665,7 @@ or so, increases in clock rate have stagnated.</p>
 <h5 id="_the_ugly">The Ugly</h5>
 <div class="paragraph">
 <p>Does a processor with eight cores solve problems eight times as fast as
-its single core equivalent? Unfortunately, the answer is, &#8220;Almost
+its single core equivalent? Unfortunately, the answer is &#8220;Almost
 never.&#8221; Most problems are not easy to break into eight independent
 pieces.</p>
 </div>
@@ -3697,14 +3696,14 @@ he or she can give instructions to the cores that will make them fight
 with each other, overwriting memory that other cores are using and
 crashing the program or giving an incorrect answer. Imagine
 if different parts of your brain were completely independent and fought
-with one another. The words that came out of your mouth might be gibberish.</p>
+with one another. The words coming out of your mouth might be gibberish.</p>
 </div>
 <div class="paragraph">
 <p>To recap, the first problem with concurrent programming is finding ways
 to break down problems so that they can be solved faster with multiple
 cores. The second problem is making sure that the different cores
 cooperate so that the answer is correct and makes sense. These are not
-easy problems, and many researchers are still working on finding better
+easy problems, and researchers are still working on finding better
 ways to do both.</p>
 </div>
 <div class="paragraph">
@@ -5715,7 +5714,7 @@ discuss documentation comments deeply in this book.</p>
      * The main() method was last updated by Barry Wittman.
      */</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">42</span><span class="o">);</span>  <span class="c1">// answer to everything</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">42</span><span class="o">);</span>  <span class="c1">// Answer to everything</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -6560,8 +6559,8 @@ pointing at the same object.</p>
 do not have a large set of operators that work on them. Every variable
 can be used with the assignment (<code>=</code>) and the comparison (<code>==</code>)
 operators. Every variable can also be concatenated with a <code>String</code> by
-using the <code>` operator, but even if two objects represent numerical
-values, they can't be added together with the `</code> operator.</p>
+using the <code>+</code> operator, but even if two objects represent numerical
+values, they can&#8217;t be added together with the <code>+</code> operator.</p>
 </div>
 <div class="paragraph">
 <p>References should still be thought of as types defining a set of objects
@@ -8199,7 +8198,7 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;</pre></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">greater than</p></td>
-<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y+1</pre></div></td>
+<td class="tableblock halign-left valign-top"><div class="literal"><pre>x &gt; y + 1</pre></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><div class="literal"><pre>&gt;=</pre></div></td>
@@ -8220,18 +8219,33 @@ all variables used in the <strong>Example</strong> column have a numeric type.</
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
-<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span>
-<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span>
-<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span></code></pre>
+<span class="kt">boolean</span> <span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">same</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="kt">boolean</span> <span class="n">xIsGreater</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In the first use of <code>==</code>, the value of <code>same</code> is <code>true</code> because
+the value of <code>x</code> is <code>3</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In the second, the value of <code>same</code> is <code>false</code> because the values of <code>x</code> and
+<code>y</code> are different.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The value of <code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
+the value of <code>y</code>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>In the first use of <code>==</code> above, the value of <code>same</code> is <code>true</code> because
-the value of <code>x</code> is <code>3</code>. In the second comparison, the value of <code>same</code>
-is <code>false</code> because the values of <code>x</code> and <code>y</code> are different. The value of
-<code>xIsGreater</code> is also <code>false</code> since the value of <code>x</code> is not greater than
-the value of <code>y</code>.  All of the parentheses in this example are unnecessary
-and are used only for clarity.</p>
+<p>All the parentheses in this example are unnecessary and are used only for
+clarity.</p>
 </div>
 </div>
 </div>
@@ -8509,8 +8523,8 @@ been initialized to <code>"a pie in the face"</code>, then <code>phrase</code> w
 </div>
 <div class="paragraph">
 <p>This sequence of statements gives the same result as the one above
-using the <code>` operator. In practice, the `concat()` method is rarely
-used because the `</code> operator is so convenient. Note that <code>String</code>
+using the <code>+</code> operator. In practice, the <code>concat()</code> method is rarely
+used because the <code>+</code> operator is so convenient. Note that <code>String</code>
 objects in Java are <em>immutable</em>, meaning that calling a method on a
 <code>String</code> object will <strong>never</strong> change it. In the code above, calling
 <code>concat()</code> creates new <code>String</code> objects. The <code>phrase</code> reference points
@@ -8903,9 +8917,9 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_var_declarations">3.3.6. Var Declarations</h4>
+<h4 id="_var_declarations">3.3.6. <code>var</code> Declarations</h4>
 <div class="paragraph">
-<p>This section describes a change to the Java language that was introduced in Java 10.  Consider the following variable declarations that include an initial value assignment:</p>
+<p>This section describes a change to the Java language introduced in Java 10.  Consider the following variable declarations that include an initial value assignment.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8918,7 +8932,7 @@ of a literal, you only have to change its value once.</p>
 <p>Each of the type names in the declaration (<code>int</code>, <code>String</code>, and <code>Wombat</code>) is obvious based on the type of the initial value.  Variable <code>x</code> is obviously an <code>int</code>, variable <code>message</code> is obviously a <code>String</code>, and variable <code>w</code> is obviously a <code>Wombat</code>.</p>
 </div>
 <div class="paragraph">
-<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the "reserved type name" <code>var</code> and the compiler will do the inferencing:</p>
+<p>Starting in Java 10, the compiler can infer the type of the variable from the type of the initial value, obviating the need for a type declaration.  This feature is called <em>local variable type inference</em>.  The type declaration can be replaced by the &#8220;reserved type name&#8221; <code>var</code> and the compiler will do the inferencing.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8928,19 +8942,21 @@ of a literal, you only have to change its value once.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of these:</p>
+<p>Use of <code>var</code> can result in clearer and more concise code, as long as the type being inferred by the compiler is obvious and what you intended. For example, if you intended <code>x</code> to be a <code>double</code>, you would need to use a declaration like one of the following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value...</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Use a literal double as the initial value</span>
 <span class="kt">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
 
-<span class="c1">// Or, explicitly declare the type...</span>
+<span class="c1">// Or explicitly declare the type</span>
 <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that this feature is called <em>local variable type inference</em>.  The compiler only does type inferencing on <em>local variables</em>, not on fields, method parameters, or return types.</p>
+<p>Note that this feature is called <em>local variable type inference</em>.  The compiler
+only does type inference on <em>local variables</em>, not on fields, method parameters,
+or return types.</p>
 </div>
 </div>
 </div>
@@ -9089,7 +9105,7 @@ formula 2<em>πr</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nc">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">*</span><span class="n">radius</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">circumference</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">radius</span><span class="o">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -20699,8 +20715,8 @@ scientific notation.</p>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>After declaring a few variables, this method first checks index <code>0</code> in
-the input <code>String</code> <code>value</code> to see if it is a <code>'-'</code> or a <code>''`. If it is
-a `'-'`, it sets `negative` to `true` and moves on. If it is a `''</code>, it
+the input <code>String</code> <code>value</code> to see if it is a <code>'-'</code> or a <code>'+'</code>. If it is
+a <code>'-'</code>, it sets <code>negative</code> to <code>true</code> and moves on. If it is a <code>'+'</code>, it
 simply moves on.</td>
 </tr>
 <tr>
@@ -22795,7 +22811,252 @@ of the values in a <code>SafeArray</code> object.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_solution_nested_expressions">9.5. Solution: Nested expressions</h3>
+<h3 id="_advanced_enumeration_types">9.5. Advanced: Enumeration types</h3>
+<div class="paragraph">
+<p>We discussed constants in <a href="#_constants">Section 3.3.5</a>, but using the <code>final</code> keyword only
+forces individual variables, whether local or member variables, to be constant.
+What if you wanted a whole object to be constant? What would that even mean?</p>
+</div>
+<div class="paragraph">
+<p>The C programming language introduced enumerations, fixed lists of
+named constants starting at 0 and increasing by one for each value.
+This approach provided an easy way to make distinct, named constants for better
+readability. In C, these values were essentially integers, but a
+conceptually similar feature was added in Java 5 to create Java enumerations,
+fixed lists of named objects.</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_enumeration_types">9.5.1. Basic enumeration types</h4>
+<div class="paragraph">
+<p>Enumerations allow us make fixed lists of objects. These <code>enum</code> types can be
+stored in their own files or nested inside other classes. As an example, we
+can create an enumeration of the four cardinal directions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Direction</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">,</span> <span class="no">SOUTH</span><span class="o">,</span> <span class="no">EAST</span><span class="o">,</span> <span class="no">WEST</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, there are four objects accessible by the name <code>Direction</code> followed by a dot
+and the name of the direction: <code>Direction.NORTH</code>, <code>Direction.SOUTH</code>,
+<code>Direction.EAST</code>, and <code>Direction.WEST</code>. Each name provides a readable
+representation of a direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Direction</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">whichWay</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">direction</span> <span class="o">==</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">EAST</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"When the East is in the house"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There&#8217;s a natural connection between <code>switch</code> statements and <code>enum</code> types:
+<code>switch</code> statements are designed for a fixed set of values, and that&#8217;s exactly what
+<code>enum</code> types provide. Note that, when used in a <code>switch</code>, only the name
+of each <code>enum</code> value is used, not its type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nl">NORTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">SOUTH:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nl">WEST:</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Making decisions based on <code>enum</code> values is the most common use case, but Java
+enumerations also have other, built-in functionality. Each <code>enum</code> value has
+an <code>ordinal()</code> method that returns its index, starting with 0 for the first.
+Likewise, an array containing all the values in an <code>enum</code> type can be accessed
+by calling the static <code>values()</code> method from the type name.</p>
+</div>
+<div class="paragraph">
+<p>The following code uses these features to print out the number and name
+associated with each value in <code>Direction</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="nc">Direction</span> <span class="n">cardinal</span> <span class="o">:</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cardinal</span><span class="o">.</span><span class="na">ordinal</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">cardinal</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It gives the output below.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>0: NORTH
+1: SOUTH
+2: EAST
+3: WEST</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also possible to retrieve an <code>enum</code> value by name, using the static
+<code>valueOf()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"> <span class="nc">Direction</span> <span class="n">westSide</span> <span class="o">=</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">"WEST"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Doing so is risky, since the name must match exactly, including case.
+Supplying an incorrect name will cause an error.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_customized_enumeration_types">9.5.2. Customized enumeration types</h4>
+<div class="paragraph">
+<p>Usually, you won&#8217;t need to create enumerations more complicated than simple
+lists of values. However, <code>enum</code> values in Java are full objects: They can
+contain both member variables and methods. So that <code>enum</code> values can be treated
+purely as constants, it&#8217;s safest to store only <code>final</code> variables inside <code>enum</code>
+types, but Java nevertheless allows them to contain non-constant data.</p>
+</div>
+<div class="paragraph">
+<p>We can expand the idea of a <code>Direction</code> enumeration to a <code>Movement</code> one that
+contains additional directions along with a geometric interpretation of how
+movement in a direction would change a position.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Movement</span> <span class="o">{</span>
+    <span class="no">NORTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="no">NORTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="no">EAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">SOUTHEAST</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTH</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">SOUTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">),</span>
+    <span class="no">WEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+    <span class="no">NORTHWEST</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_X</span><span class="o">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+
+    <span class="nc">Movement</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">DELTA_X</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="no">DELTA_Y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeX</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="no">DELTA_X</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">changeY</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">y</span> <span class="o">+</span> <span class="no">DELTA_Y</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To use an <code>enum</code> type in this way, each value must be followed by
+parentheses giving the values passed into the constructor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Then, the list of values must be terminated with a semicolon.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The rest of the <code>enum</code> type looks like any other class, containing members,
+constructors, and methods. Constructors are implicitly <code>private</code>, and it&#8217;s
+illegal to mark them as anything else.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can use the <code>enum</code> values defined above to move a Cartesian point in the
+appropriate direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="nc">Movement</span> <span class="n">movement</span> <span class="o">=</span> <span class="nc">Movement</span><span class="o">.</span><span class="na">SOUTHEAST</span><span class="o">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeX</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">movement</span><span class="o">.</span><span class="na">changeY</span><span class="o">(</span><span class="n">y</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the code executes, the value of <code>x</code> will be <code>1</code>, and the value of <code>y</code>
+will be <code>-1</code>.</p>
+</div>
+<div id="nobleGasesExample" class="exampleblock">
+<div class="title">Example 9.4 Noble gases</div>
+<div class="content">
+<div class="paragraph">
+<p>There are situations when it&#8217;s helpful to group constant data together inside
+each <code>enum</code> value. In the example below, we store the atomic number and atomic
+weight for each noble gas inside its corresponding value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">NobleGas</span> <span class="o">{</span>
+    <span class="no">HELIUM</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mf">4.003</span><span class="o">),</span>
+    <span class="no">NEON</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mf">20.178</span><span class="o">),</span>
+    <span class="no">ARGON</span><span class="o">(</span><span class="mi">18</span><span class="o">,</span> <span class="mf">39.948</span><span class="o">),</span>
+    <span class="no">KRYPTON</span><span class="o">(</span><span class="mi">36</span><span class="o">,</span> <span class="mf">83.798</span><span class="o">),</span>
+    <span class="no">XENON</span><span class="o">(</span><span class="mi">54</span><span class="o">,</span> <span class="mf">131.293</span><span class="o">),</span>
+    <span class="no">RADON</span><span class="o">(</span><span class="mi">86</span><span class="o">,</span> <span class="mf">222.018</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">ATOMIC_NUMBER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">double</span> <span class="no">ATOMIC_WEIGHT</span><span class="o">;</span>
+
+    <span class="nc">NobleGas</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">,</span> <span class="kt">double</span> <span class="n">weight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="no">ATOMIC_NUMBER</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>
+        <span class="no">ATOMIC_WEIGHT</span> <span class="o">=</span> <span class="n">weight</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because both member variables are public, they can be accessed
+directly, without needing a method. Mutable public member variables are generally
+considered unwise, but public constants are both safe and useful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">double</span> <span class="n">neonWeight</span> <span class="o">=</span> <span class="nc">NobleGas</span><span class="o">.</span><span class="na">NEON</span><span class="o">.</span><span class="na">ATOMIC_WEIGHT</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>enum</code> type could be generalized to include all the elements in the
+periodic table, though that would make for a lengthy list of values.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Creating <code>enum</code> types is valuable for situations where there will only ever be
+a fixed number of instances of a class: suits of cards, days of the week,
+seasons of the year, states that a system can be in, and so on. They can also
+be used for the singleton design pattern, a paradigm used in software
+engineering.</p>
+</div>
+<div class="paragraph">
+<p>Using <code>enum</code> types doesn&#8217;t make programming more powerful, in the sense that
+new kinds of problems can be solved. However, careful use of <code>enum</code> types can
+certainly make code more readable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_nested_expressions">9.6. Solution: Nested expressions</h3>
 <div class="paragraph">
 <p>We now have enough knowledge to solve the nested expressions problem
 from the beginning of the chapter. Classes help us divide up the work of
@@ -22815,7 +23076,7 @@ stack operations with methods of the same names.</p>
         <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="o">}</span>
     
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span> <span class="kt">char</span> <span class="n">symbol</span> <span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span><span class="o">++]</span> <span class="o">=</span> <span class="n">symbol</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span> <span class="o">--</span><span class="n">size</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="kd">public</span> <span class="kt">char</span> <span class="nf">top</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">symbols</span><span class="o">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="o">}</span> <i class="conum" data-value="5"></i><b>(5)</b>
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="6"></i><b>(6)</b>
@@ -22982,7 +23243,7 @@ nested based on the value of <code>correct</code>.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_objects">9.6. Concurrency: Objects</h3>
+<h3 id="_concurrency_objects">9.7. Concurrency: Objects</h3>
 <div class="paragraph">
 <p>Nearly everything in Java is an object: arrays, lists, <code>String</code> values,
 colors, and even exceptions, which form Java&#8217;s error-handling system and
@@ -23005,7 +23266,7 @@ the cat. Consider the class below that keeps track of the lives a cat
 has, losing one every time it becomes curious.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 9.4 Thread safety</div>
+<div class="title">Example 9.5 Thread safety</div>
 <div class="content">
 <div class="paragraph">
 <p>If the relationship between curiosity and mortality is the only feature
@@ -23093,7 +23354,7 @@ Learn the libraries well, and use the right tools for the right job.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_9">9.7. Exercises</h3>
+<h3 id="_exercises_9">9.8. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -23160,7 +23421,7 @@ uses cause a compiler error and why?</p>
 </div>
 </li>
 <li>
-<p><a id="publicMembersExercise"></a> In <a href="#_solution_nested_expressions">Section 9.5</a>, we gave a definition of
+<p><a id="publicMembersExercise"></a> In <a href="#_solution_nested_expressions">Section 9.6</a>, we gave a definition of
 <code>SymbolStack</code> that implements a simple stack using two fields, as follows.</p>
 <div class="listingblock">
 <div class="content">
@@ -23270,7 +23531,7 @@ if the <code>distance()</code> method gives the right answer.</p>
 </div>
 </li>
 <li>
-<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="#_solution_nested_expressions">Section 9.5</a> so that it performs its input and output with GUIs created
+<p><a id="nestedExpressionsGUIExercise"></a> Re-implement the solution from <a href="#_solution_nested_expressions">Section 9.6</a> so that it performs its input and output with GUIs created
 using <code>JOptionPane</code>.</p>
 </li>
 </ol>
@@ -24843,8 +25104,8 @@ energy, it dies.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fish</span> <span class="o">{</span>
     <span class="kd">protected</span> <span class="nc">Color</span> <span class="n">color</span> <span class="o">=</span> <span class="nc">Color</span><span class="o">.</span><span class="na">GRAY</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">double</span> <span class="n">location</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">double</span> <span class="n">energy</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">location</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">alive</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="nc">Color</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">color</span><span class="o">;</span> <span class="o">}</span>
@@ -24861,7 +25122,7 @@ energy, it dies.</p>
         <span class="o">}</span>
     <span class="o">}</span>
     
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span> <span class="n">energy</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span> <span class="n">energy</span> <span class="o">+=</span> <span class="mf">100.0</span><span class="o">;</span> <span class="o">}</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">die</span><span class="o">()</span> <span class="o">{</span> <span class="n">alive</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -25239,11 +25500,156 @@ being set and the other capable only of being retrieved.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_object_class">11.3.5. The <code>Object</code> class</h4>
+<h4 id="_annotations">11.3.5. Annotations</h4>
+<div class="paragraph">
+<p>Java 5 introduced the <em>annotation</em> feature that often comes up in the
+context of inheritance. Like many features in Java, annotations are deep and
+complex, yet most programmers only need to interact with a small subset of the
+annotation toolbox.</p>
+</div>
+<div class="paragraph">
+<p>Annotations provide extra information, typically used by the compiler, to
+make the relationships between types, methods, and variables a little clearer
+than would be possible without them. Annotations can also be used to modify how
+a program behaves when running, but doing so is an advanced technique used only
+in very specific cases.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s easy to recognize annotations because they&#8217;re marked with an at sign
+(<code>@</code>).</p>
+</div>
+<div class="sect4">
+<h5 id="_the_override_annotation">The <code>@Override</code> annotation</h5>
+<div class="paragraph">
+<p>One of the most common annotations is the <code>@Override</code> annotation used
+to mark that a method overrides a parent method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HungryFish</span> <span class="kd">extends</span> <span class="nc">Fish</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">feed</span><span class="o">();</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">feed</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>HungryFish</code> class extends the parent <code>Fish</code> class and overrides the
+<code>feed()</code> method. Unlike previous children of the <code>Fish</code> class we&#8217;ve shown, this
+one has explicitly marked the method it overrides with the <code>@Override</code>
+annotation. We didn&#8217;t mark overridden methods this way before, so is it
+necessary? No, but it&#8217;s still a good idea.</p>
+</div>
+<div class="paragraph">
+<p>Using the <code>@Override</code> annotation will cause a compiler error if you&#8217;re trying
+to override a parent method that doesn&#8217;t exist. It&#8217;s a safety tool that prevents
+a programmer from thinking they&#8217;re overriding something when they really aren&#8217;t.
+For example, if we&#8217;d misspelled the method inside of <code>HungryFish</code> as <code>feet()</code>
+instead of <code>feed()</code>, the compiler would complain since there&#8217;s no <code>feet()</code>
+method in the <code>Fish</code> class to override.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_deprecated_annotation">The <code>@Deprecated</code> annotation</h5>
+<div class="paragraph">
+<p>An annotation you will regularly see but might never use yourself is
+<code>@Deprecated</code>. This annotation usually marks a method (but can also mark classes
+or member variables) as deprecated, indicating that it should no longer
+be used. Couldn&#8217;t the author of the class simply remove the method? They could,
+but then existing code that depends on the missing method would break.</p>
+</div>
+<div class="paragraph">
+<p>Marking a method deprecated means that new code shouldn&#8217;t use it going
+forward. Often, such methods carry some risk if they aren&#8217;t used carefully. For
+example, the <code>stop()</code>, <code>suspend()</code>, and <code>resume()</code> methods in the <code>Thread</code> class
+are all deprecated because they can cause deadlock, a topic we&#8217;ll discuss in
+<a href="#_deadlock">Section 15.5.1</a>.</p>
+</div>
+<div class="paragraph">
+<p>Before the introduction of this annotation, the only way to know a method
+was deprecated was by reading the documentation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_the_suppresswarnings_annotation">The <code>@SuppressWarnings</code> annotation</h5>
+<div class="paragraph">
+<p>Another common annotation is <code>@SuppressWarnings</code>. This annotation stops specific
+warnings from being reported by the compiler, at the scope of a class, method,
+or variable declaration. Warnings are just that, warnings. They aren&#8217;t compiler
+errors, which would make it impossible for the code to compile. Instead,
+they warn that something about the code looks fishy.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes, a specific warning can be annoying to see over and over again when
+you know it&#8217;s not really a problem. At other times, the compiler is set up
+so that warnings are treated as errors and must be resolved in order for the
+program to compile. For both situations, you can use <code>@SuppressWarnings</code> to
+hide unnecessary warnings, as in the following example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"deprecation"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doDeprecatedThings</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Date</span> <span class="n">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">today</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1900</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code prints out the current year, but it uses the deprecated <code>getYear()</code>
+method from the <code>Date</code> class. Instead of using this method, it&#8217;s now preferred
+to use a method from the <code>Calendar</code> class, but it&#8217;s possible to imagine a
+situation where the <code>getYear()</code> method is still used, perhaps as part of
+a large library. By marking a method with <code>@SuppressWarnings("deprecation")</code>,
+uses of deprecated methods don&#8217;t cause compiler warnings for the scope of the
+method.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@SuppressWarnings</code> annotation is a useful example because it requires one
+or more <code>String</code> arguments. Just like a constructor for a normal class,
+annotations can take arbitrarily complicated arguments. Another useful case
+is <code>@SuppressWarnings("unused")</code>, which turns off the warning for a variable
+that&#8217;s never used, a common situation while code is still under development.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_other_annotations">Other annotations</h5>
+<div class="paragraph">
+<p>We&#8217;ve only touched on a handful of annotations here. Many frameworks use
+annotations to establish relationships between different classes and methods.
+For example, both the Spring Framework and Jakarta Enterprise Beans heavily use
+annotations.</p>
+</div>
+<div class="paragraph">
+<p>There are <code>@NotNull</code>, <code>@NonNull</code>, and <code>@Nonnull</code> annotations (as well
+as the opposite, <code>@Nullable</code>) in several popular libraries. In each case, the
+goal is to require that an argument isn&#8217;t <code>null</code> or that a method won&#8217;t return
+<code>null</code>. These are useful annotations that make code safer or document the kinds
+of values that can be used with a method. Unfortunately, the different
+annotations work in different ways and typically require the use of an
+outside library. Professional programmers should be aware if one of these
+libraries is in use on their project and take advantage of the annotations.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@FunctionalInterface</code> annotation is used to document interfaces with a
+single method that can be used to store lambda expressions, which we&#8217;ll discuss
+in <a href="#lambdas-and-streams">Chapter 13</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Test</code>, <code>@BeforeEach</code>, and <code>@AfterEach</code> annotations are just a few
+annotations used with JUnit 5, a testing framework we&#8217;ll discuss in
+<a href="#testing-and-debugging">Chapter 17</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_object_class">11.3.6. The <code>Object</code> class</h4>
 <div class="paragraph">
 <p>You may not have realized it, but <strong>every</strong> class you&#8217;ve created in Java uses
 inheritance. To provide uniformity, the designers of Java made every
-class the child (or grandchild or great-grandchild&#8230;&#8203;) of a class
+class the child (or grandchild or great-grandchild &#8230;&#8203;) of a class
 called <code>Object</code>. When you omit the <code>extends</code> clause in a class
 definition, you&#8217;re making that class a direct child of <code>Object</code>.</p>
 </div>
@@ -28267,14 +28673,13 @@ single method <code>evaluate()</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note the text <code>@FunctionalInterface</code> that appears before the declaration of
-<code>Operator</code>. The use of the <code>@</code> sign signals that
-<code>@FunctionalInterface</code> is an <em>annotation</em>. While we will not discuss annotations
-deeply in this book, the key idea behind them is that they provide extra
-information that&#8217;s usually not essential to the running of the program. In this
-case, the <code>@FunctionalInterface</code> annotation gives the extra information to
-someone reading the code that this interface is a functional interface, intended
-to be used in situations where we want to pass around an object as if it were
-only a single <code>evaluate()</code> method that takes two <code>int</code> values and returns a
+<code>Operator</code>. The use of the <code>@</code> signals that
+<code>@FunctionalInterface</code> is an annotation, a tool for providing extra information,
+first mentioned in <a href="#_annotations">Section 11.3.5</a>. In this case, the
+<code>@FunctionalInterface</code> annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+<code>evaluate()</code> method that takes two <code>int</code> values and returns a
 third. The <code>@FunctionalInterface</code> annotation has no effect on the compilation or
 running of the program except that an interface with this annotation will cause
 a compiler error if it doesn&#8217;t have exactly one abstract method.</p>
@@ -39214,12 +39619,12 @@ memory usage, running time, responsiveness, and other non-functional issues.</p>
 There are other testing tools for Java, and there&#8217;s a wide array of
 tools for testing software in virtually any language. We cover JUnit
 here because it&#8217;s widely accepted as a standard Java testing tool and
-because it&#8217;s open source.</p>
+because it&#8217;s free to use.</p>
 </div>
 <div class="sect3">
 <h4 id="_junit_testing">17.7.1. JUnit testing</h4>
 <div class="paragraph">
-<p>JUnit testing is used for unit testing Java. Unit testing is the process
+<p>JUnit is used for <em>unit testing</em> in Java. Unit testing is the process
 of testing separate software components that will eventually work
 together. By testing them individually, debugging can be done before
 interactions between different components make it more difficult to find
@@ -39227,43 +39632,14 @@ the underlying bugs. After unit testing comes integration testing to test
 how the components work together. Finally, system testing is the testing
 of the complete, integrated system against its specifications.</p>
 </div>
-<div class="sect4">
-<h5 id="_annotations">Annotations</h5>
 <div class="paragraph">
 <p>Our coverage of JUnit testing is based on JUnit 5. This version of JUnit
-has simple syntax for creating JUnit tests compared to JUnit 3 and earlier,
-but it also relies on <em>annotations</em>. An annotation is additional information
+has simple syntax for creating JUnit tests that relies on annotations, first
+mentioned in <a href="#_annotations">Section 11.3.5</a>. Annotations are additional information
 written into Java code that affects how the compiler or run-time system treats
-the code. They are like comments, but they can affect code execution or
-compilation, usually indirectly. Applying an annotation to a
-method is called <em>decorating</em>. A class, a method, a variable, a package,
-or even an individual method parameter can be decorated.</p>
-</div>
-<div class="paragraph">
-<p>There are several annotations built into Java.  Here, we consider three: <code>@Deprecated</code>,
-<code>@Override</code>, and <code>@SuppressWarnings</code>. If a method is decorated with
-<code>@Deprecated</code>, it&#8217;s deprecated and included only for backward compatibility.
-The compiler will give a warning if you call deprecated code such as the following.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Deprecated</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">oldMethod</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">...</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Many methods in the extensive Java API are deprecated, like
-<code>Thread.suspend()</code>, due to its inherent deadlock risk. As of Java 5 when
-annotations were introduced, existing deprecated methods were decorated with
-<code>@Deprecated</code>.  Before that, the only way to know that a method was deprecated
-was by reading the documentation. The <code>@Override</code> annotation marks a method that&#8217;s
-overriding a parent class method, causing a compiler error if the method
-isn&#8217;t correctly overriding some parent class method. The <code>@SuppressWarnings</code>
-annotation allows certain warning messages to be suppressed, like using
-deprecated code if you really have to.</p>
-</div>
+the code. In JUnit, annotations are used to mark the code that makes up tests,
+test suites, and other activities that should be done before or after running
+tests.</p>
 </div>
 <div class="sect4">
 <h5 id="_basic_junit_syntax">Basic JUnit syntax</h5>
@@ -39301,7 +39677,7 @@ that, respectively, have matching names. Although ending with &#8220;Test&#8221;
 a convention, there&#8217;s no requirement to name these methods any particular
 way. Tests in JUnit don&#8217;t have to test single method calls. They could
 test any functional aspect of an object or class. Nevertheless, for
-documentation reasons it&#8217;s wise to give the test methods names that
+documentation reasons it&#8217;s smart to give the test methods names that
 reflect what&#8217;s being tested.</p>
 </div>
 <div class="paragraph">
@@ -39315,26 +39691,25 @@ should be as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The only thing necessary to use a method for a JUnit test is to annotate
-it with <code>@Test</code>. It&#8217;s also necessary to make any function used for
-testing <code>public</code> with a <code>void</code> return type and no parameters. Otherwise,
-the JUnit framework will crash when you try to run the tests. Each
-method with a <code>@Test</code> annotation is run once by JUnit, but JUnit can&#8217;t
-supply any arguments to them. They should be self-contained tests
+<p>To use a method for a JUnit test, it must be marked with <code>@Test</code>. It&#8217;s also
+necessary to make any method used for testing <code>public</code> with a <code>void</code> return type
+and no parameters. Otherwise, the JUnit framework will crash when you try to run
+the tests. Each method with a <code>@Test</code> annotation is run once by JUnit, but JUnit
+can&#8217;t supply any arguments to them. They should be self-contained tests
 without any outside input.</p>
 </div>
 <div class="paragraph">
-<p>The exception to this rule is that you can perform some set up for the
-tests and then some clean up afterward. Any method decorated with
-<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method decorated with
+<p>To get around this limitation, you can set up data for tests and then do some
+clean up afterward. Any method marked with
+<code>@BeforeEach</code> will be run before <strong>every</strong> test, and any method marked with
 <code>@AfterEach</code> will be run after <strong>every</strong> test. If you have some set up or
 clean up that&#8217;s expensive to run, you can use the annotations
-<code>@BeforeAll</code> or <code>@AfterAll</code> to decorate a static method that&#8217;s run
-once before or after all the tests.</p>
+<code>@BeforeAll</code> or <code>@AfterAll</code> to mark a static method that&#8217;s run
+a single time before or after all tests, respectively.</p>
 </div>
 <div class="paragraph">
-<p>So far we have talked about the major aspects of writing a JUnit test
-class except for the test itself. How does the JUnit test report a
+<p>So far we&#8217;ve talked about every aspect of writing a JUnit test
+except for the contents of the test itself. How does the JUnit test report a
 success or a failure to the tester? As you would expect in Java, we use
 the exception handling mechanism to indicate failures. If the test
 method returns normally, the test is considered a success. If an
@@ -39447,32 +39822,35 @@ allow you to run tests or disable them for particular platforms.</p>
 <h5 id="_running_junit">Running JUnit</h5>
 <div class="paragraph">
 <p>Once you&#8217;ve created your JUnit test classes, you&#8217;ll want to run
-them. There are tools built into IDEs like Eclipse to make running easier,
-but the command line is always an option. As we said before, you need to
+them. There are tools built into IDEs like IntelliJ to make running tests
+easier, but the command line is always an option. As we said before, you need to
 include the JUnit jar file in your classpath. You can either do this
 permanently, by adding it to a <code>CLASSPATH</code> environment variable in a way
 dependent on your OS, or for a particular run of a Java tool. Assuming
 that you haven&#8217;t added the jar file to your classpath permanently, let&#8217;s
-say that you&#8217;re using the JUnit Platform 1.5.1 that&#8217;s included with JUnit
-5.5.1 from a jar file called <code>junit-platform-console-standalone-1.5.1.jar</code>
+say  you&#8217;re using the JUnit Platform 1.13.4 that&#8217;s included with JUnit
+5.13.4 from a jar file called <code>junit-platform-console-standalone-1.13.4.jar</code>
 that can be found in <code>C:\Java\JUnit\</code>. If <code>MathTest.java</code> is in the current
 directory, you would type the following.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>javac -classpath .;C:\Java\JUnit\junit-platform-console-standalone-1.5.1.jar MathTest.java</pre>
+<pre>javac -cp .;C:\Java\JUnit\junit-platform-console-standalone-1.13.4.jar MathTest.java</pre>
 </div>
 </div>
 <div class="paragraph">
+<p>The <code>-cp</code> option lets you set the classpath, in this case to the current
+directory (<code>.</code>) as well as the contents of the jar file.</p>
+</div>
+<div class="paragraph">
 <p>To actually run the tests, you need to tell the platform where to
-look for tests to run.  Thus, you run the platform from its jar file, specifying that the class
-path is the current directory (<code>.</code>), and then scan that directory for tests.  Note that it&#8217;s
-unnecessary to mention <code>MathTest</code> at this point since all tests in the specified class path will
-be run.</p>
+look for tests to run.  Thus, you run the platform from its jar file, specifying
+that the class path is the current directory (<code>.</code>) with the <code>-cp</code> option and
+that the class to test is <code>MathTest</code> with the <code>-c</code> option.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>java -jar C:\Java\JUnit\junit-platform-console-standalone-1.5.1.jar --class-path . --scan-class-path</pre>
+<pre>java -jar C:\Java\JUnit\junit-platform-console-standalone-1.13.4.jar execute -cp . -c MathTest</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -39480,13 +39858,28 @@ be run.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>╷
-├─ JUnit Jupiter ✔
-│  └─ MathTest ✔
-│     ├─ ceilTest() ✔
-│     ├─ powTest() ✔
-│     └─ sinTest() ✔
-└─ JUnit Vintage ✔</pre>
+<pre>.
++-- JUnit Platform Suite [OK]
++-- JUnit Jupiter [OK]
+| '-- MathTest [OK]
+|   +-- ceilTest() [OK]
+|   +-- powTest() [OK]
+|   '-- sinTest() [OK]
+'-- JUnit Vintage [OK]
+
+Test run finished after 105 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         3 tests found           ]
+[         0 tests skipped         ]
+[         3 tests started         ]
+[         0 tests aborted         ]
+[         3 tests successful      ]
+[         0 tests failed          ]</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -39500,122 +39893,7 @@ line, the process is smoother through an IDE.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_testing_tools">17.8. Concurrency: Testing tools</h3>
-<div class="paragraph">
-<p>In this section, we describe some tools that exist specifically to help catch
-those bugs that crop up as a direct result of concurrency. This
-section is short, and that shortness reflects the fewness of good tools
-available. The design of concurrent debugging and testing tools is still an
-open research topic. The heart of the problem is that the nondeterminism
-present in concurrency makes bugs difficult to pin down. You could run a JUnit
-test 1,000,000 times and never see a peculiar race condition. From a brute
-force perspective, we could try to test all possible interleavings of thread
-execution, but this approach is not practical for large programs because the
-number of interleavings grows exponentially. Nevertheless, some research has
-focused on attacking the problem from this direction.</p>
-</div>
-<div class="sect3">
-<h4 id="_ibm_contest">17.8.1. IBM ConTest</h4>
-<div class="paragraph">
-<p>One tool that used this idea was ConTest from IBM. Normal JVM
-operation makes some interleavings more likely than others. If the
-correct output is very likely and the incorrect is very unlikely, it&#8217;s
-easy for a tester to believe that the program works correctly. ConTest was a
-tool that <em>instrumented</em> class files after they&#8217;d been compiled by
-Java. When it instrumented these files, it added extra method calls into
-concurrent code designed to introduce some randomness into the system.
-By introducing <code>sleep()</code> and <code>yield()</code> methods in random places, the JVM
-could be forced into producing interleavings that would otherwise be
-unusual. The designers of ConTest used heuristics so that ConTest
-added this randomness in &#8220;smart&#8221; locations designed to maximize unusual
-interleavings and catch bugs.</p>
-</div>
-<div class="paragraph">
-<p>ConTest was not a panacea. Although it revealed bugs that were
-rare, it still had to be combined with strong testing methodologies so
-that those bugs could be caught when they appeared. Another difficulty with
-using ConTest was that it couldn&#8217;t tell you where the problem happened or
-when it was likely to happen under normal circumstances. You were still
-dependent on your test design to reveal the source of the problem.
-ConTest also didn&#8217;t guarantee every possible ordering. Very rare
-bugs might not have manifested even after thousands of runs with ConTest
-instrumented code.  Although ConTest was one of the most promising tools
-taking this approach, it is no longer available.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_devexperts_tools">17.8.2. Devexperts tools</h4>
-<div class="paragraph">
-<p>The open-source <a href="https://github.com/Devexperts/lin-check" target="_blank" rel="noopener">Lin-check</a> framework
-has some similarities to ConTest.  It was designed by
-<a href="https://devexperts.com" target="_blank" rel="noopener">Devexperts</a> specifically to test data structures such
-as those we will discuss in
-<a href="#dynamic-data-structures">Chapter 19</a>.  Like ConTest,
-Lin-check executes tests in parallel many times in an effort to find a
-concurrent interleaving that causes an error condition.</p>
-</div>
-<div class="paragraph">
-<p>The <a href="https://github.com/Devexperts/dlcheck" target="_blank" rel="noopener">Dl-Check</a> tool was also designed by
-Devexperts.  Its goal is to find deadlocks that could happen in concurrent
-programs.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_concjunit_and_concurrentunit">17.8.3. ConcJUnit and ConcurrentUnit</h4>
-<div class="paragraph">
-<p>We hope we&#8217;ve convinced you of the value of using JUnit testing to
-unit test your programs. Of course, JUnit has limitations, especially when
-testing concurrent programs. JUnit uses exceptions to report failed
-test cases, but JUnit only reports exceptions from the main
-thread, not from any child threads that might be spawned. ConcJUnit allows
-exceptions thrown by child threads to be reported and also forces all
-child threads to join with the main thread.</p>
-</div>
-<div class="paragraph">
-<p>In this way, it will be clear if any errors happened while a child
-thread was being executed, either causing an exception to be thrown or
-causing a child thread to fail to rejoin the main thread.  ConcJUnit is
-intended as a drop-in replacement for JUnit, but only for JUnit 3 and 4.
-ConcJUnit is no longer under active development and is unlikely to have
-a version compatible with JUnit 5. ConcJUnit is part of a larger suite of
-open-source tools called Concutest and is maintained at the
-<a href="https://www.concutest.org" target="_blank" rel="noopener">Concutest site</a>.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/jhalterman/concurrentunit" target="_blank" rel="noopener">ConcurrentUnit</a> is another
-testing framework with annotations similar to those found in JUnit.  Although
-it&#8217;s not intended as a replacement for JUnit, it has facilities like ConcJUnit
-that allow testers to discover when an exception occurs on child threads.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_spotbugs">17.8.4. SpotBugs</h4>
-<div class="paragraph">
-<p><a href="https://spotbugs.github.io" target="_blank" rel="noopener">SpotBugs</a> (previously called FindBugs), is a static
-analysis tool that examines programs for a long list of errors.  SpotBugs looks
-for patterns that match known errors.  Most of the errors that SpotBugs looks
-for have nothing to do with concurrency, but a whole section of its bug list is
-devoted to multithreaded correctness.  SpotBugs can help you find incorrect
-usage of synchronization tools as well as unsafe concurrent library usage.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_intel_tools">17.8.5. Intel<sup>®</sup> tools</h4>
-<div class="paragraph">
-<p>There are industry tools for debugging and optimizing threaded programs outside
-of Java. Intel<sup>®</sup> produces software such as the Intel<sup>®</sup> Inspector to find
-concurrent errors as well as the Intel<sup>®</sup> Vtune™ Amplifier to help tune threaded
-programs. These products from Intel<sup>®</sup>, like many concurrency tools, are focused
-on C/C&#43;&#43; and Fortran platforms. Historically, concurrency has been centered
-in the high performance and scientific computing markets. Java, in contrast,
-has been perceived as a slow language, better suited to desktop applications.
-As the role of concurrency continues to evolve, so will the tools to help
-programmers.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_examples_testing_a_class">17.9. Examples: Testing a class</h3>
+<h3 id="_examples_testing_a_class">17.8. Examples: Testing a class</h3>
 <div class="paragraph">
 <p>The larger the system, the more critical testing becomes. We don&#8217;t have
 the space to explain a complex testing example, but we can provide another
@@ -39945,7 +40223,7 @@ class.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_17">17.10. Exercises</h3>
+<h3 id="_exercises_17">17.9. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -41694,8 +41972,8 @@ left parenthesis on the stack. Then pop the left parenthesis.</p>
 </div>
 <div class="paragraph">
 <p>Precedence comes from order of operations: <code>*</code> and <code>/</code> have high
-precedence and <code>` and `-` have low precedence. When you encounter it on
-the stack, treat `(` as if it has even lower precedence than `</code> and
+precedence and <code>+</code> and <code>-</code> have low precedence. When you encounter it on
+the stack, treat <code>(</code> as if it has even lower precedence than <code>+</code> and
 <code>-</code>. A right parenthesis should never appear on the stack.</p>
 </div>
 <div class="paragraph">
@@ -42708,7 +42986,7 @@ setting its <code>value</code> field to the incoming <code>value</code>, and poi
 remove that node from the linked list. It does this by replacing the
 <code>head</code> node with the node pointed at by the <code>next</code> link in <code>head</code>. The
 <code>pop()</code> method from the simpler stack used in the solution to the nested
-expressions problem in <a href="#_solution_nested_expressions">Section 9.5</a> merely
+expressions problem in <a href="#_solution_nested_expressions">Section 9.6</a> merely
 removed the top and didn&#8217;t return the value. Most real-world stack
 implementations of <code>pop()</code> <strong>do</strong> return this value, giving programmers
 more flexibility.</td>
@@ -44206,7 +44484,7 @@ Thread ID removed from queue: 11</pre>
 <div class="sect2">
 <h3 id="_concurrency_thread_safe_libraries">19.8. Concurrency: Thread-safe libraries</h3>
 <div class="paragraph">
-<p>As we mentioned in <a href="#_concurrency_objects">Section 9.6</a>, some libraries are
+<p>As we mentioned in <a href="#_concurrency_objects">Section 9.7</a>, some libraries are
 thread-safe and some are not. The JCF is a useful library, but it&#8217;s also a
 library that requires you to manage your own thread safety if it matters for
 your program.</p>
@@ -47057,7 +47335,7 @@ file would contain the following.</p>
 </div>
 <div class="paragraph">
 <p>If you recall, an <code>int</code> in Java uses four bytes of storage. There&#8217;s a
-system of encoding called the ASCII table which maps each of the 256
+system of encoding called ASCII that maps each of the 256
 (0–255) numerical bytes to a character. The four characters given above
 are the extended ASCII representation of the four bytes of the number
 2,127,480,645.</p>
@@ -49948,7 +50226,7 @@ multi-threaded versions?</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-14 11:38:32 -0400
+Last updated 2024-08-30 12:19:53 -0400
 </div>
 </div>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

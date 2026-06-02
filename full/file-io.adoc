@@ -188,7 +188,7 @@ file would contain the following.
 ----
 
 If you recall, an `int` in Java uses four bytes of storage. There's a
-system of encoding called the ASCII table which maps each of the 256
+system of encoding called ASCII that maps each of the 256
 (0–255) numerical bytes to a character. The four characters given above
 are the extended ASCII representation of the four bytes of the number
 2,127,480,645.
