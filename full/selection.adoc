@@ -875,7 +875,8 @@ permanently). These concepts are covered in later chapters.
 
 ==== `switch` statements
 
-_This section describes the `switch` statement as it was defined in versions before Java 12 and 14.  <<_switch_expressions>> describes enhancements that allow the `switch` to be used anywhere an expression is used._
+_This section describes the `switch` statement as it was defined in versions before Java 12 and 14.  <<_switch_expressions>> and <<_switch_statements_without_break_statements>> describe enhancements that make `switch`
+statements more readable and less error-prone and allow them to be used as an expression._
 
 The `if` statement is the workhorse of Java conditional execution. With
 enough care, you can craft code that can make any fixed sequence of
@@ -1000,8 +1001,9 @@ write code that nicely expresses a sequence of alternatives.
 Another way of expressing a long sequence of alternatives is by using a
 `switch` statement. A `switch` statement takes a single integer type
 value (`int`, `long`, `short`, `byte`, `char`) or a `String` and jumps
-to a case corresponding to the input. We can recode the anniversary gift
-example using a `switch` statement as follows.
+to a case corresponding to the input. (The value for a `switch` can also have an
+`enum` type, discussed in <<Advanced: Enumeration types>>.) We can recode the
+anniversary gift example using a `switch` statement as follows.
 
 [source#gift-switch-statement,java]
 ----
@@ -1037,8 +1039,8 @@ switch (year) {
 
 Just like an `if` statement, a `switch` statement always has parentheses
 enclosing some argument. Unlike an `if`, the argument of a basic `switch` must
-be some kind of data that can be expressed as an integer or a `String`,
-not a `boolean`.  (In the next section, we'll see that in newer versions of Java, the `switch` argument can be more complex.) For each of the possible values you want the `switch`
+be some kind of data that can be expressed as an integer, a `String` or an `enum`,
+not a `boolean`. For each of the possible values you want the `switch`
 to handle, you write a `case` statement. A `case` statement consists of
 the keyword `case` followed by a constant value, either a literal or a
 named constant, then a colon. When executed, the JVM jumps to the
@@ -1106,7 +1108,7 @@ the `default` label can occur anywhere in the `switch` block you want,
 although it's common to put it at the end. Also, the `break` after the
 `default` label is unnecessary because execution exits the `switch`
 block anyway. Nevertheless, it's always wise to end on a `break`, in
-the event that you add more cases in later.
+the event that you add more cases later.
 
 Carelessness is always something to watch out for in `switch`
 statements. Leaving out a `break` statement can cause disastrous and
@@ -1122,7 +1124,7 @@ mistake, an inability to express ranges of data or most types (`double`,
 expressive power. They should be used only when their benefit of clearly
 displaying a list of data outweighs the drawbacks.
 
-Next we give a number of examples to help you get more familiar with
+Next, we give a number of examples to help you get more familiar with
 `switch` statements.
 
 .Days in the month
@@ -1130,7 +1132,7 @@ Next we give a number of examples to help you get more familiar with
 
 There are fewer uses for `switch` statements than `if` statements.
 Nevertheless, there are problems where their
-fall-through behavior can be useful. Imagine that you need to write a
+fall-through behavior can be useful. Imagine you need to write a
 program that gives the length of each month (with the assumption that February always
 has 28 days). Given the month as a number, we can use `switch` statements to write a program
 that maps the number of the month to the number of days it contains.
@@ -1213,7 +1215,7 @@ identifies the animal. Below is a table giving these values. For
 example, if you were born in 1979, 1979 mod 12 ≡ 11; thus, you would be a Ram.
 Note that this arrangement is based on years in the Gregorian calendar.
 Chinese astrologers do not list the Monkey as the first animal in the cycle.
-Note that the names of these animals are also sometimes translated in slightly
+The names of these animals are also sometimes translated in slightly
 different ways.
 
 
@@ -1289,66 +1291,122 @@ down the sign.
 
 ==== `switch` expressions
 
-The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a single value.  There are two ways to indicate the value being computed:
+The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a value.  There are two ways to indicate the value being computed:
+
+. Use the new `+case L -> E+` syntax.  This syntax says that the resulting value for `case L` is the value of expression `E`.  The label `L` can be a list of labels separated by commas, as in the first example below.
 
 . Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch` statement--but also indicates the value to be used as the result.
-
-. Use the new `+case L -> E+` syntax.  This syntax says that the resulting value for `case L` is the value of expression `E`.  The label `L` can be a list of labels separated by commas (see example below).
-
-Note that these two approaches cannot be mixed: A single `switch` expression uses either all cases of the form `case L:` or all cases of the form `+case L -> E+`.
 
 The `switch` expression can result in simpler code than the traditional `switch` statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:
 
 [source,java]
 ----
-int length =
-    switch (month) {
-        case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" -> 31;
-        case "Apr", "Jun", "Sep", "Nov" -> 30;
-        case "Feb" -> 28;
-        default -> 0;
-    };
+int length = switch (month) {
+    case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" -> 31;
+    case "Apr", "Jun", "Sep", "Nov" -> 30;
+    case "Feb" -> 28;
+    default -> 0;
+};
 ----
 
-As another example, below is a `switch` expression to compute the anniversary gift based on the year (compare to the earlier <<gift-switch-statement,statement version>>).
+Below is another example of a `switch` expression, which computes the anniversary gift based on the year. Compare to the earlier statement version in <<_switch_statements>>.
 
 [source,java]
 ----
-    String gift =
-        switch (year) {
-          case 1 -> "Paper";
-          case 2 -> "Cotton";
-          case 3 -> "Leather";
-          case 4 -> "Fruit";
-          case 5 -> "Wood";
-          case 6 -> "Candy / Iron";
-          case 7 -> "Wool / Copper";
-          case 8 -> "Bronze / Pottery";
-          case 9 -> "Pottery / Willow";
-          case 10 -> "Tin / Aluminum";
-          case 11 -> "Steel";
-          case 12 -> "Silk / Linen";
-          case 13 -> "Lace";
-          case 14 -> "Ivory";
-          case 15 -> "Crystal";
-          case 20 -> "China";
-          case 25 -> "Silver";
-          case 30 -> "Pearl";
-          case 35 -> "Coral";
-          case 40 -> "Ruby";
-          case 45 -> "Sapphire";
-          case 50 -> "Gold";
-          case 55 -> "Emerald";
-          case 60 -> "Diamond";
-          default -> "No traditional gift";
-        };
+    String gift = switch (year) {
+        case 1 -> "Paper";
+        case 2 -> "Cotton";
+        case 3 -> "Leather";
+        case 4 -> "Fruit";
+        case 5 -> "Wood";
+        case 6 -> "Candy / Iron";
+        case 7 -> "Wool / Copper";
+        case 8 -> "Bronze / Pottery";
+        case 9 -> "Pottery / Willow";
+        case 10 -> "Tin / Aluminum";
+        case 11 -> "Steel";
+        case 12 -> "Silk / Linen";
+        case 13 -> "Lace";
+        case 14 -> "Ivory";
+        case 15 -> "Crystal";
+        case 20 -> "China";
+        case 25 -> "Silver";
+        case 30 -> "Pearl";
+        case 35 -> "Coral";
+        case 40 -> "Ruby";
+        case 45 -> "Sapphire";
+        case 50 -> "Gold";
+        case 55 -> "Emerald";
+        case 60 -> "Diamond";
+        default -> "No traditional gift";
+    };
 ----
+
+Our last example of a `switch` expression uses a `yield` statement to indicate 
+the result of the expression. It takes <<WesternZodiacProgram>> and
+changes the `switch` statement into a `switch` expression.
+
+
+[source, java]
+[[WesternZodiacExpressionProgram]]
+----
+include::{programsdir}/WesternZodiacExpression.java[]
+----
+
+
+Most programmers use `yield` infrequently,
+preferring the clear, readable style of putting the result value after the
+`+->+`. However, when some computation is needed before the result is known, as
+with the last example, `yield` allows the contents of the case to contain
+multiple lines.
+
+.Pitfall: `switch` expression that doesn't cover all cases
+[WARNING]
+====
+
+Because a `switch` expression gives back a value, it *must* be _exhaustive_, 
+meaning that it covers every possible case. Otherwise, if some input to the
+`switch` has no matching `case`, the value of the `switch` will not be known.
+
+Consider the following code that records whether a `char` value called `letter`
+is a vowel or a consonant.
+
+[source,java]
+----
+String type = switch (Character.toLowerCase(letter)) {
+    case 'a', 'e', 'i', 'o', 'u' -> "vowel";
+    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 
+    'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
+};
+----
+
+This code does not compile because it does not cover cases in which `letter`
+contains a character that is not a letter, such as `@`. Since it's impractical
+(and tedious) to write out the thousands of possible characters that can be 
+represented by a `char` value, using `default` is the best choice. The following
+code compiles and works as intended.
+
+[source,java]
+----
+String type = switch (Character.toLowerCase(letter)) {
+    case 'a', 'e', 'i', 'o', 'u' -> "vowel";
+    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q',
+    'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
+    default -> "non-letter";
+};
+----
+====
+
 
 ==== `switch` statements without `break` statements
 
-As mentioned earlier, the use of `break` statments can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no follow through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
+As mentioned earlier, the use of `break` statements can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
 
-Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid:
+Note that the original syntax for a `switch` statement cannot be mixed with the 
+new syntax: All the cases within single `switch` statement must either be of the
+form `case L:` or the form `+case L -> E+`, never both.
+
+Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid.
 
 [source,java]
 ----
@@ -1370,6 +1428,15 @@ if (validMonth) {
     // Continue processing...
 }
 ----
+
+While there is a tremendous amount of legacy code that uses the older `switch`
+style in which each `case` is followed by a single label and a colon, the newer
+`+case L -> E+` style is preferred by many programmers. You should be aware of
+the older style, but consider using the new style unless you need the unusual
+fall-through behavior of an older-style `switch` that intentionally omits a
+`break` statement or if you are following a style guide that insists on the
+older style. 
+
 
 === Solution: Monty Hall
 
