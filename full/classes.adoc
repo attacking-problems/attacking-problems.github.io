@@ -996,15 +996,9 @@ of each `enum` value is used, not its type.
 [source,java]
 ----
 switch (direction) {
-    case NORTH:
-        System.out.println("From the Gate of the Kings the North Wind rides");
-        break;
-    case SOUTH:
-        System.out.println("From the mouths of the Sea the South Wind flies");
-        break;
-    case WEST:
-        System.out.println("The West Wind comes walking, and about the walls it goes");
-        break;
+    case NORTH -> System.out.println("From the Gate of the Kings the North Wind rides");
+    case SOUTH -> System.out.println("From the mouths of the Sea the South Wind flies");
+    case WEST -> System.out.println("The West Wind comes walking, and about the walls it goes");
 }
 ----
 
@@ -1195,7 +1189,15 @@ stack.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=1..9]
+include::{programsdir}/NestedExpressions.java[lines=1..12]
+----
+
+This first section of code is a utility method that takes the right-side
+version of a symbol and returns the left-side version.
+
+[source, java]
+----
+include::{programsdir}/NestedExpressions.java[lines=13..18]
 ----
 <.> The `main()` method of this class reads in the input.
 <.> Then, it creates a
@@ -1206,7 +1208,7 @@ the input is correctly nested. We start by assuming that it is.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=10..28]
+include::{programsdir}/NestedExpressions.java[lines=19..31]
 ----
 <.> This `for` loop runs through each `char` in the input.
 <.> If it's a left parenthesis, left square bracket, or left curly brace, it pushes the
@@ -1215,13 +1217,13 @@ symbol onto the stack.
 bracket, or right curly brace, it checks to see if the stack is empty.
 Because of short-circuit evaluation, the code doesn't even look at the
 top of the stack if it is empty. However, if the stack isn't empty, it
-checks to see if the top matches the current symbol. If the stack is
-empty or its top doesn't match, `correct` is set to `false`. For
-efficiency, the loop stops early if `correct` is no longer `true`.
+checks to see if the top is the left-side version of the current symbol.
+If the stack is empty or its top doesn't match, `correct` is set to `false`.
+For efficiency, the loop stops early if `correct` is no longer `true`.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=30..40]
+include::{programsdir}/NestedExpressions.java[lines=33..43]
 ----
 <.> After the input has been examined, we check to see if the stack is
 empty. If it isn't, there must be some left symbols that weren't

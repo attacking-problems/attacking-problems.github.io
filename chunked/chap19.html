@@ -1638,14 +1638,10 @@ short.</p>
                 <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">().</span><span class="na">getValue</span><span class="o">();</span>             
                 <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">().</span><span class="na">getValue</span><span class="o">();</span>             
                 <span class="k">switch</span> <span class="o">(</span><span class="n">term</span><span class="o">)</span> <span class="o">{</span>							<i class="conum" data-value="4"></i><b>(4)</b>
-                    <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'+'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'*'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">));</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
@@ -2533,13 +2529,11 @@ default value.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">greaterOrEqual</span><span class="o">(</span><span class="nc">Term</span> <span class="n">term</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">isOperator</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
-                <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>              
-                <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="k">return</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'*'</span> <span class="o">&amp;&amp;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'/'</span><span class="o">;</span>
-                <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">}</span>       
+            <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
+                <span class="k">case</span> <span class="sc">'*'</span><span class="o">,</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="o">;</span>              
+                <span class="k">case</span> <span class="sc">'+'</span><span class="o">,</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'*'</span> <span class="o">&amp;&amp;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'/'</span><span class="o">;</span>
+                <span class="k">default</span> <span class="o">-&gt;</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">};</span>       
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>

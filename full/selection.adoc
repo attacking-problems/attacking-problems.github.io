@@ -886,7 +886,7 @@ alternatives. After all, a conditional can only be `true` or `false`.
 Certainly, decisions can be nested, allowing for more than two
 possibilities, but long lists of possibilities can be cumbersome and hard to read.
 
-For example, imagine that we want to create a program that determines
+For example, imagine we want to create a program that determines
 the appropriate gift for a wedding anniversary. Below is a table of
 traditional categories of gifts based on the anniversary year.
 
@@ -972,7 +972,7 @@ This code stores the correct value in `gift`. Note that we are using the
 feature of `if` statements that treats an entire `if` statement as one
 statement. If we used braces to group things as they actually are, with the
 contents of each `else` indented with each nested `if` inside, the code would
-become unreadable and unmanageably large.
+become unreadable and unmanageably wide.
 
 [source,java]
 ----
@@ -1106,7 +1106,7 @@ ascending order for the sake of readability. As shown in the
 `917` example, there's no rule about the ordering of the labels. Even
 the `default` label can occur anywhere in the `switch` block you want,
 although it's common to put it at the end. Also, the `break` after the
-`default` label is unnecessary because execution exits the `switch`
+`default` label is unnecessary because execution will exit the `switch`
 block anyway. Nevertheless, it's always wise to end on a `break`, in
 the event that you add more cases later.
 
@@ -1114,7 +1114,7 @@ Carelessness is always something to watch out for in `switch`
 statements. Leaving out a `break` statement can cause disastrous and
 difficult to discover bugs. The compiler does not warn you about missing
 `break` statements, either. It's entirely your responsibility to use them
-appropriately. Because of the dangers involved, it's often safe to
+appropriately. Because of the dangers involved, it's often safer to
 use `if`-`else` statements. Any `switch` statement can be rewritten as
 some combination of `if`-`else` statements, but the reverse is not true.
 The benefit of `switch` statements is their ability to list many
@@ -1208,7 +1208,7 @@ suffix by our code. We leave a more complete solution as an exercise.
 
 Many cultures practice astrology, a tradition that the time of a
 person's birth impacts his or her personality or future. One important
-element of Chinese astrology is their zodiac, consisting of 12 animals.
+element of Chinese astrology is its zodiac, consisting of 12 animals.
 Each consecutive year in a 12-year cycle corresponds to an animal.
 Because this system repeats, the year one is born in modulo 12
 identifies the animal. Below is a table giving these values. For
@@ -1313,33 +1313,33 @@ Below is another example of a `switch` expression, which computes the anniversar
 
 [source,java]
 ----
-    String gift = switch (year) {
-        case 1 -> "Paper";
-        case 2 -> "Cotton";
-        case 3 -> "Leather";
-        case 4 -> "Fruit";
-        case 5 -> "Wood";
-        case 6 -> "Candy / Iron";
-        case 7 -> "Wool / Copper";
-        case 8 -> "Bronze / Pottery";
-        case 9 -> "Pottery / Willow";
-        case 10 -> "Tin / Aluminum";
-        case 11 -> "Steel";
-        case 12 -> "Silk / Linen";
-        case 13 -> "Lace";
-        case 14 -> "Ivory";
-        case 15 -> "Crystal";
-        case 20 -> "China";
-        case 25 -> "Silver";
-        case 30 -> "Pearl";
-        case 35 -> "Coral";
-        case 40 -> "Ruby";
-        case 45 -> "Sapphire";
-        case 50 -> "Gold";
-        case 55 -> "Emerald";
-        case 60 -> "Diamond";
-        default -> "No traditional gift";
-    };
+String gift = switch (year) {
+    case 1 -> "Paper";
+    case 2 -> "Cotton";
+    case 3 -> "Leather";
+    case 4 -> "Fruit";
+    case 5 -> "Wood";
+    case 6 -> "Candy / Iron";
+    case 7 -> "Wool / Copper";
+    case 8 -> "Bronze / Pottery";
+    case 9 -> "Pottery / Willow";
+    case 10 -> "Tin / Aluminum";
+    case 11 -> "Steel";
+    case 12 -> "Silk / Linen";
+    case 13 -> "Lace";
+    case 14 -> "Ivory";
+    case 15 -> "Crystal";
+    case 20 -> "China";
+    case 25 -> "Silver";
+    case 30 -> "Pearl";
+    case 35 -> "Coral";
+    case 40 -> "Ruby";
+    case 45 -> "Sapphire";
+    case 50 -> "Gold";
+    case 55 -> "Emerald";
+    case 60 -> "Diamond";
+    default -> "No traditional gift";
+};
 ----
 
 Our last example of a `switch` expression uses a `yield` statement to indicate 
@@ -1400,10 +1400,10 @@ String type = switch (Character.toLowerCase(letter)) {
 
 ==== `switch` statements without `break` statements
 
-As mentioned earlier, the use of `break` statements can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it is possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
+As mentioned earlier, the use of `break` statements can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it's possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
 
 Note that the original syntax for a `switch` statement cannot be mixed with the 
-new syntax: All the cases within single `switch` statement must either be of the
+new syntax: All the cases within a single `switch` statement must either be of the
 form `case L:` or the form `+case L -> E+`, never both.
 
 Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid.

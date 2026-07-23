@@ -1555,15 +1555,9 @@ of each <code>enum</code> value is used, not its type.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">case</span> <span class="nl">NORTH:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="k">case</span> <span class="nl">SOUTH:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="k">case</span> <span class="nl">WEST:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="no">NORTH</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="no">SOUTH</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="no">WEST</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1823,7 +1817,24 @@ stack.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">NestedExpressions</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">toLeft</span><span class="o">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="sc">')'</span> <span class="o">-&gt;</span> <span class="sc">'('</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">']'</span> <span class="o">-&gt;</span> <span class="sc">'['</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'}'</span> <span class="o">-&gt;</span> <span class="sc">'{'</span><span class="o">;</span>
+            <span class="k">default</span> <span class="o">-&gt;</span> <span class="n">symbol</span><span class="o">;</span>
+        <span class="o">};</span>
+    <span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This first section of code is a utility method that takes the right-side
+version of a symbol and returns the left-side version.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">SymbolStack</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SymbolStack</span><span class="o">(</span><span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">());</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -1855,20 +1866,14 @@ the input is correctly nested. We start by assuming that it is.</td>
 <pre class="rouge highlight"><code data-lang="java">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">correct</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">symbol</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">case</span> <span class="sc">'('</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'['</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'{'</span><span class="o">:</span>
-                    <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">symbol</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">')'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">']'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">'}'</span><span class="o">:</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">stack</span><span class="o">.</span><span class="na">top</span><span class="o">()</span> <span class="o">!=</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="k">case</span> <span class="sc">'('</span><span class="o">,</span> <span class="sc">'['</span><span class="o">,</span> <span class="sc">'{'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">symbol</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="k">case</span> <span class="sc">')'</span><span class="o">,</span> <span class="sc">']'</span><span class="o">,</span> <span class="sc">'}'</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">stack</span><span class="o">.</span><span class="na">top</span><span class="o">()</span> <span class="o">!=</span> <span class="n">toLeft</span><span class="o">(</span><span class="n">symbol</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                         <span class="n">correct</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                         <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
                     <span class="o">}</span>
-                    <span class="k">break</span><span class="o">;</span>                
+                <span class="o">}</span>     
             <span class="o">}</span>
         <span class="o">}</span></code></pre>
 </div>
@@ -1890,9 +1895,9 @@ symbol onto the stack.</td>
 bracket, or right curly brace, it checks to see if the stack is empty.
 Because of short-circuit evaluation, the code doesn’t even look at the
 top of the stack if it is empty. However, if the stack isn’t empty, it
-checks to see if the top matches the current symbol. If the stack is
-empty or its top doesn’t match, <code>correct</code> is set to <code>false</code>. For
-efficiency, the loop stops early if <code>correct</code> is no longer <code>true</code>.</td>
+checks to see if the top is the left-side version of the current symbol.
+If the stack is empty or its top doesn’t match, <code>correct</code> is set to <code>false</code>.
+For efficiency, the loop stops early if <code>correct</code> is no longer <code>true</code>.</td>
 </tr>
 </tbody></table>
 </div>

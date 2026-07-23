@@ -11810,7 +11810,7 @@ Certainly, decisions can be nested, allowing for more than two
 possibilities, but long lists of possibilities can be cumbersome and hard to read.</p>
 </div>
 <div class="paragraph">
-<p>For example, imagine that we want to create a program that determines
+<p>For example, imagine we want to create a program that determines
 the appropriate gift for a wedding anniversary. Below is a table of
 traditional categories of gifts based on the anniversary year.</p>
 </div>
@@ -11984,7 +11984,7 @@ gift based on the year is below.</p>
 feature of <code>if</code> statements that treats an entire <code>if</code> statement as one
 statement. If we used braces to group things as they actually are, with the
 contents of each <code>else</code> indented with each nested <code>if</code> inside, the code would
-become unreadable and unmanageably large.</p>
+become unreadable and unmanageably wide.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12124,7 +12124,7 @@ ascending order for the sake of readability. As shown in the
 <code>917</code> example, there&#8217;s no rule about the ordering of the labels. Even
 the <code>default</code> label can occur anywhere in the <code>switch</code> block you want,
 although it&#8217;s common to put it at the end. Also, the <code>break</code> after the
-<code>default</code> label is unnecessary because execution exits the <code>switch</code>
+<code>default</code> label is unnecessary because execution will exit the <code>switch</code>
 block anyway. Nevertheless, it&#8217;s always wise to end on a <code>break</code>, in
 the event that you add more cases later.</p>
 </div>
@@ -12133,7 +12133,7 @@ the event that you add more cases later.</p>
 statements. Leaving out a <code>break</code> statement can cause disastrous and
 difficult to discover bugs. The compiler does not warn you about missing
 <code>break</code> statements, either. It&#8217;s entirely your responsibility to use them
-appropriately. Because of the dangers involved, it&#8217;s often safe to
+appropriately. Because of the dangers involved, it&#8217;s often safer to
 use <code>if</code>-<code>else</code> statements. Any <code>switch</code> statement can be rewritten as
 some combination of <code>if</code>-<code>else</code> statements, but the reverse is not true.
 The benefit of <code>switch</code> statements is their ability to list many
@@ -12290,7 +12290,7 @@ suffix by our code. We leave a more complete solution as an exercise.</p>
 <div class="paragraph">
 <p>Many cultures practice astrology, a tradition that the time of a
 person&#8217;s birth impacts his or her personality or future. One important
-element of Chinese astrology is their zodiac, consisting of 12 animals.
+element of Chinese astrology is its zodiac, consisting of 12 animals.
 Each consecutive year in a 12-year cycle corresponds to an animal.
 Because this system repeats, the year one is born in modulo 12
 identifies the animal. Below is a table giving these values. For
@@ -12636,33 +12636,33 @@ down the sign.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java">    <span class="nc">String</span> <span class="n">gift</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="s">"Paper"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="s">"Cotton"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="s">"Leather"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="s">"Fruit"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="s">"Wood"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">6</span> <span class="o">-&gt;</span> <span class="s">"Candy / Iron"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">7</span> <span class="o">-&gt;</span> <span class="s">"Wool / Copper"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">8</span> <span class="o">-&gt;</span> <span class="s">"Bronze / Pottery"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">9</span> <span class="o">-&gt;</span> <span class="s">"Pottery / Willow"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">10</span> <span class="o">-&gt;</span> <span class="s">"Tin / Aluminum"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">11</span> <span class="o">-&gt;</span> <span class="s">"Steel"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">12</span> <span class="o">-&gt;</span> <span class="s">"Silk / Linen"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">13</span> <span class="o">-&gt;</span> <span class="s">"Lace"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">14</span> <span class="o">-&gt;</span> <span class="s">"Ivory"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">15</span> <span class="o">-&gt;</span> <span class="s">"Crystal"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">20</span> <span class="o">-&gt;</span> <span class="s">"China"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">25</span> <span class="o">-&gt;</span> <span class="s">"Silver"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">30</span> <span class="o">-&gt;</span> <span class="s">"Pearl"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">35</span> <span class="o">-&gt;</span> <span class="s">"Coral"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">40</span> <span class="o">-&gt;</span> <span class="s">"Ruby"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">45</span> <span class="o">-&gt;</span> <span class="s">"Sapphire"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">50</span> <span class="o">-&gt;</span> <span class="s">"Gold"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">55</span> <span class="o">-&gt;</span> <span class="s">"Emerald"</span><span class="o">;</span>
-        <span class="k">case</span> <span class="mi">60</span> <span class="o">-&gt;</span> <span class="s">"Diamond"</span><span class="o">;</span>
-        <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"No traditional gift"</span><span class="o">;</span>
-    <span class="o">};</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">gift</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">year</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="s">"Paper"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="s">"Cotton"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="s">"Leather"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="s">"Fruit"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="s">"Wood"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">6</span> <span class="o">-&gt;</span> <span class="s">"Candy / Iron"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">7</span> <span class="o">-&gt;</span> <span class="s">"Wool / Copper"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">8</span> <span class="o">-&gt;</span> <span class="s">"Bronze / Pottery"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">9</span> <span class="o">-&gt;</span> <span class="s">"Pottery / Willow"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">10</span> <span class="o">-&gt;</span> <span class="s">"Tin / Aluminum"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">11</span> <span class="o">-&gt;</span> <span class="s">"Steel"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">12</span> <span class="o">-&gt;</span> <span class="s">"Silk / Linen"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">13</span> <span class="o">-&gt;</span> <span class="s">"Lace"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">14</span> <span class="o">-&gt;</span> <span class="s">"Ivory"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">15</span> <span class="o">-&gt;</span> <span class="s">"Crystal"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">20</span> <span class="o">-&gt;</span> <span class="s">"China"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">25</span> <span class="o">-&gt;</span> <span class="s">"Silver"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">30</span> <span class="o">-&gt;</span> <span class="s">"Pearl"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">35</span> <span class="o">-&gt;</span> <span class="s">"Coral"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">40</span> <span class="o">-&gt;</span> <span class="s">"Ruby"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">45</span> <span class="o">-&gt;</span> <span class="s">"Sapphire"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">50</span> <span class="o">-&gt;</span> <span class="s">"Gold"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">55</span> <span class="o">-&gt;</span> <span class="s">"Emerald"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="mi">60</span> <span class="o">-&gt;</span> <span class="s">"Diamond"</span><span class="o">;</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"No traditional gift"</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -12831,11 +12831,11 @@ code compiles and works as intended.</p>
 <div class="sect3">
 <h4 id="_switch_statements_without_break_statements">4.3.5. <code>switch</code> statements without <code>break</code> statements</h4>
 <div class="paragraph">
-<p>As mentioned earlier, the use of <code>break</code> statements can result in careless errors: by accidentally omitting a <code>break</code> or adding one where it isn&#8217;t needed.  With the introduction of the <code>case L -&gt; E</code> syntax, it is possible to use a <code>switch</code> <em>statement</em> without <code>break</code> statements at all.  Each <code>case</code> becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (<code>{ }</code>).</p>
+<p>As mentioned earlier, the use of <code>break</code> statements can result in careless errors: by accidentally omitting a <code>break</code> or adding one where it isn&#8217;t needed.  With the introduction of the <code>case L -&gt; E</code> syntax, it&#8217;s possible to use a <code>switch</code> <em>statement</em> without <code>break</code> statements at all.  Each <code>case</code> becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (<code>{ }</code>).</p>
 </div>
 <div class="paragraph">
 <p>Note that the original syntax for a <code>switch</code> statement cannot be mixed with the
-new syntax: All the cases within single <code>switch</code> statement must either be of the
+new syntax: All the cases within a single <code>switch</code> statement must either be of the
 form <code>case L:</code> or the form <code>case L -&gt; E</code>, never both.</p>
 </div>
 <div class="paragraph">
@@ -14297,10 +14297,10 @@ manipulations on it to get the reverse complement.</p>
         <span class="nc">String</span> <span class="n">complement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
-                <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"T"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"G"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"C"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"A"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'A'</span> <span class="o">-&gt;</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"T"</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'C'</span> <span class="o">-&gt;</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"G"</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"C"</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'T'</span> <span class="o">-&gt;</span> <span class="n">complement</span> <span class="o">+=</span> <span class="s">"A"</span><span class="o">;</span>
             <span class="o">}</span>       
         <span class="o">}</span>
         <span class="nc">String</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
@@ -14347,10 +14347,10 @@ a separate step.</p>
         <span class="nc">String</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
-                <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"T"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"G"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"C"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"A"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'A'</span> <span class="o">-&gt;</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"T"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'C'</span><span class="o">-&gt;</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"G"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'G'</span><span class="o">-&gt;</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"C"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'T'</span><span class="o">-&gt;</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="s">"A"</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">;</span>
             <span class="o">}</span>               
         <span class="o">}</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">);</span>
@@ -14395,10 +14395,10 @@ calling the <code>toString()</code> method on the <code>StringBuilder</code> obj
         <span class="nc">StringBuilder</span> <span class="n">reverseComplement</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sequence</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Get complements</span>
-                <span class="k">case</span> <span class="sc">'A'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"T"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"G"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"C"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">'T'</span><span class="o">:</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"A"</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'A'</span> <span class="o">-&gt;</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"T"</span><span class="o">);</span>
+                <span class="k">case</span> <span class="sc">'C'</span> <span class="o">-&gt;</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"G"</span><span class="o">);</span>
+                <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"C"</span><span class="o">);</span>
+                <span class="k">case</span> <span class="sc">'T'</span> <span class="o">-&gt;</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"A"</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reverse complement: "</span> <span class="o">+</span> <span class="n">reverseComplement</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
@@ -23035,15 +23035,9 @@ of each <code>enum</code> value is used, not its type.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">direction</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">case</span> <span class="nl">NORTH:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="k">case</span> <span class="nl">SOUTH:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="k">case</span> <span class="nl">WEST:</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
-        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="no">NORTH</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the Gate of the Kings the North Wind rides"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="no">SOUTH</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"From the mouths of the Sea the South Wind flies"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="no">WEST</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"The West Wind comes walking, and about the walls it goes"</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -23303,7 +23297,24 @@ stack.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">NestedExpressions</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">char</span> <span class="nf">toLeft</span><span class="o">(</span><span class="kt">char</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="sc">')'</span> <span class="o">-&gt;</span> <span class="sc">'('</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">']'</span> <span class="o">-&gt;</span> <span class="sc">'['</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'}'</span> <span class="o">-&gt;</span> <span class="sc">'{'</span><span class="o">;</span>
+            <span class="k">default</span> <span class="o">-&gt;</span> <span class="n">symbol</span><span class="o">;</span>
+        <span class="o">};</span>
+    <span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This first section of code is a utility method that takes the right-side
+version of a symbol and returns the left-side version.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>        
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
         <span class="nc">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="nc">SymbolStack</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SymbolStack</span><span class="o">(</span><span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">());</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -23335,20 +23346,14 @@ the input is correctly nested. We start by assuming that it is.</td>
 <pre class="rouge highlight"><code data-lang="java">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">correct</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="n">symbol</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
             <span class="k">switch</span> <span class="o">(</span><span class="n">symbol</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">case</span> <span class="sc">'('</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'['</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'{'</span><span class="o">:</span>
-                    <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">symbol</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="sc">')'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">']'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">'}'</span><span class="o">:</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">stack</span><span class="o">.</span><span class="na">top</span><span class="o">()</span> <span class="o">!=</span> <span class="n">symbol</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="k">case</span> <span class="sc">'('</span><span class="o">,</span> <span class="sc">'['</span><span class="o">,</span> <span class="sc">'{'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">symbol</span><span class="o">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="k">case</span> <span class="sc">')'</span><span class="o">,</span> <span class="sc">']'</span><span class="o">,</span> <span class="sc">'}'</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">stack</span><span class="o">.</span><span class="na">top</span><span class="o">()</span> <span class="o">!=</span> <span class="n">toLeft</span><span class="o">(</span><span class="n">symbol</span><span class="o">))</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
                         <span class="n">correct</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
                     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
                         <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
                     <span class="o">}</span>
-                    <span class="k">break</span><span class="o">;</span>                
+                <span class="o">}</span>     
             <span class="o">}</span>
         <span class="o">}</span></code></pre>
 </div>
@@ -23370,9 +23375,9 @@ symbol onto the stack.</td>
 bracket, or right curly brace, it checks to see if the stack is empty.
 Because of short-circuit evaluation, the code doesn&#8217;t even look at the
 top of the stack if it is empty. However, if the stack isn&#8217;t empty, it
-checks to see if the top matches the current symbol. If the stack is
-empty or its top doesn&#8217;t match, <code>correct</code> is set to <code>false</code>. For
-efficiency, the loop stops early if <code>correct</code> is no longer <code>true</code>.</td>
+checks to see if the top is the left-side version of the current symbol.
+If the stack is empty or its top doesn&#8217;t match, <code>correct</code> is set to <code>false</code>.
+For efficiency, the loop stops early if <code>correct</code> is no longer <code>true</code>.</td>
 </tr>
 </table>
 </div>
@@ -24158,24 +24163,17 @@ simply utility methods that perform some task associated with the interface.</p>
 			<span class="k">if</span> <span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">)</span> <span class="o">{</span>
 				<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="n">letter</span><span class="o">;</span>
 			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-				<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-					<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-					<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-					<span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">"A"</span><span class="o">;</span>
-					<span class="k">default</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="o">}</span>
+				<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+					<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span>  <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+					<span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span>  <span class="s">"A"</span><span class="o">;</span>
+					<span class="k">default</span> <span class="o">-&gt;</span>  <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="o">};</span>
 			<span class="o">}</span>
 		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-					<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="k">default</span><span class="o">:</span>
-					<span class="k">return</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-			<span class="o">}</span>
+			<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="k">default</span> <span class="o">-&gt;</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+			<span class="o">};</span>
 		<span class="o">}</span>	
 	<span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -27434,10 +27432,10 @@ by zero occurs.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">            <span class="k">try</span><span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
                 <span class="k">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'+'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'*'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
                 <span class="o">}</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Answer: "</span> <span class="o">+</span> <span class="n">answer</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
@@ -27649,12 +27647,12 @@ user input and deals with exceptions appropriately.</p>
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">trim</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">case</span> <span class="sc">'R'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'r'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'g'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'b'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'R'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'B'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'r'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'g'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'b'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ColorOverflowException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
@@ -27694,12 +27692,12 @@ as follows.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="k">try</span> <span class="o">{</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">trim</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">case</span> <span class="sc">'R'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'r'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'g'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'b'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'R'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'B'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'r'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'g'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'b'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ColorOverflowException</span> <span class="o">|</span> <span class="nc">ColorUnderflowException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
@@ -43347,14 +43345,10 @@ short.</p>
                 <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">().</span><span class="na">getValue</span><span class="o">();</span>             
                 <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">().</span><span class="na">getValue</span><span class="o">();</span>             
                 <span class="k">switch</span> <span class="o">(</span><span class="n">term</span><span class="o">)</span> <span class="o">{</span>							<i class="conum" data-value="4"></i><b>(4)</b>
-                    <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">));</span>
-                        <span class="k">break</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'+'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'*'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">));</span>
+                    <span class="k">case</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Term</span><span class="o">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">));</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
@@ -44242,13 +44236,11 @@ default value.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">greaterOrEqual</span><span class="o">(</span><span class="nc">Term</span> <span class="n">term</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">isOperator</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
-                <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>              
-                <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span>
-                <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="k">return</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'*'</span> <span class="o">&amp;&amp;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'/'</span><span class="o">;</span>
-                <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">}</span>       
+            <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span>            
+                <span class="k">case</span> <span class="sc">'*'</span><span class="o">,</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="o">;</span>              
+                <span class="k">case</span> <span class="sc">'+'</span><span class="o">,</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'*'</span> <span class="o">&amp;&amp;</span> <span class="n">term</span><span class="o">.</span><span class="na">operator</span> <span class="o">!=</span> <span class="sc">'/'</span><span class="o">;</span>
+                <span class="k">default</span> <span class="o">-&gt;</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">};</span>       
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>

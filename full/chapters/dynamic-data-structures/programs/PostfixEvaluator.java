@@ -13,14 +13,10 @@ public class PostfixEvaluator {
                 int b = stack.pop().getValue();             
                 int a = stack.pop().getValue();             
                 switch (term) {							// <.>
-                    case '+': stack.push(new Term(a + b));
-                        break;
-                    case '-': stack.push(new Term(a - b));
-                        break;
-                    case '*': stack.push(new Term(a * b));
-                        break;
-                    case '/': stack.push(new Term(a / b));
-                        break;
+                    case '+' -> stack.push(new Term(a + b));
+                    case '-' -> stack.push(new Term(a - b));
+                    case '*' -> stack.push(new Term(a * b));
+                    case '/' -> stack.push(new Term(a / b));
                 }
             }
         }

@@ -723,24 +723,17 @@ simply utility methods that perform some task associated with the interface.</p>
 			<span class="k">if</span> <span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">)</span> <span class="o">{</span>
 				<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="n">letter</span><span class="o">;</span>
 			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-				<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-					<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-					<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-					<span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">"A"</span><span class="o">;</span>
-					<span class="k">default</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="o">}</span>
+				<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+					<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span>  <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+					<span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span>  <span class="s">"A"</span><span class="o">;</span>
+					<span class="k">default</span> <span class="o">-&gt;</span>  <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="o">};</span>
 			<span class="o">}</span>
 		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-					<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="k">default</span><span class="o">:</span>
-					<span class="k">return</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-			<span class="o">}</span>
+			<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="k">default</span> <span class="o">-&gt;</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+			<span class="o">};</span>
 		<span class="o">}</span>	
 	<span class="o">}</span>
 <span class="o">}</span></code></pre>

@@ -8,10 +8,10 @@ public class ReverseComplement {
         String complement = "";
         for (int i = 0; i < sequence.length(); ++i) { // <.>
             switch (sequence.charAt(i)) { // Get complements
-                case 'A': complement += "T"; break;
-                case 'C': complement += "G"; break;
-                case 'G': complement += "C"; break;
-                case 'T': complement += "A"; break;
+                case 'A' -> complement += "T";
+                case 'C' -> complement += "G";
+                case 'G' -> complement += "C";
+                case 'T' -> complement += "A";
             }       
         }
         String reverseComplement = "";

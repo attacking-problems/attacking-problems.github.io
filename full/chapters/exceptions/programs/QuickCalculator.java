@@ -12,10 +12,10 @@ public class QuickCalculator {
             int b = Integer.parseInt(terms[2]);
             try{ // <.>
                 switch (operator) { // <.>
-                    case '+': answer = a + b; break;
-                    case '-': answer = a - b; break;
-                    case '*': answer = a * b; break;
-                    case '/': answer = a / b; break;
+                    case '+' -> answer = a + b;
+                    case '-' -> answer = a - b;
+                    case '*' -> answer = a * b;
+                    case '/' -> answer = a / b;
                 }
                 System.out.println("Answer: " + answer); // <.>
             } catch (ArithmeticException e) { // <.>

@@ -639,12 +639,12 @@ public static Color changeColor(Color color) {
         Scanner in = new Scanner(System.in);
     try {
         switch (in.next().trim().charAt(0)) {
-            case 'R': color = increaseRed(color); break;
-            case 'G': color = increaseGreen(color); break;
-            case 'B': color = increaseBlue(color); break;
-            case 'r': color = decreaseRed(color); break;
-            case 'g': color = decreaseGreen(color); break;
-            case 'b': color = decreaseBlue(color); break;
+            case 'R' -> color = increaseRed(color);
+            case 'G' -> color = increaseGreen(color);
+            case 'B' -> color = increaseBlue(color);
+            case 'r' -> color = decreaseRed(color);
+            case 'g' -> color = decreaseGreen(color);
+            case 'b' -> color = decreaseBlue(color);
         }
     } catch (ColorOverflowException e) {
         System.out.println(e);
@@ -681,12 +681,12 @@ as follows.
 ----
     try {
         switch (in.next().trim().charAt(0)) {
-            case 'R': color = increaseRed(color); break;
-            case 'G': color = increaseGreen(color); break;
-            case 'B': color = increaseBlue(color); break;
-            case 'r': color = decreaseRed(color); break;
-            case 'g': color = decreaseGreen(color); break;
-            case 'b': color = decreaseBlue(color); break;
+            case 'R' -> color = increaseRed(color);
+            case 'G' -> color = increaseGreen(color);
+            case 'B' -> color = increaseBlue(color);
+            case 'r' -> color = decreaseRed(color);
+            case 'g' -> color = decreaseGreen(color);
+            case 'b' -> color = decreaseBlue(color);
         }
     } catch (ColorOverflowException | ColorUnderflowException e) {
         System.out.println(e);

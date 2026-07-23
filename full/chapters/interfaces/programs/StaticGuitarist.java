@@ -8,24 +8,17 @@ public interface StaticGuitarist {
 			if (note.charAt(1) == 'b') {
 				return "" + letter;
 			} else {
-				switch (letter) {
-					case 'B':
-					case 'E':
-						return (char)(letter + 1) + "#";
-					case 'G':
-						return "A";
-					default:
-						return "" + (char)(letter + 1);
-				}
+				return switch (letter) {
+					case 'B', 'E' ->  (char)(letter + 1) + "#";
+					case 'G' ->  "A";
+					default ->  "" + (char)(letter + 1);
+				};
 			}
 		} else {
-			switch (letter) {
-				case 'B':
-				case 'E':
-					return "" + (char)(letter + 1);
-				default:
-					return letter + "#";
-			}
+			return switch (letter) {
+				case 'B', 'E' -> "" + (char)(letter + 1);
+				default -> letter + "#";
+			};
 		}	
 	}
 }
