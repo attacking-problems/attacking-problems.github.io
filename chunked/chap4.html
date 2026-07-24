@@ -1626,7 +1626,7 @@ permanently). These concepts are covered in later chapters.</p>
 <div class="sect3">
 <h4 id="_switch_statements">4.3.3. <code>switch</code> statements</h4>
 <div class="paragraph">
-<p><em>This section describes the <code>switch</code> statement as it was defined in versions before Java 12 and 14.  <a href="chap4.html#_switch_expressions">Section 4.3.4</a> and <a href="chap4.html#_switch_statements_without_break_statements">Section 4.3.5</a> describe enhancements that make <code>switch</code>
+<p><em>This section describes the <code>switch</code> statement as it was defined in versions before Java 12.  <a href="chap4.html#_updated_switch_syntax">Section 4.3.4</a> and <a href="chap4.html#_switch_expressions">Section 4.3.5</a>  describe enhancements that make <code>switch</code>
 statements more readable and less error-prone and allow them to be used as an expression.</em></p>
 </div>
 <div class="paragraph">
@@ -2433,22 +2433,93 @@ down the sign.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_switch_expressions">4.3.4. <code>switch</code> expressions</h4>
+<h4 id="_updated_switch_syntax">4.3.4. Updated <code>switch</code> syntax</h4>
 <div class="paragraph">
-<p>The <code>switch</code> expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each <code>case</code> must compute a value.  There are two ways to indicate the value being computed:</p>
+<p>As mentioned earlier, the use of <code>break</code> statements can result in careless
+errors if a <code>break</code> is accidentally left out or added where it isn’t needed.
+New syntax introduced in Java 12 and made permanent in Java 14 makes it
+possible to write <code>case</code> statements that execution will jump to, execute, and
+then leave the <code>switch</code> block, without the need for a <code>break</code>.</p>
+</div>
+<div class="paragraph">
+<p>Instead of a <code>case</code> being followed by a label, a colon, the code to execute, and
+then a <code>break</code>, each <code>case</code> is followed by label, an arrow (<code>-&gt;</code>) and then a
+single line of executable code. If <code>L</code> represents a label and <code>E</code> represents a
+line of executable code, the syntax changes from <code>case L: E</code> to <code>case L -&gt; E</code>.
+Then, each <code>case</code> becomes a complete block,  and there is no fall-through to the
+next case. To deal with many labels that all map to the same executable code,
+these labels can be a list of values or constants separated by commas, as in the
+example below. If more than one statement is  included in a block, the statements
+must be surrounded by curly braces (<code>{ }</code>).</p>
+</div>
+<div class="paragraph">
+<p>Note that the original syntax for a <code>switch</code> statement <strong>cannot</strong> be mixed with the
+new syntax: All the cases within a single <code>switch</code> statement must either be of
+the form <code>case L: E</code> or the form <code>case L -&gt; E</code>, never both.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example that prints the number of days in the month given by its
+three-letter abbreviation and uses a flag to indicate whether the month is
+valid.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">boolean</span> <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="s">"Jan"</span><span class="o">,</span> <span class="s">"Mar"</span><span class="o">,</span> <span class="s">"May"</span><span class="o">,</span> <span class="s">"Jul"</span><span class="o">,</span> <span class="s">"Aug"</span><span class="o">,</span> <span class="s">"Oct"</span><span class="o">,</span> <span class="s">"Dec"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 31 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">case</span> <span class="s">"Apr"</span><span class="o">,</span> <span class="s">"Jun"</span><span class="o">,</span> <span class="s">"Sep"</span><span class="o">,</span> <span class="s">"Nov"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 30 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">case</span> <span class="s">"Feb"</span> <span class="o">-&gt;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 28 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Unrecognized month: "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
+        <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">validMonth</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Continue processing...</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While there is a tremendous amount of legacy code that uses the older <code>switch</code>
+style in which each <code>case</code> is followed by a single label and a colon, the newer
+<code>case L -&gt; E</code> style is preferred by many programmers. You should be aware of
+the older style, but consider using the new style unless you need the unusual
+fall-through behavior of an older-style <code>switch</code> that intentionally omits a
+<code>break</code> statement or if you are following a style guide that insists on the
+older style.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_switch_expressions">4.3.5. <code>switch</code> expressions</h4>
+<div class="paragraph">
+<p>The <code>switch</code> expression extends this new syntax further, producing a value that
+can be used anywhere an expression is expected. Each <code>case</code> must compute a
+value, and there are two ways to indicate the value being computed:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use the new <code>case L -&gt; E</code> syntax.  This syntax says that the resulting value for <code>case L</code> is the value of expression <code>E</code>.  The label <code>L</code> can be a list of labels separated by commas, as in the first example below.</p>
+<p>Use the new <code>case L -&gt; E</code> syntax. This syntax says that the resulting value
+for <code>case L</code> is the value of expression <code>E</code>.  As before, a list of labels
+separated by commas can be used to map multiple labels to the same
+expression.</p>
 </li>
 <li>
-<p>Use the new <code>yield E</code> statement.  The <code>yield</code> statement can be thought of as a <code>break</code> statement—​it interrupts the flow of the <code>switch</code> statement—​but also indicates the value to be used as the result.</p>
+<p>Use the new <code>yield E</code> statement.  The <code>yield</code> statement is similar to a
+<code>break</code> statement—​it interrupts the flow of the <code>switch</code> statement—​but also
+indicates the value to be used as the result.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The <code>switch</code> expression can result in simpler code than the traditional <code>switch</code> statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:</p>
+<p>The <code>switch</code> expression can result in shorter code than a traditional <code>switch</code>
+statement, making it easier to write and maintain.  The code below stores the
+number of days in a given month, instead of printing it out like the previous
+example.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2461,7 +2532,9 @@ down the sign.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Below is another example of a <code>switch</code> expression, which computes the anniversary gift based on the year. Compare to the earlier statement version in <a href="chap4.html#_switch_statements">Section 4.3.3</a>.</p>
+<p>Below is another example of a <code>switch</code> expression, which computes the
+anniversary gift based on the year. Compare to the earlier statement version in
+<a href="chap4.html#_switch_statements">Section 4.3.3</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2496,8 +2569,8 @@ down the sign.</p>
 </div>
 <div class="paragraph">
 <p>Our last example of a <code>switch</code> expression uses a <code>yield</code> statement to indicate
-the result of the expression. It takes <a href="chap4.html#WesternZodiacProgram">Program 4.7</a> and
-changes the <code>switch</code> statement into a <code>switch</code> expression.</p>
+the result of the expression. It takes <a href="chap4.html#WesternZodiacProgram">Program 4.7</a> and changes the
+<code>switch</code> statement with the old-style syntax into a <code>switch</code> expression.</p>
 </div>
 <div id="WesternZodiacExpressionProgram" class="listingblock">
 <div class="content">
@@ -2605,8 +2678,8 @@ changes the <code>switch</code> statement into a <code>switch</code> expression.
 <div class="paragraph">
 <p>Most programmers use <code>yield</code> infrequently,
 preferring the clear, readable style of putting the result value after the
-<code>-&gt;</code>. However, when some computation is needed before the result is known, as
-with the last example, <code>yield</code> allows the contents of the case to contain
+arrow. However, when some computation is needed before the result is known, as
+with the previous example, <code>yield</code> allows the contents of the <code>case</code> to contain
 multiple lines.</p>
 </div>
 <div class="admonitionblock warning">
@@ -2655,50 +2728,6 @@ code compiles and works as intended.</p>
 </td>
 </tr>
 </tbody></table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_switch_statements_without_break_statements">4.3.5. <code>switch</code> statements without <code>break</code> statements</h4>
-<div class="paragraph">
-<p>As mentioned earlier, the use of <code>break</code> statements can result in careless errors: by accidentally omitting a <code>break</code> or adding one where it isn’t needed.  With the introduction of the <code>case L -&gt; E</code> syntax, it’s possible to use a <code>switch</code> <em>statement</em> without <code>break</code> statements at all.  Each <code>case</code> becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (<code>{ }</code>).</p>
-</div>
-<div class="paragraph">
-<p>Note that the original syntax for a <code>switch</code> statement cannot be mixed with the
-new syntax: All the cases within a single <code>switch</code> statement must either be of the
-form <code>case L:</code> or the form <code>case L -&gt; E</code>, never both.</p>
-</div>
-<div class="paragraph">
-<p>Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">boolean</span> <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-<span class="k">switch</span> <span class="o">(</span><span class="n">month</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">case</span> <span class="s">"Jan"</span><span class="o">,</span> <span class="s">"Mar"</span><span class="o">,</span> <span class="s">"May"</span><span class="o">,</span> <span class="s">"Jul"</span><span class="o">,</span> <span class="s">"Aug"</span><span class="o">,</span> <span class="s">"Oct"</span><span class="o">,</span> <span class="s">"Dec"</span> <span class="o">-&gt;</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 31 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
-    <span class="k">case</span> <span class="s">"Apr"</span><span class="o">,</span> <span class="s">"Jun"</span><span class="o">,</span> <span class="s">"Sep"</span><span class="o">,</span> <span class="s">"Nov"</span> <span class="o">-&gt;</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 30 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
-    <span class="k">case</span> <span class="s">"Feb"</span> <span class="o">-&gt;</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are 28 days in "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
-    <span class="k">default</span> <span class="o">-&gt;</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Unrecognized month: "</span> <span class="o">+</span> <span class="n">month</span><span class="o">);</span>
-        <span class="n">validMonth</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">};</span>
-
-<span class="k">if</span> <span class="o">(</span><span class="n">validMonth</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// Continue processing...</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>While there is a tremendous amount of legacy code that uses the older <code>switch</code>
-style in which each <code>case</code> is followed by a single label and a colon, the newer
-<code>case L -&gt; E</code> style is preferred by many programmers. You should be aware of
-the older style, but consider using the new style unless you need the unusual
-fall-through behavior of an older-style <code>switch</code> that intentionally omits a
-<code>break</code> statement or if you are following a style guide that insists on the
-older style.</p>
 </div>
 </div>
 </div>

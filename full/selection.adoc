@@ -875,7 +875,7 @@ permanently). These concepts are covered in later chapters.
 
 ==== `switch` statements
 
-_This section describes the `switch` statement as it was defined in versions before Java 12 and 14.  <<_switch_expressions>> and <<_switch_statements_without_break_statements>> describe enhancements that make `switch`
+_This section describes the `switch` statement as it was defined in versions before Java 12.  <<Updated `switch` syntax>> and <<_switch_expressions>>  describe enhancements that make `switch`
 statements more readable and less error-prone and allow them to be used as an expression._
 
 The `if` statement is the workhorse of Java conditional execution. With
@@ -1289,15 +1289,81 @@ down the sign.
 
 ====
 
+==== Updated `switch` syntax 
+
+As mentioned earlier, the use of `break` statements can result in careless
+errors if a `break` is accidentally left out or added where it isn't needed.  
+New syntax introduced in Java 12 and made permanent in Java 14 makes it 
+possible to write `case` statements that execution will jump to, execute, and 
+then leave the `switch` block, without the need for a `break`.
+
+Instead of a `case` being followed by a label, a colon, the code to execute, and
+then a `break`, each `case` is followed by label, an arrow (`+->+`) and then a
+single line of executable code. If `L` represents a label and `E` represents a
+line of executable code, the syntax changes from `case L: E` to `+case L -> E+`.
+Then, each `case` becomes a complete block,  and there is no fall-through to the
+next case. To deal with many labels that all map to the same executable code,
+these labels can be a list of values or constants separated by commas, as in the 
+example below. If more than one statement is  included in a block, the statements
+must be surrounded by curly braces (`+{ }+`).
+
+Note that the original syntax for a `switch` statement *cannot* be mixed with the 
+new syntax: All the cases within a single `switch` statement must either be of
+the form `case L: E` or the form `+case L -> E+`, never both.
+
+Here is an example that prints the number of days in the month given by its
+three-letter abbreviation and uses a flag to indicate whether the month is
+valid.
+
+[source,java]
+----
+boolean validMonth = true;
+switch (month) {
+    case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" ->
+        System.out.println("There are 31 days in " + month);
+    case "Apr", "Jun", "Sep", "Nov" ->
+        System.out.println("There are 30 days in " + month);
+    case "Feb" ->
+        System.out.println("There are 28 days in " + month);
+    default -> {
+        System.out.println("Unrecognized month: " + month);
+        validMonth = false;
+    }
+};
+
+if (validMonth) {
+    // Continue processing...
+}
+----
+
+While there is a tremendous amount of legacy code that uses the older `switch`
+style in which each `case` is followed by a single label and a colon, the newer
+`+case L -> E+` style is preferred by many programmers. You should be aware of
+the older style, but consider using the new style unless you need the unusual
+fall-through behavior of an older-style `switch` that intentionally omits a
+`break` statement or if you are following a style guide that insists on the
+older style. 
+
+
 ==== `switch` expressions
 
-The `switch` expression, introduced in Java 12 and 14, computes a single value and can be used anywhere an expression is expected.  Each `case` must compute a value.  There are two ways to indicate the value being computed:
+The `switch` expression extends this new syntax further, producing a value that
+can be used anywhere an expression is expected. Each `case` must compute a
+value, and there are two ways to indicate the value being computed:
 
-. Use the new `+case L -> E+` syntax.  This syntax says that the resulting value for `case L` is the value of expression `E`.  The label `L` can be a list of labels separated by commas, as in the first example below.
+. Use the new `+case L -> E+` syntax. This syntax says that the resulting value
+for `case L` is the value of expression `E`.  As before, a list of labels 
+separated by commas can be used to map multiple labels to the same
+expression.
 
-. Use the new `yield E` statement.  The `yield` statement can be thought of as a `break` statement--it interrupts the flow of the `switch` statement--but also indicates the value to be used as the result.
+. Use the new `yield E` statement.  The `yield` statement is similar to a 
+`break` statement--it interrupts the flow of the `switch` statement--but also
+indicates the value to be used as the result.
 
-The `switch` expression can result in simpler code than the traditional `switch` statement, making it easier to write and maintain.  The code below computes the number of days in a given month, with the month given as a three-letter abbreviation:
+The `switch` expression can result in shorter code than a traditional `switch`
+statement, making it easier to write and maintain.  The code below stores the
+number of days in a given month, instead of printing it out like the previous
+example.
 
 [source,java]
 ----
@@ -1309,7 +1375,9 @@ int length = switch (month) {
 };
 ----
 
-Below is another example of a `switch` expression, which computes the anniversary gift based on the year. Compare to the earlier statement version in <<_switch_statements>>.
+Below is another example of a `switch` expression, which computes the
+anniversary gift based on the year. Compare to the earlier statement version in
+<<_switch_statements>>.
 
 [source,java]
 ----
@@ -1343,9 +1411,8 @@ String gift = switch (year) {
 ----
 
 Our last example of a `switch` expression uses a `yield` statement to indicate 
-the result of the expression. It takes <<WesternZodiacProgram>> and
-changes the `switch` statement into a `switch` expression.
-
+the result of the expression. It takes <<WesternZodiacProgram>> and changes the
+`switch` statement with the old-style syntax into a `switch` expression.
 
 [source, java]
 [[WesternZodiacExpressionProgram]]
@@ -1353,11 +1420,10 @@ changes the `switch` statement into a `switch` expression.
 include::{programsdir}/WesternZodiacExpression.java[]
 ----
 
-
 Most programmers use `yield` infrequently,
 preferring the clear, readable style of putting the result value after the
-`+->+`. However, when some computation is needed before the result is known, as
-with the last example, `yield` allows the contents of the case to contain
+arrow. However, when some computation is needed before the result is known, as
+with the previous example, `yield` allows the contents of the `case` to contain
 multiple lines.
 
 .Pitfall: `switch` expression that doesn't cover all cases
@@ -1397,45 +1463,6 @@ String type = switch (Character.toLowerCase(letter)) {
 ----
 ====
 
-
-==== `switch` statements without `break` statements
-
-As mentioned earlier, the use of `break` statements can result in careless errors: by accidentally omitting a `break` or adding one where it isn't needed.  With the introduction of the `+case L -> E+` syntax, it's possible to use a `switch` _statement_ without `break` statements at all.  Each `case` becomes a complete block, and there is no fall-through to the next case.  If more than one statement is included in a block, the statements must be surrounded by curly braces (`+{ }+`).
-
-Note that the original syntax for a `switch` statement cannot be mixed with the 
-new syntax: All the cases within a single `switch` statement must either be of the
-form `case L:` or the form `+case L -> E+`, never both.
-
-Here is an example that prints the number of days in the given month and uses a flag to indicate whether the month is valid.
-
-[source,java]
-----
-boolean validMonth = true;
-switch (month) {
-    case "Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec" ->
-        System.out.println("There are 31 days in " + month);
-    case "Apr", "Jun", "Sep", "Nov" ->
-        System.out.println("There are 30 days in " + month);
-    case "Feb" ->
-        System.out.println("There are 28 days in " + month);
-    default -> {
-        System.out.println("Unrecognized month: " + month);
-        validMonth = false;
-    }
-};
-
-if (validMonth) {
-    // Continue processing...
-}
-----
-
-While there is a tremendous amount of legacy code that uses the older `switch`
-style in which each `case` is followed by a single label and a colon, the newer
-`+case L -> E+` style is preferred by many programmers. You should be aware of
-the older style, but consider using the new style unless you need the unusual
-fall-through behavior of an older-style `switch` that intentionally omits a
-`break` statement or if you are following a style guide that insists on the
-older style. 
 
 
 === Solution: Monty Hall
