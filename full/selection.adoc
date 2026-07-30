@@ -1426,13 +1426,14 @@ arrow. However, when some computation is needed before the result is known, as
 with the previous example, `yield` allows the contents of the `case` to contain
 multiple lines.
 
-.Pitfall: `switch` expression that doesn't cover all cases
+.Pitfall: `switch` expression that doesn't cover all values
 [WARNING]
 ====
 
 Because a `switch` expression gives back a value, it *must* be _exhaustive_, 
-meaning that it covers every possible case. Otherwise, if some input to the
-`switch` has no matching `case`, the value of the `switch` will not be known.
+meaning that it covers every possible value. Otherwise, if some input to the
+`switch` has no matching `case`, the overall value of the `switch` cannot be
+determined.
 
 Consider the following code that records whether a `char` value called `letter`
 is a vowel or a consonant.

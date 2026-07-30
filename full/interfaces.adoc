@@ -287,7 +287,7 @@ but you need to create a `tune()` method inside `EngineGuitarist` to make clear 
 The use of default methods in interfaces is relatively rare, and situations where there are two conflicting default methods
 are rarer still.  Even so, it's important to understand how all the features of a language work.  Note that it's unlikely that
 you'll be writing interfaces with default methods often, since their primary use is to add capabilities to existing interfaces
-without breaking classes that already use those interfaces.
+without breaking classes that already implement those interfaces.
 
 
 ==== Interfaces and `static`

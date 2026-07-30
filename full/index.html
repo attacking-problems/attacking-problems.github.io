@@ -1050,7 +1050,7 @@ they can all communicate with the same memory.</p>
 <p>In theory, having six cores could allow your computer to run six times
 as fast. In practice, this speedup is hard to achieve. Learning how to
 get more performance out of multicore systems is a major
-themes of this book. <a href="#concurrency">Chapter 14</a> and <a href="#synchronization">Chapter 15</a> as well as
+theme of this book. <a href="#concurrency">Chapter 14</a> and <a href="#synchronization">Chapter 15</a> as well as
 sections marked <strong>Concurrency</strong> in other chapters are specifically
 tailored for students interested in programming these multicore
 systems to work effectively. If you aren&#8217;t interested in concurrent
@@ -12860,11 +12860,12 @@ multiple lines.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-<div class="title">Pitfall: <code>switch</code> expression that doesn&#8217;t cover all cases</div>
+<div class="title">Pitfall: <code>switch</code> expression that doesn&#8217;t cover all values</div>
 <div class="paragraph">
 <p>Because a <code>switch</code> expression gives back a value, it <strong>must</strong> be <em>exhaustive</em>,
-meaning that it covers every possible case. Otherwise, if some input to the
-<code>switch</code> has no matching <code>case</code>, the value of the <code>switch</code> will not be known.</p>
+meaning that it covers every possible value. Otherwise, if some input to the
+<code>switch</code> has no matching <code>case</code>, the overall value of the <code>switch</code> cannot be
+determined.</p>
 </div>
 <div class="paragraph">
 <p>Consider the following code that records whether a <code>char</code> value called <code>letter</code>
@@ -24153,7 +24154,7 @@ but you need to create a <code>tune()</code> method inside <code>EngineGuitarist
 <p>The use of default methods in interfaces is relatively rare, and situations where there are two conflicting default methods
 are rarer still.  Even so, it&#8217;s important to understand how all the features of a language work.  Note that it&#8217;s unlikely that
 you&#8217;ll be writing interfaces with default methods often, since their primary use is to add capabilities to existing interfaces
-without breaking classes that already use those interfaces.</p>
+without breaking classes that already implement those interfaces.</p>
 </div>
 </div>
 <div class="sect3">

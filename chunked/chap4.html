@@ -2689,11 +2689,12 @@ multiple lines.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-<div class="title">Pitfall: <code>switch</code> expression that doesn’t cover all cases</div>
+<div class="title">Pitfall: <code>switch</code> expression that doesn’t cover all values</div>
 <div class="paragraph">
 <p>Because a <code>switch</code> expression gives back a value, it <strong>must</strong> be <em>exhaustive</em>,
-meaning that it covers every possible case. Otherwise, if some input to the
-<code>switch</code> has no matching <code>case</code>, the value of the <code>switch</code> will not be known.</p>
+meaning that it covers every possible value. Otherwise, if some input to the
+<code>switch</code> has no matching <code>case</code>, the overall value of the <code>switch</code> cannot be
+determined.</p>
 </div>
 <div class="paragraph">
 <p>Consider the following code that records whether a <code>char</code> value called <code>letter</code>
