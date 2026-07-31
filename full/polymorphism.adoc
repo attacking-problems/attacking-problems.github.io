@@ -502,6 +502,9 @@ that we are, know what we're doing. The error will happen at run time
 while executing the second line. Java will try to cast `vehicle` into a
 `RocketShip`, fail, and throw a `ClassCastException`.
 
+
+===== The `instanceof` keyword
+
 Java provides some additional tools to make casting easier. One of these
 is the `instanceof` keyword which can be used to test if an object is an
 instance of a particular class (or one of its derived classes). For
@@ -519,8 +522,12 @@ public void visitDenver(Vehicle vehicle) {
 ----
 
 Even inside this `if` statement where it *must* be the case that `vehicle`
-is a `RocketShip`, we still must perform an explicit cast. Sometimes
-`instanceof` is not precise enough. If you must be sure that the object
+is a `RocketShip`, we still must perform an explicit cast. Note that
+`instanceof` looks at the object itself; thus, a reference that points to `null`
+has no object, no type, and will give a `true` result for an `instanceof`
+expression.
+
+Sometimes `instanceof` is not precise enough. If you must be sure that the object
 in question is a particular class and not just one of its child classes, you
 can use the `getClass()` method on any object and compare it to the
 static class object. Using this tool, we can rewrite the former example
@@ -543,6 +550,48 @@ class `RocketShip` and not for objects of a child class like
 ****
 <<instanceofExercise>>
 ****
+
+Java 14 added an optional _binding variable_ to the `instanceof` keyword. If
+the `instanceof` expression is inside an `if` statement, a binding variable can
+be added after the type. If the object matches the type, this binding variable
+will hold a reference to that object, automatically stored as
+the new type without the need for an explicit cast. Using this updated syntax,
+we could write our first `instanceof` example as follows.
+
+[source,java]
+----
+public void visitDenver(Vehicle vehicle) {
+    if (vehicle instanceof RocketShip ship) {
+        ship.blastOff();
+    }
+    vehicle.travel("Denver");
+}
+----
+
+This style is preferred when possible, since it uses less code and removes the
+explicit cast.
+ 
+
+The `instanceof` keyword can be used with interfaces as well. For example, the
+following method takes a `Chord` object and an object of type `Object`.
+Recall that all reference types in Java can be treated as an `Object` type, so
+a reference of type `Object` could point at any object of any type.
+In this case, if the `Object` turns out to implement the `Guitarist` interface,
+we can bind it to a `Guitarist` variable called `player` and use it to strum a
+chord.
+
+[source,java]
+----
+void checkBeforeStrum(Object unknown, Chord chord) {
+    if (unknown instanceof Guitarist player) {
+        player.strumChord(chord);
+    } else {
+        System.out.println("That's not a guitarist!");
+    }
+}
+----
+
+
 
 
 ==== Inheritance and exceptions
@@ -944,6 +993,8 @@ public class Cobra extends Snake {
 	}
 }
 ----
+. What's the `instanceof` keyword used for? Why is it useful in the
+context of polymorphism?
 
 
 *Programming Practice*

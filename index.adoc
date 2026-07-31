@@ -26,7 +26,8 @@ This website was created and updated during the summer of 2024 and is usable now
 === Changes Planned and Completed
 
 
-* [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Inheritance (Chapter 11).  Add binding variable and `switch` examples.
+* [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Polymorphism (Chapter 18).  Add binding variable and `switch` examples.
+* [ ] Add discussion of the `record` feature to Classes (Chapter 9). 
 * [ ] Add Summary sections to chapters that don't have them.
 * [ ] Explain the different versions of Java and their features.
 

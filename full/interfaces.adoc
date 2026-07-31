@@ -181,28 +181,6 @@ forget to specify that your class implements a particular interface, the
 compiler will fail when you try to use that class in a place where that
 interface is required.
 
-If you have code that takes some arbitrary object as a parameter, you
-can determine if that object implements a particular interface by using
-the `instanceof` keyword. For example, the following method takes a
-`Chord` object and an object of type `Object`. The `Object` type is the
-most basic reference type there is. All reference types in Java can be
-treated as an `Object` type. Thus, a reference of type `Object` could
-point at any object of any type. In this case, if the `Object` turns out
-to implement the `Guitarist` interface, we can cast it to a `Guitarist`
-and use it to strum a chord.
-
-[source,java]
-----
-void checkBeforeStrum(Object unknown, Chord chord) {
-    if (unknown instanceof Guitarist) {
-        Guitarist player = (Guitarist)unknown;
-        player.strumChord(chord);
-    }
-    else
-        System.out.println("That's not a guitarist!");
-}
-----
-
 .Pitfall: Interfaces cannot be instantiated
 [WARNING]
 ====
@@ -713,8 +691,8 @@ public void sort(Object[] array, boolean age) {
 
 In this method, the `boolean` `age` is `true` if we're sorting by age
 and `false` if we're sorting by weight. Note that the array elements and `temp`
-have the `Object` type. Recall that any object can be stored in a
-reference of type `Object`.
+have the `Object` type. As we will discuss in <<The `Object` class>>, *any* 
+object can be stored in a reference of type `Object`.
 
 The only other change we needed was to replace the greater-than
 comparison (`>`) with the `outOfOrder()` method, which we define below.
@@ -798,8 +776,6 @@ documentation may be the only guide.
 class yet adds no functionality?
 . Is it legal to have methods marked `private` or `protected` in an
 interface? Why did the designers of Java make this choice?
-. What's the `instanceof` keyword used for? Why is it useful in the
-context of interfaces?
 . What kind of programming error causes a `ClassCastException`?
 . Create an interface called `ColorWavelengths` that only contains
 constants storing the wavelengths in nanometers for each of the seven

@@ -20643,33 +20643,33 @@ all of them. These kinds of variables are called <em>class variables</em> (or
 sometimes <em>static fields</em> or <em>global variables</em>). These variables
 persist <strong>between</strong> method calls. The syntax for creating such a variable
 is to declare it outside of all methods (but inside the class) with the keyword <code>static</code> and an access modifier such as <code>public</code> or <code>private</code>.
-For example, the following class includes a method called <code>record()</code>
+For example, the following class includes a method called <code>increment()</code>
 that increases the class variable <code>counter</code> every time it&#8217;s called.</p>
 </div>
 <div id="BookkeeperProgram" class="listingblock">
-<div class="title">Program 8.1 Keeps track of the number of times the <code>record()</code> method is called.</div>
+<div class="title">Program 8.1 Keeps track of the number of times the <code>increment()</code> method is called.</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bookkeeper</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">while</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">record</span><span class="err">();</span>
-        <span class="err">}</span>
+            <span class="n">increment</span><span class="o">();</span>
+        <span class="o">}</span>
 
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Record was called "</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Increment was called "</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">record</span><span class="o">()</span> <span class="o">{</span>   
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span>   
         <span class="o">++</span><span class="n">counter</span><span class="o">;</span>  
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When run, this program calls the <code>record()</code> method some random number of
+<p>When run, this program calls the <code>increment()</code> method some random number of
 times, and the variable <code>counter</code> keeps track of the number. Because <code>counter</code> is static,
-it&#8217;s accessible to both the <code>main()</code> and <code>record()</code> methods.
+it&#8217;s accessible to both the <code>main()</code> and <code>increment()</code> methods.
 Many programmers frown on the use of
 class variables precisely because they&#8217;re visible to many different
 methods. The idea of a method is to isolate pieces of code so that the
@@ -24001,29 +24001,6 @@ forget to specify that your class implements a particular interface, the
 compiler will fail when you try to use that class in a place where that
 interface is required.</p>
 </div>
-<div class="paragraph">
-<p>If you have code that takes some arbitrary object as a parameter, you
-can determine if that object implements a particular interface by using
-the <code>instanceof</code> keyword. For example, the following method takes a
-<code>Chord</code> object and an object of type <code>Object</code>. The <code>Object</code> type is the
-most basic reference type there is. All reference types in Java can be
-treated as an <code>Object</code> type. Thus, a reference of type <code>Object</code> could
-point at any object of any type. In this case, if the <code>Object</code> turns out
-to implement the <code>Guitarist</code> interface, we can cast it to a <code>Guitarist</code>
-and use it to strum a chord.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Guitarist</span> <span class="n">player</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Guitarist</span><span class="o">)</span><span class="n">unknown</span><span class="o">;</span>
-        <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">else</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"That's not a guitarist!"</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -24731,8 +24708,8 @@ to generalize the sort beyond <code>int</code> values.</p>
 <div class="paragraph">
 <p>In this method, the <code>boolean</code> <code>age</code> is <code>true</code> if we&#8217;re sorting by age
 and <code>false</code> if we&#8217;re sorting by weight. Note that the array elements and <code>temp</code>
-have the <code>Object</code> type. Recall that any object can be stored in a
-reference of type <code>Object</code>.</p>
+have the <code>Object</code> type. As we will discuss in <a href="#_the_object_class">Section 11.3.6</a>, <strong>any</strong>
+object can be stored in a reference of type <code>Object</code>.</p>
 </div>
 <div class="paragraph">
 <p>The only other change we needed was to replace the greater-than
@@ -24834,10 +24811,6 @@ class yet adds no functionality?</p>
 <li>
 <p>Is it legal to have methods marked <code>private</code> or <code>protected</code> in an
 interface? Why did the designers of Java make this choice?</p>
-</li>
-<li>
-<p>What&#8217;s the <code>instanceof</code> keyword used for? Why is it useful in the
-context of interfaces?</p>
 </li>
 <li>
 <p>What kind of programming error causes a <code>ClassCastException</code>?</p>
@@ -24995,7 +24968,7 @@ What&#8217;s the minimum number of passes if the list is already sorted?</p>
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="12">
+<ol class="arabic" start="11">
 <li>
 <p>Add client code that randomly creates the objects needing sorting in
 the solution from <a href="#_solution_sort_it_out">Section 10.5</a>. Design and include
@@ -25038,10 +25011,10 @@ in <a href="#mergeSortExample">Example 20.8</a>.</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="15">
+<ol class="arabic" start="14">
 <li>
 <p>Once you have implemented the sort in parallel from
-<a href="#parallelBubbleSortExercise">Exercise 10.14</a>, time it against the sequential
+<a href="#parallelBubbleSortExercise">Exercise 10.13</a>, time it against the sequential
 version. Try two, four, and eight different threads. Be sure to create
 one random array and use copies of the original array for both the parallel
 and sequential versions. Be careful not to sort an array that&#8217;s already
@@ -41245,6 +41218,8 @@ that we are, know what we&#8217;re doing. The error will happen at run time
 while executing the second line. Java will try to cast <code>vehicle</code> into a
 <code>RocketShip</code>, fail, and throw a <code>ClassCastException</code>.</p>
 </div>
+<div class="sect4">
+<h5 id="_the_instanceof_keyword">The <code>instanceof</code> keyword</h5>
 <div class="paragraph">
 <p>Java provides some additional tools to make casting easier. One of these
 is the <code>instanceof</code> keyword which can be used to test if an object is an
@@ -41264,8 +41239,13 @@ the object is capable of it.</p>
 </div>
 <div class="paragraph">
 <p>Even inside this <code>if</code> statement where it <strong>must</strong> be the case that <code>vehicle</code>
-is a <code>RocketShip</code>, we still must perform an explicit cast. Sometimes
-<code>instanceof</code> is not precise enough. If you must be sure that the object
+is a <code>RocketShip</code>, we still must perform an explicit cast. Note that
+<code>instanceof</code> looks at the object itself; thus, a reference that points to <code>null</code>
+has no object, no type, and will give a <code>true</code> result for an <code>instanceof</code>
+expression.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes <code>instanceof</code> is not precise enough. If you must be sure that the object
 in question is a particular class and not just one of its child classes, you
 can use the <code>getClass()</code> method on any object and compare it to the
 static class object. Using this tool, we can rewrite the former example
@@ -41290,6 +41270,49 @@ class <code>RocketShip</code> and not for objects of a child class like
 <div class="content">
 <div class="paragraph">
 <p><a href="#instanceofExercise">Exercise 18.6</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Java 14 added an optional <em>binding variable</em> to the <code>instanceof</code> keyword. If
+the <code>instanceof</code> expression is inside an <code>if</code> statement, a binding variable can
+be added after the type. If the object matches the type, this binding variable
+will hold a reference to that object, automatically stored as
+the new type without the need for an explicit cast. Using this updated syntax,
+we could write our first <code>instanceof</code> example as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">visitDenver</span><span class="o">(</span><span class="nc">Vehicle</span> <span class="n">vehicle</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">vehicle</span> <span class="k">instanceof</span> <span class="nc">RocketShip</span> <span class="n">ship</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ship</span><span class="o">.</span><span class="na">blastOff</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">vehicle</span><span class="o">.</span><span class="na">travel</span><span class="o">(</span><span class="s">"Denver"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This style is preferred when possible, since it uses less code and removes the
+explicit cast.</p>
+</div>
+<div class="paragraph">
+<p>The <code>instanceof</code> keyword can be used with interfaces as well. For example, the
+following method takes a <code>Chord</code> object and an object of type <code>Object</code>.
+Recall that all reference types in Java can be treated as an <code>Object</code> type, so
+a reference of type <code>Object</code> could point at any object of any type.
+In this case, if the <code>Object</code> turns out to implement the <code>Guitarist</code> interface,
+we can bind it to a <code>Guitarist</code> variable called <code>player</code> and use it to strum a
+chord.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span> <span class="n">player</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"That's not a guitarist!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -41753,7 +41776,7 @@ value. If you run this program, the final answer should always be
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="#atomicClassExercise">Exercise 18.10</a></p>
+<p><a href="#atomicClassExercise">Exercise 18.11</a></p>
 </div>
 </div>
 </div>
@@ -41781,7 +41804,7 @@ applications depends on CAS implementations.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="#atomicTimingExercise">Exercise 18.11</a></p>
+<p><a href="#atomicTimingExercise">Exercise 18.12</a></p>
 </div>
 </div>
 </div>
@@ -41929,13 +41952,17 @@ What&#8217;s the problem that prevents compilation?</p>
 </div>
 </div>
 </li>
+<li>
+<p>What&#8217;s the <code>instanceof</code> keyword used for? Why is it useful in the
+context of polymorphism?</p>
+</li>
 </ol>
 </div>
 <div class="paragraph">
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="8">
+<ol class="arabic" start="9">
 <li>
 <p>Update the solution from <a href="#_solution_boolean_circuits">Section 11.5</a> so that it uses as
 many of the inheritance tools from this chapter as possible.  Clearly, the
@@ -42013,7 +42040,7 @@ still necessary? Why or why not?</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="11">
+<ol class="arabic" start="12">
 <li>
 <p><a id="atomicTimingExercise"></a> Take <a href="#NoRaceConditionProgram">Program 18.4</a>
 and increase <code>COUNT</code> to <code>100000000</code>. Run it several times and time how

@@ -571,19 +571,19 @@ all of them. These kinds of variables are called _class variables_ (or
 sometimes _static fields_ or _global variables_). These variables
 persist *between* method calls. The syntax for creating such a variable
 is to declare it outside of all methods (but inside the class) with the keyword `static` and an access modifier such as `public` or `private`.
-For example, the following class includes a method called `record()`
+For example, the following class includes a method called `increment()`
 that increases the class variable `counter` every time it's called.
 
-.Keeps track of the number of times the `record()` method is called.
+.Keeps track of the number of times the `increment()` method is called.
 [source, java]
 [[BookkeeperProgram]]
 ----
 include::{programsdir}/Bookkeeper.java[]
 ----
 
-When run, this program calls the `record()` method some random number of
+When run, this program calls the `increment()` method some random number of
 times, and the variable `counter` keeps track of the number. Because `counter` is static,
-it's accessible to both the `main()` and `record()` methods.
+it's accessible to both the `main()` and `increment()` methods.
 Many programmers frown on the use of
 class variables precisely because they're visible to many different
 methods. The idea of a method is to isolate pieces of code so that the

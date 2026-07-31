@@ -531,29 +531,6 @@ forget to specify that your class implements a particular interface, the
 compiler will fail when you try to use that class in a place where that
 interface is required.</p>
 </div>
-<div class="paragraph">
-<p>If you have code that takes some arbitrary object as a parameter, you
-can determine if that object implements a particular interface by using
-the <code>instanceof</code> keyword. For example, the following method takes a
-<code>Chord</code> object and an object of type <code>Object</code>. The <code>Object</code> type is the
-most basic reference type there is. All reference types in Java can be
-treated as an <code>Object</code> type. Thus, a reference of type <code>Object</code> could
-point at any object of any type. In this case, if the <code>Object</code> turns out
-to implement the <code>Guitarist</code> interface, we can cast it to a <code>Guitarist</code>
-and use it to strum a chord.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Guitarist</span> <span class="n">player</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Guitarist</span><span class="o">)</span><span class="n">unknown</span><span class="o">;</span>
-        <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">else</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"That's not a guitarist!"</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
 <div class="admonitionblock warning">
 <table>
 <tbody><tr>
@@ -1261,8 +1238,8 @@ to generalize the sort beyond <code>int</code> values.</p>
 <div class="paragraph">
 <p>In this method, the <code>boolean</code> <code>age</code> is <code>true</code> if we’re sorting by age
 and <code>false</code> if we’re sorting by weight. Note that the array elements and <code>temp</code>
-have the <code>Object</code> type. Recall that any object can be stored in a
-reference of type <code>Object</code>.</p>
+have the <code>Object</code> type. As we will discuss in <a href="chap11.html#_the_object_class">Section 11.3.6</a>, <strong>any</strong>
+object can be stored in a reference of type <code>Object</code>.</p>
 </div>
 <div class="paragraph">
 <p>The only other change we needed was to replace the greater-than
@@ -1364,10 +1341,6 @@ class yet adds no functionality?</p>
 <li>
 <p>Is it legal to have methods marked <code>private</code> or <code>protected</code> in an
 interface? Why did the designers of Java make this choice?</p>
-</li>
-<li>
-<p>What’s the <code>instanceof</code> keyword used for? Why is it useful in the
-context of interfaces?</p>
 </li>
 <li>
 <p>What kind of programming error causes a <code>ClassCastException</code>?</p>
@@ -1525,7 +1498,7 @@ What’s the minimum number of passes if the list is already sorted?</p>
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="12">
+<ol class="arabic" start="11">
 <li>
 <p>Add client code that randomly creates the objects needing sorting in
 the solution from <a href="chap10.html#_solution_sort_it_out">Section 10.5</a>. Design and include
@@ -1568,10 +1541,10 @@ in <a href="chap20.html#mergeSortExample">Example 20.8</a>.</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="15">
+<ol class="arabic" start="14">
 <li>
 <p>Once you have implemented the sort in parallel from
-<a href="chap10.html#parallelBubbleSortExercise">Exercise 10.14</a>, time it against the sequential
+<a href="chap10.html#parallelBubbleSortExercise">Exercise 10.13</a>, time it against the sequential
 version. Try two, four, and eight different threads. Be sure to create
 one random array and use copies of the original array for both the parallel
 and sequential versions. Be careful not to sort an array that’s already

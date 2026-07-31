@@ -976,33 +976,33 @@ all of them. These kinds of variables are called <em>class variables</em> (or
 sometimes <em>static fields</em> or <em>global variables</em>). These variables
 persist <strong>between</strong> method calls. The syntax for creating such a variable
 is to declare it outside of all methods (but inside the class) with the keyword <code>static</code> and an access modifier such as <code>public</code> or <code>private</code>.
-For example, the following class includes a method called <code>record()</code>
+For example, the following class includes a method called <code>increment()</code>
 that increases the class variable <code>counter</code> every time it’s called.</p>
 </div>
 <div id="BookkeeperProgram" class="listingblock">
-<div class="title">Program 8.1 Keeps track of the number of times the <code>record()</code> method is called.</div>
+<div class="title">Program 8.1 Keeps track of the number of times the <code>increment()</code> method is called.</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bookkeeper</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">while</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">record</span><span class="err">();</span>
-        <span class="err">}</span>
+            <span class="n">increment</span><span class="o">();</span>
+        <span class="o">}</span>
 
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Record was called "</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Increment was called "</span> <span class="o">+</span> <span class="n">counter</span> <span class="o">+</span> <span class="s">" times."</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">record</span><span class="o">()</span> <span class="o">{</span>   
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span>   
         <span class="o">++</span><span class="n">counter</span><span class="o">;</span>  
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When run, this program calls the <code>record()</code> method some random number of
+<p>When run, this program calls the <code>increment()</code> method some random number of
 times, and the variable <code>counter</code> keeps track of the number. Because <code>counter</code> is static,
-it’s accessible to both the <code>main()</code> and <code>record()</code> methods.
+it’s accessible to both the <code>main()</code> and <code>increment()</code> methods.
 Many programmers frown on the use of
 class variables precisely because they’re visible to many different
 methods. The idea of a method is to isolate pieces of code so that the
