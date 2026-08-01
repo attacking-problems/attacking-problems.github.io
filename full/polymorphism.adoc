@@ -524,8 +524,8 @@ public void visitDenver(Vehicle vehicle) {
 Even inside this `if` statement where it *must* be the case that `vehicle`
 is a `RocketShip`, we still must perform an explicit cast. Note that
 `instanceof` looks at the object itself; thus, a reference that points to `null`
-has no object, no type, and will give a `true` result for an `instanceof`
-expression.
+has no object, no type, and will give always give a `false` result for an
+`instanceof` expression.
 
 Sometimes `instanceof` is not precise enough. If you must be sure that the object
 in question is a particular class and not just one of its child classes, you

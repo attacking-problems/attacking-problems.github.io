@@ -978,8 +978,8 @@ the object is capable of it.</p>
 <p>Even inside this <code>if</code> statement where it <strong>must</strong> be the case that <code>vehicle</code>
 is a <code>RocketShip</code>, we still must perform an explicit cast. Note that
 <code>instanceof</code> looks at the object itself; thus, a reference that points to <code>null</code>
-has no object, no type, and will give a <code>true</code> result for an <code>instanceof</code>
-expression.</p>
+has no object, no type, and will give always give a <code>false</code> result for an
+<code>instanceof</code> expression.</p>
 </div>
 <div class="paragraph">
 <p>Sometimes <code>instanceof</code> is not precise enough. If you must be sure that the object
