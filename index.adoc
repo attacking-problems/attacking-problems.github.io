@@ -25,9 +25,7 @@ This website was created and updated during the summer of 2024 and is usable now
 
 === Changes Planned and Completed
 
-
-* [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Polymorphism (Chapter 18).  Add binding variable and `switch` examples.
-* [ ] Add discussion of the `record` feature to Classes (Chapter 9). 
+* [ ] Add discussion of the `record` feature to Classes (Chapter 9) and how they can be used in `switch` statements to Polymorphism (Chapter 18). 
 * [ ] Add Summary sections to chapters that don't have them.
 * [ ] Explain the different versions of Java and their features.
 
@@ -47,6 +45,7 @@ This website was created and updated during the summer of 2024 and is usable now
 * [x] Add an explanation of _varargs_ in Methods (Chapter 8).
 * [x] Improve `switch` examples in Selection (Chapter 4).  Add `yield` example(s).
 * [x] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
+* [x] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Polymorphism (Chapter 18).  Add binding variable and `switch` examples.
 
 
 == Availability

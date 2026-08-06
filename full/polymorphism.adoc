@@ -236,7 +236,7 @@ class hierarchies and enforce design decisions.
 
 ==== Abstract classes and methods
 
-One such tool is abstract classes. An abstract class is one which can
+One such tool is abstract classes. An abstract class is one that can
 *never* be instantiated. In order to use an abstract class, it's
 necessary to make a child class from it. To create an abstract class, you
 simply add the `abstract` keyword to its definition, as in the
@@ -292,9 +292,10 @@ class that will be used directly.
 <<abstractClassesAndInterfacesExercise>>
 ****
 
-Methods can be abstract as well. If you have an abstract class, you can
-create a method header which describes a method that all non-abstract
-children classes must implement, as shown below.
+Recall from <<Syntax: Interfaces>> that methods in interfaces are usually
+abstract. You can also add abstract methods to abstract classes. In any abstract
+class, you can create a method header describing a method that all non-abstract
+child classes must implement, as shown below.
 
 [source, java]
 [[SequenceProgram]]
@@ -324,7 +325,7 @@ include::{programsdir}/GeometricSequence.java[]
 ----
 
 
-The `Sequence` class doesn't specify *how* the sequence of numbers
+The `Sequence` class doesn't specify _how_ the sequence of numbers
 should be generated, but any derived class must implement the
 `getNextValue()` method in order to compile. By using an abstract class,
 we don't have to create a base class which generates a meaningless
@@ -349,7 +350,7 @@ include::{programsdir}/BankAccount.java[lines=1..6]
 we're going to use later.
 <.> We extend `SynchronizedAccount` and declare the new class to be
 abstract. In this example, we don't use any abstract methods, but
-since each bank account has unique characteristics, we don't want people
+since each type of bank account has unique characteristics, we don't want people
 to be able to create a generic `BankAccount`.
 
 [source, java]
@@ -391,11 +392,11 @@ the two fields associated with the last access are updated atomically.
 If you look at the previous example carefully, you'll notice that the
 methods `getBalance()`, `deposit()`, and `withdraw()` were each declared
 with the keyword `final`. You've seen this keyword used to declare
-constants before. The meaning that `final` has for methods is similar to
+constants before. The meaning `final` has for methods is similar to
 what it means for constants (and almost the opposite of `abstract`). A method
-which is declared `final` can't be overridden by child classes. If you're
+which is declared `final` _can't_ be overridden by child classes. If you're
 designing a class hierarchy and you want to lock a method into doing a
-specific thing and never changing, this is the way to do it.
+specific thing and never changing, this is the appropriate tool.
 
 Like `abstract`, the keyword `final` can be applied to a class as well.
 If you want to prevent a class from being extended further, apply the
@@ -434,11 +435,11 @@ vehicles[3] = new Car();
 vehicles[4] = new Skateboard;
 ----
 
-This process could be infinitely more complex. We could be reading data
+This process could be arbitrarily more complex. We could be reading data
 out of a file and dynamically creating different kinds of `Vehicle`
 objects, but the final product of an array of `Vehicle` objects is the
-important thing. Now, we can run through the array with a loop and have
-the code magically work for each kind of `Vehicle`.
+important thing. Now, we can run through the array with a loop, and 
+the code will magically work for each different kind of `Vehicle`.
 
 [source,java]
 ----
@@ -473,8 +474,9 @@ explicit cast to tell the compiler that the object really *is* a
 RocketShip ship = (RocketShip)vehicles[1];
 ----
 
-Now, both lines of code work. The compiler is always conservative. It
-never makes guesses about the type of something. Consider the following.
+With these casts, both lines of code will work. The compiler is always
+conservative. It never makes guesses about the type of something. Consider the
+following.
 
 [source,java]
 ----
@@ -524,11 +526,11 @@ public void visitDenver(Vehicle vehicle) {
 Even inside this `if` statement where it *must* be the case that `vehicle`
 is a `RocketShip`, we still must perform an explicit cast. Note that
 `instanceof` looks at the object itself; thus, a reference that points to `null`
-has no object, no type, and will give always give a `false` result for an
+has no object, no type, and will give always give a `false` result in an
 `instanceof` expression.
 
 Sometimes `instanceof` is not precise enough. If you must be sure that the object
-in question is a particular class and not just one of its child classes, you
+in question has a particular class and not just one of its child classes, you
 can use the `getClass()` method on any object and compare it to the
 static class object. Using this tool, we can rewrite the former example
 to be more specific.
@@ -591,9 +593,6 @@ void checkBeforeStrum(Object unknown, Chord chord) {
 }
 ----
 
-
-
-
 ==== Inheritance and exceptions
 
 Beyond `ClassCastException`, there are a few other issues that come up
@@ -636,8 +635,8 @@ seems natural, but it's *not* allowed in Java.
 
 The principle behind polymorphism is that a more specialized version of
 something can *always* be used in place of a more general version. Indeed,
-if you use a `Plum` in place of a `Fruit`, calling the `eat()` method is no
-problem. The problem only happens if a `ChokingOnPitException` is thrown.
+if you use a `Plum` in place of a `Fruit`, calling the `eat()` method shouldn't
+cause an issue. A problem would only happen if a `ChokingOnPitException` is thrown.
 Code that was designed for `Fruit` objects knows nothing about a
 `ChokingOnPitException`, so there's no way for such code to catch the
 exception and deal with the situation.
@@ -677,7 +676,7 @@ include::{programsdir}/Animal.java[]
 We begin with the abstract `Animal` class. This class gives a base
 definition for animals which includes whether the animal is alive,
 whether the animal is happy, and whether it's warm-blooded (declared
-`final` because an animal can't switch between warm-blooded and
+`final` because an animal will never switch between warm-blooded and
 cold-blooded).
 
 [source, java]
@@ -708,7 +707,7 @@ include::{programsdir}/Human.java[]
 
 The `Human` class also extends `Mammal`. Depending on the problem being
 solved, this class might warrant a great deal more specialization. Right
-now the main addition is taking happiness as an argument to the
+now, the main addition is taking happiness as an argument to the
 constructor since the default human state is not necessarily happiness.
 
 [source, java]
@@ -731,11 +730,214 @@ One of the best examples of the success of inheritance is the Java API
 itself. The standard Java library is large and depends on inheritance a
 great deal.
 
+=== Advanced: Pattern matching on types
+
+The `instanceof` keyword can always be used to see if an object has a particular
+type (or a child of that type), but a powerful alternative is to use pattern
+matching in `switch` statements, a set of tools added in Java 21. These tools
+adds features beyond even the new arrow (`+->+`) syntax in `switch`
+expressions discussed in <<Updated `switch` syntax>>. Pattern matching
+allows a `switch` label to be a type, not simply a value, and even
+to add additional conditions to those labels.
+
+Consider the following case where `bird` contains a reference of type `Bird`
+and there are classes `Duck`, `Hoopoe`, `Owl`, and `Rooster` that are all
+children of the `Bird` class.
+
+[source,java]
+----
+switch (bird) {
+    case Duck duck -> System.out.println("Quack!");
+    case Hoopoe hoopoe -> System.out.println("Oop-oop!");
+    case Owl owl -> System.out.println("Hoot!");
+    case Rooster rooster -> System.out.println("Cockadoodledoo!");
+    default -> System.out.println("(Unknown bird)");
+}
+----
+
+This code would print out an appropriate bird noise, depending on the true
+type of the object that `bird` points at. Note that the label after
+each `case` must include the type to match against as well as a variable name.
+In this example, we did not use variables like `duck` or `owl` on the right
+side of the arrow to ask that object to call some method that only the matching
+type could call, but we could have. In this way, a
+pattern-matching `switch` works like an `instanceof` with a binding variable:
+We get a variable with the right type to hold the object, without needing an
+explicit cast. Note that a pattern-matching `switch` *must* handle every
+possible type, so the `default` is required here.
+
+Just like a `switch` with values for its `case` labels, a pattern-matching
+`switch` can be used as an expression, storing its result into a variable. We
+could change our bird example to store the result instead of printing it out.
+
+[source,java]
+----
+String call = switch (bird) {
+    case Duck duck -> "Quack!";
+    case Hoopoe hoopoe -> "Oop-oop!";
+    case Owl owl -> "Hoot!";
+    case Rooster rooster -> "Cockadoodledoo!";
+    default -> "(Unknown bird)";
+};
+----
+
+The following is a more practical example, a method that returns the area
+of different shapes, depending on what type they are. It would be easy to add
+additional `case` labels to support new shapes.
+
+[source,java]
+----
+public static double getArea(Object object) {
+    return switch (object) {
+        case Circle circle -> Math.PI * circle.getRadius() * circle.getRadius();
+        case Rectangle rectangle -> rectangle.getLength() * rectangle.getWidth();
+        case Triangle triangle -> 0.5 * triangle.getBase() * triangle.getHeight();
+        default -> throw new IllegalArgumentException();
+    };
+}
+----
+
+.Pitfall: Pattern matching with a parent class before a child class
+[WARNING]
+====
+
+It appears as if execution of a pattern-matching `switch` jumps to the matching
+`case` label, but it usually steps through each `case` in order. For this
+reason, Java doesn't allow us to specify a parent class for a label before 
+a child class. If it did, the child class label would never be reached since
+the parent class would always match first.
+
+Consider the following code that takes a reference called `creature` with
+type `Animal` and prints out the name of the type that best matches it.
+
+[source,java]
+----
+switch (creature) {
+    case Animal animal -> System.out.println("Animal");
+    case Mammal mammal -> System.out.println("Mammal");
+    case Human human -> System.out.println("Human");
+}
+----
+
+This code does *not* compile because the parent class `Animal` comes before the
+child classes `Mammal` and `Human`. The appropriate way to write this code is
+to order the classes in the opposite way, from child up to parent and finally
+grandparent.
+
+[source,java]
+----
+switch (creature) {
+    case Human human -> System.out.println("Human");
+    case Mammal mammal -> System.out.println("Mammal");
+    case Animal animal -> System.out.println("Animal");
+}
+----
+
+This behavior is exactly like `catch` blocks for exceptions, which must always
+start from the most specific exception (the lowest-level child) and end with
+the most generic (the highest-level parent), as we mentioned in 
+<<Handling exceptions>>.
+====
+
+
+==== Pattern matching with guards
+
+The main reason to use a `switch` statement is to cleanly list
+possible alternatives and the code that should be executed for each one. To make
+those alternatives as readable as possible, programmers prefer to write the
+arrow syntax for `switch` statements with only a single line after the arrow.
+Of course, multiple lines can be written after the arrow, if they're enclosed
+in braces.
+
+When an additional check with an `if` statement is needed inside a `case`,
+braces could be used along with a `yield` statement, as in the following code
+that checks for `String` values with an even length, `String` values whose
+length is greater than 5, and `Duck` objects.
+
+[source,java]
+----
+Object object = "unpredictable";
+String result = switch (object) {
+    case String string -> {
+        if (string.length() % 2 == 0) {
+            yield "even string";
+        } else if (string.length() > 5) {
+            yield "long string";
+        } else {
+            yield "who knows";
+        }
+    }
+    case Duck duck -> "quacks like a duck";
+    default -> "who knows";
+};
+----
+
+The value stored into `result` by this code is `"long string"`, since
+`"unpredictable"` has a length of 13, which is not even but is longer than 5.
+Nothing is wrong with this code, but it's almost as long as a version using
+only `if` statements. Likewise, the `"who knows"` value must be repeated for
+`String` values that are short with an odd length as well as objects that don't
+match either the `String` or `Duck` types.
+
+To handle this issue of conditional checks within a `case`, _guards_ can be
+used. A guard is an expression that evaluates to a `boolean`, like the
+condition of an `if` statement, that comes after an optional `when` keyword,
+following the `case` label. A given `case` will match only if the object
+matches the type and also makes the guard evaluate to `true`.
+
+Thus, the longer code above could be written with guards in a more compact way
+below.
+
+[source,java]
+----
+Object object = "unpredictable";
+String result = switch (object) {
+    case String string when string.length() % 2 == 0 -> "even string";
+    case String string when string.length() > 5  -> "long string";
+    case Duck duck -> "quacks like a duck";
+    default -> "who knows";
+};
+----
+
+The use of guards can allow a lot of logic to be compressed into a short space
+while remaining readable. As you can see, guards can be applied to some `case`
+labels and left off others, even within the same `switch`.
+
+What happens if the object being tested by the `switch` statement is `null`?
+Normally, using a `null` reference inside a `switch` will throw a
+`NullPointerException`. However, a special `null` `case` can be added that will
+handle `null` references gracefully.
+
+[source,java]
+----
+String data = switch(unknown) {
+    case null -> "(null)";
+    case String string -> "String: " + string;
+    case Object other -> "Other: " + other;
+};
+----
+
+In this code, a reference named `unknown` with type `Object` is the input to
+the `switch` statement. If `unknown` points to `null`, this `switch` will give
+`"(null)"` back as its result, instead of throwing an exception. A `null`
+`case` doesn't follow the normal rules for `switch` statements, which typically
+act as if they check each `case` label, one by one, from top to bottom.
+Instead, a `null` `case` can be at the top, the bottom, or anywhere in between,
+and the code for that `case` will always be executed if the reference is `null`.
+
+The people who add features to Java continue to put a lot of effort into the 
+updated arrow syntax for `switch` statements and the pattern-matching tools we've
+discussed here. There are related features we did not mention as well
+as new features that are likely to be standardized in future versions of Java,
+including more flexible ways to use primitive types in `switch` constructs. If
+you're interested in these features, you might want to search out information
+about the latest versions of Java.
+
 
 === Solution: Banking account with a vengeance
 
-Now, we return to the specific problem given at the beginning of the
-chapter and give its solution. We've already given you the
+Now, we return to the specific problem from the beginning of the
+chapter and give its solution. We've already written the code for the
 `BankAccount` abstract class which provides a lot of structure.
 
 [.text-center]

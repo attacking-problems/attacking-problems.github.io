@@ -226,9 +226,10 @@
 <li><a href="chap18.html#_problem_banking_account_with_a_vengeance">18.1. Problem: Banking account with a vengeance</a></li>
 <li><a href="chap18.html#_concepts_polymorphism">18.2. Concepts: Polymorphism</a></li>
 <li><a href="chap18.html#_syntax_inheritance_tools_in_java">18.3. Syntax: Inheritance tools in Java</a></li>
-<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.4. Solution: Banking account with a vengeance</a></li>
-<li><a href="chap18.html#_concurrency_atomic_libraries">18.5. Concurrency: Atomic libraries</a></li>
-<li><a href="chap18.html#_exercises_18">18.6. Exercises</a></li>
+<li><a href="chap18.html#_advanced_pattern_matching_on_types">18.4. Advanced: Pattern matching on types</a></li>
+<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.5. Solution: Banking account with a vengeance</a></li>
+<li><a href="chap18.html#_concurrency_atomic_libraries">18.6. Concurrency: Atomic libraries</a></li>
+<li><a href="chap18.html#_exercises_18">18.7. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap19.html">19. Dynamic Data Structures</a>
@@ -526,9 +527,9 @@ interface. In the following snippet of code, we do this by creating 100
 at compile time instead of run time.
 If you implement an interface with a class you’re writing but
 forget (or misspell) a required method, the compiler will fail to
-compile that class. If you remember all of the required methods but
+compile that class. If you remember all the required methods but
 forget to specify that your class implements a particular interface, the
-compiler will fail when you try to use that class in a place where that
+compiler will fail when you try to use that class in a place where the
 interface is required.</p>
 </div>
 <div class="admonitionblock warning">
@@ -573,7 +574,7 @@ added the new method.</p>
 </div>
 <div class="paragraph">
 <p>To allow new methods to be added to old interfaces without breaking existing classes, the idea of a
-default method was added to the rules for Java interfaces.  A method with a body could be added to
+default method was added to the rules for Java interfaces.  A method with a body <em>could</em> be added to
 an interface, provided that it was marked with the <code>default</code> keyword.  If a class implements that interface
 and has a public method that matches the default method, the class’s method will be used.  However,
 if a class doesn’t have a matching method, the default method will be used, and the class will still compile.</p>
@@ -649,7 +650,7 @@ there can be a conflict.</p>
 <p>This strange class is the template for an object that’s simultaneously an engine and a guitarist, implementing both
 <code>DefaultGuitarist</code> and <code>DefaultEngine</code>.  It has public methods for <code>strumChord()</code> and <code>playMelody()</code>, satisfying the
 <code>DefaultGuitarist</code> interface.  It also has public methods for <code>start()</code> and <code>getRedline()</code>, satisfying the <code>DefaultEngine</code>
-interface.  But it’s received two different default methods for <code>tune()</code>, one that tunes like a guitarist and one that
+interface.  But it’s received two <em>different</em> default methods for <code>tune()</code>, one that tunes like a guitarist and one that
 tunes like an engine.  As a consequence, an <code>EngineGuitarist</code> object wouldn’t know which <code>tune()</code> to call and won’t
 compile as it’s written.</p>
 </div>
@@ -722,7 +723,7 @@ of a note such as <code>"D#"</code> or <code>"Bb"</code> and returns a <code>Str
 note one half step higher.  The rules for musical notes are somewhat complex, so this
 method is useful even when separate from any particular class that implements <code>StaticGuitarist</code>.
 The <code>nextNote()</code> method would be called just like any static method, using the name
-of its container <code>StaticGuitarist</code> followed by a dot followed by the name of the method itself.</p>
+of its container <code>StaticGuitarist</code>, followed by a dot, followed by the name of the method itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -735,7 +736,9 @@ methods will ever change any data inside the interface.  This is the fundamental
 between an interface and a class: Interfaces never contain <em>state</em>.  Even so, class constants are allowed.
 Thus, we could define <code>static</code> <code>final</code>
 values that might be useful to any class implementing an interface. With
-<code>Chord</code> and <code>Melody</code> defined, the following interface will compile.</p>
+<code>Chord</code> and <code>Melody</code> defined, the following interface will compile. Note that
+an <code>enum</code> might be a better way to define these constants, but we wanted to
+emphasize how individual constants can be declared in an interface.</p>
 </div>
 <div id="ConstantGuitaristProgram" class="listingblock">
 <div class="content">
@@ -1088,7 +1091,9 @@ when a particular event happens. If you need many different listeners in
 one program, it can be convenient to create anonymous classes that can
 handle each event rather than defining many named classes which each
 have a single, narrow purpose. We’ll use this technique in
-<a href="chap16.html">Chapter 16</a>.</p>
+<a href="chap16.html">Chapter 16</a>. An elegant syntax for creating anonymous classes that
+implement only a single method will also be discussed in
+<a href="chap13.html">Chapter 13</a>.</p>
 </div>
 </div>
 </div>

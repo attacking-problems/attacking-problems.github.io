@@ -1289,7 +1289,7 @@ down the sign.
 
 ====
 
-==== Updated `switch` syntax 
+==== Updated `switch` syntax
 
 As mentioned earlier, the use of `break` statements can result in careless
 errors if a `break` is accidentally left out or added where it isn't needed.  
@@ -1302,7 +1302,7 @@ then a `break`, each `case` is followed by label, an arrow (`+->+`) and then a
 single line of executable code. If `L` represents a label and `E` represents a
 line of executable code, the syntax changes from `case L: E` to `+case L -> E+`.
 Then, each `case` becomes a complete block,  and there is no fall-through to the
-next case. To deal with many labels that all map to the same executable code,
+next `case`. To deal with many labels that all map to the same executable code,
 these labels can be a list of values or constants separated by commas, as in the 
 example below. If more than one statement is  included in a block, the statements
 must be surrounded by curly braces (`+{ }+`).
