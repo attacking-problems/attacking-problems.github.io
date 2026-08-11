@@ -3,7 +3,6 @@ require 'rouge'
 require_relative './default.rb'
 require_relative './GoogleAnalyticsDocinfoProcessor.rb'
 require_relative './autoxref-treeprocessor.rb'
-#require_relative './patch_rouge_java.rb'
 
 
 def convert()

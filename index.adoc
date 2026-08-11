@@ -15,12 +15,24 @@ ifdef::ebook-format[:leveloffset: -1]
 
 __Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It's intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
 
+== Availability
+
+[.text-center]
+image::multicore.svg[float="right"]
+
+__Attacking Problems with Java__ is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet. The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links.
+
+* link:full/index.html[HTML (single document)]
+* link:chunked/index.html[HTML (chunked)]
+
+We are also considering a print-on-demand version.  Please email jtk@purdue.edu, if you're interested!
+
 == The New Version is (Still!) in the Works
 
 [WARNING]
 .Under Construction
 ====
-This website was created and updated during the summer of 2024 and is usable now for fall classes.  We are continuing to work on additional changes, noted below, during the fall semester.  Please let us know of any issues you spot--or of any changes you would particularly like to see.
+The new version of the book was created during the summer of 2024 and is now usable.  We are continuing to work on additional changes, noted below.  Please let us know of any issues you spot--or of any changes you would particularly like to see.
 ====
 
 === Changes Planned and Completed
@@ -40,7 +52,7 @@ This website was created and updated during the summer of 2024 and is usable now
 * [x] Include a chapter on streams (or add to an existing chapter). 
 * [x] Add a brief outline of useful JCF classes and interfaces.
 * [x] Apply a unified style guide to all code in the book.
-* [x] Include an explanation of the `enum` type to Classes (Chapter 9).
+* [x] Include an explanation of the `enum` type in Classes (Chapter 9).
 * [x] Unify discussion of annotations (Chapters 13 and 17).
 * [x] Add an explanation of _varargs_ in Methods (Chapter 8).
 * [x] Improve `switch` examples in Selection (Chapter 4).  Add `yield` example(s).
@@ -48,17 +60,7 @@ This website was created and updated during the summer of 2024 and is usable now
 * [x] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Polymorphism (Chapter 18).  Add binding variable and `switch` examples.
 
 
-== Availability
 
-[.text-center]
-image::multicore.svg[float="right"]
-
-__Attacking Problems with Java__ is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet. The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links.
-
-* link:full/index.html[HTML (single document)]
-* link:chunked/index.html[HTML (chunked)]
-
-We are also considering a print-on-demand version.  Please email jtk@purdue.edu, if you're interested!
 
 == Using __Attacking Problems with Java__?
 

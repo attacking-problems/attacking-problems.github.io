@@ -1425,11 +1425,11 @@ length is greater than 5, and <code>Duck</code> objects.</p>
 <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">yield</span> <span class="s">"even string"</span><span class="o">;</span>
+            <span class="k">yield</span> <span class="s">"even string"</span><span class="o">;</span>
         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">yield</span> <span class="s">"long string"</span><span class="o">;</span>
+            <span class="k">yield</span> <span class="s">"long string"</span><span class="o">;</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="n">yield</span> <span class="s">"who knows"</span><span class="o">;</span>
+            <span class="k">yield</span> <span class="s">"who knows"</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="s">"quacks like a duck"</span><span class="o">;</span>
@@ -1460,8 +1460,8 @@ below.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="s">"unpredictable"</span><span class="o">;</span>
 <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="n">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="s">"even string"</span><span class="o">;</span>
-    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="n">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">5</span>  <span class="o">-&gt;</span> <span class="s">"long string"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="k">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="s">"even string"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="k">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">5</span>  <span class="o">-&gt;</span> <span class="s">"long string"</span><span class="o">;</span>
     <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="s">"quacks like a duck"</span><span class="o">;</span>
     <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"who knows"</span><span class="o">;</span>
 <span class="o">};</span></code></pre>

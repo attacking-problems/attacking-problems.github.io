@@ -1422,9 +1422,8 @@ include::{programsdir}/WesternZodiacExpression.java[]
 
 Most programmers use `yield` infrequently,
 preferring the clear, readable style of putting the result value after the
-arrow. However, when some computation is needed before the result is known, as
-with the previous example, `yield` allows the contents of the `case` to contain
-multiple lines.
+arrow. However, when more than one line of code is needed for computation,
+as with the previous example, `yield` must be used to specify the result.
 
 .Pitfall: `switch` expression that doesn't cover all values
 [WARNING]
@@ -1442,8 +1441,8 @@ is a vowel or a consonant.
 ----
 String type = switch (Character.toLowerCase(letter)) {
     case 'a', 'e', 'i', 'o', 'u' -> "vowel";
-    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 
-    'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
+    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p',
+    'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
 };
 ----
 
@@ -1457,8 +1456,8 @@ code compiles and works as intended.
 ----
 String type = switch (Character.toLowerCase(letter)) {
     case 'a', 'e', 'i', 'o', 'u' -> "vowel";
-    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q',
-    'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
+    case 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p',
+    'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' -> "consonant";
     default -> "non-letter";
 };
 ----
