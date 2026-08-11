@@ -163,7 +163,7 @@ they can all communicate with the same memory.
 In theory, having six cores could allow your computer to run six times
 as fast. In practice, this speedup is hard to achieve. Learning how to
 get more performance out of multicore systems is a major
-themes of this book. <<concurrency#concurrency>> and <<synchronization#synchronization>> as well as
+theme of this book. <<concurrency#concurrency>> and <<synchronization#synchronization>> as well as
 sections marked *Concurrency* in other chapters are specifically
 tailored for students interested in programming these multicore
 systems to work effectively. If you aren't interested in concurrent

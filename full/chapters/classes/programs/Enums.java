@@ -56,15 +56,9 @@ public class Enums {
         }
 
         switch (direction) {
-            case NORTH:
-                System.out.println("From the Gate of the Kings the North Wind rides");
-                break;
-            case SOUTH:
-                System.out.println("From the mouths of the Sea the South Wind flies");
-                break;
-            case WEST:
-                System.out.println("The West Wind comes walking, and about the walls it goes");
-                break;
+            case NORTH -> System.out.println("From the Gate of the Kings the North Wind rides");
+            case SOUTH -> System.out.println("From the mouths of the Sea the South Wind flies");
+            case WEST -> System.out.println("The West Wind comes walking, and about the walls it goes");
         }
 
         for (Direction cardinal : Direction.values()) {

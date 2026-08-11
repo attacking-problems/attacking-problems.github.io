@@ -1305,7 +1305,7 @@ default value.
 
 [source, java]
 ----
-include::{programsdir}/Term.java[lines=20..33]
+include::{programsdir}/Term.java[lines=20..31]
 ----
 
 The most complicated addition to the `Term` class is the

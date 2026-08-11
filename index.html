@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
 <title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -117,7 +117,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -220,6 +219,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -457,6 +457,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_availability">Availability</h2>
+<div class="sectionbody">
+<div class="imageblock right text-center">
+<div class="content">
+<img src="multicore.svg" alt="multicore">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Attacking Problems with Java</em> is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet. The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="full/index.html">HTML (single document)</a></p>
+</li>
+<li>
+<p><a href="chunked/index.html">HTML (chunked)</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We are also considering a print-on-demand version.  Please email <a href="mailto:jtk@purdue.edu">jtk@purdue.edu</a>, if you&#8217;re interested!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_the_new_version_is_still_in_the_works">The New Version is (Still!) in the Works</h2>
 <div class="sectionbody">
 <div class="admonitionblock warning">
@@ -468,7 +494,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="content">
 <div class="title">Under Construction</div>
 <div class="paragraph">
-<p>This website was created and updated during the summer of 2024 and is usable now for fall classes.  We are continuing to work on additional changes, noted below, during the fall semester.  Please let us know of any issues you spot&#8212;&#8203;or of any changes you would particularly like to see.</p>
+<p>The new version of the book was created during the summer of 2024 and is now usable.  We are continuing to work on additional changes, noted below.  Please let us know of any issues you spot&#8212;&#8203;or of any changes you would particularly like to see.</p>
 </div>
 </td>
 </tr>
@@ -479,16 +505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-square-o"></i> Improve <code>switch</code> examples in Selection (Chapter 4).  Add <code>yield</code> example(s).</p>
-</li>
-<li>
-<p><i class="fa fa-square-o"></i> Describe improvements to the <code>interface</code> specification, including <code>static</code> methods and <code>default</code> methods.</p>
-</li>
-<li>
-<p><i class="fa fa-square-o"></i> Move the introduction of <code>instanceof</code> from Interfaces (Chapter 10) to Inheritance (Chapter 11).  Add binding variable and <code>switch</code> examples.</p>
-</li>
-<li>
-<p><i class="fa fa-square-o"></i> Add an explanation of <em>varargs</em> in Methods (Chapter 8).</p>
+<p><i class="fa fa-square-o"></i> Add discussion of the <code>record</code> feature to Classes (Chapter 9) and how they can be used in <code>switch</code> statements to Polymorphism (Chapter 18).</p>
 </li>
 <li>
 <p><i class="fa fa-square-o"></i> Add Summary sections to chapters that don&#8217;t have them.</p>
@@ -529,39 +546,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><i class="fa fa-check-square-o"></i> Apply a unified style guide to all code in the book.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> Include an explanation of the <code>enum</code> type to Classes (Chapter 9).</p>
+<p><i class="fa fa-check-square-o"></i> Include an explanation of the <code>enum</code> type in Classes (Chapter 9).</p>
 </li>
 <li>
 <p><i class="fa fa-check-square-o"></i> Unify discussion of annotations (Chapters 13 and 17).</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_availability">Availability</h2>
-<div class="sectionbody">
-<div class="imageblock right text-center">
-<div class="content">
-<img src="multicore.svg" alt="multicore">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Attacking Problems with Java</em> is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet. The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links.</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><a href="full/index.html">HTML (single document)</a></p>
+<p><i class="fa fa-check-square-o"></i> Add an explanation of <em>varargs</em> in Methods (Chapter 8).</p>
 </li>
 <li>
-<p><a href="chunked/index.html">HTML (chunked)</a></p>
+<p><i class="fa fa-check-square-o"></i> Improve <code>switch</code> examples in Selection (Chapter 4).  Add <code>yield</code> example(s).</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Describe improvements to the <code>interface</code> specification, including <code>static</code> methods and <code>default</code> methods.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Move the introduction of <code>instanceof</code> from Interfaces (Chapter 10) to Polymorphism (Chapter 18).  Add binding variable and <code>switch</code> examples.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>We are also considering a print-on-demand version.  Please email <a href="mailto:jtk@purdue.edu">jtk@purdue.edu</a>, if you&#8217;re interested!</p>
 </div>
 </div>
 </div>
@@ -841,7 +844,7 @@ Instructors who wish to concentrate only on command-line I/O are free to ignore 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-15 10:19:34 -0400
+Last updated 2026-08-11 09:07:19 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
@@ -867,7 +870,7 @@ MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
   })
 })
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>
           <script>
             window.dataLayer = window.dataLayer || [];

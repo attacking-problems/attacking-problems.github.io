@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
 <title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -111,9 +111,10 @@
 <li><a href="chap8.html#_concepts_dividing_work_into_segments">8.2. Concepts: Dividing work into segments</a></li>
 <li><a href="chap8.html#_syntax_methods">8.3. Syntax: Methods</a></li>
 <li><a href="chap8.html#_examples_defining_methods">8.4. Examples: Defining methods</a></li>
-<li><a href="chap8.html#_solution_three_card_poker">8.5. Solution: Three card poker</a></li>
-<li><a href="chap8.html#_concurrency_methods">8.6. Concurrency: Methods</a></li>
-<li><a href="chap8.html#_exercises_8">8.7. Exercises</a></li>
+<li><a href="chap8.html#_advanced_variable_numbers_of_arguments">8.5. Advanced: Variable numbers of arguments</a></li>
+<li><a href="chap8.html#_solution_three_card_poker">8.6. Solution: Three card poker</a></li>
+<li><a href="chap8.html#_concurrency_methods">8.7. Concurrency: Methods</a></li>
+<li><a href="chap8.html#_exercises_8">8.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap9.html">9. Classes</a>
@@ -225,9 +226,10 @@
 <li><a href="chap18.html#_problem_banking_account_with_a_vengeance">18.1. Problem: Banking account with a vengeance</a></li>
 <li><a href="chap18.html#_concepts_polymorphism">18.2. Concepts: Polymorphism</a></li>
 <li><a href="chap18.html#_syntax_inheritance_tools_in_java">18.3. Syntax: Inheritance tools in Java</a></li>
-<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.4. Solution: Banking account with a vengeance</a></li>
-<li><a href="chap18.html#_concurrency_atomic_libraries">18.5. Concurrency: Atomic libraries</a></li>
-<li><a href="chap18.html#_exercises_18">18.6. Exercises</a></li>
+<li><a href="chap18.html#_advanced_pattern_matching_on_types">18.4. Advanced: Pattern matching on types</a></li>
+<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.5. Solution: Banking account with a vengeance</a></li>
+<li><a href="chap18.html#_concurrency_atomic_libraries">18.6. Concurrency: Atomic libraries</a></li>
+<li><a href="chap18.html#_exercises_18">18.7. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap19.html">19. Dynamic Data Structures</a>
@@ -922,10 +924,10 @@ by zero occurs.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">            <span class="k">try</span><span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
                 <span class="k">switch</span> <span class="o">(</span><span class="n">operator</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="k">case</span> <span class="sc">'+'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'-'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'*'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
-                    <span class="k">case</span> <span class="sc">'/'</span><span class="o">:</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'+'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'-'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'*'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+                    <span class="k">case</span> <span class="sc">'/'</span> <span class="o">-&gt;</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
                 <span class="o">}</span>
                 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Answer: "</span> <span class="o">+</span> <span class="n">answer</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
@@ -1137,12 +1139,12 @@ user input and deals with exceptions appropriately.</p>
         <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">trim</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">case</span> <span class="sc">'R'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'r'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'g'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'b'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'R'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'B'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'r'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'g'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'b'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ColorOverflowException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
@@ -1182,12 +1184,12 @@ as follows.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java">    <span class="k">try</span> <span class="o">{</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">in</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">trim</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">case</span> <span class="sc">'R'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'r'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'g'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
-            <span class="k">case</span> <span class="sc">'b'</span><span class="o">:</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="sc">'R'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'B'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">increaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'r'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseRed</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'g'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseGreen</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="k">case</span> <span class="sc">'b'</span> <span class="o">-&gt;</span> <span class="n">color</span> <span class="o">=</span> <span class="n">decreaseBlue</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
         <span class="o">}</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ColorOverflowException</span> <span class="o">|</span> <span class="nc">ColorUnderflowException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
@@ -1693,7 +1695,7 @@ implications for code that routinely throws thousands of exceptions?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

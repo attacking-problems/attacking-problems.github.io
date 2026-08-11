@@ -3,13 +3,13 @@ public class Bookkeeper {
 
     public static void main(String[] args) {
         while (Math.random() > 0.001) {
-            record();
+            increment();
         }
 
-        System.out.println("Record was called " + counter + " times.");
+        System.out.println("Increment was called " + counter + " times.");
     }
 
-    public static void record() {   
+    public static void increment() {   
         ++counter;  
     }
 }

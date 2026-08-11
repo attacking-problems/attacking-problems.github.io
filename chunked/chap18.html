@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
 <title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -111,9 +111,10 @@
 <li><a href="chap8.html#_concepts_dividing_work_into_segments">8.2. Concepts: Dividing work into segments</a></li>
 <li><a href="chap8.html#_syntax_methods">8.3. Syntax: Methods</a></li>
 <li><a href="chap8.html#_examples_defining_methods">8.4. Examples: Defining methods</a></li>
-<li><a href="chap8.html#_solution_three_card_poker">8.5. Solution: Three card poker</a></li>
-<li><a href="chap8.html#_concurrency_methods">8.6. Concurrency: Methods</a></li>
-<li><a href="chap8.html#_exercises_8">8.7. Exercises</a></li>
+<li><a href="chap8.html#_advanced_variable_numbers_of_arguments">8.5. Advanced: Variable numbers of arguments</a></li>
+<li><a href="chap8.html#_solution_three_card_poker">8.6. Solution: Three card poker</a></li>
+<li><a href="chap8.html#_concurrency_methods">8.7. Concurrency: Methods</a></li>
+<li><a href="chap8.html#_exercises_8">8.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap9.html">9. Classes</a>
@@ -225,9 +226,10 @@
 <li class="current"><a href="chap18.html#_problem_banking_account_with_a_vengeance">18.1. Problem: Banking account with a vengeance</a></li>
 <li class="current"><a href="chap18.html#_concepts_polymorphism">18.2. Concepts: Polymorphism</a></li>
 <li class="current"><a href="chap18.html#_syntax_inheritance_tools_in_java">18.3. Syntax: Inheritance tools in Java</a></li>
-<li class="current"><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.4. Solution: Banking account with a vengeance</a></li>
-<li class="current"><a href="chap18.html#_concurrency_atomic_libraries">18.5. Concurrency: Atomic libraries</a></li>
-<li class="current"><a href="chap18.html#_exercises_18">18.6. Exercises</a></li>
+<li class="current"><a href="chap18.html#_advanced_pattern_matching_on_types">18.4. Advanced: Pattern matching on types</a></li>
+<li class="current"><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.5. Solution: Banking account with a vengeance</a></li>
+<li class="current"><a href="chap18.html#_concurrency_atomic_libraries">18.6. Concurrency: Atomic libraries</a></li>
+<li class="current"><a href="chap18.html#_exercises_18">18.7. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap19.html">19. Dynamic Data Structures</a>
@@ -577,7 +579,7 @@ class hierarchies and enforce design decisions.</p>
 <div class="sect3">
 <h4 id="_abstract_classes_and_methods">18.3.1. Abstract classes and methods</h4>
 <div class="paragraph">
-<p>One such tool is abstract classes. An abstract class is one which can
+<p>One such tool is abstract classes. An abstract class is one that can
 <strong>never</strong> be instantiated. In order to use an abstract class, it’s
 necessary to make a child class from it. To create an abstract class, you
 simply add the <code>abstract</code> keyword to its definition, as in the
@@ -657,9 +659,10 @@ class that will be used directly.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Methods can be abstract as well. If you have an abstract class, you can
-create a method header which describes a method that all non-abstract
-children classes must implement, as shown below.</p>
+<p>Recall from <a href="chap10.html#_syntax_interfaces">Section 10.3</a> that methods in interfaces are usually
+abstract. You can also add abstract methods to abstract classes. In any abstract
+class, you can create a method header describing a method that all non-abstract
+child classes must implement, as shown below.</p>
 </div>
 <div id="SequenceProgram" class="listingblock">
 <div class="content">
@@ -713,7 +716,7 @@ an arithmetic or a geometric sequence as follows.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>Sequence</code> class doesn’t specify <strong>how</strong> the sequence of numbers
+<p>The <code>Sequence</code> class doesn’t specify <em>how</em> the sequence of numbers
 should be generated, but any derived class must implement the
 <code>getNextValue()</code> method in order to compile. By using an abstract class,
 we don’t have to create a base class which generates a meaningless
@@ -751,7 +754,7 @@ we’re going to use later.</td>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>We extend <code>SynchronizedAccount</code> and declare the new class to be
 abstract. In this example, we don’t use any abstract methods, but
-since each bank account has unique characteristics, we don’t want people
+since each type of bank account has unique characteristics, we don’t want people
 to be able to create a generic <code>BankAccount</code>.</td>
 </tr>
 </tbody></table>
@@ -832,11 +835,11 @@ the two fields associated with the last access are updated atomically.</p>
 <p>If you look at the previous example carefully, you’ll notice that the
 methods <code>getBalance()</code>, <code>deposit()</code>, and <code>withdraw()</code> were each declared
 with the keyword <code>final</code>. You’ve seen this keyword used to declare
-constants before. The meaning that <code>final</code> has for methods is similar to
+constants before. The meaning <code>final</code> has for methods is similar to
 what it means for constants (and almost the opposite of <code>abstract</code>). A method
-which is declared <code>final</code> can’t be overridden by child classes. If you’re
+which is declared <code>final</code> <em>can’t</em> be overridden by child classes. If you’re
 designing a class hierarchy and you want to lock a method into doing a
-specific thing and never changing, this is the way to do it.</p>
+specific thing and never changing, this is the appropriate tool.</p>
 </div>
 <div class="paragraph">
 <p>Like <code>abstract</code>, the keyword <code>final</code> can be applied to a class as well.
@@ -880,11 +883,11 @@ example, we can make a <code>Vehicle</code> array and store child class objects 
 </div>
 </div>
 <div class="paragraph">
-<p>This process could be infinitely more complex. We could be reading data
+<p>This process could be arbitrarily more complex. We could be reading data
 out of a file and dynamically creating different kinds of <code>Vehicle</code>
 objects, but the final product of an array of <code>Vehicle</code> objects is the
-important thing. Now, we can run through the array with a loop and have
-the code magically work for each kind of <code>Vehicle</code>.</p>
+important thing. Now, we can run through the array with a loop, and
+the code will magically work for each different kind of <code>Vehicle</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -923,8 +926,9 @@ explicit cast to tell the compiler that the object really <strong>is</strong> a
 </div>
 </div>
 <div class="paragraph">
-<p>Now, both lines of code work. The compiler is always conservative. It
-never makes guesses about the type of something. Consider the following.</p>
+<p>With these casts, both lines of code will work. The compiler is always
+conservative. It never makes guesses about the type of something. Consider the
+following.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -954,6 +958,8 @@ that we are, know what we’re doing. The error will happen at run time
 while executing the second line. Java will try to cast <code>vehicle</code> into a
 <code>RocketShip</code>, fail, and throw a <code>ClassCastException</code>.</p>
 </div>
+<div class="sect4">
+<h5 id="_the_instanceof_keyword">The <code>instanceof</code> keyword</h5>
 <div class="paragraph">
 <p>Java provides some additional tools to make casting easier. One of these
 is the <code>instanceof</code> keyword which can be used to test if an object is an
@@ -973,9 +979,14 @@ the object is capable of it.</p>
 </div>
 <div class="paragraph">
 <p>Even inside this <code>if</code> statement where it <strong>must</strong> be the case that <code>vehicle</code>
-is a <code>RocketShip</code>, we still must perform an explicit cast. Sometimes
-<code>instanceof</code> is not precise enough. If you must be sure that the object
-in question is a particular class and not just one of its child classes, you
+is a <code>RocketShip</code>, we still must perform an explicit cast. Note that
+<code>instanceof</code> looks at the object itself; thus, a reference that points to <code>null</code>
+has no object, no type, and will give always give a <code>false</code> result in an
+<code>instanceof</code> expression.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes <code>instanceof</code> is not precise enough. If you must be sure that the object
+in question has a particular class and not just one of its child classes, you
 can use the <code>getClass()</code> method on any object and compare it to the
 static class object. Using this tool, we can rewrite the former example
 to be more specific.</p>
@@ -999,6 +1010,49 @@ class <code>RocketShip</code> and not for objects of a child class like
 <div class="content">
 <div class="paragraph">
 <p><a href="chap18.html#instanceofExercise">Exercise 18.6</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Java 14 added an optional <em>binding variable</em> to the <code>instanceof</code> keyword. If
+the <code>instanceof</code> expression is inside an <code>if</code> statement, a binding variable can
+be added after the type. If the object matches the type, this binding variable
+will hold a reference to that object, automatically stored as
+the new type without the need for an explicit cast. Using this updated syntax,
+we could write our first <code>instanceof</code> example as follows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">visitDenver</span><span class="o">(</span><span class="nc">Vehicle</span> <span class="n">vehicle</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">vehicle</span> <span class="k">instanceof</span> <span class="nc">RocketShip</span> <span class="n">ship</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ship</span><span class="o">.</span><span class="na">blastOff</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">vehicle</span><span class="o">.</span><span class="na">travel</span><span class="o">(</span><span class="s">"Denver"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This style is preferred when possible, since it uses less code and removes the
+explicit cast.</p>
+</div>
+<div class="paragraph">
+<p>The <code>instanceof</code> keyword can be used with interfaces as well. For example, the
+following method takes a <code>Chord</code> object and an object of type <code>Object</code>.
+Recall that all reference types in Java can be treated as an <code>Object</code> type, so
+a reference of type <code>Object</code> could point at any object of any type.
+In this case, if the <code>Object</code> turns out to implement the <code>Guitarist</code> interface,
+we can bind it to a <code>Guitarist</code> variable called <code>player</code> and use it to strum a
+chord.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span> <span class="n">player</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"That's not a guitarist!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1050,8 +1104,8 @@ seems natural, but it’s <strong>not</strong> allowed in Java.</p>
 <div class="paragraph">
 <p>The principle behind polymorphism is that a more specialized version of
 something can <strong>always</strong> be used in place of a more general version. Indeed,
-if you use a <code>Plum</code> in place of a <code>Fruit</code>, calling the <code>eat()</code> method is no
-problem. The problem only happens if a <code>ChokingOnPitException</code> is thrown.
+if you use a <code>Plum</code> in place of a <code>Fruit</code>, calling the <code>eat()</code> method shouldn’t
+cause an issue. A problem would only happen if a <code>ChokingOnPitException</code> is thrown.
 Code that was designed for <code>Fruit</code> objects knows nothing about a
 <code>ChokingOnPitException</code>, so there’s no way for such code to catch the
 exception and deal with the situation.</p>
@@ -1113,7 +1167,7 @@ hierarchy.</p>
 <p>We begin with the abstract <code>Animal</code> class. This class gives a base
 definition for animals which includes whether the animal is alive,
 whether the animal is happy, and whether it’s warm-blooded (declared
-<code>final</code> because an animal can’t switch between warm-blooded and
+<code>final</code> because an animal will never switch between warm-blooded and
 cold-blooded).</p>
 </div>
 <div class="listingblock">
@@ -1190,7 +1244,7 @@ male).</p>
 <div class="paragraph">
 <p>The <code>Human</code> class also extends <code>Mammal</code>. Depending on the problem being
 solved, this class might warrant a great deal more specialization. Right
-now the main addition is taking happiness as an argument to the
+now, the main addition is taking happiness as an argument to the
 constructor since the default human state is not necessarily happiness.</p>
 </div>
 <div class="listingblock">
@@ -1225,10 +1279,239 @@ great deal.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_solution_banking_account_with_a_vengeance">18.4. Solution: Banking account with a vengeance</h3>
+<h3 id="_advanced_pattern_matching_on_types">18.4. Advanced: Pattern matching on types</h3>
 <div class="paragraph">
-<p>Now, we return to the specific problem given at the beginning of the
-chapter and give its solution. We’ve already given you the
+<p>The <code>instanceof</code> keyword can always be used to see if an object has a particular
+type (or a child of that type), but a powerful alternative is to use pattern
+matching in <code>switch</code> statements, a set of tools added in Java 21. These tools
+adds features beyond even the new arrow (<code>-&gt;</code>) syntax in <code>switch</code>
+expressions discussed in <a href="chap4.html#_updated_switch_syntax">Section 4.3.4</a>. Pattern matching
+allows a <code>switch</code> label to be a type, not simply a value, and even
+to add additional conditions to those labels.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following case where <code>bird</code> contains a reference of type <code>Bird</code>
+and there are classes <code>Duck</code>, <code>Hoopoe</code>, <code>Owl</code>, and <code>Rooster</code> that are all
+children of the <code>Bird</code> class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">bird</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Quack!"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Hoopoe</span> <span class="n">hoopoe</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Oop-oop!"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Owl</span> <span class="n">owl</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hoot!"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Rooster</span> <span class="n">rooster</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cockadoodledoo!"</span><span class="o">);</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"(Unknown bird)"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code would print out an appropriate bird noise, depending on the true
+type of the object that <code>bird</code> points at. Note that the label after
+each <code>case</code> must include the type to match against as well as a variable name.
+In this example, we did not use variables like <code>duck</code> or <code>owl</code> on the right
+side of the arrow to ask that object to call some method that only the matching
+type could call, but we could have. In this way, a
+pattern-matching <code>switch</code> works like an <code>instanceof</code> with a binding variable:
+We get a variable with the right type to hold the object, without needing an
+explicit cast. Note that a pattern-matching <code>switch</code> <strong>must</strong> handle every
+possible type, so the <code>default</code> is required here.</p>
+</div>
+<div class="paragraph">
+<p>Just like a <code>switch</code> with values for its <code>case</code> labels, a pattern-matching
+<code>switch</code> can be used as an expression, storing its result into a variable. We
+could change our bird example to store the result instead of printing it out.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">call</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">bird</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="s">"Quack!"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">Hoopoe</span> <span class="n">hoopoe</span> <span class="o">-&gt;</span> <span class="s">"Oop-oop!"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">Owl</span> <span class="n">owl</span> <span class="o">-&gt;</span> <span class="s">"Hoot!"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">Rooster</span> <span class="n">rooster</span> <span class="o">-&gt;</span> <span class="s">"Cockadoodledoo!"</span><span class="o">;</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"(Unknown bird)"</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following is a more practical example, a method that returns the area
+of different shapes, depending on what type they are. It would be easy to add
+additional <code>case</code> labels to support new shapes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">getArea</span><span class="o">(</span><span class="nc">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="nc">Circle</span> <span class="n">circle</span> <span class="o">-&gt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">circle</span><span class="o">.</span><span class="na">getRadius</span><span class="o">()</span> <span class="o">*</span> <span class="n">circle</span><span class="o">.</span><span class="na">getRadius</span><span class="o">();</span>
+        <span class="k">case</span> <span class="nc">Rectangle</span> <span class="n">rectangle</span> <span class="o">-&gt;</span> <span class="n">rectangle</span><span class="o">.</span><span class="na">getLength</span><span class="o">()</span> <span class="o">*</span> <span class="n">rectangle</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+        <span class="k">case</span> <span class="nc">Triangle</span> <span class="n">triangle</span> <span class="o">-&gt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">triangle</span><span class="o">.</span><span class="na">getBase</span><span class="o">()</span> <span class="o">*</span> <span class="n">triangle</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+        <span class="k">default</span> <span class="o">-&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">IllegalArgumentException</span><span class="o">();</span>
+    <span class="o">};</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Pitfall: Pattern matching with a parent class before a child class</div>
+<div class="paragraph">
+<p>It appears as if execution of a pattern-matching <code>switch</code> jumps to the matching
+<code>case</code> label, but it usually steps through each <code>case</code> in order. For this
+reason, Java doesn’t allow us to specify a parent class for a label before
+a child class. If it did, the child class label would never be reached since
+the parent class would always match first.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following code that takes a reference called <code>creature</code> with
+type <code>Animal</code> and prints out the name of the type that best matches it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">creature</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Animal</span> <span class="n">animal</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Animal"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Mammal</span> <span class="n">mammal</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mammal"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Human</span> <span class="n">human</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Human"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code does <strong>not</strong> compile because the parent class <code>Animal</code> comes before the
+child classes <code>Mammal</code> and <code>Human</code>. The appropriate way to write this code is
+to order the classes in the opposite way, from child up to parent and finally
+grandparent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="k">switch</span> <span class="o">(</span><span class="n">creature</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">Human</span> <span class="n">human</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Human"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Mammal</span> <span class="n">mammal</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mammal"</span><span class="o">);</span>
+    <span class="k">case</span> <span class="nc">Animal</span> <span class="n">animal</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Animal"</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This behavior is exactly like <code>catch</code> blocks for exceptions, which must always
+start from the most specific exception (the lowest-level child) and end with
+the most generic (the highest-level parent), as we mentioned in
+<a href="chap12.html#_handling_exceptions">Section 12.3.2</a>.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h4 id="_pattern_matching_with_guards">18.4.1. Pattern matching with guards</h4>
+<div class="paragraph">
+<p>The main reason to use a <code>switch</code> statement is to cleanly list
+possible alternatives and the code that should be executed for each one. To make
+those alternatives as readable as possible, programmers prefer to write the
+arrow syntax for <code>switch</code> statements with only a single line after the arrow.
+Of course, multiple lines can be written after the arrow, if they’re enclosed
+in braces.</p>
+</div>
+<div class="paragraph">
+<p>When an additional check with an <code>if</code> statement is needed inside a <code>case</code>,
+braces could be used along with a <code>yield</code> statement, as in the following code
+that checks for <code>String</code> values with an even length, <code>String</code> values whose
+length is greater than 5, and <code>Duck</code> objects.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="s">"unpredictable"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">yield</span> <span class="s">"even string"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">yield</span> <span class="s">"long string"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">yield</span> <span class="s">"who knows"</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="s">"quacks like a duck"</span><span class="o">;</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"who knows"</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value stored into <code>result</code> by this code is <code>"long string"</code>, since
+<code>"unpredictable"</code> has a length of 13, which is not even but is longer than 5.
+Nothing is wrong with this code, but it’s almost as long as a version using
+only <code>if</code> statements. Likewise, the <code>"who knows"</code> value must be repeated for
+<code>String</code> values that are short with an odd length as well as objects that don’t
+match either the <code>String</code> or <code>Duck</code> types.</p>
+</div>
+<div class="paragraph">
+<p>To handle this issue of conditional checks within a <code>case</code>, <em>guards</em> can be
+used. A guard is an expression that evaluates to a <code>boolean</code>, like the
+condition of an <code>if</code> statement, that comes after an optional <code>when</code> keyword,
+following the <code>case</code> label. A given <code>case</code> will match only if the object
+matches the type and also makes the guard evaluate to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>Thus, the longer code above could be written with guards in a more compact way
+below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="s">"unpredictable"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="k">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="s">"even string"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="k">when</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">5</span>  <span class="o">-&gt;</span> <span class="s">"long string"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">Duck</span> <span class="n">duck</span> <span class="o">-&gt;</span> <span class="s">"quacks like a duck"</span><span class="o">;</span>
+    <span class="k">default</span> <span class="o">-&gt;</span> <span class="s">"who knows"</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The use of guards can allow a lot of logic to be compressed into a short space
+while remaining readable. As you can see, guards can be applied to some <code>case</code>
+labels and left off others, even within the same <code>switch</code>.</p>
+</div>
+<div class="paragraph">
+<p>What happens if the object being tested by the <code>switch</code> statement is <code>null</code>?
+Normally, using a <code>null</code> reference inside a <code>switch</code> will throw a
+<code>NullPointerException</code>. However, a special <code>null</code> <code>case</code> can be added that will
+handle <code>null</code> references gracefully.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">data</span> <span class="o">=</span> <span class="k">switch</span><span class="o">(</span><span class="n">unknown</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="kc">null</span> <span class="o">-&gt;</span> <span class="s">"(null)"</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">String</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="s">"String: "</span> <span class="o">+</span> <span class="n">string</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">Object</span> <span class="n">other</span> <span class="o">-&gt;</span> <span class="s">"Other: "</span> <span class="o">+</span> <span class="n">other</span><span class="o">;</span>
+<span class="o">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this code, a reference named <code>unknown</code> with type <code>Object</code> is the input to
+the <code>switch</code> statement. If <code>unknown</code> points to <code>null</code>, this <code>switch</code> will give
+<code>"(null)"</code> back as its result, instead of throwing an exception. A <code>null</code>
+<code>case</code> doesn’t follow the normal rules for <code>switch</code> statements, which typically
+act as if they check each <code>case</code> label, one by one, from top to bottom.
+Instead, a <code>null</code> <code>case</code> can be at the top, the bottom, or anywhere in between,
+and the code for that <code>case</code> will always be executed if the reference is <code>null</code>.</p>
+</div>
+<div class="paragraph">
+<p>The people who add features to Java continue to put a lot of effort into the
+updated arrow syntax for <code>switch</code> statements and the pattern-matching tools we’ve
+discussed here. There are related features we did not mention as well
+as new features that are likely to be standardized in future versions of Java,
+including more flexible ways to use primitive types in <code>switch</code> constructs. If
+you’re interested in these features, you might want to search out information
+about the latest versions of Java.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution_banking_account_with_a_vengeance">18.5. Solution: Banking account with a vengeance</h3>
+<div class="paragraph">
+<p>Now, we return to the specific problem from the beginning of the
+chapter and give its solution. We’ve already written the code for the
 <code>BankAccount</code> abstract class which provides a lot of structure.</p>
 </div>
 <div class="imageblock text-center">
@@ -1381,7 +1664,7 @@ concurrent environments.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_atomic_libraries">18.5. Concurrency: Atomic libraries</h3>
+<h3 id="_concurrency_atomic_libraries">18.6. Concurrency: Atomic libraries</h3>
 <div class="paragraph">
 <p>This chapter has discussed using polymorphism to reuse code. To solve
 the banking account with a vengeance problem from the beginning of the
@@ -1462,7 +1745,7 @@ value. If you run this program, the final answer should always be
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="chap18.html#atomicClassExercise">Exercise 18.10</a></p>
+<p><a href="chap18.html#atomicClassExercise">Exercise 18.11</a></p>
 </div>
 </div>
 </div>
@@ -1490,13 +1773,13 @@ applications depends on CAS implementations.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><a href="chap18.html#atomicTimingExercise">Exercise 18.11</a></p>
+<p><a href="chap18.html#atomicTimingExercise">Exercise 18.12</a></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercises_18">18.6. Exercises</h3>
+<h3 id="_exercises_18">18.7. Exercises</h3>
 <div class="paragraph">
 <p><strong>Conceptual Problems</strong></p>
 </div>
@@ -1638,13 +1921,17 @@ What’s the problem that prevents compilation?</p>
 </div>
 </div>
 </li>
+<li>
+<p>What’s the <code>instanceof</code> keyword used for? Why is it useful in the
+context of polymorphism?</p>
+</li>
 </ol>
 </div>
 <div class="paragraph">
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="8">
+<ol class="arabic" start="9">
 <li>
 <p>Update the solution from <a href="chap11.html#_solution_boolean_circuits">Section 11.5</a> so that it uses as
 many of the inheritance tools from this chapter as possible.  Clearly, the
@@ -1722,7 +2009,7 @@ still necessary? Why or why not?</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="11">
+<ol class="arabic" start="12">
 <li>
 <p><a id="atomicTimingExercise"></a> Take <a href="chap18.html#NoRaceConditionProgram">Program 18.4</a>
 and increase <code>COUNT</code> to <code>100000000</code>. Run it several times and time how
@@ -1760,7 +2047,7 @@ the implementation of locks and CAS on your OS and hardware platform.</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

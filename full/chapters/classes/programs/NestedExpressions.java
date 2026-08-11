@@ -1,6 +1,15 @@
 import java.util.*;
 
 public class NestedExpressions {
+
+    public static char toLeft(char symbol) {
+        return switch (symbol) {
+            case ')' -> '(';
+            case ']' -> '[';
+            case '}' -> '{';
+            default -> symbol;
+        };
+    }
     public static void main(String[] args) {        
         Scanner in = new Scanner(System.in);
         String input = in.nextLine(); // <.>
@@ -10,20 +19,14 @@ public class NestedExpressions {
         for (int i = 0; i < input.length() && correct; ++i) { // <.>
             symbol = input.charAt(i);
             switch (symbol) {
-                case '(':
-                case '[':
-                case '{':
-                    stack.push(symbol); // <.>
-                    break;
-                case ')':
-				case ']':
-				case '}':
-                    if (stack.isEmpty() || stack.top() != symbol) { // <.>
+                case '(', '[', '{' -> stack.push(symbol); // <.>
+                case ')', ']', '}' -> {
+                    if (stack.isEmpty() || stack.top() != toLeft(symbol)) { // <.>
                         correct = false;
                     } else {
                         stack.pop();
                     }
-                    break;                
+                }     
             }
         }
             

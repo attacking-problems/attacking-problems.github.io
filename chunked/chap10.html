@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="author" content="Barry Wittman, Tim Korb, Aditya Mathur">
 <title>Attacking Problems with Java</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -111,9 +111,10 @@
 <li><a href="chap8.html#_concepts_dividing_work_into_segments">8.2. Concepts: Dividing work into segments</a></li>
 <li><a href="chap8.html#_syntax_methods">8.3. Syntax: Methods</a></li>
 <li><a href="chap8.html#_examples_defining_methods">8.4. Examples: Defining methods</a></li>
-<li><a href="chap8.html#_solution_three_card_poker">8.5. Solution: Three card poker</a></li>
-<li><a href="chap8.html#_concurrency_methods">8.6. Concurrency: Methods</a></li>
-<li><a href="chap8.html#_exercises_8">8.7. Exercises</a></li>
+<li><a href="chap8.html#_advanced_variable_numbers_of_arguments">8.5. Advanced: Variable numbers of arguments</a></li>
+<li><a href="chap8.html#_solution_three_card_poker">8.6. Solution: Three card poker</a></li>
+<li><a href="chap8.html#_concurrency_methods">8.7. Concurrency: Methods</a></li>
+<li><a href="chap8.html#_exercises_8">8.8. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap9.html">9. Classes</a>
@@ -225,9 +226,10 @@
 <li><a href="chap18.html#_problem_banking_account_with_a_vengeance">18.1. Problem: Banking account with a vengeance</a></li>
 <li><a href="chap18.html#_concepts_polymorphism">18.2. Concepts: Polymorphism</a></li>
 <li><a href="chap18.html#_syntax_inheritance_tools_in_java">18.3. Syntax: Inheritance tools in Java</a></li>
-<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.4. Solution: Banking account with a vengeance</a></li>
-<li><a href="chap18.html#_concurrency_atomic_libraries">18.5. Concurrency: Atomic libraries</a></li>
-<li><a href="chap18.html#_exercises_18">18.6. Exercises</a></li>
+<li><a href="chap18.html#_advanced_pattern_matching_on_types">18.4. Advanced: Pattern matching on types</a></li>
+<li><a href="chap18.html#_solution_banking_account_with_a_vengeance">18.5. Solution: Banking account with a vengeance</a></li>
+<li><a href="chap18.html#_concurrency_atomic_libraries">18.6. Concurrency: Atomic libraries</a></li>
+<li><a href="chap18.html#_exercises_18">18.7. Exercises</a></li>
 </ul>
 </li>
 <li><a href="chap19.html">19. Dynamic Data Structures</a>
@@ -525,33 +527,10 @@ interface. In the following snippet of code, we do this by creating 100
 at compile time instead of run time.
 If you implement an interface with a class you’re writing but
 forget (or misspell) a required method, the compiler will fail to
-compile that class. If you remember all of the required methods but
+compile that class. If you remember all the required methods but
 forget to specify that your class implements a particular interface, the
-compiler will fail when you try to use that class in a place where that
+compiler will fail when you try to use that class in a place where the
 interface is required.</p>
-</div>
-<div class="paragraph">
-<p>If you have code that takes some arbitrary object as a parameter, you
-can determine if that object implements a particular interface by using
-the <code>instanceof</code> keyword. For example, the following method takes a
-<code>Chord</code> object and an object of type <code>Object</code>. The <code>Object</code> type is the
-most basic reference type there is. All reference types in Java can be
-treated as an <code>Object</code> type. Thus, a reference of type <code>Object</code> could
-point at any object of any type. In this case, if the <code>Object</code> turns out
-to implement the <code>Guitarist</code> interface, we can cast it to a <code>Guitarist</code>
-and use it to strum a chord.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">void</span> <span class="nf">checkBeforeStrum</span><span class="o">(</span><span class="nc">Object</span> <span class="n">unknown</span><span class="o">,</span> <span class="nc">Chord</span> <span class="n">chord</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">unknown</span> <span class="k">instanceof</span> <span class="nc">Guitarist</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Guitarist</span> <span class="n">player</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Guitarist</span><span class="o">)</span><span class="n">unknown</span><span class="o">;</span>
-        <span class="n">player</span><span class="o">.</span><span class="na">strumChord</span><span class="o">(</span><span class="n">chord</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">else</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"That's not a guitarist!"</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -595,7 +574,7 @@ added the new method.</p>
 </div>
 <div class="paragraph">
 <p>To allow new methods to be added to old interfaces without breaking existing classes, the idea of a
-default method was added to the rules for Java interfaces.  A method with a body could be added to
+default method was added to the rules for Java interfaces.  A method with a body <em>could</em> be added to
 an interface, provided that it was marked with the <code>default</code> keyword.  If a class implements that interface
 and has a public method that matches the default method, the class’s method will be used.  However,
 if a class doesn’t have a matching method, the default method will be used, and the class will still compile.</p>
@@ -671,7 +650,7 @@ there can be a conflict.</p>
 <p>This strange class is the template for an object that’s simultaneously an engine and a guitarist, implementing both
 <code>DefaultGuitarist</code> and <code>DefaultEngine</code>.  It has public methods for <code>strumChord()</code> and <code>playMelody()</code>, satisfying the
 <code>DefaultGuitarist</code> interface.  It also has public methods for <code>start()</code> and <code>getRedline()</code>, satisfying the <code>DefaultEngine</code>
-interface.  But it’s received two different default methods for <code>tune()</code>, one that tunes like a guitarist and one that
+interface.  But it’s received two <em>different</em> default methods for <code>tune()</code>, one that tunes like a guitarist and one that
 tunes like an engine.  As a consequence, an <code>EngineGuitarist</code> object wouldn’t know which <code>tune()</code> to call and won’t
 compile as it’s written.</p>
 </div>
@@ -683,7 +662,7 @@ but you need to create a <code>tune()</code> method inside <code>EngineGuitarist
 <p>The use of default methods in interfaces is relatively rare, and situations where there are two conflicting default methods
 are rarer still.  Even so, it’s important to understand how all the features of a language work.  Note that it’s unlikely that
 you’ll be writing interfaces with default methods often, since their primary use is to add capabilities to existing interfaces
-without breaking classes that already use those interfaces.</p>
+without breaking classes that already implement those interfaces.</p>
 </div>
 </div>
 <div class="sect3">
@@ -722,24 +701,17 @@ simply utility methods that perform some task associated with the interface.</p>
 			<span class="k">if</span> <span class="o">(</span><span class="n">note</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">)</span> <span class="o">{</span>
 				<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="n">letter</span><span class="o">;</span>
 			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-				<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-					<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-					<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-					<span class="k">case</span> <span class="sc">'G'</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">"A"</span><span class="o">;</span>
-					<span class="k">default</span><span class="o">:</span>
-						<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="o">}</span>
+				<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+					<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span>  <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+					<span class="k">case</span> <span class="sc">'G'</span> <span class="o">-&gt;</span>  <span class="s">"A"</span><span class="o">;</span>
+					<span class="k">default</span> <span class="o">-&gt;</span>  <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="o">};</span>
 			<span class="o">}</span>
 		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-			<span class="k">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
-				<span class="k">case</span> <span class="sc">'B'</span><span class="o">:</span>
-				<span class="k">case</span> <span class="sc">'E'</span><span class="o">:</span>
-					<span class="k">return</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-				<span class="k">default</span><span class="o">:</span>
-					<span class="k">return</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
-			<span class="o">}</span>
+			<span class="k">return</span> <span class="nf">switch</span> <span class="o">(</span><span class="n">letter</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">case</span> <span class="sc">'B'</span><span class="o">,</span> <span class="sc">'E'</span> <span class="o">-&gt;</span> <span class="s">""</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)(</span><span class="n">letter</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+				<span class="k">default</span> <span class="o">-&gt;</span> <span class="n">letter</span> <span class="o">+</span> <span class="s">"#"</span><span class="o">;</span>
+			<span class="o">};</span>
 		<span class="o">}</span>	
 	<span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -751,7 +723,7 @@ of a note such as <code>"D#"</code> or <code>"Bb"</code> and returns a <code>Str
 note one half step higher.  The rules for musical notes are somewhat complex, so this
 method is useful even when separate from any particular class that implements <code>StaticGuitarist</code>.
 The <code>nextNote()</code> method would be called just like any static method, using the name
-of its container <code>StaticGuitarist</code> followed by a dot followed by the name of the method itself.</p>
+of its container <code>StaticGuitarist</code>, followed by a dot, followed by the name of the method itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -764,7 +736,9 @@ methods will ever change any data inside the interface.  This is the fundamental
 between an interface and a class: Interfaces never contain <em>state</em>.  Even so, class constants are allowed.
 Thus, we could define <code>static</code> <code>final</code>
 values that might be useful to any class implementing an interface. With
-<code>Chord</code> and <code>Melody</code> defined, the following interface will compile.</p>
+<code>Chord</code> and <code>Melody</code> defined, the following interface will compile. Note that
+an <code>enum</code> might be a better way to define these constants, but we wanted to
+emphasize how individual constants can be declared in an interface.</p>
 </div>
 <div id="ConstantGuitaristProgram" class="listingblock">
 <div class="content">
@@ -1117,7 +1091,9 @@ when a particular event happens. If you need many different listeners in
 one program, it can be convenient to create anonymous classes that can
 handle each event rather than defining many named classes which each
 have a single, narrow purpose. We’ll use this technique in
-<a href="chap16.html">Chapter 16</a>.</p>
+<a href="chap16.html">Chapter 16</a>. An elegant syntax for creating anonymous classes that
+implement only a single method will also be discussed in
+<a href="chap13.html">Chapter 13</a>.</p>
 </div>
 </div>
 </div>
@@ -1267,8 +1243,8 @@ to generalize the sort beyond <code>int</code> values.</p>
 <div class="paragraph">
 <p>In this method, the <code>boolean</code> <code>age</code> is <code>true</code> if we’re sorting by age
 and <code>false</code> if we’re sorting by weight. Note that the array elements and <code>temp</code>
-have the <code>Object</code> type. Recall that any object can be stored in a
-reference of type <code>Object</code>.</p>
+have the <code>Object</code> type. As we will discuss in <a href="chap11.html#_the_object_class">Section 11.3.6</a>, <strong>any</strong>
+object can be stored in a reference of type <code>Object</code>.</p>
 </div>
 <div class="paragraph">
 <p>The only other change we needed was to replace the greater-than
@@ -1370,10 +1346,6 @@ class yet adds no functionality?</p>
 <li>
 <p>Is it legal to have methods marked <code>private</code> or <code>protected</code> in an
 interface? Why did the designers of Java make this choice?</p>
-</li>
-<li>
-<p>What’s the <code>instanceof</code> keyword used for? Why is it useful in the
-context of interfaces?</p>
 </li>
 <li>
 <p>What kind of programming error causes a <code>ClassCastException</code>?</p>
@@ -1531,7 +1503,7 @@ What’s the minimum number of passes if the list is already sorted?</p>
 <p><strong>Programming Practice</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="12">
+<ol class="arabic" start="11">
 <li>
 <p>Add client code that randomly creates the objects needing sorting in
 the solution from <a href="chap10.html#_solution_sort_it_out">Section 10.5</a>. Design and include
@@ -1574,10 +1546,10 @@ in <a href="chap20.html#mergeSortExample">Example 20.8</a>.</p>
 <p><strong>Experiments</strong></p>
 </div>
 <div class="olist arabic">
-<ol class="arabic" start="15">
+<ol class="arabic" start="14">
 <li>
 <p>Once you have implemented the sort in parallel from
-<a href="chap10.html#parallelBubbleSortExercise">Exercise 10.14</a>, time it against the sequential
+<a href="chap10.html#parallelBubbleSortExercise">Exercise 10.13</a>, time it against the sequential
 version. Try two, four, and eight different threads. Be sure to create
 one random array and use copies of the original array for both the parallel
 and sequential versions. Be careful not to sort an array that’s already
@@ -1601,7 +1573,7 @@ performance increase? Was it as much as you expected?</p>
 </nav>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-30 12:19:53 -0400
+Last updated 2025-07-14 11:38:32 -0400
 </div>
 </div>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-VS8KWBN2CV"></script>

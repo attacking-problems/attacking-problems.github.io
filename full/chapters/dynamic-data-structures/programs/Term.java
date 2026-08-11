@@ -19,13 +19,11 @@ public class Term {
 
     public boolean greaterOrEqual(Term term) {
         if (isOperator()) {
-            switch (operator) {            
-                case '*':
-                case '/': return true;              
-                case '+':
-                case '-': return term.operator != '*' && term.operator != '/';
-                default: return false;
-            }       
+            return switch (operator) {            
+                case '*', '/' -> true;              
+                case '+', '-' -> term.operator != '*' && term.operator != '/';
+                default -> false;
+            };       
         } else {
             return false;
         }

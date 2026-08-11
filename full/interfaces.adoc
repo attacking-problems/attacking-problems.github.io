@@ -176,32 +176,10 @@ One benefit of using interfaces is that more mistakes can be caught
 at compile time instead of run time.
 If you implement an interface with a class you're writing but
 forget (or misspell) a required method, the compiler will fail to
-compile that class. If you remember all of the required methods but
+compile that class. If you remember all the required methods but
 forget to specify that your class implements a particular interface, the
-compiler will fail when you try to use that class in a place where that
+compiler will fail when you try to use that class in a place where the
 interface is required.
-
-If you have code that takes some arbitrary object as a parameter, you
-can determine if that object implements a particular interface by using
-the `instanceof` keyword. For example, the following method takes a
-`Chord` object and an object of type `Object`. The `Object` type is the
-most basic reference type there is. All reference types in Java can be
-treated as an `Object` type. Thus, a reference of type `Object` could
-point at any object of any type. In this case, if the `Object` turns out
-to implement the `Guitarist` interface, we can cast it to a `Guitarist`
-and use it to strum a chord.
-
-[source,java]
-----
-void checkBeforeStrum(Object unknown, Chord chord) {
-    if (unknown instanceof Guitarist) {
-        Guitarist player = (Guitarist)unknown;
-        player.strumChord(chord);
-    }
-    else
-        System.out.println("That's not a guitarist!");
-}
-----
 
 .Pitfall: Interfaces cannot be instantiated
 [WARNING]
@@ -235,7 +213,7 @@ of code.  All the existing classes that implemented the interface would fail to 
 added the new method.
 
 To allow new methods to be added to old interfaces without breaking existing classes, the idea of a
-default method was added to the rules for Java interfaces.  A method with a body could be added to
+default method was added to the rules for Java interfaces.  A method with a body _could_ be added to
 an interface, provided that it was marked with the `default` keyword.  If a class implements that interface
 and has a public method that matches the default method, the class's method will be used.  However,
 if a class doesn't have a matching method, the default method will be used, and the class will still compile.
@@ -277,7 +255,7 @@ include::{programsdir}/EngineGuitarist.java[]
 This strange class is the template for an object that's simultaneously an engine and a guitarist, implementing both
 `DefaultGuitarist` and `DefaultEngine`.  It has public methods for `strumChord()` and `playMelody()`, satisfying the
 `DefaultGuitarist` interface.  It also has public methods for `start()` and `getRedline()`, satisfying the `DefaultEngine`
-interface.  But it's received two different default methods for `tune()`, one that tunes like a guitarist and one that
+interface.  But it's received two _different_ default methods for `tune()`, one that tunes like a guitarist and one that
 tunes like an engine.  As a consequence, an `EngineGuitarist` object wouldn't know which `tune()` to call and won't
 compile as it's written.
 
@@ -287,7 +265,7 @@ but you need to create a `tune()` method inside `EngineGuitarist` to make clear 
 The use of default methods in interfaces is relatively rare, and situations where there are two conflicting default methods
 are rarer still.  Even so, it's important to understand how all the features of a language work.  Note that it's unlikely that
 you'll be writing interfaces with default methods often, since their primary use is to add capabilities to existing interfaces
-without breaking classes that already use those interfaces.
+without breaking classes that already implement those interfaces.
 
 
 ==== Interfaces and `static`
@@ -320,7 +298,7 @@ of a note such as `"D#"` or `"Bb"` and returns a `String` with a representation 
 note one half step higher.  The rules for musical notes are somewhat complex, so this
 method is useful even when separate from any particular class that implements `StaticGuitarist`.
 The `nextNote()` method would be called just like any static method, using the name
-of its container `StaticGuitarist` followed by a dot followed by the name of the method itself.
+of its container `StaticGuitarist`, followed by a dot, followed by the name of the method itself.
 
 [source, java]
 ----
@@ -332,7 +310,9 @@ methods will ever change any data inside the interface.  This is the fundamental
 between an interface and a class: Interfaces never contain _state_.  Even so, class constants are allowed.
 Thus, we could define `static` `final`
 values that might be useful to any class implementing an interface. With
-`Chord` and `Melody` defined, the following interface will compile.
+`Chord` and `Melody` defined, the following interface will compile. Note that
+an `enum` might be a better way to define these constants, but we wanted to
+emphasize how individual constants can be declared in an interface.
 
 [source, java]
 [[ConstantGuitaristProgram]]
@@ -620,7 +600,9 @@ when a particular event happens. If you need many different listeners in
 one program, it can be convenient to create anonymous classes that can
 handle each event rather than defining many named classes which each
 have a single, narrow purpose. We'll use this technique in
-<<gui#gui>>.
+<<gui#gui>>. An elegant syntax for creating anonymous classes that
+implement only a single method will also be discussed in
+<<lambdas-and-streams#lambdas-and-streams>>.
 
 === Solution: Sort it out
 
@@ -713,8 +695,8 @@ public void sort(Object[] array, boolean age) {
 
 In this method, the `boolean` `age` is `true` if we're sorting by age
 and `false` if we're sorting by weight. Note that the array elements and `temp`
-have the `Object` type. Recall that any object can be stored in a
-reference of type `Object`.
+have the `Object` type. As we will discuss in <<The `Object` class>>, *any* 
+object can be stored in a reference of type `Object`.
 
 The only other change we needed was to replace the greater-than
 comparison (`>`) with the `outOfOrder()` method, which we define below.
@@ -798,8 +780,6 @@ documentation may be the only guide.
 class yet adds no functionality?
 . Is it legal to have methods marked `private` or `protected` in an
 interface? Why did the designers of Java make this choice?
-. What's the `instanceof` keyword used for? Why is it useful in the
-context of interfaces?
 . What kind of programming error causes a `ClassCastException`?
 . Create an interface called `ColorWavelengths` that only contains
 constants storing the wavelengths in nanometers for each of the seven
